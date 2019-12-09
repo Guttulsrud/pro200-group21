@@ -3,8 +3,8 @@
     background-color: #00866E;
     height: 3rem;
     width: 3rem;
-    margin-top: 1rem;
-    margin-left: 1rem;
+    top: 1rem;
+    left: 1rem;
     position: fixed;
     z-index: 1;
     font-size: 1.8rem;
