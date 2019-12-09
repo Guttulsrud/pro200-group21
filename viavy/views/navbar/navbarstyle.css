@@ -2,9 +2,9 @@ body {
     background-color: #f5f5f5;
     font-size: 16px; /* Initiate 16px for rem use */
     color: #333; /* Apply this font color to all elements */
+    font-family: Helvetica, Arial, sans-serif;
 }
 /* Nav menu CSS */
-
 button {
     border: none;
 }
