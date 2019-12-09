@@ -10,6 +10,7 @@ button {
 }
 
 #nav-menu {
+    z-index: 1000; /* position above all else */
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
