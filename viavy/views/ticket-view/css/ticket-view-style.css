@@ -1,0 +1,40 @@
+.container-fluid {
+    height: 100vh;
+}
+
+#ticket-row {
+    height: 100%;
+}
+
+#ticket-large{
+    height: 50vh;
+    width: 50vh;
+    margin-top: 30%;
+    border-radius: 10px;
+    background-color: #ebebeb;
+    border: 2px solid #00866E;
+    box-shadow: darkgray 2px 5px 5px;
+
+}
+
+#ticket-large-header {
+    height: 50px;
+    background-color: #00866E;
+    border-radius: 5px 5px 0 0;
+}
+
+
+#destination-txt {
+    font-size: 2rem;
+}
+
+#ticket-qr {
+    height: 15rem;
+    width: 15rem;
+    border: 1px solid darkgray;
+    border-radius: 4px;
+}
+
+#txt-div {
+    font-size: 1.3rem;
+}
