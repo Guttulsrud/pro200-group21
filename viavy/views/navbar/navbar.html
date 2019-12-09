@@ -10,38 +10,37 @@
     <title>Hello, world!</title>
 </head>
 
-<body class="grey">
+<body>
 
+<!-- Nav menu -->
+<div id="nav-menu">
+
+    <div class="nav-cont">
+        <!-- The class nav-active makes the icon change color for the active page -->
+        <button class="nav-btn nav-active"><i class="fas fa-search"></i></button>
+        <p class="nav-txt">Hjem</p>
+    </div>
+
+    <div class="nav-cont">
+        <button class="nav-btn"><i class="far fa-map"></i></button>
+        <p class="nav-txt">Sanntidskart</p>
+    </div>
+
+    <div class="nav-cont">
+        <button class="nav-btn"><i class="fas fa-ticket-alt"></i></button>
+        <p class="nav-txt">Billett</p>
+    </div>
+
+    <div class="nav-cont">
+        <button class="nav-btn"><i class="far fa-user"></i></button>
+        <p class="nav-txt">Min Profil</p>
+    </div>
+
+</div><!-- .nav-menu -->
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/3e291ce1eb.js" crossorigin="anonymous"></script>
-
-
-<!--Stort problem med at tingene ikke blir sentrert etter at de ble forandret til buttons, plz help-->
-<div class="row fixed-bottom m-auto" style="max-height: 10%; min-height: 80px; justify-content: center;">
-    <!-- Home button -->
-    <button class="navbutton col lightgreen d-flex flex-column">
-        <i class="fas fa-home fa-3x mt-2 mx-auto"></i>
-        <p class="mx-auto">Home</p>
-    </button>
-    <!-- Livemap button -->
-    <button class="navbutton col lightgreen d-flex flex-column">
-        <i class="fas fa-map-marked-alt fa-3x mt-2 mx-auto"></i>
-        <p class="mx-auto">Livemap</p>
-    </button>
-    <!-- Ticket button -->
-    <button class="navbutton col lightgreen d-flex flex-column">
-        <i class="fas fa-qrcode fa-3x mt-2 mx-auto"></i>
-        <p class="mx-auto">Ticket</p>
-    </button>
-    <!-- User button -->
-    <button class="navbutton col lightgreen d-flex flex-column">
-        <i class="fas fa-user-circle fa-3x mt-2 mx-auto"></i>
-        <p class="mx-auto">User</p>
-    </button>
-</div>
-
 </body>
 </html>
