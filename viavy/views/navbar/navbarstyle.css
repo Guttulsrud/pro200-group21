@@ -1,0 +1,36 @@
+
+.green{
+    background-color: #00866E;
+}
+
+.defgreen{
+    background-color: #009C7F;
+}
+
+.grey{
+    background-color: #F5F5F5;
+}
+
+.lightgreen{
+    background-color: #CCEAE4;
+}
+
+.fontcolor{
+    background-color: #333333;
+}
+
+.blue{
+    background-color: #003A70;
+}
+
+.lightblue{
+    background-color: #A7BCD6;
+}
+
+.orange{
+    background-color: #FF3800;
+}
+
+.navbutton:hover{
+    background-color: #00866E;
+}
