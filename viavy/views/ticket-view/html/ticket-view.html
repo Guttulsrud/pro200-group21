@@ -9,8 +9,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/global-style.css">
     <link rel="stylesheet" href="../css/back-arrow-style.css">
     <link rel="stylesheet" href="../css/ticket-view-style.css">
+    <link rel="stylesheet" href="../css/navbar-style.css">
     <script src="https://kit.fontawesome.com/3e291ce1eb.js" crossorigin="anonymous"></script>
 
 
@@ -29,7 +31,7 @@
         </div>
         <div id="ticket-row" class="row">
             <div class="col-12 d-flex">
-                <div id="ticket-large" class="">
+                <div id="ticket-large" class="d-flex flex-column">
                     <div id="ticket-large-header" class="w-100 text-white">
                         <div class="d-flex w-100">
                             <p id="destination-txt" class="mx-auto">Tonsenhagen</p>
@@ -45,16 +47,35 @@
                             </div>
                             <i class="fas fa-bullseye fa-2x my-auto mr-3"></i>
                         </div>
-
+                        <div id="time-div" class="bg-warning">
+                            <p id="arrival-time">12 min</p>
+                        </div>
                     </div>
-                    <div id="ticket-large-content" class="d-flex">
-                        <img id="ticket-qr" src="../images/Ticket-QR.svg" alt="" class="mx-auto mt-4">
-                    </div>
-                    <div id="txt-div" class="mt-4">
+                    <img id="ticket-qr" src="../images/Ticket-QR.svg" alt="" class="m-auto">
+                    <!-- <div id="txt-div" class="mt-4">
                         <p class="pl-2 pt-2">Antatt tid til ankomst: 12 min</p>
-                    </div>
+                    </div> -->
 
                 </div>
+            </div>
+        </div>
+        <div id="nav-menu">
+            <div class="nav-cont">
+
+                <button class="nav-btn"><i class="fas fa-search"></i></button>
+                <p class="nav-txt">Hjem</p>
+            </div>
+            <div class="nav-cont">
+                <button class="nav-btn"><i class="far fa-map"></i></button>
+                <p class="nav-txt">Sanntidskart</p>
+            </div>
+            <div class="nav-cont">
+                <button class="nav-btn nav-active"><i class="fas fa-ticket-alt"></i></button>
+                <p class="nav-txt">Billett</p>
+            </div>
+            <div class="nav-cont">
+                <button class="nav-btn"><i class="far fa-user"></i></button>
+                <p class="nav-txt">Min Profil</p>
             </div>
         </div>
     </div>
