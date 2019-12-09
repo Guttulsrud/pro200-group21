@@ -1,12 +1,11 @@
-#back-header {
+#arrow-div  {
+    border-radius: 50px;
     background-color: #00866E;
-}
-
-#back-arrow {
-    color: rgba(204, 234, 228, 0.589);
-}
-
-#back-arrow:hover {
-    color: #CCEAE4;
-    transition: .2s linear;
+    height: 3rem;
+    width: 3rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    position: fixed;
+    z-index: 1;
+    font-size: 1.8rem;
 }
