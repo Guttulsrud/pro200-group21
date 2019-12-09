@@ -1,0 +1,12 @@
+#back-header {
+    background-color: #00866E;
+}
+
+#back-arrow {
+    color: rgba(204, 234, 228, 0.589);
+}
+
+#back-arrow:hover {
+    color: #CCEAE4;
+    transition: .2s linear;
+}
