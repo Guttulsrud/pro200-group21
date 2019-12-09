@@ -1,31 +1,35 @@
-.container-fluid {
-    height: 100vh;
+#ticket-container {
+    padding: 0;
+}
+
+#map-placeholder {
+    width: 100%;
+    height: 40vh;
+    background-image: url("../images/Screenshot_146.png");
+    border-bottom: 1px solid gray;
 }
 
 #ticket-row {
-    height: 100%;
+    height: 60vh;
 }
 
 #ticket-large{
-    height: 50vh;
-    width: 50vh;
-    margin-top: 30%;
-    border-radius: 10px;
+    width: 100%;
     background-color: #ebebeb;
-    border: 2px solid #00866E;
-    box-shadow: darkgray 2px 5px 5px;
-
 }
 
 #ticket-large-header {
-    height: 50px;
+    height: 100px;
     background-color: #00866E;
-    border-radius: 5px 5px 0 0;
 }
 
+#travel-line {
+    background-color: #fff;
+    height: 6px;
+}
 
 #destination-txt {
-    font-size: 2rem;
+    font-size: 1.3rem;
 }
 
 #ticket-qr {
