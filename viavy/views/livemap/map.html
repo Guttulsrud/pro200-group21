@@ -87,13 +87,17 @@
 <script>
 
     let map;
+
+    let latlng;
+
+
     function initMap() {
 
-        let testLatlng = {lat: 59.916238, lng: 10.760020};
+      /*  let testLatlng = {lat: 59.916238, lng: 10.760020}; */
 
+        latlng = {lat: 59.916238, lng: 10.760020};
 
-
-
+      /*  latlng = new google.maps.LatLng(position[0], position[1]); */
 
         let map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 59.916238, lng: 10.760020},
@@ -311,8 +315,7 @@
 
 
         let infoWindow = new google.maps.InfoWindow;
-        kek(testLatlng);
-        function kek(pos){
+
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
@@ -335,30 +338,27 @@
 
         let image = "bus-icon.png";
         let marker = new google.maps.Marker({
-            position: pos,
+            position: latlng,
             map: map,
             icon: image,
-            title: 'Hello World!'
+            title: 'Buss 31'
         });
 
         marker.setMap(map);
-    }
-        kek(testLatlng);
-        testLatlng = {lat: 60.916238, lng: 11.760020};
-        kek(testLatlng);
 
+      function changeMarkerPos() {
+          for (let i = 0; i < 100; i++) {
+                latlng.lat += 0.000001;
+                latlng.lng += 0.000001;
+          }
+           let newPos = new google.maps.LatLng(latlng.lat, latlng.lng);
+            marker.setPosition(newPos);
 
+        }
 
-            for (let i = 0; i < 100; i++) {
-
-                testLatlng.lat += 1;
-                testLatlng.lng += 1;
-
-                console.log(testLatlng.lat);
-            }
-
-
-
+        window.setInterval(function(){
+            changeMarkerPos();
+        }, 2000);
 
     }
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
