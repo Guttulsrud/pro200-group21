@@ -21,6 +21,11 @@ body {
     height: 100%;
 }
 
+.bus-icon {
+    width: 32px;
+    height: 32px;
+}
+
 
 #sort-bar-cont {
     position: absolute;
