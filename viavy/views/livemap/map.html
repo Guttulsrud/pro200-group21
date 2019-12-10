@@ -347,10 +347,10 @@
         marker.setMap(map);
 
       function changeMarkerPos() {
-          for (let i = 0; i < 100; i++) {
-                latlng.lat += 0.000001;
-                latlng.lng += 0.000001;
-          }
+
+                latlng.lat += 0.000009;
+                latlng.lng += 0.000009;
+
            let newPos = new google.maps.LatLng(latlng.lat, latlng.lng);
             marker.setPosition(newPos);
 
@@ -358,7 +358,7 @@
 
         window.setInterval(function(){
             changeMarkerPos();
-        }, 2000);
+        }, 90);
 
     }
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
