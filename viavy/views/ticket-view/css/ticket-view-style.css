@@ -4,8 +4,9 @@
 
 #map-section {
     width: 100%;
-    height: 40vh;
+    height: 300px;
     background-image: url("../images/Screenshot_146.png");
+    background-size: cover;
     border-bottom: 1px solid #0000001a;
 }
 
@@ -32,7 +33,7 @@
 #travel-line-2 {
     background-color: #fff;
     height: 6px;
-    width: 25%;
+    width: 30%;
 }
 
 #bus-circle {
@@ -50,8 +51,12 @@
     float: right;
 }
 
+#qr-section {
+    height: 327px;
+}
+
 #qr-container {
-    height: 270px;
+    height: 100%;
 }
 
 /* #ticket-large-content {
