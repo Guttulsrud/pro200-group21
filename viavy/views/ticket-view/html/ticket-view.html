@@ -24,59 +24,55 @@
         <div id="arrow-div" class="d-flex text-white">
             <i id="back-arrow" class="fas fa-chevron-left mx-auto m-auto"></i>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div id="map-placeholder"></div>
-            </div>
-        </div>
-        <div id="ticket-row" class="row">
-            <div class="col-12 d-flex">
-                <div id="ticket-large" class="d-flex flex-column">
-                    <div id="ticket-large-header" class="w-100 text-white">
-                        <div class="d-flex w-100">
-                            <p id="destination-txt" class="mx-auto">Tonsenhagen</p>
-                        </div>
-                        <div class="d-flex w-100">
-                            <i class="fas fa-map-marker-alt fa-2x my-auto ml-3"></i>
-                            <div class="d-flex w-100">
-                                <div id="travel-line" class="my-auto"></div>
-                                <div id="bus-circle" class="d-flex my-auto">
-                                    <i class="fas fa-bus m-auto"></i>
-                                </div>
-                                <div id="travel-line-2" class="my-auto"></div>
-                            </div>
-                            <i class="fas fa-bullseye fa-2x my-auto mr-3"></i>
-                        </div>
-                        <div id="time-div" class="bg-warning">
-                            <p id="arrival-time">12 min</p>
-                        </div>
-                    </div>
-                    <img id="ticket-qr" src="../images/Ticket-QR.svg" alt="" class="m-auto">
-                    <!-- <div id="txt-div" class="mt-4">
-                        <p class="pl-2 pt-2">Antatt tid til ankomst: 12 min</p>
-                    </div> -->
+        <section id="map-section">
+            <div id="map-placeholder"></div>
+        </section>
 
+        <section id="ticket-section">
+            <div id="ticket-large-header" class="w-100 text-white">
+                <div class="d-flex w-100">
+                    <p id="destination-txt" class="mx-auto">Tonsenhagen</p>
+                </div>
+                <div class="d-flex w-100">
+                    <i class="fas fa-map-marker-alt fa-2x my-auto ml-3"></i>
+                    <div class="d-flex w-100">
+                        <div id="travel-line" class="my-auto"></div>
+                        <div id="bus-circle" class="d-flex my-auto">
+                            <i class="fas fa-bus m-auto"></i>
+                        </div>
+                        <div id="travel-line-2" class="my-auto"></div>
+                    </div>
+                    <i class="fas fa-bullseye fa-2x my-auto mr-3"></i>
+                </div>
+                <div id="time-div" class="bg-warning">
+                    <p id="arrival-time">12 min</p>
                 </div>
             </div>
-        </div>
-        <div id="nav-menu">
-            <div class="nav-cont">
+            <div id="qr-container" class="container d-flex">
+                <img id="ticket-qr" src="../images/Ticket-QR.svg" alt="" class="m-auto">
+                <!-- <div id="txt-div" class="mt-4">
+                        <p class="pl-2 pt-2">Antatt tid til ankomst: 12 min</p>
+                    </div> -->
+            </div>
+        </section>
+    </div>
+    <div id="nav-menu">
+        <div class="nav-cont">
 
-                <button class="nav-btn"><i class="fas fa-search"></i></button>
-                <p class="nav-txt">Hjem</p>
-            </div>
-            <div class="nav-cont">
-                <button class="nav-btn"><i class="far fa-map"></i></button>
-                <p class="nav-txt">Sanntidskart</p>
-            </div>
-            <div class="nav-cont">
-                <button class="nav-btn nav-active"><i class="fas fa-ticket-alt"></i></button>
-                <p class="nav-txt">Billett</p>
-            </div>
-            <div class="nav-cont">
-                <button class="nav-btn"><i class="far fa-user"></i></button>
-                <p class="nav-txt">Min Profil</p>
-            </div>
+            <button class="nav-btn"><i class="fas fa-search"></i></button>
+            <p class="nav-txt">Hjem</p>
+        </div>
+        <div class="nav-cont">
+            <button class="nav-btn"><i class="far fa-map"></i></button>
+            <p class="nav-txt">Sanntidskart</p>
+        </div>
+        <div class="nav-cont">
+            <button class="nav-btn nav-active"><i class="fas fa-ticket-alt"></i></button>
+            <p class="nav-txt">Billett</p>
+        </div>
+        <div class="nav-cont">
+            <button class="nav-btn"><i class="far fa-user"></i></button>
+            <p class="nav-txt">Min Profil</p>
         </div>
     </div>
 

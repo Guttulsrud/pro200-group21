@@ -2,15 +2,11 @@
     padding: 0;
 }
 
-#map-placeholder {
+#map-section {
     width: 100%;
     height: 40vh;
     background-image: url("../images/Screenshot_146.png");
     border-bottom: 1px solid #0000001a;
-}
-
-#ticket-row {
-    height: 50vh;
 }
 
 #ticket-large{
@@ -52,6 +48,10 @@
 
 #arrival-time {
     float: right;
+}
+
+#qr-container {
+    height: 270px;
 }
 
 /* #ticket-large-content {
