@@ -1,7 +1,7 @@
 const Ticket = require('../models/ticket');
 
 exports.index = function(req, res) {
-    res.send('NOT IMPLEMENTED yet homepage');
+    res.send('NOT IMPLEMENTED yet kek!');
 };
 
 // Display list of all tickets.
