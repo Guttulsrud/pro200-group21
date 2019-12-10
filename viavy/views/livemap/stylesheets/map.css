@@ -22,10 +22,53 @@ body {
 }
 
 
-#sort-map-cont {
+#sort-bar-cont {
     position: absolute;
     top: 0;
     z-index: 1000;
+}
+
+
+/* Homepage Favorites */
+
+#map-sort-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.sort-btn {
+    background-color: #00866E;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.sort-btn:hover {
+    background-color: #CCEAE4;
+}
+
+.sort-txt {
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#all-btn {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.all-icon {
+    font-size: 1rem;
+    line-height: 0;
+    padding-top: 15px;
+
 }
 
 

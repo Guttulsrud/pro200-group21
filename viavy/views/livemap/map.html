@@ -15,11 +15,47 @@
 
 <div id="map"></div>
 
-<div id="sort-map-cont">
-    <button class="sort-btn" id="sort-btn-all"></button>
-    <button class="sort-btn" id="sort-btn-transport-1"></button>
-    <button class="sort-btn" id="sort-btn-transport-2"></button>
-    <button class="sort-btn" id="sort-btn-transport-3"></button>
+<div class="container-fluid" id="sort-bar-cont">
+
+    <!-- FAVORITES AREA -->
+    <div class="row">
+        <div class="col-12 mt-5">
+            <div id="map-sort-bar">
+                <div class="row">
+
+                    <div class="col-3">
+                        <div class="sort-cont">
+                            <button class="sort-btn" id="all-btn"><p class="all-icon">Alle</p></button>
+                            <p class="sort-txt"></p>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="sort-cont">
+                            <button class="sort-btn" id="bus-btn"><i class="fas fa-bus"></i></button>
+                            <p class="sort-txt"></p>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="sort-cont">
+                            <button class="sort-btn" id="train-btn"><i class="fas fa-train"></i></button>
+                            <p class="sort-txt"></p>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="sort-cont">
+                            <button class="sort-btn" id="car-btn"><i class="fas fa-car-alt"></i></button>
+                            <p class="sort-txt"></p>
+                        </div>
+                    </div>
+
+                </div><!-- .row -->
+            </div><!-- .sort-bar -->
+        </div>
+    </div><!-- .row -->
+
 </div>
 
 <!-- Nav menu -->
