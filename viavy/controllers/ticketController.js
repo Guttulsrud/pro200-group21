@@ -1,7 +1,7 @@
 const Ticket = require('../models/ticket');
 
 exports.index = function(req, res) {
-    res.render("index.ejs");
+    res.render("pages/index");
 };
 
 // Display list of all tickets.
