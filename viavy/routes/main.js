@@ -7,11 +7,12 @@ const userController = require('../controllers/userController');
 const ticketInstanceController = require('../controllers/ticketInstanceController');
 
 
+router.get('/', function(req, res, next) {
+    res.render('index');
+});
+
 
 /// TICKET ROUTES ///
-
-// GET catalog home page.
-router.get('/', ticketController.index);
 
 // GET request for creating a Ticket. NOTE This must come before routes that display Ticket (uses id).
 router.get('/ticket/create', ticketController.ticket_create_get);

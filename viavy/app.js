@@ -6,7 +6,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
+const mainRouter = require('./routes/main');  //Import routes for "catalog" area of site
 
 const app = express();
 
@@ -20,6 +20,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
 // view engine setup
+app.use(express.static(__dirname + '/public'));
+
 app.set('view engine', 'ejs');
 
 
@@ -31,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/catalog', catalogRouter);  // Add catalog routes to middleware chain.
+app.use('/main', mainRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));
