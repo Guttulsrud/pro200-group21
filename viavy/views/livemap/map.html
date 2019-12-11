@@ -12,8 +12,9 @@
 </head>
 <body>
 
-
+<div class="map-container">
 <div id="map"></div>
+</div>
 
 <div class="container-fluid" id="sort-bar-cont">
 
@@ -91,9 +92,57 @@
     let latlng;
 
 
+
+    var chicago = {lat: 41.85, lng: -87.65};
+
+    /**
+     * The CenterControl adds a control to the map that recenters the map on
+     * Chicago.
+     * This constructor takes the control DIV as an argument.
+     * @constructor
+     */
+    function CenterControl(controlDiv, map) {
+
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to recenter the map';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Center Map';
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        controlUI.addEventListener('click', function() {
+            map.setCenter(chicago);
+        });
+
+    }
+
+
+
+
+
+
+
+
     function initMap() {
 
-      /*  let testLatlng = {lat: 59.916238, lng: 10.760020}; */
+    /*  let testLatlng = {lat: 59.916238, lng: 10.760020}; */
 
         latlng = {lat: 59.916238, lng: 10.760020};
 
@@ -102,10 +151,10 @@
         let map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 59.916238, lng: 10.760020},
             zoom: 16,
-            minZoom: 14,
+            minZoom: 12,
             maxZoom: 22,
             disableDefaultUI: true,
-            zoomControl: true,
+            zoomControl: false, /* Disabled */
             zoomControlOptions: {
                 style: google.maps.ZoomControlStyle.SMALL,
                 position: google.maps.ControlPosition.RIGHT_CENTER
@@ -296,7 +345,7 @@
                     "elementType": "geometry",
                     "stylers": [
                         {
-                            "color": "#c9c9c9"
+                            "color": "#A7BCD6"
                         }
                     ]
                 },
@@ -312,6 +361,17 @@
             ]
 
         });
+
+        // Create the DIV to hold the control and call the CenterControl()
+        // constructor passing in this DIV.
+        var centerControlDiv = document.createElement('div');
+        var centerControl = new CenterControl(centerControlDiv, map);
+
+        centerControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+
+
+
 
 
         let infoWindow = new google.maps.InfoWindow;
@@ -346,28 +406,26 @@
 
         marker.setMap(map);
 
-      function changeMarkerPos() {
-
+        function changeMarkerPos() {
                 latlng.lat += 0.000009;
                 latlng.lng += 0.000009;
+            let newPos = new google.maps.LatLng(latlng.lat, latlng.lng);
 
-           let newPos = new google.maps.LatLng(latlng.lat, latlng.lng);
             marker.setPosition(newPos);
-
         }
 
         window.setInterval(function(){
             changeMarkerPos();
         }, 90);
 
-    }
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
+        }
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
             'Error: The Geolocation service failed.' :
             'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-    }
+            infoWindow.open(map);
+        }
 
 
 
