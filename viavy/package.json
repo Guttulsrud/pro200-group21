@@ -8,6 +8,7 @@
     "serverstart": "DEBUG=viavy:* npm run devstart"
   },
   "dependencies": {
+    "JSON": "^1.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -28,6 +29,7 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "nodemon": "^2.0.1"
+    "nodemon": "^2.0.1",
+    "xml2js": "^0.4.22"
   }
 }
