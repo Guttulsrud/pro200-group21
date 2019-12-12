@@ -90,12 +90,8 @@
 <script>
 
     let map;
-
     let latlng;
-
-
     var chicago = {lat: 41.85, lng: -87.65};
-
     /**
      * The CenterControl adds a control to the map that recenters the map on
      * Chicago.
@@ -114,7 +110,7 @@
         controlUI.style.marginBottom = '22px';
         controlUI.style.textAlign = 'center';
         controlUI.title = 'Click to recenter the map';
-        controlDiv.appendChild(controlUI);
+      //  controlDiv.appendChild(controlUI);
 
         // Set CSS for the control interior.
         var controlText = document.createElement('div');
@@ -125,7 +121,7 @@
         controlText.style.paddingLeft = '5px';
         controlText.style.paddingRight = '5px';
         controlText.innerHTML = 'Center Map';
-        controlUI.appendChild(controlText);
+      //  controlUI.appendChild(controlText);
 
         // Setup the click event listeners: simply set the map to Chicago.
         controlUI.addEventListener('click', function () {
@@ -365,7 +361,11 @@
         centerControlDiv.index = 1;
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 
-
+        let pinIcon = "piniconlg.png";
+        let yourPositionMarker = new google.maps.Marker({
+            map: map,
+            icon: pinIcon,
+        });
         let infoWindow = new google.maps.InfoWindow;
 
         // Try HTML5 geolocation.
@@ -376,12 +376,11 @@
                     lng: position.coords.longitude
                 };
 
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('Location found.');
-                infoWindow.open(map);
+
+                yourPositionMarker.setPosition(pos);
                 map.setCenter(pos);
             }, function () {
-                handleLocationError(true, infoWindow, map.getCenter());
+                handleLocationError(true, yourPositionMarker, map.getCenter());
             });
         } else {
             // Browser doesn't support Geolocation
