@@ -8,14 +8,19 @@
     "serverstart": "DEBUG=viavy:* npm run devstart"
   },
   "dependencies": {
+    "async": "^3.1.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "ejs": "^3.0.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "mongoose": "^5.7.14",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
-    "nodemon": "^2.0.1"
+    "@types/express": "^4.17.2",
+    "nodemon": "^2.0.1",
+    "request": "^2.88.0"
   }
 }
