@@ -1,0 +1,193 @@
+body {
+    background-color: #f5f5f5;
+    font-size: 16px;
+    color: #333333;
+    font-family: Helvetica, sans-serif;
+}
+
+button {
+    border: none;
+}
+
+.logo {
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    background-image: url("../images/vylogo.png");
+    background-position: center;
+    background-size: cover;
+    width: 64px;
+    height: 64px;
+}
+
+#ticket-search {
+    width: 100%;
+    border: none;
+    border-bottom: 3px solid #00866E;
+    font-size: 1.8rem;
+    color: #333333;
+    padding: 15px 15px 15px 15px;
+    -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.2);
+
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+}
+
+#ticket-search-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    background:none;
+    background-image: url("../images/chevron_right-24px-green.svg");
+    width: 48px;
+    height: 48px;
+    background-position: center;
+    background-size: contain;
+}
+/* Color for placeholder input */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: rgba(51, 51, 51, 0.5);
+}
+
+.page-title {
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin-top: 100px;
+    margin-bottom: 15px;
+}
+
+.sub-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: rgba(51, 51, 51, 0.5);
+    font-weight: 100;
+}
+
+/* Homepage Favorites */
+
+#favorites-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.favorite-btn {
+    background-color: #00866E;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.favorite-btn:hover {
+    background-color: #CCEAE4;
+}
+
+.favorite-txt {
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Recent tickets list */
+#recent-tickets-list {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+
+}
+#recent-tickets-list li {
+    display: inline-block;
+}
+
+.recent-ticket {
+    background-color: #333333;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    text-align: center;
+    min-width: 100px;
+    color: #fff;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    display: flex;
+    align-content: center;
+    line-height: 1.8rem;
+}
+
+.recent-ticket:hover {
+    background: #00866E;
+}
+
+.recent-icon {
+    min-width: 27px;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #00866E;
+    color: #333;
+    font-size: 1rem;
+    line-height: 0;
+}
+
+.recent-ticket:hover > .recent-icon {
+    background-color: #ffffff;
+}
+
+#nav-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.nav-cont {
+}
+
+.nav-btn {
+    width: 100%;
+    background: none;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 1.4rem;
+
+}
+
+.nav-txt {
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    color: #333;
+    text-align: center;
+}
+
+.nav-active {
+    color: #00866E;
+}
+
+
+/*
+Grå: F5F5F5
+Grønn: 00866E
+Lys grønn: CCEAE4
+Font farge: 333333
+Blå: 003A70
+Lysblå: A7BCD6
+Oransje: FF3800
+ */
