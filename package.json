@@ -1,0 +1,22 @@
+{
+  "name": "viavy",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node bin/www",
+    "devstart": "node_modules/.bin/nodemon ./bin/www",
+    "serverstart": "DEBUG=viavy:* npm run devstart"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1",
+    "request": "^2.88.0"
+  }
+}
