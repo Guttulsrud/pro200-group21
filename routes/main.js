@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 
+
 /// TICKET ROUTES ///
 
 // GET request for creating a Ticket. NOTE This must come before routes that display Ticket (uses id).
