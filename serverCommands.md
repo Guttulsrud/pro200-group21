@@ -1,5 +1,4 @@
-#Useful commands for Node Express
 
-Starting server in devstart, with autoreload on filechange: 
+For å starte server, skriv i terminal:
 
 ```SET DEBUG=viavy:* & npm run devstart```
