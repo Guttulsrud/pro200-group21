@@ -1,2 +1,4 @@
-# Agile project 2019-2020
-###Group 21
+
+For å starte server, skriv i terminal:
+
+```SET DEBUG=viavy:* & npm run devstart```
