@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const TicketInstanceSchema = new Schema(
     {
         id: Schema.Types.ObjectID,
-        name: {type: String, required: true},
+        ticket_type: {type: String, required: true},
         price: {type: Number, required: true}
     }
 );

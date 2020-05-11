@@ -4,9 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const mainRouter = require('./routes/main');  //Import routes for "catalog" area of site
+const mainRouter = require('./routes/main');
 
 const app = express();
 
@@ -19,10 +18,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
-// view engine setup
-app.use(express.static(__dirname + '/public'));
 
-app.set('view engine', 'ejs');
 
 
 app.use(logger('dev'));
@@ -31,9 +27,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/main', mainRouter);
+app.use('/', mainRouter);
 
 
 // catch 404 and forward to error handler

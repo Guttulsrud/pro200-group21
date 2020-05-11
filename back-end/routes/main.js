@@ -8,15 +8,9 @@ const ticketInstanceController = require('../controllers/ticketInstanceControlle
 
 
 router.get('/', function(req, res, next) {
-    res.render('index');
+    res.send('Mainpage here!');
 });
 
-
-
-/// TICKET ROUTES ///
-
-// GET request for creating a Ticket. NOTE This must come before routes that display Ticket (uses id).
-router.get('/ticket/create', ticketController.ticket_create_get);
 
 // POST request for creating Ticket.
 router.post('/ticket/create', ticketController.ticket_create_post);
