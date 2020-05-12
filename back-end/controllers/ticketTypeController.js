@@ -4,55 +4,81 @@ exports.index = function (req, res) {
     res.render("pages/index");
 };
 
-// Display list of all tickets.
-exports.ticket_list = function (req, res, next) {
+// GET all tickets
+exports.ticket_type_all = function (req, res, next) {
 
     const type = req.query.type;
 
     TicketType.find(type ? {type: type} : {}, '')
-        .exec(function (err, list_tickets) {
+        .exec(function (err, list_ticket_types) {
             if (err) {
                 return next(err);
             }
-            res.send({tickets: list_tickets});
+            res.send({tickets: list_ticket_types});
         })
 };
 
 
-// Handle ticket create on POST.
-exports.ticket_create_post = function (req, res) {
+// POST create Ticket-type
+exports.ticket_type_create = function (req, res) {
     const type = req.body.type;
     const price = req.body.price;
 
     TicketType.create({type: type, price: price}, function (err, newTicketType) {
-        if (err) return handleError(err);
+        if (err) return res.send(err);
         res.send(`New ticket created: ${newTicketType}`);
     });
 };
 
-
-// Display detail page for a specific ticket.
-exports.ticket_detail = function (req, res) {
+// GET details of one ticket-type
+exports.ticket_type_detail = function (req, res) {
     const ticketTypeId = req.query.id;
 
-    TicketType.findOne({id: ticketTypeId}, function (err, obj) {
-        res.send(obj);
+    TicketType.findOne({id: ticketTypeId}, function (error, result) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(result);
+        }
     });
 
 };
 
+// POST update Ticket-type
+exports.ticket_type_delete = function (req, res) {
+    const ticketTypeId = req.body.id;
 
-// Handle ticket delete on POST.
-exports.ticket_delete_post = function (req, res) {
-    res.send('NOT IMPLEMENTED yet');
+    TicketType.deleteOne({id: ticketTypeId}, function (error, result) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(result);
+        }
+    });
 };
 
-// Display ticket update form on GET.
-exports.ticket_update_get = function (req, res) {
-    res.send('NOT IMPLEMENTED yet');
-};
 
-// Handle ticket update on POST.
-exports.ticket_update_post = function (req, res) {
-    res.send('NOT IMPLEMENTED yet');
+// POST update Ticket-type
+exports.ticket_type_update = function (req, res) {
+    const ticketTypeId = req.body.id;
+    const newType = req.body.type
+    const newPrice = req.body.price
+
+    TicketType.findOne({id: ticketTypeId}, function (error, result) {
+        if (error) {
+            res.send(error);
+            return;
+        }
+
+        if (newType) {
+            result.type = newType;
+        }
+        if (newPrice) {
+            result.price = newPrice;
+        }
+
+        result.save();
+        res.send(result);
+
+    });
 };

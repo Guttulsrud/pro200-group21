@@ -2,33 +2,52 @@ const express = require('express');
 const router = express.Router();
 
 // Require controller modules.
-const ticketController = require('../controllers/ticketTypeController');
+const ticketTypeController = require('../controllers/ticketTypeController');
 const userController = require('../controllers/userController');
-const ticketInstanceController = require('../controllers/ticketInstanceController');
+const ticketController = require('../controllers/ticketController');
 
 
 router.get('/', function(req, res, next) {
     res.send('Mainpage here!');
 });
 
+/// TICKET ROUTES ///
 
-// POST request for creating Ticket.
-router.post('/ticket-type/create', ticketController.ticket_create_post);
+// POST request for creating a ticket.
+router.post('/ticket/create', ticketController.ticket_create);
 
-// POST request to delete Ticket.
-router.post('/ticket-type/:id/delete', ticketController.ticket_delete_post);
+// POST request to delete ticket.
+router.post('/ticket/delete', ticketController.ticket_delete);
 
-// GET request to update Ticket.
-router.get('/ticket-type/:id/update', ticketController.ticket_update_get);
+// POST request to update ticket.
+router.post('/ticket/update', ticketController.ticket_update);
 
-// POST request to update Ticket.
-router.post('/ticket-type/:id/update', ticketController.ticket_update_post);
+// GET request for one ticket.
+router.get('/ticket/:id', ticketController.ticket_detail);
 
-// GET request for one Ticket.
-router.get('/ticket-type/:id', ticketController.ticket_detail);
+// GET request for list of all ticket.
+router.get('/tickets', ticketController.ticket_all);
 
-// GET request for list of all Ticket items.
-router.get('/tickets', ticketController.ticket_list);
+
+
+
+/// TICKET-TYPE ROUTES ///
+
+// POST request for creating ticket-type
+router.post('/ticket-type/create', ticketTypeController.ticket_type_create);
+
+// POST request to delete ticket-type
+router.post('/ticket-type/delete', ticketTypeController.ticket_type_delete);
+
+// POST request to update ticket-type
+router.post('/ticket-type/update', ticketTypeController.ticket_type_update);
+
+// GET request for one ticket-type
+router.get('/ticket-type/:id', ticketTypeController.ticket_type_detail);
+
+// GET request for list of all ticket-types
+router.get('/ticket-types', ticketTypeController.ticket_type_all);
+
 
 
 /// USER ROUTES ///
@@ -57,32 +76,6 @@ router.get('/user/:id', userController.user_detail);
 // GET request for list of all Users.
 router.get('/users', userController.user_list);
 
-
-/// TICKETINSTANCE ROUTES ///
-
-// GET request for creating a TicketInstance. NOTE This must come before route that displays TicketInstance (uses id).
-router.get('/ticketinstance/create', ticketInstanceController.ticketInstance_create_get);
-
-// POST request for creating TicketInstance.
-router.post('/ticketinstance/create', ticketInstanceController.ticketInstance_create_post);
-
-// GET request to delete TicketInstance.
-router.get('/ticketinstance/:id/delete', ticketInstanceController.ticketInstance_delete_get);
-
-// POST request to delete TicketInstance.
-router.post('/ticketinstance/:id/delete', ticketInstanceController.ticketInstance_delete_post);
-
-// GET request to update TicketInstance.
-router.get('/ticketinstance/:id/update', ticketInstanceController.ticketInstance_update_get);
-
-// POST request to update TicketInstance.
-router.post('/ticketinstance/:id/update', ticketInstanceController.ticketInstance_update_post);
-
-// GET request for one TicketInstance.
-router.get('/ticketinstance/:id', ticketInstanceController.ticketInstance_detail);
-
-// GET request for list of all TicketInstance.
-router.get('/ticketinstances', ticketInstanceController.ticketInstance_list);
 
 
 module.exports = router;
