@@ -1,5 +1,4 @@
-const TicketInstanceModel = require('../models/ticketInstance');
-const TicketModel = require('../models/ticketType');
+const TicketModel = require('../models/ticket');
 
 // GET all tickets
 exports.ticket_all = function(req, res) {
@@ -10,6 +9,7 @@ exports.ticket_all = function(req, res) {
 exports.ticket_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: TicketInstance detail: ' + req.params.id);
 };
+
 
 // Handle Ticket delete on POST.
 exports.ticket_create = function(req, res) {
