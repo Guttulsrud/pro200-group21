@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const TicketSchema = new Schema(
+const TicketTypeSchema = new Schema(
     {
         id: Schema.Types.ObjectID,
         type: {type: String, required: true},
@@ -11,11 +11,11 @@ const TicketSchema = new Schema(
 );
 
 
-TicketSchema
+TicketTypeSchema
     .virtual('url')
     .get(function () {
         return '/ticket-type/' + this._id;
     });
 
 //Export model
-module.exports = mongoose.model('TicketType', TicketSchema);
+module.exports = mongoose.model('TicketType', TicketTypeSchema);
