@@ -1,4 +1,5 @@
-const TicketInstance = require('../models/ticketInstance');
+const TicketInstanceModel = require('../models/ticketInstance');
+const TicketModel = require('../models/ticketType');
 
 // Display list of all TicketInstance.
 exports.ticketInstance_list = function(req, res) {
@@ -12,7 +13,19 @@ exports.ticketInstance_detail = function(req, res) {
 
 // Display TicketInstance create form on GET.
 exports.ticketInstance_create_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: TicketInstance create GET');
+
+    TicketModel.find({ticket_type: "Årsbillett"}, '')
+        .exec(function (err, ticket) {
+            if (err) {return "error";}
+
+
+            TicketInstanceModel.create({ticket: ticket[0]}, function (err, instance) {
+                if (err) return "error";
+
+                res.send(`New instance created: ${instance}`);
+            });
+        })
+
 };
 
 // Handle TicketInstance create on POST.

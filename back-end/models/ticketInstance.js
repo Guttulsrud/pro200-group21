@@ -5,12 +5,10 @@ const Schema = mongoose.Schema;
 const TicketInstanceSchema = new Schema(
     {
         id: Schema.Types.ObjectID,
-        ticket_type: {type: String, required: true},
-        price: {type: Number, required: true}
+        ticket: {type: Schema.Types.ObjectId, ref: 'Ticket', required: true},
     }
 );
 
-// Virtual for book's URL
 TicketInstanceSchema
     .virtual('url')
     .get(function () {

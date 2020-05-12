@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Require controller modules.
-const ticketController = require('../controllers/ticketController');
+const ticketController = require('../controllers/ticketTypeController');
 const userController = require('../controllers/userController');
 const ticketInstanceController = require('../controllers/ticketInstanceController');
 
@@ -13,22 +13,19 @@ router.get('/', function(req, res, next) {
 
 
 // POST request for creating Ticket.
-router.post('/ticket/create', ticketController.ticket_create_post);
-
-// GET request to delete Ticket.
-router.get('/ticket/:id/delete', ticketController.ticket_delete_get);
+router.post('/ticket-type/create', ticketController.ticket_create_post);
 
 // POST request to delete Ticket.
-router.post('/ticket/:id/delete', ticketController.ticket_delete_post);
+router.post('/ticket-type/:id/delete', ticketController.ticket_delete_post);
 
 // GET request to update Ticket.
-router.get('/ticket/:id/update', ticketController.ticket_update_get);
+router.get('/ticket-type/:id/update', ticketController.ticket_update_get);
 
 // POST request to update Ticket.
-router.post('/ticket/:id/update', ticketController.ticket_update_post);
+router.post('/ticket-type/:id/update', ticketController.ticket_update_post);
 
 // GET request for one Ticket.
-router.get('/ticket/:id', ticketController.ticket_detail);
+router.get('/ticket-type/:id', ticketController.ticket_detail);
 
 // GET request for list of all Ticket items.
 router.get('/tickets', ticketController.ticket_list);
