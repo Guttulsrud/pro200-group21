@@ -6,7 +6,7 @@ const Another = () => {
   return (
     <div>
       <p>This is the other page</p>
-      <img src={ExampleImage} height={300} /> <br />
+      <img src={ExampleImage} /> <br />
       <Link to='/'>Go back</Link>
     </div>
   );
