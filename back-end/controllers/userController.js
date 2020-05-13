@@ -32,7 +32,7 @@ exports.user_detail = function(req, res) {
 // };
 //
 // Handle User create on POST.
-exports.user_create_post = function(req, res) {
+exports.user_create = function(req, res) {
 
     const firstName = req.body.first_name;
     const lastName = req.body.last_name;

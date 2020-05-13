@@ -1,18 +1,19 @@
 const Ticket = require('../models/ticket');
 
-exports.index = function (req, res) {
-    res.render("pages/index");
-};
+
+exports.test = function () {
+    return "hello from test function in ticketController";
+}
 
 // GET all tickets
 exports.ticket_all = function (req, res, next) {
 
     Ticket.find({}, '')
-        .exec(function (err, list_ticket_types) {
+        .exec(function (err, tickets) {
         if (err) {
             return next(err);
         }
-        res.send({tickets: list_ticket_types});
+        res.send({tickets: tickets});
     })
 };
 

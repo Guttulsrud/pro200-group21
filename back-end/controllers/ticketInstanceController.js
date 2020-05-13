@@ -1,12 +1,16 @@
 const TicketInstance = require('../models/ticketInstance');
-const Ticket = require('../models/ticket');
-const UserModel = require('../models/user');
-
 const ticketController = require('../controllers/ticketController');
 
-// GET all tickets
+// GET all ticket instances
 exports.ticket_instance_all = function (req, res) {
-    res.send('NOT IMPLEMENTED: TicketInstance list');
+
+    TicketInstance.find({}, '')
+        .exec(function (err, instances) {
+            if (err) {
+                return next(err);
+            }
+            res.send({tickets: instances});
+        })
 };
 
 // GET one ticket by ID
@@ -17,14 +21,7 @@ exports.ticket_instance_detail = function (req, res) {
         if (error) {
             res.send(error);
         } else {
-
-            Ticket.findOne({_id: result.ticket_id}, function (error, result) {
-                if (error) {
-                    res.send(error);
-                } else {
-                    res.send(result.title);
-                }
-            });
+            res.send(result);
         }
     });
 };
@@ -35,7 +32,6 @@ exports.ticket_instance_create = function (req, res) {
     const userId = req.body.user_id;
     const ticketId = req.body.ticket_id;
     const numberOfTickets = req.body.number_of_tickets;
-
 
     if (numberOfTickets > 1) {
         TicketInstance.create({

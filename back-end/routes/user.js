@@ -7,7 +7,7 @@ const userController = require('../controllers/userController');
 /// TICKET ROUTES ///
 
 // POST request for creating ticket-type
-router.post('/create', userController.user_create_post);
+router.post('/create', userController.user_create);
 
 // GET request for one ticket-type
 router.get('/details/:id', userController.user_detail);
