@@ -1,4 +1,5 @@
 import React from 'react';
+import { Input } from '../elements/inputs/StyledInput';
 
 const NotFound = () => {
   return (
