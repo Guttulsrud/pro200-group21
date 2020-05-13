@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Require controller modules.
+// Require controller module.
 const ticketController = require('../controllers/ticketController');
 
 /// TICKET ROUTES ///
@@ -17,8 +17,5 @@ router.get('/details/:id', ticketController.ticket_detail);
 
 // GET request for list of all ticket-types
 router.get('/all', ticketController.ticket_all);
-
-
-
 
 module.exports = router;

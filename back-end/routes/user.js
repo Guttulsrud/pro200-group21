@@ -1,9 +1,19 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// Require controller module.
+const userController = require('../controllers/userController');
+
+/// TICKET ROUTES ///
+
+// POST request for creating ticket-type
+router.post('/create', userController.user_create_post);
+
+// GET request for one ticket-type
+router.get('/details/:id', userController.user_detail);
+
+// GET request for list of all ticket-types
+router.get('/all', userController.user_all);
+
 
 module.exports = router;

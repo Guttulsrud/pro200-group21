@@ -1,25 +1,10 @@
 ##Ticket Type
 
-Create ticket type ``POST``
-
+Create ticket 
+``POST``
 ``/ticket-type/create``
 
 Params:
 - ``type: String``
 - ``price: Number``
 
-Update ticket type ``POST``
-
-``/ticket-type/create``
-
-Params:
-- ``type: String``
-- ``price: Number``
-
-Delete ticket type ``POST``
-
-``/ticket-type/create``
-
-Params:
-- ``type: String``
-- ``price: Number``

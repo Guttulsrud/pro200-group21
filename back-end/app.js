@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 const userRouter = require('./routes/user');
 const ticketRouter = require('./routes/ticket');
+const ticketInstanceRouter = require('./routes/ticketInstance');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.get('/', function (req, res, next) {
 
 app.use('/user', userRouter);
 app.use('/ticket', ticketRouter);
+app.use('/ticket-instance', ticketInstanceRouter);
 
 
 // catch 404 and forward to error handler

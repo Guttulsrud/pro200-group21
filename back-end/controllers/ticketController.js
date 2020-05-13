@@ -9,11 +9,11 @@ exports.ticket_all = function (req, res, next) {
 
     Ticket.find({}, '')
         .exec(function (err, list_ticket_types) {
-            if (err) {
-                return next(err);
-            }
-            res.send({tickets: list_ticket_types});
-        })
+        if (err) {
+            return next(err);
+        }
+        res.send({tickets: list_ticket_types});
+    })
 };
 
 // POST create Ticket-type
@@ -22,8 +22,11 @@ exports.ticket_create = function (req, res) {
     const price = req.body.price;
     const duration = req.body.duration;
 
-    Ticket.create({title: title, price: price, duration: duration}, function (err, newTicket) {
-        if (err) return res.send(err);
+    Ticket.create({title: title, price: price, duration: duration}, function (error, newTicket) {
+        if (error) {
+            res.send(error);
+            return;
+        }
         res.send(`New ticket created: ${newTicket}`);
     });
 };
