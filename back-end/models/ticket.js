@@ -5,9 +5,11 @@ const Schema = mongoose.Schema;
 const TicketSchema = new Schema(
     {
         id: Schema.Types.ObjectID,
-        type: {type: Schema.Types.ObjectId, ref: 'TicketType', required: true},
+        type: {type: String, required: true},
+        price: {type: Number, required: true}
     }
 );
+
 
 TicketSchema
     .virtual('url')

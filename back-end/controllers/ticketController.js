@@ -1,27 +1,84 @@
-const TicketModel = require('../models/ticket');
+const TicketType = require('../models/ticket');
+
+exports.index = function (req, res) {
+    res.render("pages/index");
+};
 
 // GET all tickets
-exports.ticket_all = function(req, res) {
-    res.send('NOT IMPLEMENTED: TicketInstance list');
+exports.ticket_all = function (req, res, next) {
+
+    const type = req.query.type;
+
+    TicketType.find(type ? {type: type} : {}, '')
+        .exec(function (err, list_ticket_types) {
+            if (err) {
+                return next(err);
+            }
+            res.send({tickets: list_ticket_types});
+        })
 };
 
-// GET one ticket by ID
-exports.ticket_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: TicketInstance detail: ' + req.params.id);
+
+// POST create Ticket-type
+exports.ticket_create = function (req, res) {
+    const type = req.body.type;
+    const price = req.body.price;
+
+    TicketType.create({type: type, price: price}, function (err, newTicketType) {
+        if (err) return res.send(err);
+        res.send(`New ticket created: ${newTicketType}`);
+    });
+};
+
+// GET details of one ticket-type
+exports.ticket_detail = function (req, res) {
+    const ticketTypeId = req.query.id;
+
+    TicketType.findOne({id: ticketTypeId}, function (error, result) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(result);
+        }
+    });
+
+};
+
+// POST update Ticket-type
+exports.ticket_delete = function (req, res) {
+    const ticketTypeId = req.query.id;
+
+    TicketType.deleteOne({id: ticketTypeId}, function (error, result) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(result);
+        }
+    });
 };
 
 
-// Handle Ticket delete on POST.
-exports.ticket_create = function(req, res) {
-    res.send('ticket_create');
-};
+// POST update Ticket-type
+exports.ticket_update = function (req, res) {
+    const ticketTypeId = req.query.id;
+    const newType = req.body.type
+    const newPrice = req.body.price
 
-// Handle Ticket delete on POST.
-exports.ticket_delete = function(req, res) {
-    res.send('NOT IMPLEMENTED: TicketInstance delete POST');
-};
+    TicketType.findOne({id: ticketTypeId}, function (error, result) {
+        if (error) {
+            res.send(error);
+            return;
+        }
 
-// Handle Ticket update on POST.
-exports.ticket_update = function(req, res) {
-    res.send('NOT IMPLEMENTED: TicketInstance update POST');
+        if (newType) {
+            result.type = newType;
+        }
+        if (newPrice) {
+            result.price = newPrice;
+        }
+
+        result.save();
+        res.send(result);
+
+    });
 };
