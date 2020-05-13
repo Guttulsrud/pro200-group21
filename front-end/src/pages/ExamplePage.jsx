@@ -47,7 +47,14 @@ const ExamplePage = () => {
       <TestButton>No props</TestButton> <br /> <br />
       <TestButton primary>Primary prop</TestButton> <br /> <br />
       <TestButton secondary>Secondary prop</TestButton> <br /> <br />
-      <TestButton inactive>Inactive prop</TestButton>
+      <TestButton inactive>Inactive prop</TestButton> <br /> <br />
+      <TestButton primary size='small'>
+        Primary small props
+      </TestButton>{' '}
+      <br /> <br />
+      <TestButton secondary size='large'>
+        Secondary large props
+      </TestButton>
     </React.Fragment>
   );
 };

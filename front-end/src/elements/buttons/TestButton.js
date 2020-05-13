@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const TestBtn = styled.button`
   background-color: ${(props) =>
@@ -29,8 +29,21 @@ export const TestButton = styled.button`
       : props.inactive
       ? 'gray'
       : 'black'};
-  height: 3em;
-  width: 10em;
+  height: 56px;
+  width: 200px;
+  ${(props) =>
+    props.size === 'small' &&
+    css`
+      height: 40px;
+      width: 100px;
+    `}
+
+  ${(props) =>
+    props.size === 'large' &&
+    css`
+      height: 70px;
+      width: 300px;
+    `}
   color: white;
   border: none;
   border-radius: 5px;
