@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
     res.send('Mainpage here!');
 });
 
+
 /// TICKET ROUTES ///
 
 // POST request for creating a ticket.
@@ -36,10 +37,10 @@ router.get('/tickets', ticketController.ticket_all);
 router.post('/ticket-type/create', ticketTypeController.ticket_type_create);
 
 // POST request to delete ticket-type
-router.post('/ticket-type/delete', ticketTypeController.ticket_type_delete);
+router.post('/ticket-type/delete/:id', ticketTypeController.ticket_type_delete);
 
 // POST request to update ticket-type
-router.post('/ticket-type/update', ticketTypeController.ticket_type_update);
+router.post('/ticket-type/update/:id', ticketTypeController.ticket_type_update);
 
 // GET request for one ticket-type
 router.get('/ticket-type/:id', ticketTypeController.ticket_type_detail);

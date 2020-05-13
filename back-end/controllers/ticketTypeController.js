@@ -46,7 +46,7 @@ exports.ticket_type_detail = function (req, res) {
 
 // POST update Ticket-type
 exports.ticket_type_delete = function (req, res) {
-    const ticketTypeId = req.body.id;
+    const ticketTypeId = req.query.id;
 
     TicketType.deleteOne({id: ticketTypeId}, function (error, result) {
         if (error) {
@@ -60,7 +60,7 @@ exports.ticket_type_delete = function (req, res) {
 
 // POST update Ticket-type
 exports.ticket_type_update = function (req, res) {
-    const ticketTypeId = req.body.id;
+    const ticketTypeId = req.query.id;
     const newType = req.body.type
     const newPrice = req.body.price
 
