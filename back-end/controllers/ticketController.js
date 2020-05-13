@@ -1,4 +1,4 @@
-const TicketType = require('../models/ticket');
+const Ticket = require('../models/ticket');
 
 exports.index = function (req, res) {
     res.render("pages/index");
@@ -7,9 +7,7 @@ exports.index = function (req, res) {
 // GET all tickets
 exports.ticket_all = function (req, res, next) {
 
-    const type = req.query.type;
-
-    TicketType.find(type ? {type: type} : {}, '')
+    Ticket.find({}, '')
         .exec(function (err, list_ticket_types) {
             if (err) {
                 return next(err);
@@ -18,23 +16,24 @@ exports.ticket_all = function (req, res, next) {
         })
 };
 
-
 // POST create Ticket-type
 exports.ticket_create = function (req, res) {
-    const type = req.body.type;
+    const title = req.body.title;
     const price = req.body.price;
+    const duration = req.body.duration;
 
-    TicketType.create({type: type, price: price}, function (err, newTicketType) {
+    Ticket.create({title: title, price: price, duration: duration}, function (err, newTicket) {
         if (err) return res.send(err);
-        res.send(`New ticket created: ${newTicketType}`);
+        res.send(`New ticket created: ${newTicket}`);
     });
 };
 
 // GET details of one ticket-type
 exports.ticket_detail = function (req, res) {
-    const ticketTypeId = req.query.id;
 
-    TicketType.findOne({id: ticketTypeId}, function (error, result) {
+    const ticketId = req.params.id;
+
+    Ticket.findOne({_id: ticketId}, function (error, result) {
         if (error) {
             res.send(error);
         } else {
@@ -46,39 +45,13 @@ exports.ticket_detail = function (req, res) {
 
 // POST update Ticket-type
 exports.ticket_delete = function (req, res) {
-    const ticketTypeId = req.query.id;
+    const ticketId = req.params.id;
 
-    TicketType.deleteOne({id: ticketTypeId}, function (error, result) {
+    Ticket.deleteOne({_id: ticketId}, function (error, result) {
         if (error) {
             res.send(error);
         } else {
             res.send(result);
         }
-    });
-};
-
-
-// POST update Ticket-type
-exports.ticket_update = function (req, res) {
-    const ticketTypeId = req.query.id;
-    const newType = req.body.type
-    const newPrice = req.body.price
-
-    TicketType.findOne({id: ticketTypeId}, function (error, result) {
-        if (error) {
-            res.send(error);
-            return;
-        }
-
-        if (newType) {
-            result.type = newType;
-        }
-        if (newPrice) {
-            result.price = newPrice;
-        }
-
-        result.save();
-        res.send(result);
-
     });
 };

@@ -5,8 +5,9 @@ const Schema = mongoose.Schema;
 const TicketSchema = new Schema(
     {
         id: Schema.Types.ObjectID,
-        type: {type: String, required: true},
-        price: {type: Number, required: true}
+        title: {type: String, required: true},
+        price: {type: Number, required: true},
+        duration: {type: Number, required: true, default: 0}
     }
 );
 
@@ -14,7 +15,7 @@ const TicketSchema = new Schema(
 TicketSchema
     .virtual('url')
     .get(function () {
-        return '/ticket/' + this._id;
+        return '/' + this._id;
     });
 
 //Export model

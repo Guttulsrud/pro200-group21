@@ -4,8 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const usersRouter = require('./routes/users');
-const mainRouter = require('./routes/main');
+const userRouter = require('./routes/user');
+const ticketRouter = require('./routes/ticket');
 
 const app = express();
 
@@ -18,17 +18,19 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
-
-
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/users', usersRouter);
-app.use('/', mainRouter);
+app.get('/', function (req, res, next) {
+    res.send('Mainpage here!');
+});
+
+
+app.use('/user', userRouter);
+app.use('/ticket', ticketRouter);
 
 
 // catch 404 and forward to error handler
