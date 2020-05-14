@@ -3,6 +3,7 @@ import Example from '../components/Example';
 import { Link } from 'react-router-dom';
 import { Input } from '../elements/inputs/StyledInput';
 import { Button } from '../elements/buttons/Button';
+import { Div } from '../elements/divs/Div';
 
 const ExamplePage = () => {
   const [filled, setFilled] = useState(false);
@@ -37,6 +38,13 @@ const ExamplePage = () => {
       </div>
       <br />
       <br />
+      <Div
+        bg='vyBlue'
+        mt={1}
+        height={300}
+        width={0.5}
+        border='1px solid hotpink'
+      ></Div>
       <Button>No props</Button> <br /> <br />
       <Button secondary>Secondary prop</Button> <br /> <br />
       <Button inactive>Inactive prop</Button> <br /> <br />
