@@ -9,10 +9,6 @@ class SearchField extends React.Component {
     inputText: '',
   };
 
-  componentDidMount() {
-    console.log('This is clearClicked: ' + this.state.clearClicked);
-  }
-
   handleFilled = (value) => {
     this.setState({ inputText: value });
     if (value !== '') {
