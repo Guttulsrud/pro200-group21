@@ -1,20 +1,17 @@
 const Bus = require('../models/bus');
 
 // GET all bus
-exports.bus_all = function (req, res, next) {
+exports.getBusAll = function (req, res, next) {
 
 };
 
 // POST create bus
-exports.bus_create = function (req, res) {
+exports.createBus = function (req, res) {
+    const coordinates = req.body.coordinates
 
-    Bus.create({location: {type: "Point", coordinates: [59.909712, 10.763605]}}, function (error, bus) {
-        if (error) {
-            res.send(error);
-            return;
-        }
-        res.send(`New bus created: ${bus}`);
-    });
+    Bus.create({location: {type: "Point", coordinates: [59.909712, 10.763605]}})
+        .then(bus => res.send(bus))
+        .catch(error => res.send(error))
 };
 
 // GET details of one bus

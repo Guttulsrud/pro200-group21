@@ -14,19 +14,20 @@ const PointSchema = new mongoose.Schema({
 
 const BusSchema = new Schema({
     id: Schema.Types.ObjectID,
+    title: {type: String, required: true},
     location: {
         type: PointSchema, required: true
-    }
-
+    },
+    capacity: {type: Number, required: true}
 
 });
 
 
-BusSchema
-    .virtual('url')
-    .get(function () {
-        return '/' + this._id;
-    });
+// BusSchema
+//     .virtual('url')
+//     .get(function () {
+//         return '/' + this._id;
+//     });
 
 //Export model
 module.exports = mongoose.model('Bus', BusSchema);
