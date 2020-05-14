@@ -1,5 +1,6 @@
 import React from 'react';
 import Example from '../components/Example';
+import Example2 from '../components/Example';
 import { Link } from 'react-router-dom';
 
 const ExamplePage = () => {
