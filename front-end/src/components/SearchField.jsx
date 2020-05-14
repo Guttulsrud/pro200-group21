@@ -5,28 +5,50 @@ import { CloseIcon } from '../components/Svg/CloseIcon';
 
 class SearchField extends React.Component {
     state = {
-        filled: undefined,
+        filled: false,
+        inputText: '',
     };
 
     handleFilled(value) {
         if (value !== '') {
             this.setState({ filled: true });
+            this.setState({ inputText: value });
+            console.log(this.state.inputText);
         } else {
             this.setState({ filled: false });
         }
     }
 
+    clearInput() {
+        this.setState({ inputText: 'test' });
+
+    }
+
+    search() {
+        console.log('Search');
+    }
+
     render() {
+        let btnIcon;
+
+        if (this.state.filled) {
+            btnIcon = <CloseIcon />
+        } else {
+            btnIcon = <ArrowForwardIcon />
+        }
+
+
         return (
             <React.Fragment>
-                <form className="search-form">
+                <div className="search-form">
                     <Input
                         placeholder='Hvor vil du reise fra?'
                         filled={this.state.filled}
                         onChange={(e) => this.handleFilled(e.target.value)}
+                        value={this.state.inputText}
                     />
-                    <button onClick={this.state.filled ? <ArrowForwardIcon /> : <CloseIcon />} className="search-btn"></button>
-                </form>
+                    <button onClick={this.state.filled ? this.clearInput : this.search} className="search-btn">{btnIcon}</button>
+                </div>
             </React.Fragment>
         );
     }
