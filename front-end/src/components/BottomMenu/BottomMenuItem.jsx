@@ -5,7 +5,7 @@ class BottomMenuItem extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <li class="bottom-menu-item">
+                <li className="bottom-menu-item">
                     <Link to={this.props.link}>
                         <div className="bottom-menu-icon">
                             {this.props.icon}
