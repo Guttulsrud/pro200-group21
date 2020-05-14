@@ -13,7 +13,7 @@ router.post('/create', ticketInstanceController.ticket_instance_create);
 router.post('/delete/:id', ticketInstanceController.ticket_instance_delete);
 
 // POST request to update ticket.
-router.post('/update/:id', ticketInstanceController.ticket_instance_update);
+router.put('/update/:id', ticketInstanceController.ticket_instance_update);
 
 // GET request for one ticket.
 router.get('/details/:id', ticketInstanceController.ticket_instance_detail);
