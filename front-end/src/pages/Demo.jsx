@@ -3,14 +3,13 @@ import { MainContainer } from '../elements/divs/DemoMainContainer';
 import { SubContainer } from '../elements/divs/DemoSubContainer';
 import { RoundBtn } from '../elements/buttons/RoundBtn';
 import { Input } from '../elements/inputs/StyledInput';
+import { Card } from '../elements/divs/StyledCard';
 import { Button } from '../elements/buttons/Button';
 
 class DemoPage extends React.Component {
   state = {
     filled: undefined,
   };
-
-  //const [filled, setFilled] = useState(false);
 
   handleFilled(value) {
     if (value !== '') {
@@ -81,6 +80,20 @@ class DemoPage extends React.Component {
                 <li>Primary Input (StyledInput.js)</li>
               </ul>
             </SubContainer>
+
+            <SubContainer>
+              <Card bg="lightgrey" height="2em">Test</Card>
+              <Card bg="lightgrey" borderT height="2em">Test</Card>
+              <Card bg="lightgrey" borderB height="2em">Test</Card>
+              <Card bg="lightgrey" borderB borderT height="2em">Test</Card>
+              <Card bg="lightgrey" borderT bcolor="green" height="2em">Test</Card>
+              <Card bg="lightgrey" borderB bcolor="green" height="2em">Test</Card>
+              <Card shadow bcolor="green" height="2em">Test</Card>
+              <ul>
+                <li>Select Button (StyledSelectBtn.js)</li>
+              </ul>
+            </SubContainer>
+
           </MainContainer>
         </div>
       </React.Fragment>
