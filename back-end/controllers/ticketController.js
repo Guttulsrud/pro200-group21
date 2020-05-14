@@ -1,10 +1,5 @@
 const Ticket = require('../models/ticket');
 
-
-exports.test = function () {
-    return "hello from test function in ticketController";
-}
-
 // GET all tickets
 exports.ticket_all = function (req, res, next) {
 
@@ -37,13 +32,9 @@ exports.ticket_detail = function (req, res) {
 
     const ticketId = req.params.id;
 
-    Ticket.findOne({_id: ticketId}, function (error, result) {
-        if (error) {
-            res.send(error);
-        } else {
-            res.send(result);
-        }
-    });
+    Ticket.findById({_id: ticketId})
+        .then(ticket => res.send(ticket))
+        .catch(error => res.send(error));
 
 };
 
