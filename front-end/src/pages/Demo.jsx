@@ -1,28 +1,25 @@
 import React from 'react';
 import { MainContainer } from '../elements/divs/DemoMainContainer';
 import { SubContainer } from '../elements/divs/DemoSubContainer';
-import { RoundBtn } from '../elements/buttons/StyledRoundBtn';
-import { SelectBtn } from '../elements/buttons/StyledSelectBtn';
+import { RoundBtn } from '../elements/buttons/RoundBtn';
 import { Input } from '../elements/inputs/StyledInput';
 import { Card } from '../elements/divs/StyledCard';
+import { Button } from '../elements/buttons/Button';
 
 class DemoPage extends React.Component {
-
   state = {
     filled: undefined,
-    
   };
 
   handleFilled(value) {
     if (value !== '') {
-      this.setState({filled: true});
+      this.setState({ filled: true });
     } else {
-      this.setState({filled: false});
+      this.setState({ filled: false });
     }
-  };
+  }
 
   render() {
-
     return (
       <React.Fragment>
         <div>
@@ -32,22 +29,44 @@ class DemoPage extends React.Component {
             <SubContainer>
               <RoundBtn>+</RoundBtn>
               <br />
-              <RoundBtn primary>-</RoundBtn>
+              <RoundBtn secondary>-</RoundBtn>
+              <br />
+              <RoundBtn outlineBlue>+</RoundBtn>
+              <br />
+              <RoundBtn outlineGreen>-</RoundBtn>
+              <br />
+              <RoundBtn inactive>+</RoundBtn>
+              <br />
+              <RoundBtn large>-</RoundBtn>
+              <br />
+
               <ul>
-                <li>Round Button (StyledRoundBtn.js)</li>
-                <li>Round Button Primary (StyledRoundBtn.js)</li>
+                <li>RoundBtn (RoundBtn.js)</li>
+                <li>RoundBtn with secondary prop (RoundBtn.js)</li>
+                <li>RoundBtn with outlineBlue prop (RoundBtn.js)</li>
+                <li>RoundBtn with outlineGreen prop (RoundBtn.js)</li>
+                <li>RoundBtn with inactive prop (RoundBtn.js)</li>
               </ul>
             </SubContainer>
+
             <SubContainer>
-              <SelectBtn>Test</SelectBtn>
-              <br />
-              <SelectBtn primary>Test</SelectBtn>
+              <Button>No props</Button>
+              <Button secondary shadow>
+                secondary prop
+              </Button>
+              <Button inactive>inactive prop</Button>
+              <Button small>small prop</Button>
+              <Button secondary large>
+                secondary & large props
+              </Button>
+              <Button outlineBlue>outlineBlue prop</Button>
+              <Button outlineGreen>outlineGreen prop</Button>
               <ul>
-                <li>Select Button (StyledSelectBtn.js)</li>
-                <li>Select Button Primary (StyledSelectBtn.js)</li>
+                <li>Button with different props (Button.js)</li>
               </ul>
             </SubContainer>
           </MainContainer>
+          <h3>Input</h3>
           <MainContainer>
             <SubContainer>
               <div className='test-div'>
@@ -80,6 +99,6 @@ class DemoPage extends React.Component {
       </React.Fragment>
     );
   }
-};
+}
 
 export default DemoPage;
