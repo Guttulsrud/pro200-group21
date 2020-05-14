@@ -7,6 +7,7 @@ export const Card = styled.div.attrs(props => ({
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: ${props => (props.flexdir || 'row')};
   width: ${props => (props.width || '100%')};
   height: ${props => props.height};
   color: ${props => props.color};
