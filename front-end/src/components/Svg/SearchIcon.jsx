@@ -3,7 +3,7 @@ import React from 'react';
 export const SearchIcon = () => {
     return (
         <React.Fragment>
-            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 24 24" width="24px" height="24px"><g><rect x="19.3" y="15.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -8.3878 20.25)" class="st0" width="2" height="9.2" fill="#333333"></rect></g><g><g><path class="st0" d="M10.5,2c4.7,0,8.5,3.8,8.5,8.5S15.2,19,10.5,19S2,15.2,2,10.5S5.8,2,10.5,2 M10.5,0C4.7,0,0,4.7,0,10.5 S4.7,21,10.5,21S21,16.3,21,10.5S16.3,0,10.5,0L10.5,0z" fill="#333333"></path></g></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" /></svg>
         </React.Fragment>
     );
 
