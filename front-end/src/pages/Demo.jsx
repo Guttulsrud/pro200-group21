@@ -8,6 +8,7 @@ import { Button } from '../elements/buttons/Button';
 import Ticket from '../components/Ticket';
 import { IconBg } from '../elements/divs/IconContainer';
 import { BusIcon } from '../components/Svg/BusIcon';
+import { ArrowForwardIcon } from '../components/Svg/ArrowForwardIcon';
 
 class DemoPage extends React.Component {
   state = {
@@ -119,11 +120,14 @@ class DemoPage extends React.Component {
           <MainContainer>
             <SubContainer>
               <div className='test-div'>
-                <Input
-                  placeholder='Hvor vil du reise fra?'
-                  filled={this.state.filled}
-                  onChange={(e) => this.handleFilled(e.target.value)}
-                />
+                <form class="search-form">
+                  <Input
+                    placeholder='Hvor vil du reise fra?'
+                    filled={this.state.filled}
+                    onChange={(e) => this.handleFilled(e.target.value)}
+                  />
+                  <button class="search-btn"><ArrowForwardIcon /></button>
+                </form>
               </div>
               <ul>
                 <li>Primary Input (StyledInput.js)</li>
