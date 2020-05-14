@@ -5,6 +5,8 @@ import { RoundBtn } from '../elements/buttons/RoundBtn';
 import { Input } from '../elements/inputs/StyledInput';
 import { Card } from '../elements/divs/StyledCard';
 import { Button } from '../elements/buttons/Button';
+import { IconBg } from '../elements/divs/IconContainer';
+import { BusIcon } from '../components/Svg/BusIcon';
 
 class DemoPage extends React.Component {
   state = {
@@ -80,20 +82,53 @@ class DemoPage extends React.Component {
                 <li>Primary Input (StyledInput.js)</li>
               </ul>
             </SubContainer>
-
             <SubContainer>
-              <Card bg="lightgrey" height="2em">Test</Card>
-              <Card bg="lightgrey" borderT height="2em">Test</Card>
-              <Card bg="lightgrey" borderB height="2em">Test</Card>
-              <Card bg="lightgrey" borderB borderT height="2em">Test</Card>
-              <Card bg="lightgrey" borderT bcolor="green" height="2em">Test</Card>
-              <Card bg="lightgrey" borderB bcolor="green" height="2em">Test</Card>
-              <Card shadow bcolor="green" height="2em">Test</Card>
+              <Card bg='lightgrey' height='2em'>
+                Test
+              </Card>
+              <Card bg='lightgrey' borderT height='2em'>
+                Test
+              </Card>
+              <Card bg='lightgrey' borderB height='2em'>
+                Test
+              </Card>
+              <Card bg='lightgrey' borderB borderT height='2em'>
+                Test
+              </Card>
+              <Card bg='lightgrey' borderT bcolor='green' height='2em'>
+                Test
+              </Card>
+              <Card bg='lightgrey' borderB bcolor='green' height='2em'>
+                Test
+              </Card>
+              <Card shadow bcolor='green' height='2em'>
+                Test
+              </Card>
               <ul>
                 <li>Select Button (StyledSelectBtn.js)</li>
               </ul>
             </SubContainer>
-
+          </MainContainer>
+          <MainContainer>
+            <SubContainer>
+              <IconBg>
+                <BusIcon />
+              </IconBg>
+              <br />
+              <IconBg secondary>
+                <BusIcon />
+              </IconBg>
+              <ul>
+                <li>
+                  Icon composed of IconBg and BusIcon (IconContainer.js &
+                  BusIcon.js)
+                </li>
+                <li>
+                  Icon composed of IconBg (with secondary prop) and BusIcon
+                  (IconContainer.js & BusIcon.js)
+                </li>
+              </ul>
+            </SubContainer>
           </MainContainer>
         </div>
       </React.Fragment>
