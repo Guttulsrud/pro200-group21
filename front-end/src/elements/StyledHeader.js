@@ -7,8 +7,4 @@ export const Header = styled.header`
   border-bottom: 1px solid hotpink;
   display: flex;
   justify-content: space-between;
-
-  @media ${mediaQueries.small} {
-    height: 50px;
-  }
 `;

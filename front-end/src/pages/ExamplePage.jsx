@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Example from '../components/Example';
-import Example2 from '../components/Example';
 import { Link } from 'react-router-dom';
 import { Input } from '../elements/inputs/StyledInput';
 import { Button } from '../elements/buttons/Button';

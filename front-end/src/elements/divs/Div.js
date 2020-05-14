@@ -10,11 +10,16 @@ export const Div = styled.div`
  ${flex}
  ${typography}
 
+
  /* @media ${mediaQueries.small} {
      width: 300px;
+     
  }
 
  @media ${mediaQueries.large} {
-     width: 50%;
+     width: 600px;
+ }
+ @media ${mediaQueries.xLarge} {
+     width: 1000px;
  } */
 `;

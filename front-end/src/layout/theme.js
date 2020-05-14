@@ -23,10 +23,10 @@ export const fontWeights = {
 export const breakpoints = ['576px', '768px', '992px', '1200px'];
 
 export const mediaQueries = {
-  small: `(min-width: ${breakpoints[0]})`,
-  medium: `(min-width: ${breakpoints[1]})`,
-  large: `(min-width: ${breakpoints[2]})`,
-  xLarge: `(min-width: ${breakpoints[3]})`,
+  small: `(max-width: ${breakpoints[0]})`,
+  medium: `(max-width: ${breakpoints[1]})`,
+  large: `(max-width: ${breakpoints[2]})`,
+  xLarge: `(max-width: ${breakpoints[3]})`,
 };
 
 const theme = {
