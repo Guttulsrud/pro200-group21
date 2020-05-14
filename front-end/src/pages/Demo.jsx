@@ -13,13 +13,14 @@ import { ArrowForwardIcon } from '../components/Svg/ArrowForwardIcon';
 class DemoPage extends React.Component {
   state = {
     filled: undefined,
-    tickets: null,
+    tickets: [],
     error: null
   };
 
-  async componentDidMount() {
-    await this.fetchTickets();
-    console.log(this.state.tickets)
+  componentDidMount() {
+    this.fetchTickets();
+    
+    
   }
 
   handleFilled(value) {
@@ -32,7 +33,7 @@ class DemoPage extends React.Component {
 
   async fetchTickets() {
 
-    const url = "http://localhost:5000/tickets/all";
+    const url = "http://localhost:5000/ticket-instance/user/5debe43e033f2330fc179981";
 
     let response;
     let payload;
@@ -65,6 +66,8 @@ class DemoPage extends React.Component {
   }
 
   render() {
+
+    
     return (
       <React.Fragment>
         <div>
@@ -175,7 +178,13 @@ class DemoPage extends React.Component {
           <h3>Components</h3>
           <MainContainer>
             <SubContainer>
-              <Ticket></Ticket>
+              {this.state.tickets.map((item, i) => 
+                <Ticket key={'Id' + i} dest={item.destination}></Ticket>
+              )}
+              <ul>
+                <li>Ticket components with address from API (Ticket.jsx)</li>
+                <li>The tickets are rendered from specific user in DB</li>
+              </ul>
             </SubContainer>
           
           </MainContainer>
