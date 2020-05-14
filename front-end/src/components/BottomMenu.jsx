@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Footer } from '../elements/StyledFooter';
 
-const BottomMenu = () => {
-  return (
-    <Footer>
-      <h1>This could be the bottom menu</h1>
-    </Footer>
-  );
-};
+class BottomMenu extends Component {
+  render() {
+    return (
+      <Footer>
+        <nav>
+          <ul>
+            <li>Ny reise</li>
+            <li>Sanntidskart</li>
+            <li>Billett</li>
+            <li>Profil</li>
+          </ul>
+        </nav>
+      </Footer>
+    );
+  }
+}
 
 export default BottomMenu;
