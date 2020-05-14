@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Button } from '../elements/StyledExample'; // Her hentes Button (styled component) fra StyledExample
 
 const Example = () => {
-  const [clicked, setCliked] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
-    setCliked(!clicked);
+    setClicked(!clicked);
   };
 
   return (
