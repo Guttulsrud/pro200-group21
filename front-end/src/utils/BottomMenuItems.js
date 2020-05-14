@@ -1,20 +1,23 @@
 import React from 'react';
+import { SearchIcon } from '../components/Svg/SearchIcon';
+import { MapIcon } from '../components/Svg/MapIcon';
+import { TicketIcon } from '../components/Svg/TicketIcon';
 import { ProfileIcon } from '../components/Svg/ProfileIcon';
 
 export const items = [
     {
         title: 'Ny reise',
-        icon: 'Icon1',
+        icon: <SearchIcon />,
         link: '#'
     },
     {
         title: 'Sanntidskart',
-        icon: 'Icon2',
+        icon: <MapIcon />,
         link: '#'
     },
     {
         title: 'Bilett',
-        icon: 'Icon3',
+        icon: <TicketIcon />,
         link: '#'
     },
     {
