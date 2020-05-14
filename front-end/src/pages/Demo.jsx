@@ -12,7 +12,14 @@ import { BusIcon } from '../components/Svg/BusIcon';
 class DemoPage extends React.Component {
   state = {
     filled: undefined,
+    tickets: null,
+    error: null
   };
+
+  async componentDidMount() {
+    await this.fetchTickets();
+    console.log(this.state.tickets)
+  }
 
   handleFilled(value) {
     if (value !== '') {
@@ -20,6 +27,40 @@ class DemoPage extends React.Component {
     } else {
       this.setState({ filled: false });
     }
+  }
+
+  async fetchTickets() {
+
+    const url = "http://localhost:5000/tickets/all";
+
+    let response;
+    let payload;
+
+    try {
+      response = await fetch(url);
+      payload = await response.json();
+
+    } catch (err) {
+      
+      this.setState({
+          error: "ERROR when retrieving list of tickets: " + err,
+          tickets: null
+      });
+      return;
+    }
+
+    if (response.status === 200) {
+        this.setState({
+          error: null,
+          tickets: payload
+        });
+    } else {
+      this.setState({
+          error: "Issue with HTTP connection: status code " + response.status,
+          tickets: null
+      });
+    }
+
   }
 
   render() {
