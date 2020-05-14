@@ -8,7 +8,7 @@ import { Button } from '../elements/buttons/Button';
 import Ticket from '../components/Ticket';
 import { IconBg } from '../elements/divs/IconContainer';
 import { BusIcon } from '../components/Svg/BusIcon';
-import { ArrowForwardIcon } from '../components/Svg/ArrowForwardIcon';
+import SearchField from '../components/SearchField';
 
 class DemoPage extends React.Component {
   state = {
@@ -43,23 +43,23 @@ class DemoPage extends React.Component {
       payload = await response.json();
 
     } catch (err) {
-      
+
       this.setState({
-          error: "ERROR when retrieving list of tickets: " + err,
-          tickets: null
+        error: "ERROR when retrieving list of tickets: " + err,
+        tickets: null
       });
       return;
     }
 
     if (response.status === 200) {
-        this.setState({
-          error: null,
-          tickets: payload
-        });
+      this.setState({
+        error: null,
+        tickets: payload
+      });
     } else {
       this.setState({
-          error: "Issue with HTTP connection: status code " + response.status,
-          tickets: null
+        error: "Issue with HTTP connection: status code " + response.status,
+        tickets: null
       });
     }
 
@@ -72,7 +72,7 @@ class DemoPage extends React.Component {
       <React.Fragment>
         <div>
           <h1>The following are component demos / templates</h1>
-          <br/>
+          <br />
 
           <h3>Buttons</h3>
           <MainContainer>
@@ -116,21 +116,14 @@ class DemoPage extends React.Component {
               </ul>
             </SubContainer>
           </MainContainer>
-          <br/>
-          <br/>
+          <br />
+          <br />
 
           <h3>Input</h3>
           <MainContainer>
             <SubContainer>
               <div className='test-div'>
-                <form class="search-form">
-                  <Input
-                    placeholder='Hvor vil du reise fra?'
-                    filled={this.state.filled}
-                    onChange={(e) => this.handleFilled(e.target.value)}
-                  />
-                  <button class="search-btn"><ArrowForwardIcon /></button>
-                </form>
+                <SearchField />
               </div>
               <ul>
                 <li>Primary Input (StyledInput.js)</li>
@@ -139,7 +132,7 @@ class DemoPage extends React.Component {
             <SubContainer>
               <Card bg="lightgrey" height="2em">Test</Card>
               <Card bg="lightgrey" borderT height="2em">Test</Card>
-              <Card bg="lightgrey" borderB bcolor="red"height="3em">Test</Card>
+              <Card bg="lightgrey" borderB bcolor="red" height="3em">Test</Card>
               <Card borderB borderT height="1em">Test</Card>
               <Card bg="lightgrey" borderT borderB bcolor="#00866E" height="2em" width="7em">Test</Card>
               <Card bg="lightgrey" borderT bcolor="#00866E" height="2em">Test</Card>
@@ -172,8 +165,8 @@ class DemoPage extends React.Component {
               </ul>
             </SubContainer>
           </MainContainer>
-          <br/>
-          <br/>
+          <br />
+          <br />
 
           <h3>Components</h3>
           <MainContainer>
@@ -186,7 +179,7 @@ class DemoPage extends React.Component {
                 <li>The tickets are rendered from specific user in DB</li>
               </ul>
             </SubContainer>
-          
+
           </MainContainer>
 
         </div>
