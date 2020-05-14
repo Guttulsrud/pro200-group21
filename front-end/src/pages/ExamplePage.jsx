@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Example from '../components/Example';
 import { Link } from 'react-router-dom';
 import { Input } from '../elements/inputs/StyledInput';
-import { TestBtn, TestButton } from '../elements/buttons/TestButton';
+import { Button } from '../elements/buttons/Button';
 
 const ExamplePage = () => {
   const [filled, setFilled] = useState(false);
@@ -35,33 +35,26 @@ const ExamplePage = () => {
         />
         <p onClick={handleFetch}>Click</p>
       </div>
-      <TestBtn>No props</TestBtn> <br /> <br />
-      <TestBtn background='vy-green'>Bg prop vy-green</TestBtn> <br /> <br />
-      <TestBtn background='vy-blue'>Bg prop vy-blue</TestBtn>
       <br />
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <TestButton>No props</TestButton> <br /> <br />
-      <TestButton secondary>Secondary prop</TestButton> <br /> <br />
-      <TestButton inactive>Inactive prop</TestButton> <br /> <br />
-      <TestButton small>Small prop</TestButton> <br /> <br />
-      <TestButton secondary large>
+      <Button>No props</Button> <br /> <br />
+      <Button secondary>Secondary prop</Button> <br /> <br />
+      <Button inactive>Inactive prop</Button> <br /> <br />
+      <Button small>Small prop</Button> <br /> <br />
+      <Button secondary large>
         Secondary & large props
-      </TestButton>
+      </Button>
       <br />
       <br />
-      <TestButton inactive large>
+      <Button inactive large>
         Inactive & large props
-      </TestButton>
+      </Button>
       <br /> <br />
-      <TestButton inactive small>
+      <Button inactive small>
         Inactive & small props
-      </TestButton>
+      </Button>
       <br /> <br />
-      <TestButton xl>Xl prop</TestButton>
+      <Button xl>Xl prop</Button>
       <br />
       <br />
       <br />
