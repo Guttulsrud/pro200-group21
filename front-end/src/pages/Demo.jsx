@@ -2,7 +2,6 @@ import React from 'react';
 import { MainContainer } from '../elements/divs/DemoMainContainer';
 import { SubContainer } from '../elements/divs/DemoSubContainer';
 import { RoundBtn } from '../elements/buttons/RoundBtn';
-import { Input } from '../elements/inputs/StyledInput';
 import { Card } from '../elements/divs/StyledCard';
 import { Button } from '../elements/buttons/Button';
 import Ticket from '../components/Ticket';
@@ -14,13 +13,11 @@ class DemoPage extends React.Component {
   state = {
     filled: undefined,
     tickets: [],
-    error: null
+    error: null,
   };
 
   componentDidMount() {
     this.fetchTickets();
-    
-    
   }
 
   handleFilled(value) {
@@ -32,8 +29,8 @@ class DemoPage extends React.Component {
   }
 
   async fetchTickets() {
-
-    const url = "http://localhost:5000/ticket-instance/user/5debe43e033f2330fc179981";
+    const url =
+      'http://localhost:5000/ticket-instance/user/5debe43e033f2330fc179981';
 
     let response;
     let payload;
@@ -41,12 +38,10 @@ class DemoPage extends React.Component {
     try {
       response = await fetch(url);
       payload = await response.json();
-
     } catch (err) {
-
       this.setState({
-        error: "ERROR when retrieving list of tickets: " + err,
-        tickets: null
+        error: 'ERROR when retrieving list of tickets: ' + err,
+        tickets: null,
       });
       return;
     }
@@ -54,20 +49,17 @@ class DemoPage extends React.Component {
     if (response.status === 200) {
       this.setState({
         error: null,
-        tickets: payload
+        tickets: payload,
       });
     } else {
       this.setState({
-        error: "Issue with HTTP connection: status code " + response.status,
-        tickets: null
+        error: 'Issue with HTTP connection: status code ' + response.status,
+        tickets: null,
       });
     }
-
   }
 
   render() {
-
-    
     return (
       <React.Fragment>
         <div>
@@ -130,15 +122,46 @@ class DemoPage extends React.Component {
               </ul>
             </SubContainer>
             <SubContainer>
-              <Card bg="lightgrey" height="2em">Test</Card>
-              <Card bg="lightgrey" borderT height="2em">Test</Card>
-              <Card bg="lightgrey" borderB bcolor="red" height="3em">Test</Card>
-              <Card borderB borderT height="1em">Test</Card>
-              <Card bg="lightgrey" borderT borderB bcolor="#00866E" height="2em" width="7em">Test</Card>
-              <Card bg="lightgrey" borderT bcolor="#00866E" height="2em">Test</Card>
-              <Card bg="lightgrey" borderB bcolor="#00866E" height="5em">Test</Card>
-              <Card bg="lightgrey" borderT bcolor="#00866E" height="2em" width="4em">Test</Card>
-              <Card shadow height="2em">Test</Card>
+              <Card bg='lightgrey' height='2em'>
+                Test
+              </Card>
+              <Card bg='lightgrey' borderT height='2em'>
+                Test
+              </Card>
+              <Card bg='lightgrey' borderB bcolor='red' height='3em'>
+                Test
+              </Card>
+              <Card borderB borderT height='1em'>
+                Test
+              </Card>
+              <Card
+                bg='lightgrey'
+                borderT
+                borderB
+                bcolor='#00866E'
+                height='2em'
+                width='7em'
+              >
+                Test
+              </Card>
+              <Card bg='lightgrey' borderT bcolor='#00866E' height='2em'>
+                Test
+              </Card>
+              <Card bg='lightgrey' borderB bcolor='#00866E' height='5em'>
+                Test
+              </Card>
+              <Card
+                bg='lightgrey'
+                borderT
+                bcolor='#00866E'
+                height='2em'
+                width='4em'
+              >
+                Test
+              </Card>
+              <Card shadow height='2em'>
+                Test
+              </Card>
               <ul>
                 <li>Card (StyledCard.js)</li>
               </ul>
@@ -171,17 +194,15 @@ class DemoPage extends React.Component {
           <h3>Components</h3>
           <MainContainer>
             <SubContainer>
-              {this.state.tickets.map((item, i) => 
+              {this.state.tickets.map((item, i) => (
                 <Ticket key={'Id' + i} dest={item.destination}></Ticket>
-              )}
+              ))}
               <ul>
                 <li>Ticket components with address from API (Ticket.jsx)</li>
                 <li>The tickets are rendered from specific user in DB</li>
               </ul>
             </SubContainer>
-
           </MainContainer>
-
         </div>
       </React.Fragment>
     );

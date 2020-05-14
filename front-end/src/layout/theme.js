@@ -20,12 +20,23 @@ export const fontWeights = {
   bold: 700,
 };
 
+export const breakpoints = ['576px', '768px', '992px', '1200px'];
+
+export const mediaQueries = {
+  small: `(min-width: ${breakpoints[0]})`,
+  medium: `(min-width: ${breakpoints[1]})`,
+  large: `(min-width: ${breakpoints[2]})`,
+  xLarge: `(min-width: ${breakpoints[3]})`,
+};
+
 const theme = {
   colors,
   space,
   fontSizes,
   fontWeights,
   radii,
+  breakpoints,
+  mediaQueries,
 };
 
 export default theme;

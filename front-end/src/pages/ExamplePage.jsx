@@ -42,9 +42,15 @@ const ExamplePage = () => {
         bg='vyBlue'
         mt={1}
         height={300}
-        width={0.5}
-        border='1px solid hotpink'
-      ></Div>
+        border='2px solid'
+        borderColor='vyGreen'
+        borderRadius={5}
+        width={[1, 0.8, 500, 1000]}
+        color='#fff'
+        textAlign='center'
+      >
+        <p>A Div(styled component) styled with styled system</p>
+      </Div>
       <Button>No props</Button> <br /> <br />
       <Button secondary>Secondary prop</Button> <br /> <br />
       <Button inactive>Inactive prop</Button> <br /> <br />
