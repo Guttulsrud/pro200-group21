@@ -1,41 +1,33 @@
 const User = require('../models/user');
 
-// // Display list of all Users.
-// exports.user_list = function(req, res) {
-//     res.send('NOT IMPLEMENTED: Author list');
-// };
-//
-// // Display detail page for a specific User.
-// exports.user_detail = function(req, res) {
-//     res.send('NOT IMPLEMENTED: User detail: ' + req.params.id);
-// };
-//
-// // Display User create form on GET.
-// exports.user_create_get = function(req, res) {
-//     res.send('NOT IMPLEMENTED: User create GET');
-// };
-//
-// // Handle User create on POST.
-// exports.user_create_post = function(req, res) {
-//     res.send('NOT IMPLEMENTED: User create POST');
-// };
-//
-// // Display User delete form on GET.
-// exports.user_delete_get = function(req, res) {
-//     res.send('NOT IMPLEMENTED: User delete GET');
-// };
-//
-// // Handle User delete on POST.
-// exports.user_delete_post = function(req, res) {
-//     res.send('NOT IMPLEMENTED: User delete POST');
-// };
-//
-// // Display User update form on GET.
-// exports.user_update_get = function(req, res) {
-//     res.send('NOT IMPLEMENTED: User update GET');
-// };
-//
-// // Handle User update on POST.
-// exports.user_update_post = function(req, res) {
-//     res.send('NOT IMPLEMENTED: User update POST');
-// };
+// GET all users
+exports.getUsersAll = function (req, res, next) {
+
+    User.find({}, '')
+        .then(tickets => res.send(tickets))
+        .catch(error => res.send(error));
+};
+
+// GET user by ID
+exports.getUserById = function (req, res) {
+
+    const userId = req.params.id;
+
+    User.findById({_id: userId})
+        .then(user => res.send(user))
+        .catch(error => res.send(error));
+
+};
+
+// Create user with POST
+exports.createUser = function (req, res) {
+
+    const firstName = req.body.first_name;
+    const lastName = req.body.last_name;
+    const dateOfBirth = req.body.date_of_birth;
+
+    User.create({first_name: firstName, last_name: lastName, date_of_birth: dateOfBirth})
+        .then(user => res.send(user))
+        .catch(error => res.send(error));
+
+};
