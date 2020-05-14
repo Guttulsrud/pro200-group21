@@ -37,3 +37,28 @@
 .container {
   padding-bottom: 80px;
 }
+
+/*TEST*/
+.search-form {
+  position: relative;
+  width: 315px;
+  display: flex;
+  flex-direction: row;
+}
+
+.search-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.search-btn svg {
+  fill: #00866E;
+}

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const Input = styled.input`
+  flex-grow: 2;
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 10px;
-  padding-right: 10px;
-  width: 315px;
+  padding-right: 35px;
+  width: 100%;
   font-size: 1.3rem;
   outline: none;
   border: none;
@@ -14,5 +15,6 @@ export const Input = styled.input`
 
   &:focus {
     border-bottom: 2px solid #00866e;
+    outline: none;
   }
 `;
