@@ -10,11 +10,11 @@ const TicketSchema = new Schema({
 });
 
 
-TicketSchema
-    .virtual('url')
-    .get(function () {
-        return '/' + this._id;
-    });
+TicketSchema.virtual('getPrice').get(function () {
+    return this.duration;
+});
+
+
 
 //Export model
 module.exports = mongoose.model('Ticket', TicketSchema);

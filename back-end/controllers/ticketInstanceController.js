@@ -1,5 +1,5 @@
 const TicketInstance = require('../models/ticketInstance');
-const ticketController = require('../controllers/ticketController');
+const Ticket = require('../models/ticket');
 
 // GET all ticket instances
 exports.ticket_instance_all = function (req, res) {
@@ -14,46 +14,39 @@ exports.ticket_instance_all = function (req, res) {
 };
 
 // GET one ticket by ID
-exports.ticket_instance_detail = function (req, res) {
+exports.getTicketInstanceById = function (req, res) {
     const ticketInstanceId = req.params.id;
 
-    TicketInstance.findOne({_id: ticketInstanceId}, function (error, result) {
-        if (error) {
-            res.send(error);
-        } else {
-            res.send(result);
-        }
-    });
-};
+    TicketInstance.findById({_id: ticketInstanceId})
+        .then(result => res.send(result))
+        .catch(err => res.send(err));
+}
+
+// GET all tickets by user ID
+exports.getTicketInstancesByUserID = function (req, res) {
+    const userId = req.params.id;
+
+    TicketInstance.find({user_id: userId}, '')
+        .then(result => res.send(result))
+        .catch(err => res.send(err))
+}
 
 
-// Handle Ticket delete on POST.
-exports.ticket_instance_create = function (req, res) {
+// Handle Ticket create on POST.
+exports.createTicketInstance = function (req, res) {
     const userId = req.body.user_id;
     const ticketId = req.body.ticket_id;
     const numberOfTickets = req.body.number_of_tickets;
 
-    if (numberOfTickets > 1) {
-        TicketInstance.create({
+    Ticket.findById({_id: ticketId})
+        .then(ticket => TicketInstance.create({
             user_id: userId,
             ticket_id: ticketId,
-            numberOfTickets: numberOfTickets
-        }, function (error, newTicket) {
-            if (error) {
-                res.send(error);
-                return;
-            }
-            res.send(`New ticket created: ${newTicket}`);
-        });
-    } else {
-        TicketInstance.create({user_id: userId, ticket_id: ticketId}, function (error, newTicket) {
-            if (error) {
-                res.send(error);
-                return;
-            }
-            res.send(`New ticket created: ${newTicket}`);
-        });
-    }
+            number_of_tickets: numberOfTickets,
+            cost: ticket.price * numberOfTickets
+        }))
+        .then(instance => res.send(instance))
+        .catch(err => res.send(err));
 };
 
 // Handle Ticket delete on POST.
