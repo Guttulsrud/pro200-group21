@@ -5,6 +5,7 @@ import { RoundBtn } from '../elements/buttons/RoundBtn';
 import { Input } from '../elements/inputs/StyledInput';
 import { Card } from '../elements/divs/StyledCard';
 import { Button } from '../elements/buttons/Button';
+import Ticket from '../components/Ticket';
 
 class DemoPage extends React.Component {
   state = {
@@ -24,6 +25,8 @@ class DemoPage extends React.Component {
       <React.Fragment>
         <div>
           <h1>The following are component demos / templates</h1>
+          <br/>
+
           <h3>Buttons</h3>
           <MainContainer>
             <SubContainer>
@@ -66,6 +69,9 @@ class DemoPage extends React.Component {
               </ul>
             </SubContainer>
           </MainContainer>
+          <br/>
+          <br/>
+
           <h3>Input</h3>
           <MainContainer>
             <SubContainer>
@@ -84,17 +90,30 @@ class DemoPage extends React.Component {
             <SubContainer>
               <Card bg="lightgrey" height="2em">Test</Card>
               <Card bg="lightgrey" borderT height="2em">Test</Card>
-              <Card bg="lightgrey" borderB height="2em">Test</Card>
-              <Card bg="lightgrey" borderB borderT height="2em">Test</Card>
-              <Card bg="lightgrey" borderT bcolor="green" height="2em">Test</Card>
-              <Card bg="lightgrey" borderB bcolor="green" height="2em">Test</Card>
-              <Card shadow bcolor="green" height="2em">Test</Card>
+              <Card bg="lightgrey" borderB bcolor="red"height="3em">Test</Card>
+              <Card borderB borderT height="1em">Test</Card>
+              <Card bg="lightgrey" borderT borderB bcolor="#00866E" height="2em" width="7em">Test</Card>
+              <Card bg="lightgrey" borderT bcolor="#00866E" height="2em">Test</Card>
+              <Card bg="lightgrey" borderB bcolor="#00866E" height="5em">Test</Card>
+              <Card bg="lightgrey" borderT bcolor="#00866E" height="2em" width="4em">Test</Card>
+              <Card shadow height="2em">Test</Card>
               <ul>
-                <li>Select Button (StyledSelectBtn.js)</li>
+                <li>Card (StyledCard.js)</li>
               </ul>
             </SubContainer>
 
           </MainContainer>
+          <br/>
+          <br/>
+
+          <h3>Components</h3>
+          <MainContainer>
+            <SubContainer>
+              <Ticket></Ticket>
+            </SubContainer>
+          
+          </MainContainer>
+
         </div>
       </React.Fragment>
     );
