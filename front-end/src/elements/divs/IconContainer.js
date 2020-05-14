@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const IconBg = styled.div`
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: center;
   height: 54px;
   width: 54px;
   border-radius: 50px;
-  background-color: ${props.secondary ? '#00866E' : '#003A70'};
+  background-color: ${(props) => (props.secondary ? '#00866E' : '#003A70')};
   color: #fff;
 `;
