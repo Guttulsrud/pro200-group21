@@ -31,3 +31,7 @@
   background-color: #b9b9b9;
   margin: auto;
 }
+
+.container {
+  padding-bottom: 80px;
+}
