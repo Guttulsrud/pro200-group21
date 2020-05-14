@@ -6,6 +6,8 @@ import { Input } from '../elements/inputs/StyledInput';
 import { Card } from '../elements/divs/StyledCard';
 import { Button } from '../elements/buttons/Button';
 import Ticket from '../components/Ticket';
+import { IconBg } from '../elements/divs/IconContainer';
+import { BusIcon } from '../components/Svg/BusIcon';
 
 class DemoPage extends React.Component {
   state = {
@@ -86,7 +88,6 @@ class DemoPage extends React.Component {
                 <li>Primary Input (StyledInput.js)</li>
               </ul>
             </SubContainer>
-
             <SubContainer>
               <Card bg="lightgrey" height="2em">Test</Card>
               <Card bg="lightgrey" borderT height="2em">Test</Card>
@@ -101,7 +102,27 @@ class DemoPage extends React.Component {
                 <li>Card (StyledCard.js)</li>
               </ul>
             </SubContainer>
-
+          </MainContainer>
+          <MainContainer>
+            <SubContainer>
+              <IconBg>
+                <BusIcon />
+              </IconBg>
+              <br />
+              <IconBg secondary>
+                <BusIcon />
+              </IconBg>
+              <ul>
+                <li>
+                  Icon composed of IconBg and BusIcon (IconContainer.js &
+                  BusIcon.js)
+                </li>
+                <li>
+                  Icon composed of IconBg (with secondary prop) and BusIcon
+                  (IconContainer.js & BusIcon.js)
+                </li>
+              </ul>
+            </SubContainer>
           </MainContainer>
           <br/>
           <br/>

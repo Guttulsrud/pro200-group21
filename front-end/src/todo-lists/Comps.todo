@@ -4,14 +4,14 @@ Styled Components:
         ✔ Lage rounded button comp @done(20-05-14 13:10)
 
     Input:
-        ☐ Legge til ikoner i input @started(20-05-14 13:14)
+        ☐ Legge til ikoner i input 
 
     Containers:     
         ✔ Lage card komponent container @done(20-05-14 14:26)
         ☐ Lage bottom menu/nav bar container
         
     Backgrounds:
-        ☐ Lage ikon bakgrunner 
+        ✔ Lage ikon bakgrunner @started(20-05-14 13:14) @done(20-05-14 14:52) @lasted(1h38m17s)
         
         
 Components:

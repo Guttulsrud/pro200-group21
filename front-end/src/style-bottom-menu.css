@@ -1,0 +1,24 @@
+.bottom-menu-list {
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.bottom-menu-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: .5rem;
+    color: #333333;
+    text-decoration: none;
+}
+
+.bottom-menu-icon svg {
+    fill: #333333;
+}
+
+.bottom-menu-title {
+    font-size: .8rem;
+}
