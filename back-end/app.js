@@ -9,6 +9,7 @@ const userRouter = require('./routes/user');
 const ticketRouter = require('./routes/ticket');
 const ticketInstanceRouter = require('./routes/ticketInstance');
 const busController = require('./routes/bus');
+const geoCoderController = require('./routes/geocoder');
 const app = express();
 
 
@@ -43,6 +44,7 @@ app.use('/user', userRouter);
 app.use('/ticket', ticketRouter);
 app.use('/ticket-instance', ticketInstanceRouter);
 app.use('/bus', busController);
+app.use('/geocoder', geoCoderController);
 
 
 /// CATCH 404, FORWARD TO ERROR HANDLER ///
