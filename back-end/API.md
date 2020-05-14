@@ -1,25 +1,28 @@
-##Ticket Type
+##Ticket
 
-Create ticket type ``POST``
-
-``/ticket-type/create``
-
-Params:
-- ``type: String``
-- ``price: Number``
-
-Update ticket type ``POST``
-
-``/ticket-type/create``
+Create ticket 
+``POST``
+``/ticket/create``
 
 Params:
 - ``type: String``
 - ``price: Number``
 
-Delete ticket type ``POST``
+Get ticket
+``GET``
+``/ticket/:id``
 
-``/ticket-type/create``
+URL params:
+- ``id: String``
+
+##Ticket instance
+
+Create ticket instance
+``POST``
+``/ticket-instance/create``
 
 Params:
 - ``type: String``
-- ``price: Number``
+- ``type: String``
+- ``type: String``
+
