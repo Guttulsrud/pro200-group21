@@ -1,0 +1,70 @@
+import styled, { css } from 'styled-components';
+
+export const Button = styled.button`
+  background-color: #003A70;
+  height: 70px;
+  width: 327px;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  ${(props) =>
+    props.secondary &&
+    css`
+      background-color: #00866e;
+      color: #fff;
+    `}
+
+  ${(props) =>
+    props.outlineBlue &&
+    css`
+      background-color: #fff;
+      color: #003a70;
+      border: 2px solid #003a70;
+    `}
+
+  ${(props) =>
+    props.outlineGreen &&
+    css`
+      background-color: #fff;
+      color: #00866e;
+      border: 2px solid #00866e;
+    `}
+
+  ${(props) =>
+    props.inactive &&
+    css`
+      background-color: #a7bcd6;
+      color: #003a70;
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    `}
+
+   ${(props) =>
+     props.xl &&
+     css`
+       height: 100px;
+       width: 500px;
+     `}
+
+   ${(props) =>
+     props.large &&
+     css`
+       height: 80px;
+       width: 400px;
+     `}
+
+   ${(props) =>
+     props.small &&
+     css`
+       height: 50px;
+       width: 200px;
+     `}
+`;
