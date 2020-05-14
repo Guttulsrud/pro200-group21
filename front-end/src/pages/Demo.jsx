@@ -7,20 +7,9 @@ import { Card } from '../elements/divs/StyledCard';
 import { Button } from '../elements/buttons/Button';
 import { IconBg } from '../elements/divs/IconContainer';
 import { BusIcon } from '../components/Svg/BusIcon';
-import { ArrowForwardIcon } from '../components/Svg/ArrowForwardIcon';
+import SearchField from '../components/SearchField';
 
 class DemoPage extends React.Component {
-  state = {
-    filled: undefined,
-  };
-
-  handleFilled(value) {
-    if (value !== '') {
-      this.setState({ filled: true });
-    } else {
-      this.setState({ filled: false });
-    }
-  }
 
   render() {
     return (
@@ -73,14 +62,7 @@ class DemoPage extends React.Component {
           <MainContainer>
             <SubContainer>
               <div className='test-div'>
-                <form class="search-form">
-                  <Input
-                    placeholder='Hvor vil du reise fra?'
-                    filled={this.state.filled}
-                    onChange={(e) => this.handleFilled(e.target.value)}
-                  />
-                  <button class="search-btn"><ArrowForwardIcon /></button>
-                </form>
+                <SearchField />
               </div>
               <ul>
                 <li>Primary Input (StyledInput.js)</li>

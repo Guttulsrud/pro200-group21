@@ -38,7 +38,7 @@
   padding-bottom: 80px;
 }
 
-/*TEST*/
+/*TEST FOR INPUT*/
 .search-form {
   position: relative;
   width: 315px;
@@ -57,6 +57,7 @@
   border: none;
   border-radius: 10px;
   background-color: transparent;
+  outline: none;
 }
 
 .search-btn svg {
