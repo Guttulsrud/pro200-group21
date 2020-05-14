@@ -18,9 +18,10 @@ router.put('/update/:id', ticketInstanceController.ticket_instance_update);
 // GET request for one ticket.
 router.get('/details/:id', ticketInstanceController.getTicketInstanceById);
 
-router.get('/user-tickets/:id', ticketInstanceController.getTicketInstancesByUserID);
+// GET request for one ticket.
+router.get('/user/:id', ticketInstanceController.getTicketInstancesByUserID);
 
 // GET request for list of all ticket.
-router.get('/all', ticketInstanceController.ticket_instance_all);
+router.get('/all', ticketInstanceController.getTicketInstanceAll);
 
 module.exports = router;

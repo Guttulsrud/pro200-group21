@@ -2,15 +2,11 @@ const TicketInstance = require('../models/ticketInstance');
 const Ticket = require('../models/ticket');
 
 // GET all ticket instances
-exports.ticket_instance_all = function (req, res) {
+exports.getTicketInstanceAll = function (req, res) {
 
     TicketInstance.find({}, '')
-        .exec(function (err, instances) {
-            if (err) {
-                return next(err);
-            }
-            res.send({tickets: instances});
-        })
+        .then(tickets => res.send(tickets))
+        .catch(error => res.send(error));
 };
 
 // GET one ticket by ID
@@ -30,7 +26,6 @@ exports.getTicketInstancesByUserID = function (req, res) {
         .then(result => res.send(result))
         .catch(err => res.send(err))
 }
-
 
 // Handle Ticket create on POST.
 exports.createTicketInstance = function (req, res) {
