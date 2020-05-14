@@ -9,5 +9,6 @@ const TicketSchema = new Schema({
     duration: {type: Number, required: true, default: 0}
 });
 
+
 //Export model
 module.exports = mongoose.model('Ticket', TicketSchema);

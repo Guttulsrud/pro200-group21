@@ -27,6 +27,17 @@ exports.getTicketInstancesByUserID = function (req, res) {
         .catch(err => res.send(err))
 }
 
+
+exports.getTypeByTicketInstanceId = function (req, res) {
+    const ticketInstanceId = req.params.id;
+
+    TicketInstance.findById({_id: ticketInstanceId})
+        .then(ticketInstance => Ticket.findById({_id: ticketInstance.ticket_id}))
+        .then(ticket => res.send(ticket))
+        .catch(err => res.send(err))
+}
+
+
 // Handle Ticket create on POST.
 exports.createTicketInstance = function (req, res) {
     const userId = req.body.user_id;
@@ -41,15 +52,15 @@ exports.createTicketInstance = function (req, res) {
             cost: ticket.price * numberOfTickets
         }))
         .then(instance => res.send(instance))
-        .catch(err => res.send(err));
+        .catch(error => res.send(error));
 };
 
 // Handle Ticket delete on POST.
-exports.ticket_instance_delete = function (req, res) {
+exports.deleteTicketInstance = function (req, res) {
     res.send('NOT IMPLEMENTED: TicketInstance delete POST');
 };
 
 // Handle Ticket update on POST.
-exports.ticket_instance_update = function (req, res) {
+exports.updateTicketInstance = function (req, res) {
     res.send('NOT IMPLEMENTED: TicketInstance update POST');
 };

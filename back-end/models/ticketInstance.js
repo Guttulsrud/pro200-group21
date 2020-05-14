@@ -13,11 +13,5 @@ const TicketInstanceSchema = new Schema(
     }
 );
 
-TicketInstanceSchema
-    .virtual('url')
-    .get(function () {
-        return '/ticket-instance/' + this._id;
-    });
-
 //Export model
 module.exports = mongoose.model('TicketInstance', TicketInstanceSchema);
