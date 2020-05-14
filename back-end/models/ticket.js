@@ -9,12 +9,5 @@ const TicketSchema = new Schema({
     duration: {type: Number, required: true, default: 0}
 });
 
-
-TicketSchema.virtual('getPrice').get(function () {
-    return this.duration;
-});
-
-
-
 //Export model
 module.exports = mongoose.model('Ticket', TicketSchema);
