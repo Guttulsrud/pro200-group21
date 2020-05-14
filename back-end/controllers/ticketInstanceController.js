@@ -32,12 +32,14 @@ exports.createTicketInstance = function (req, res) {
     const userId = req.body.user_id;
     const ticketId = req.body.ticket_id;
     const numberOfTickets = req.body.number_of_tickets;
+    const destination = req.body.destination;
 
     Ticket.findById({_id: ticketId})
         .then(ticket => TicketInstance.create({
             user_id: userId,
             ticket_id: ticketId,
             number_of_tickets: numberOfTickets,
+            destination: destination,
             cost: ticket.price * numberOfTickets
         }))
         .then(instance => res.send(instance))
