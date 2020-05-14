@@ -5,6 +5,6 @@ const geoCoderController = require('../controllers/geocoderController');
 
 
 // POST request for creating bus
-router.get('/:address', geoCoderController.test);
+router.get('/:address', geoCoderController.getLocationByQueryName);
 
 module.exports = router;
