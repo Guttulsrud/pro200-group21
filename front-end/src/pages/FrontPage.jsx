@@ -10,9 +10,9 @@ const FrontPage = () => {
       borderColor='vyGreen'
       borderRadius={5}
       color='#fff'
-      paddingLeft='30px'
-      paddingRight='30px'
       paddingTop='50px'
+      marginLeft='30px'
+      marginRight='30px'
 
     >
       <h1 className='display-1 text--black'>God morgen, hvor skal du?</h1>
