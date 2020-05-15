@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const TicketInstance = require('../models/ticketInstance');
 
 // GET all users
 exports.getUsersAll = function (req, res, next) {
@@ -31,3 +32,11 @@ exports.createUser = function (req, res) {
         .catch(error => res.send(error));
 
 };
+
+exports.deleteUserById = function (req, res) {
+
+    TicketInstance.deleteMany({user_id: userId})
+        .then(result => User.deleteOne({_id: userId}))
+        .then(result => res.send(`user : ${userId} deleted\n ${result}`))
+        .catch(error => res.send(error));
+}

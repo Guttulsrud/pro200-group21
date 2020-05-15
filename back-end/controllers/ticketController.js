@@ -5,11 +5,11 @@ exports.ticket_all = function (req, res, next) {
 
     Ticket.find({}, '')
         .exec(function (err, tickets) {
-        if (err) {
-            return next(err);
-        }
-        res.send({tickets: tickets});
-    })
+            if (err) {
+                return next(err);
+            }
+            res.send({tickets: tickets});
+        })
 };
 
 // POST create Ticket-type
@@ -42,11 +42,9 @@ exports.ticket_detail = function (req, res) {
 exports.ticket_delete = function (req, res) {
     const ticketId = req.params.id;
 
-    Ticket.deleteOne({_id: ticketId}, function (error, result) {
-        if (error) {
-            res.send(error);
-        } else {
-            res.send(result);
-        }
-    });
+    Ticket.deleteOne({_id: ticketId})
+        .then(result => res.send(result))
+        .catch(error => res.send(error));
+
+
 };

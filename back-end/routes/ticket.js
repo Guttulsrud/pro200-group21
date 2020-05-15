@@ -10,7 +10,7 @@ const ticketController = require('../controllers/ticketController');
 router.post('/create', ticketController.ticket_create);
 
 // POST request to delete ticket-type
-router.post('/delete/:id', ticketController.ticket_delete);
+router.delete('/delete/:id', ticketController.ticket_delete);
 
 // GET request for one ticket-type
 router.get('/details/:id', ticketController.ticket_detail);

@@ -9,6 +9,8 @@ const userController = require('../controllers/userController');
 // POST request for creating ticket-type
 router.post('/create', userController.createUser);
 
+router.delete('/delete/:id', userController.deleteUserById);
+
 // GET request for one ticket-type
 router.get('/details/:id', userController.getUserById);
 
