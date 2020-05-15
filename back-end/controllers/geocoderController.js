@@ -44,11 +44,14 @@ exports.getGeoJson = function (req, res) {
         });
         result.on('end', function () {
             const bodyAsJSON = JSON.parse(body);
-            const polylineResponse = bodyAsJSON.routes[0].overview_polyline.points;
-            const polyJSON = polyliner.decode(polylineResponse);
-
-            res.send(polyJSON);
-
+            if(bodyAsJSON.routes[0] !== null) {
+                const polylineResponse = bodyAsJSON.routes[0].overview_polyline.points;
+                const polyJSON = polyliner.decode(polylineResponse);
+                res.send(polyJSON);
+            } else {
+                res.status(404);
+                res.send("Not found");
+            }
         });
     }).on('error', function (e) {
         res.send(e.message);
