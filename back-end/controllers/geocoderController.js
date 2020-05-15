@@ -13,14 +13,15 @@ exports.getLocationByQueryName = function (req, res) {
         });
         result.on('end', function () {
             const bodyAsJSON = JSON.parse(body);
-            if (bodyAsJSON.results[0] == null) {
-                res.status(404);
-                res.send("Could not find address...");
+
+            if (bodyAsJSON.status === "ZERO_RESULTS") {
+                res.send("404 NOT FOUND");
             } else {
                 let address = bodyAsJSON.results[0].formatted_address.split(',')[0]
-                console.log(address);
+                let full_address = bodyAsJSON.results[0].formatted_address
                 const formattedResponse = {
-                    full_address: address,
+                    address: address,
+                    full_address: full_address,
                     lat: bodyAsJSON.results[0].geometry.location.lat,
                     long: bodyAsJSON.results[0].geometry.location.lng,
                 }
@@ -44,11 +45,13 @@ exports.getGeoJson = function (req, res) {
         });
         result.on('end', function () {
             const bodyAsJSON = JSON.parse(body);
-            const polylineResponse = bodyAsJSON.routes[0].overview_polyline.points;
-            const polyJSON = polyliner.decode(polylineResponse);
-
-            res.send(polyJSON);
-
+            if(bodyAsJSON.status === "OK") {
+                const polylineResponse = bodyAsJSON.routes[0].overview_polyline.points;
+                const polyJSON = polyliner.decode(polylineResponse);
+                res.send(polyJSON);
+            } else {
+                res.send("404 NOT FOUND");
+            }
         });
     }).on('error', function (e) {
         res.send(e.message);

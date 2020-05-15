@@ -5,6 +5,7 @@ const Ticket = require('../models/ticket');
 exports.getTicketInstanceAll = function (req, res) {
 
     TicketInstance.find({}, '')
+        .where('archived').equals('false')
         .then(tickets => res.send(tickets))
         .catch(error => res.send(error));
 };
@@ -58,8 +59,13 @@ exports.createTicketInstance = function (req, res) {
 };
 
 // Handle Ticket delete on POST.
-exports.deleteTicketInstance = function (req, res) {
-    res.send('NOT IMPLEMENTED: TicketInstance delete POST');
+exports.archiveTicketInstance = function (req, res) {
+    const ticketInstanceId = req.params.id;
+
+    TicketInstance.findById({_id: ticketInstanceId})
+        .then(ticketInstance => ticketInstance.archived = true)
+        .catch(error => res.send(error));
+
 };
 
 // Handle Ticket update on POST.
