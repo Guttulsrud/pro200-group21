@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Div } from '../elements/divs/Div';
 import { Button } from '../elements/buttons/Button';
 import SearchField from '../components/SearchField';
+import Map from '../components/Map'
 
 const FrontPage = () => {
   return (
@@ -17,6 +18,7 @@ const FrontPage = () => {
     >
       <h1 className='display-1 text--black'>God morgen, hvor skal du?</h1>
       <SearchField />
+      <Map />
 
       <Button inactive bottom center>Velg fra</Button>
 

@@ -56,6 +56,11 @@ body {
 
 }
 
+/* MAP */
+#map {
+  height: 400px;
+}
+
 /* FONT STYLING */
 .text--black {
   color: #333333;
