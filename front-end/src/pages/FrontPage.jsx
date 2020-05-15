@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Div } from '../elements/divs/Div';
 import { Button } from '../elements/buttons/Button';
 import SearchField from '../components/SearchField';
-import Map from '../components/Map'
+import MapContainer from '../components/MapContainer'
 
 const FrontPage = () => {
   return (
@@ -11,16 +11,14 @@ const FrontPage = () => {
       borderColor='vyGreen'
       borderRadius={5}
       color='#fff'
-      paddingTop='50px'
-      marginLeft='30px'
-      marginRight='30px'
-
+      marginBottom='82px'
     >
-      <h1 className='display-1 text--black'>God morgen, hvor skal du?</h1>
-      <SearchField />
-      <Map />
+      <MapContainer />
 
-      <Button inactive bottom center>Velg fra</Button>
+      <SearchField />
+
+
+      <Button width='100%' inactive bottom center>Velg fra</Button>
 
     </Div>
   );
