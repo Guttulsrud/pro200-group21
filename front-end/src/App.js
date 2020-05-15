@@ -15,17 +15,19 @@ function App() {
     <Router>
       <div className='App'>
         <ThemeProvider theme={theme}>
-          <NavBar />
-          <div className='container'>
-            <Switch>
-              <Route exact path='/' component={ExamplePage} />
-              <Route exact path='/another' component={Another} />
-              <Route exact path='/demopage' component={Demo} />
-              <Route exact path='/frontpage' component={FrontPage} />
-              <Route component={NotFound} />
-            </Switch>
+          <div id="wrapper">
+            <NavBar />
+            <div className='container'>
+              <Switch>
+                <Route exact path='/' component={ExamplePage} />
+                <Route exact path='/another' component={Another} />
+                <Route exact path='/demopage' component={Demo} />
+                <Route exact path='/frontpage' component={FrontPage} />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+            <BottomMenu />
           </div>
-          <BottomMenu />
         </ThemeProvider>
       </div>
     </Router>

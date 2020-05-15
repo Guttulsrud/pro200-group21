@@ -6,6 +6,13 @@
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
+html,
+body {
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 /* PLACEHOLDER */
 ::-webkit-input-placeholder {
   color: #000;
@@ -34,10 +41,29 @@
   margin: auto;
 }
 
+#wrapper {
+  padding: 70px 0 82px 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .container {
   position: relative;
-  min-height: 100vh;
+  min-height: 100%;
 
+}
+
+/* FONT STYLING */
+.text--black {
+  color: #333333;
+}
+
+.display-1 {
+  font-size: 2.5rem;
+  color: #333333;
 }
 
 /*TEST FOR INPUT*/
