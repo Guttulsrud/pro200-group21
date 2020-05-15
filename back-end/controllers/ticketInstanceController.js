@@ -53,7 +53,6 @@ exports.createTicketInstance = function (req, res) {
             number_of_tickets: numberOfTickets,
             destination: destination,
             cost: ticket.price * numberOfTickets
-            cost: ticket.price * 1
         }))
         .then(instance => res.send(instance))
         .catch(error => res.send(error));
