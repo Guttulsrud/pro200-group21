@@ -13,8 +13,10 @@ exports.getLocationByQueryName = function (req, res) {
         });
         result.on('end', function() {
             const bodyAsJSON = JSON.parse(body);
+            let address = bodyAsJSON.results[0].formatted_address.split(',')[0]
+            console.log(address);
             const formattedResponse = {
-                full_address: bodyAsJSON.results[0].formatted_address,
+                full_address: address,
                 lat: bodyAsJSON.results[0].geometry.location.lat,
                 long: bodyAsJSON.results[0].geometry.location.lng,
             }
