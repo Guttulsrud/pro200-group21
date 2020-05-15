@@ -1,7 +1,7 @@
 const Ticket = require('../models/ticket');
 
 // GET all tickets
-exports.ticket_all = function (req, res, next) {
+exports.getTicketAll = function (req, res, next) {
 
     Ticket.find({}, '')
         .exec(function (err, tickets) {
@@ -13,22 +13,19 @@ exports.ticket_all = function (req, res, next) {
 };
 
 // POST create Ticket-type
-exports.ticket_create = function (req, res) {
+exports.createTicket = function (req, res) {
     const title = req.body.title;
     const price = req.body.price;
     const duration = req.body.duration;
 
-    Ticket.create({title: title, price: price, duration: duration}, function (error, newTicket) {
-        if (error) {
-            res.send(error);
-            return;
-        }
-        res.send(`New ticket created: ${newTicket}`);
-    });
+    Ticket.create({title: title, price: price, duration: duration})
+        .then(result => res.send(result))
+        .catch(error => res.send(error));
+
 };
 
 // GET details of one ticket-type
-exports.ticket_detail = function (req, res) {
+exports.getTicketById = function (req, res) {
 
     const ticketId = req.params.id;
 
