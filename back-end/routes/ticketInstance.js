@@ -10,7 +10,7 @@ const ticketInstanceController = require('../controllers/ticketInstanceControlle
 router.post('/create', ticketInstanceController.createTicketInstance);
 
 // POST request to delete ticket.
-router.post('/delete/:id', ticketInstanceController.deleteTicketInstance);
+router.put('/archive/:id', ticketInstanceController.archiveTicketInstance);
 
 // POST request to update ticket.
 router.put('/update/:id', ticketInstanceController.updateTicketInstance);
@@ -21,6 +21,7 @@ router.get('/details/:id', ticketInstanceController.getTicketInstanceById);
 // GET request for one ticket.
 router.get('/user/:id', ticketInstanceController.getTicketInstancesByUserID);
 
+//GET request for type of one ticket.
 router.get('/type/:id', ticketInstanceController.getTypeByTicketInstanceId);
 
 // GET request for list of all ticket.
