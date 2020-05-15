@@ -35,13 +35,14 @@
 }
 
 .container {
-  padding-bottom: 80px;
+  position: relative;
+  min-height: 100vh;
+
 }
 
 /*TEST FOR INPUT*/
 .search-form {
   position: relative;
-  width: 315px;
   display: flex;
   flex-direction: row;
 }

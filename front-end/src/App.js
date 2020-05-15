@@ -8,6 +8,7 @@ import NotFound from './pages/NotFoundPage';
 import NavBar from './components/NavBar';
 import BottomMenu from './components/BottomMenu/BottomMenu';
 import Demo from './pages/Demo';
+import FrontPage from './pages/FrontPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route exact path='/' component={ExamplePage} />
               <Route exact path='/another' component={Another} />
               <Route exact path='/demopage' component={Demo} />
+              <Route exact path='/frontpage' component={FrontPage} />
               <Route component={NotFound} />
             </Switch>
           </div>

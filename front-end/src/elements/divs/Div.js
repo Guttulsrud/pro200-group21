@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { space, color, layout, flex, border, typography } from 'styled-system';
+import { space, color, layout, flex, border, typography, position } from 'styled-system';
 import { mediaQueries } from '../../layout/theme';
 
 export const Div = styled.div`
@@ -9,6 +9,7 @@ export const Div = styled.div`
  ${layout}
  ${flex}
  ${typography}
+ ${position}
 
 
  /* @media ${mediaQueries.small} {
