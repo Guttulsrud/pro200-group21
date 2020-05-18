@@ -40,16 +40,7 @@ export class MapContainer extends React.Component {
     };
     return (
       <React.Fragment>
-        <Autocomplete
-          style={{ width: '90%' }}
-          onPlaceSelected={(place) => {
-            console.log(place);
-          }}
-          types={[]}
-          componentRestrictions={{ country: 'no' }}
-        />
-        <SearchField location={this.state.fromLoc} />
-
+        <SearchField />
         <Map
           google={this.props.google}
           initialCenter={{

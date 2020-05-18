@@ -2,6 +2,7 @@ import React from 'react';
 import { Input } from '../elements/inputs/StyledInput';
 import { ArrowForwardIcon } from '../components/Svg/ArrowForwardIcon';
 import { CloseIcon } from '../components/Svg/CloseIcon';
+import { StyledAC } from '../elements/inputs/StyledAutocomplete';
 
 class SearchField extends React.Component {
   state = {
@@ -9,7 +10,7 @@ class SearchField extends React.Component {
     inputText: '',
   };
 
-  handleFilled = (value) => {
+  handleChange = (value) => {
     this.setState({ inputText: value });
     if (value !== '') {
       this.setState({ filled: true });
@@ -37,11 +38,14 @@ class SearchField extends React.Component {
     return (
       <React.Fragment>
         <div className='search-form'>
-          <Input
-            placeholder='Hvor vil du reise fra?'
-            filled={this.state.filled}
-            onChange={(e) => this.handleFilled(e.target.value)}
-            value={this.props.location}
+          <StyledAC
+            onPlaceSelected={(place) => {
+              console.log(place);
+            }}
+            types={[]}
+            componentRestrictions={{ country: 'no' }}
+            value={this.state.inputText}
+            onChange={(e) => this.handleChange(e.target.value)}
           />
           <button
             onClick={this.state.filled ? this.clearInput : this.search}
