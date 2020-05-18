@@ -63,13 +63,14 @@ body {
 
 #map-marker {
   position: absolute;
-  background: url(http://localhost:3000/images/pin.png) no-repeat;
-  background-size: contain;
-  top: 35%;
-  left: 35%;
+  background: url(http://localhost:3000/images/pin-128.png) no-repeat;
+  top: 50%;
+  left: 50%;
   z-index: 1;
-  height: 30%;
-  width: 30%;
+  height: 128px;
+  width: 128px;
+  margin-top: -64px;
+  margin-left: -64px;
   cursor: pointer;
 }
 

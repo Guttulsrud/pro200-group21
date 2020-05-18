@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import PinIcon from '../images/pin.png';
+import { MarkerIcon } from '../components/Svg/MarkerIcon'
 import { mapStyle } from '../utils/MapStyle.js'
 import { Div } from '../elements/divs/Div';
 
@@ -32,11 +33,11 @@ export class MapContainer extends React.Component {
             >
 
 
+                <MarkerIcon />
 
-                <Div id="map-marker"></Div>
 
 
-            </Map>
+            </Map >
 
         )
     }
