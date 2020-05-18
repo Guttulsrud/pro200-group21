@@ -6,7 +6,7 @@ export const Input = styled.input`
   padding-bottom: 20px;
   padding-left: 10px;
   padding-right: 35px;
-  width: 100%;
+  width: ${(props) => (props.width ? props.width : '100%')};
   font-size: 1.3rem;
   outline: none;
   border: none;

@@ -41,7 +41,7 @@ class SearchField extends React.Component {
             placeholder='Hvor vil du reise fra?'
             filled={this.state.filled}
             onChange={(e) => this.handleFilled(e.target.value)}
-            value={this.state.inputText}
+            value={this.props.location}
           />
           <button
             onClick={this.state.filled ? this.clearInput : this.search}
