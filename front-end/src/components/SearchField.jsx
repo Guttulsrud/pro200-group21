@@ -1,14 +1,22 @@
 import React from 'react';
-import { Input } from '../elements/inputs/StyledInput';
 import { ArrowForwardIcon } from '../components/Svg/ArrowForwardIcon';
 import { CloseIcon } from '../components/Svg/CloseIcon';
 import { StyledAC } from '../elements/inputs/StyledAutocomplete';
 
 class SearchField extends React.Component {
-  state = {
-    filled: false,
-    inputText: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      filled: false,
+      inputText: this.props.location || '',
+    };
+  }
+
+  //   static getDerivedStateFromProps(nextProp) {
+  //     return {
+  //       inputText: nextProp.location,
+  //     };
+  //   }
 
   handleChange = (value) => {
     this.setState({ inputText: value });
@@ -35,17 +43,21 @@ class SearchField extends React.Component {
       btnIcon = <ArrowForwardIcon />;
     }
 
+    const { ...inputProps } = this.props;
+
     return (
       <React.Fragment>
         <div className='search-form'>
           <StyledAC
+            placeholder='Hvor vil du reise fra?'
             onPlaceSelected={(place) => {
               console.log(place);
             }}
             types={[]}
             componentRestrictions={{ country: 'no' }}
-            value={this.state.inputText}
+            value={this.state.inputText || this.props.location}
             onChange={(e) => this.handleChange(e.target.value)}
+            {...inputProps}
           />
           <button
             onClick={this.state.filled ? this.clearInput : this.search}

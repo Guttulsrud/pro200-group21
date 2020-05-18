@@ -40,7 +40,7 @@ export class MapContainer extends React.Component {
     };
     return (
       <React.Fragment>
-        <SearchField />
+        <SearchField location={this.state.fromLoc} />
         <Map
           google={this.props.google}
           initialCenter={{
