@@ -8,6 +8,9 @@ const geoCoderController = require('../controllers/geocoderController');
 router.get('/:address', geoCoderController.getLocationByQueryName);
 
 
-router.get('/:from/:to', geoCoderController.getGeoJson);
+router.get('geo-json/:from/:to', geoCoderController.getGeoJson);
+
+
+router.get('/coordinates/:lat/:lng', geoCoderController.getLocationNameByCoordinates);
 
 module.exports = router;

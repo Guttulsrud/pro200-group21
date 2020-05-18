@@ -3,40 +3,56 @@ import {Map, InfoWindow, GoogleAPI, Marker, GoogleApiWrapper} from 'google-maps-
 
 export class MapContainer extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            lat: 0,
-            lng: 0,
+    async fetchTickets() {
+        const url =
+            'http://localhost:5000/ticket-instance/user/5debe43e033f2330fc179981';
 
-        };
+        let response;
+        let payload;
+
+        try {
+            response = await fetch(url);
+            payload = await response.json();
+        } catch (err) {
+            this.setState({
+                error: 'ERROR when retrieving list of tickets: ' + err,
+                tickets: null,
+            });
+            return;
+        }
+
+        if (response.status === 200) {
+            this.setState({
+                error: null,
+                tickets: payload,
+            });
+        } else {
+            this.setState({
+                error: 'Issue with HTTP connection: status code ' + response.status,
+                tickets: null,
+            });
+        }
     }
 
-    test(e) {
-        const newPlace = { id: this.state.places.length  };
-        this.setState({
-            places: [...this.state.places,newPlace]
-        });
-    }
 
     changedCenter(mapProps, map) {
-
 
         let lat = map.center.lat();
         let lng = map.center.lng();
 
-        console.log(this);
+
+
+
+
+        console.log(lat);
+        console.log(lng);
     }
 
     render() {
-
         const style = {
             width: '100%',
             height: '100%'
         };
-
-
-
         return (
             <Map
                 google={this.props.google}
@@ -44,18 +60,10 @@ export class MapContainer extends React.Component {
                     lat: 59.926250,
                     lng: 10.771306
                 }}
-                onCenterChanged={this.test.bind(this)}
+                onCenterChanged={this.changedCenter}
                 zoom={16}
                 style={style}
-
             >
-                <Marker
-                    title={'The marker`s title will appear as a tooltip.'}
-                    name={'SOMA'}
-                    position={this.changedCenter}
-                />
-
-
             </Map>
         )
     }
