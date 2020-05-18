@@ -16,7 +16,6 @@ function App() {
       <div className='App'>
         <ThemeProvider theme={theme}>
           <div id="wrapper">
-            <NavBar />
             <div className='container'>
               <Switch>
                 <Route exact path='/' component={ExamplePage} />

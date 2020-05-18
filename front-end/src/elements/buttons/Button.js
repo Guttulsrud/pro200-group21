@@ -59,7 +59,7 @@ export const Button = styled.button`
     props.bottom &&
     css`
         position: absolute;
-        bottom: 0;
+        bottom: 10px;
       `};
     ${(props) =>
     props.center &&
