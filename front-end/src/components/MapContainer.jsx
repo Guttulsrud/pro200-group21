@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import PinIcon from '../images/pin.png';
 import {MarkerIcon} from './Svg/MarkerIcon'
@@ -14,26 +15,21 @@ export class MapContainer extends React.Component {
         })
     }
 
-    state = {
-        address: [],
-        numChildren: 0
-    };
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            markerBois: []
+
+        }
+    }
 
     changedCenter(prevProps, map) {
-        // let welcome = React.createElement(
-        //     "h1",
-        //     {style: {color: "red"}},
-        //     'Welcome to react world'
-        // );
-        //
-        // ReactDOM.render(welcome, document.querySelector("#map"));
 
         let lat = map.center.lat();
         let lng = map.center.lng();
 
-
-        console.log(this)
 
         const url = `http://localhost:5000/geocoder/coordinates/${lat}/${lng}`;
 
@@ -46,8 +42,27 @@ export class MapContainer extends React.Component {
 
     }
 
+
+    test() {
+        this.state.markerBois.push({latitude: 59.924117, longitude: 10.766715})
+
+        this.displayMarkers();
+
+        this.render();
+        console.log(this.state.markerBois)
+    }
+
+    displayMarkers = () => {
+        console.log("Hello")
+        return this.state.markerBois.map((marker, index) => {
+            return <Marker key={index} id={index} position={{
+                lat: marker.latitude,
+                lng: marker.longitude
+            }}/>
+        })
+    }
+
     render() {
-        const children = [];
 
         const style = {
             width: '100%',
@@ -55,7 +70,7 @@ export class MapContainer extends React.Component {
         }
         return (
 
-            <>
+            <Div>
                 <Autocomplete
                     style={{width: '90%'}}
                     onPlaceSelected={(place) => {
@@ -65,14 +80,13 @@ export class MapContainer extends React.Component {
                     componentRestrictions={{country: "no"}}
                 />
                 <Map
-
                     google={this.props.google}
                     initialCenter={{
                         lat: 59.924117,
                         lng: 10.766715
                     }}
                     onDragend={this.changedCenter.bind(this)}
-                    zoom={14}
+                    zoom={10}
                     style={style}
                     streetViewControl={false}
                     zoomControl={false}
@@ -82,23 +96,17 @@ export class MapContainer extends React.Component {
                     onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
                 >
 
-                    {children}
+                    {this.displayMarkers()}
 
                     <MarkerIcon/>
 
 
                 </Map>
-                <Button bottom center onClick={this.addChild}>Velg fra</Button>
+                <Button bottom center onClick={this.test.bind(this)}>Velg fra</Button>
 
-            </>
+            </Div>
         )
 
-    }
-
-    onAddChild = () => {
-        this.setState({
-            numChildren: this.state.numChildren + 1
-        });
     }
 }
 
