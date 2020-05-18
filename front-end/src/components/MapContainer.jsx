@@ -6,6 +6,7 @@ import { mapStyle } from '../utils/MapStyle.js';
 import { Div } from '../elements/divs/Div';
 import SearchField from './SearchField';
 import { Input } from '../elements/inputs/StyledInput';
+import Autocomplete from 'react-google-autocomplete';
 
 export class MapContainer extends React.Component {
   _mapLoaded(mapProps, map) {
@@ -39,6 +40,14 @@ export class MapContainer extends React.Component {
     };
     return (
       <React.Fragment>
+        <Autocomplete
+          style={{ width: '90%' }}
+          onPlaceSelected={(place) => {
+            console.log(place);
+          }}
+          types={[]}
+          componentRestrictions={{ country: 'no' }}
+        />
         <SearchField location={this.state.fromLoc} />
 
         <Map
