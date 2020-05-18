@@ -22,7 +22,6 @@ const FrontPage = () => {
 
 
         <SearchField />
-        <Button inactive bottom center>Velg fra</Button>
 
       </Div>
 
