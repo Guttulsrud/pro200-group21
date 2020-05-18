@@ -20,8 +20,9 @@ export class MapContainer extends React.Component {
         super(props);
 
         this.state = {
-            markerBois: []
-
+            fromMarker: [],
+            latitude: 0.0,
+            longitude: 0.0
         }
     }
 
@@ -30,7 +31,12 @@ export class MapContainer extends React.Component {
         let lat = map.center.lat();
         let lng = map.center.lng();
 
+        this.setState({
+            latitude: lat,
+            longitude: lng
+        })
 
+        console.log(this.state);
         const url = `http://localhost:5000/geocoder/coordinates/${lat}/${lng}`;
 
         fetch(url)
@@ -43,18 +49,19 @@ export class MapContainer extends React.Component {
     }
 
 
-    test() {
-        this.state.markerBois.push({latitude: 59.924117, longitude: 10.766715})
+    handleSelection() {
+        this.setState({
+            fromMarker: [
+                {
+                    latitude: this.state.latitude,
+                    longitude: this.state.longitude
+                }],
 
-        this.displayMarkers();
-
-        this.render();
-        console.log(this.state.markerBois)
+        })
     }
 
-    displayMarkers = () => {
-        console.log("Hello")
-        return this.state.markerBois.map((marker, index) => {
+    renderSelectedMarker = () => {
+        return this.state.fromMarker.map((marker, index) => {
             return <Marker key={index} id={index} position={{
                 lat: marker.latitude,
                 lng: marker.longitude
@@ -86,7 +93,7 @@ export class MapContainer extends React.Component {
                         lng: 10.766715
                     }}
                     onDragend={this.changedCenter.bind(this)}
-                    zoom={10}
+                    zoom={16}
                     style={style}
                     streetViewControl={false}
                     zoomControl={false}
@@ -96,13 +103,14 @@ export class MapContainer extends React.Component {
                     onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
                 >
 
-                    {this.displayMarkers()}
+                    {this.renderSelectedMarker()}
 
-                    <MarkerIcon/>
+
+                    {/*<MarkerIcon/>*/}
 
 
                 </Map>
-                <Button bottom center onClick={this.test.bind(this)}>Velg fra</Button>
+                <Button bottom center onClick={this.handleSelection.bind(this)}>Velg fra</Button>
 
             </Div>
         )
