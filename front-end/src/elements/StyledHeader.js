@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { mediaQueries } from '../layout/theme';
 
 export const Header = styled.header`
   background-color: turquoise;
