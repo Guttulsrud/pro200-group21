@@ -14,11 +14,19 @@ const FrontPage = () => {
       marginBottom='82px'
     >
       <MapContainer />
+      <Div
+        marginLeft='20px'
+        marginRight='20px'
+        paddingTop='30px'
+      >
 
-      <SearchField />
+
+        <SearchField />
+        <Button inactive bottom center>Velg fra</Button>
+
+      </Div>
 
 
-      <Button width='100%' inactive bottom center>Velg fra</Button>
 
     </Div>
   );

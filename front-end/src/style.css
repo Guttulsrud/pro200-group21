@@ -42,7 +42,7 @@ body {
 }
 
 #wrapper {
-  padding: 70px 0 82px 0;
+  padding: 0 0 82px 0;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -59,6 +59,18 @@ body {
 /* MAP */
 #map {
   height: 400px;
+}
+
+#map-marker {
+  position: absolute;
+  background: url(http://localhost:3000/images/pin.png) no-repeat;
+  background-size: contain;
+  top: 35%;
+  left: 35%;
+  z-index: 1;
+  height: 30%;
+  width: 30%;
+  cursor: pointer;
 }
 
 /* FONT STYLING */
