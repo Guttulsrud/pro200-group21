@@ -63,6 +63,7 @@ exports.getLocationNameByCoordinates = function (req, res) {
     const lat = req.params.lat;
     const lng = req.params.lng;
 
+    // res.send({address: "Tormodsvei 16, 0551 Oslo"})
     https.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyC93fBd5s_Vx9jm77c4fD-zI57hicOXuts`, function (result) {
         let body = '';
         result.on("data", function (chunk) {

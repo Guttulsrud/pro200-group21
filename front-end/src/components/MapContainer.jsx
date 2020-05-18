@@ -17,6 +17,7 @@ export class MapContainer extends React.Component {
     };
 
 
+
     changedCenter(mapProps, map) {
 
         let lat = map.center.lat();
@@ -41,8 +42,8 @@ export class MapContainer extends React.Component {
             <Map
                 google={this.props.google}
                 initialCenter={{
-                    lat: 40.854885,
-                    lng: -88.081807
+                    lat: 59.924117,
+                    lng: 10.766715
                 }}
                 onDragend={this.changedCenter}
                 zoom={14}
