@@ -1,1 +1,109 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Helvetica Neue', 'benton-sans', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', 'Roboto', Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
 
+html,
+body {
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* PLACEHOLDER */
+::-webkit-input-placeholder {
+  color: #000;
+  opacity: 0.4;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+/* PLACEHOLDER HOVER */
+:hover::-webkit-input-placeholder {
+  opacity: 0.75;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+/*PLACEHOLDER FOCUS*/
+:focus::-webkit-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+.test-div {
+  padding: 60px;
+  background-color: #b9b9b9;
+  margin: auto;
+}
+
+#wrapper {
+  padding: 0 0 82px 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.container {
+  position: relative;
+  min-height: 100%;
+
+}
+
+/* MAP */
+#map {
+  height: 400px;
+}
+
+#map-marker {
+  position: absolute;
+  background: url(http://localhost:3000/images/pin-128.png) no-repeat;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  height: 128px;
+  width: 128px;
+  margin-top: -64px;
+  margin-left: -64px;
+  cursor: pointer;
+}
+
+/* FONT STYLING */
+.text--black {
+  color: #333333;
+}
+
+.display-1 {
+  font-size: 2.5rem;
+  color: #333333;
+}
+
+/*TEST FOR INPUT*/
+.search-form {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.search-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.search-btn svg {
+  fill: #00866E;
+}

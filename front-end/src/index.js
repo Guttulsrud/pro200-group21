@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css';
 import './style.css';
+import './style-bottom-menu.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

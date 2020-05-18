@@ -45,7 +45,7 @@ exports.getGeoJson = function (req, res) {
         });
         result.on('end', function () {
             const bodyAsJSON = JSON.parse(body);
-            if(bodyAsJSON.status === "OK") {
+            if (bodyAsJSON.status === "OK") {
                 const polylineResponse = bodyAsJSON.routes[0].overview_polyline.points;
                 const polyJSON = polyliner.decode(polylineResponse);
                 res.send(polyJSON);
@@ -56,6 +56,33 @@ exports.getGeoJson = function (req, res) {
     }).on('error', function (e) {
         res.send(e.message);
     });
+}
 
+exports.getLocationNameByCoordinates = function (req, res) {
 
+    const lat = req.params.lat;
+    const lng = req.params.lng;
+
+    // res.send({address: "Tormodsvei 16, 0551 Oslo"})
+    https.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyC93fBd5s_Vx9jm77c4fD-zI57hicOXuts`, function (result) {
+        let body = '';
+        result.on("data", function (chunk) {
+            body += chunk;
+        });
+        result.on('end', function () {
+            const bodyAsJSON = JSON.parse(body);
+
+            const address = bodyAsJSON.results[0].formatted_address;
+
+            if (bodyAsJSON.status === "OK") {
+                res.send({
+                    "address": address
+                });
+            } else {
+                res.send("404 NOT FOUND");
+            }
+        });
+    }).on('error', function (e) {
+        res.send(e.message);
+    });
 }
