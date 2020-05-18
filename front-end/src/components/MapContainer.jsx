@@ -4,6 +4,7 @@ import PinIcon from '../images/pin.png';
 import { MarkerIcon } from '../components/Svg/MarkerIcon'
 import { mapStyle } from '../utils/MapStyle.js'
 import { Div } from '../elements/divs/Div';
+import Autocomplete from 'react-google-autocomplete';
 
 export class MapContainer extends React.Component {
     _mapLoaded(mapProps, map) {
@@ -15,7 +16,6 @@ export class MapContainer extends React.Component {
     state = {
         address: []
     };
-
 
 
     changedCenter(mapProps, map) {
@@ -39,7 +39,18 @@ export class MapContainer extends React.Component {
             height: '100%'
         }
         return (
+
+            <>
+                <Autocomplete
+                    style={{width: '90%'}}
+                    onPlaceSelected={(place) => {
+                        console.log(place);
+                    }}
+                    types={[]}
+                    componentRestrictions={{country: "no"}}
+                />
             <Map
+
                 google={this.props.google}
                 initialCenter={{
                     lat: 59.924117,
@@ -62,8 +73,9 @@ export class MapContainer extends React.Component {
 
 
             </Map>
-
+</>
         )
+
     }
 }
 
