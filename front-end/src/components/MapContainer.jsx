@@ -1,13 +1,11 @@
 import React from 'react';
 import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
-import {Div} from '../elements/divs/Div';
 import Autocomplete from 'react-google-autocomplete';
 import {Button} from '../elements/buttons/Button';
 import {MarkerIcon} from "./Svg/MarkerIcon";
-import Test from "./Test";
-import BottomMenu from "./BottomMenu/BottomMenu";
-import NavBar from "./NavBar";
+import { MyLocationIcon } from '../components/Icons/MyLocationIcon';
+import SearchField from './SearchField';
 
 export class MapContainer extends React.Component {
     _mapLoaded(mapProps, map) {
@@ -23,7 +21,10 @@ export class MapContainer extends React.Component {
             fromAddress: [],
             toAddress: [],
             selectedFromAddress: false,
-            test: []
+            test: [],
+            fromLoc: '',
+            address: [],
+
         };
     }
 
@@ -96,7 +97,8 @@ export class MapContainer extends React.Component {
                     .then((data) => {
                         this.setState({
                             test: data,
-                            cheating: true
+                            cheating: true,
+                            fromLoc: data.address.split(',')[0]
                         })
 
                     });
@@ -157,6 +159,8 @@ export class MapContainer extends React.Component {
                     draggable={true}
                     onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
                 >
+                    <SearchField location={this.state.fromLoc} />
+                    <MyLocationIcon />
 
                     {this.renderStartMarker()}
                     {this.renderDestinationMarker()}

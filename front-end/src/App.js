@@ -2,12 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import theme from './layout/theme';
-import ExamplePage from './pages/ExamplePage';
-import Another from './pages/AnotherPage';
+import FrontPage from './pages/FrontPage';
+import LiveMapPage from './pages/LiveMapPage';
+import TicketPage from './pages/TicketPage';
+import ProfilePage from './pages/ProfilePage';
 import NotFound from './pages/NotFoundPage';
 import BottomMenu from './components/BottomMenu/BottomMenu';
 import Demo from './pages/Demo';
-import FrontPage from './pages/FrontPage';
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
           <div id='wrapper'>
             <div className='container'>
               <Switch>
-                <Route exact path='/' component={ExamplePage} />
-                <Route exact path='/another' component={Another} />
+                <Route exact path='/' component={FrontPage} />
                 <Route exact path='/demopage' component={Demo} />
-                <Route exact path='/frontpage' component={FrontPage} />
+                <Route exact path='/livemap' component={LiveMapPage} />
+                <Route exact path='/ticket' component={TicketPage} />
+                <Route exact path='/profile' component={ProfilePage} />
                 <Route component={NotFound} />
               </Switch>
             </div>

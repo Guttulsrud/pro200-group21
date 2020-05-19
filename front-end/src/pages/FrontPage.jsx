@@ -1,6 +1,6 @@
 import React from 'react';
 import { Div } from '../elements/divs/Div';
-import SearchField from '../components/SearchField';
+import { Button } from '../elements/buttons/Button';
 import MapContainer from '../components/MapContainer';
 
 const FrontPage = () => {
@@ -12,8 +12,10 @@ const FrontPage = () => {
       marginBottom='82px'
     >
       <MapContainer />
-      <Div marginLeft='20px' marginRight='20px' paddingTop='30px'>
-        <SearchField />
+      <Div paddingTop='30px'>
+        <Button width='70%' inactive outlineBlue bottom center>
+          Velg fra
+        </Button>
       </Div>
     </Div>
   );

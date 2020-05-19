@@ -53,17 +53,21 @@ body {
 .container {
   position: relative;
   min-height: 100%;
-
 }
+
+/* BOTTOMMENU */
+.activeRoute .bottom-menu-icon svg {
+  fill: #00866E;
+}
+
 
 /* MAP */
 #map {
-  height: 400px;
+  height: 100%;
 }
 
 #map-marker {
   position: absolute;
-  background: url(http://localhost:3000/images/pin-128.png) no-repeat;
   top: 50%;
   left: 50%;
   z-index: 1;
@@ -72,6 +76,28 @@ body {
   margin-top: -64px;
   margin-left: -64px;
   cursor: pointer;
+}
+
+#my-location {
+  position: absolute;
+  background-color: #FFFFFF;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+#my-location svg {
+  fill: #00866E;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 32px;
+  width: 32px;
+  margin-left: -16px;
+  margin-top: -16px;
 }
 
 /* FONT STYLING */
@@ -89,6 +115,8 @@ body {
   position: relative;
   display: flex;
   flex-direction: row;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .search-btn {
@@ -97,7 +125,7 @@ body {
   right: 10px;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  margin: 0;
+  margin-top: 15px;
   padding: 0;
   border: none;
   border-radius: 10px;
@@ -105,5 +133,115 @@ body {
 }
 
 .search-btn svg {
-  fill: #00866E;
+  fill: #00866e;
+}
+
+.pac-container {
+  background-color: #FFFFFF;
+  position: absolute !important;
+  z-index: 1000;
+  border-radius: 2px;
+  border-bottom: 0px solid #d9d9d9;
+  border-top: 0px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.pac-logo:after {
+  content: '';
+  padding: 1px 1px 1px 0;
+  height: 16px;
+  text-align: right;
+  display: block;
+  background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3.png);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: 120px 14px;
+  display: none;
+}
+
+.hdpi.pac-logo:after {
+  background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3_hdpi.png);
+}
+
+.pac-item {
+  cursor: default;
+  padding: 0 4px;
+  padding-left: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 30px;
+  text-align: left;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e6e6e6;
+  border-top: 0px;
+  font-size: 16px;
+  color: #333333;
+}
+
+.pac-item:hover {
+  background-color: #00866e;
+}
+
+.pac-item:hover>.pac-item-query {
+  color: #fff;
+}
+
+.pac-item-selected,
+.pac-item-selected:hover {
+  background-color: #ebf2fe;
+}
+
+.pac-matched {
+  font-weight: 700;
+}
+
+.pac-item-query {
+  font-size: 22px;
+  padding-right: 3px;
+  color: #333333;
+}
+
+.pac-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  margin-top: 4px;
+  display: inline-block;
+  vertical-align: top;
+  background-image: url(http://localhost:3000/images/pin-128.png);
+  background-position: left top;
+  background-size: cover;
+}
+
+.hdpi .pac-icon {
+  background-image: url(http://localhost:3000/images/pin-128.png);
+  background-position: left top;
+
+}
+
+.pac-icon-search {
+  background-position: -1px -1px;
+}
+
+.pac-item-selected .pac-icon-search {
+  background-position: -18px -1px;
+}
+
+.pac-icon-marker {
+  background-position: -1px -161px;
+}
+
+.pac-item-selected .pac-icon-marker {
+  background-position: -18px -161px;
+}
+
+.pac-placeholder {
+  color: gray;
 }

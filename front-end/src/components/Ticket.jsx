@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Card } from '../elements/divs/StyledCard';
 import { RoundBtn } from '../elements/buttons/RoundBtn'
-import { ChevronRightIcon } from '../components/Svg/ChevronRightIcon'
+import { ChevronRightIcon } from '../components/Icons/ChevronRightIcon'
 
 
 
@@ -30,12 +30,12 @@ export const DestField = styled.div`
 
 class Ticket extends React.Component {
 
-  
+
 
   render() {
     return (
       <React.Fragment>
-        <Card borderB bcolor="#00866E"  shadow height="4em" width="16em" p="0.5em">
+        <Card borderB bcolor="#00866E" shadow height="4em" width="16em" p="0.5em">
           <div>
             <DateField>
               <p>Tor, 14 Mars</p>
@@ -43,7 +43,7 @@ class Ticket extends React.Component {
             <DestField>
               <h5>{this.props.dest}</h5>
             </DestField>
-          </div>  
+          </div>
           <div>
             <RoundBtn secondary><ChevronRightIcon></ChevronRightIcon></RoundBtn>
           </div>
@@ -78,7 +78,7 @@ export default Ticket;
   //     payload = await response.json();
 
   //   } catch (err) {
-      
+
   //     this.setState({
   //         error: "ERROR when retrieving list of tickets: " + err,
   //         tickets: null

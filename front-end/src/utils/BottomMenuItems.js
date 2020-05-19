@@ -1,28 +1,28 @@
 import React from 'react';
-import { SearchIcon } from '../components/Svg/SearchIcon';
-import { MapIcon } from '../components/Svg/MapIcon';
-import { TicketIcon } from '../components/Svg/TicketIcon';
-import { ProfileIcon } from '../components/Svg/ProfileIcon';
+import { SearchIcon } from '../components/Icons/SearchIcon';
+import { MapIcon } from '../components/Icons/MapIcon';
+import { TicketIcon } from '../components/Icons/TicketIcon';
+import { ProfileIcon } from '../components/Icons/ProfileIcon';
 
 export const items = [
     {
         title: 'Ny reise',
         icon: <SearchIcon />,
-        link: '#'
+        link: '/'
     },
     {
         title: 'Sanntidskart',
         icon: <MapIcon />,
-        link: '#'
+        link: '/livemap'
     },
     {
         title: 'Bilett',
         icon: <TicketIcon />,
-        link: '#'
+        link: '/ticket'
     },
     {
-        title: 'Profil',
+        title: 'Demo',
         icon: <ProfileIcon />,
-        link: '#'
+        link: '/demopage'
     }
 ];
