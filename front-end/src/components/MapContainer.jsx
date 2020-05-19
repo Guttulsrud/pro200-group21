@@ -3,9 +3,10 @@ import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
 import Autocomplete from 'react-google-autocomplete';
 import {Button} from '../elements/buttons/Button';
-import {MarkerIcon} from "./Svg/MarkerIcon";
-import { MyLocationIcon } from '../components/Icons/MyLocationIcon';
+// import { MyLocationIcon } from '../components/Icons/MyLocationIcon';
 import SearchField from './SearchField';
+import {Div} from "../elements/divs/Div";
+import {MarkerIcon} from "./Icons/MarkerIcon";
 
 export class MapContainer extends React.Component {
     _mapLoaded(mapProps, map) {
@@ -42,12 +43,16 @@ export class MapContainer extends React.Component {
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                // console.log(data.address.split(',')[0]);
+                this.setState({
+                    fromLoc: data.address.split(',')[0]
+                })
+
             });
     }
 
     handleSelection() {
 
+        console.log("hello btton")
         const state = this.state
         if (state.selectedFromAddress) {
             this.setState({
@@ -98,7 +103,6 @@ export class MapContainer extends React.Component {
                         this.setState({
                             test: data,
                             cheating: true,
-                            fromLoc: data.address.split(',')[0]
                         })
 
                     });
@@ -160,7 +164,7 @@ export class MapContainer extends React.Component {
                     onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
                 >
                     <SearchField location={this.state.fromLoc} />
-                    <MyLocationIcon />
+                    {/*<MyLocationIcon />*/}
 
                     {this.renderStartMarker()}
                     {this.renderDestinationMarker()}
@@ -168,9 +172,11 @@ export class MapContainer extends React.Component {
                     {this.renderPolyLine()}
                     <MarkerIcon/>
                 </Map>
-                <Button bottom center onClick={this.handleSelection.bind(this)}>
-                    Velg fra
-                </Button>
+                <Div paddingTop='30px'>
+                    <Button width='70%' inactive outlineBlue bottom center onClick={this.handleSelection.bind(this)}>
+                        Velg fra
+                    </Button>
+                </Div>
             </Div>
         );
     }

@@ -12,11 +12,7 @@ const FrontPage = () => {
       marginBottom='82px'
     >
       <MapContainer />
-      <Div paddingTop='30px'>
-        <Button width='70%' inactive outlineBlue bottom center>
-          Velg fra
-        </Button>
-      </Div>
+
     </Div>
   );
 };
