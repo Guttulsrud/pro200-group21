@@ -33,6 +33,7 @@ exports.getLocationByQueryName = function (req, res) {
     });
 };
 
+
 exports.getGeoJson = function (req, res) {
     const from = req.params.from;
     const to = req.params.to;
@@ -48,7 +49,22 @@ exports.getGeoJson = function (req, res) {
             if (bodyAsJSON.status === "OK") {
                 const polylineResponse = bodyAsJSON.routes[0].overview_polyline.points;
                 const polyJSON = polyliner.decode(polylineResponse);
-                res.send(polyJSON);
+
+
+                let arr = []
+
+                for (let val of polyJSON) {
+
+                    let temp = val.toString().split(',')
+
+                    arr.push({
+                        'lat': temp[0],
+                        'lng': temp[1]
+
+                    })
+
+                }
+                res.send(arr);
             } else {
                 res.send("404 NOT FOUND");
             }

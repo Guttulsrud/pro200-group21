@@ -1,10 +1,11 @@
 import React from 'react';
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
 import {Div} from '../elements/divs/Div';
 import Autocomplete from 'react-google-autocomplete';
 import {Button} from '../elements/buttons/Button';
 import {MarkerIcon} from "./Svg/MarkerIcon";
+import Test from "./Test";
 
 export class MapContainer extends React.Component {
     _mapLoaded(mapProps, map) {
@@ -27,74 +28,99 @@ export class MapContainer extends React.Component {
         let lat = map.center.lat();
         let lng = map.center.lng();
 
-
         this.setState({
             latitude: lat,
             longitude: lng,
         });
+        console.log(this.state)
 
         const url = `http://localhost:5000/geocoder/coordinates/${lat}/${lng}`;
 
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data.address.split(',')[0]);
+                // console.log(data.address.split(',')[0]);
             });
     }
 
     handleSelection() {
 
-        if (!this.state.selectedFromAddress) {
+        const state = this.state
+        if (state.selectedFromAddress) {
             this.setState({
-                fromAddress: [
-                    {
-                        latitude: this.state.latitude,
-                        longitude: this.state.longitude,
-                    },
-                ],
-                selectedFromAddress: true
+                toAddress: [state.latitude, state.longitude]
             });
-
         } else {
             this.setState({
-                toAddress: [
-                    {
-                        latitude: this.state.latitude,
-                        longitude: this.state.longitude,
-                    },
-                ]
+                selectedFromAddress: true,
+                fromAddress: [state.latitude, state.longitude],
             });
         }
-
-
     }
 
-    renderSelectedMarker = () => {
+    renderStartMarker = () => {
+        const state = this.state
 
-        const fromLatLng = `${this.state.latitude},${this.state.longitude}`
+        return (
+            <Marker position={{lat: state.fromAddress[0], lng: state.fromAddress[1]}}/>
+        )
 
 
-        const url = `http://localhost:5000/geo-json/${fromLatLng}/${fromLatLng}`;
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            });
+    };
 
-        return this.state.fromAddress.map((marker, index) => {
+
+    renderDestinationMarker = () => {
+        const state = this.state
+
+        if (state.toAddress) {
             return (
-                <Marker
-                    key={index}
-                    id={index}
-                    position={{
-                        lat: marker.latitude,
-                        lng: marker.longitude,
-                    }}
-                />
-            );
-        });
+                <Marker position={{lat: state.toAddress[0], lng: state.toAddress[1]}}/>
+            )
+        }
+    };
+
+    renderPolyLine = () => {
+        const state = this.state
+
+        if (state.toAddress.length > 0) {
+            let pathCoordinates = [
+                {lat: 59.924117, lng: 10.766715},
+                {lat: 59.88809, lng: 10.5231},
+            ]
+            let pathCoordinates2 = [];
 
 
+            const fromLatLng = `${this.state.fromAddress[0]},${this.state.fromAddress[1]}`
+            const toLatLng = `${this.state.toAddress[0]},${this.state.toAddress[1]}`
+
+            const url = `http://localhost:5000/geocoder/geo-json/${fromLatLng}/${toLatLng}`;
+            let kek = fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    return data
+
+                });
+            console.log(kek)
+
+            console.log(pathCoordinates)
+            console.log(pathCoordinates2)
+            if (pathCoordinates.length > 1) {
+                return (
+                    <Polyline
+                        path={pathCoordinates}
+                        options={{
+                            strokeColor: '#00ffff',
+                            strokeOpacity: 1,
+                            strokeWeight: 2,
+                            icons: [{
+                                offset: '0',
+                                repeat: '10px'
+                            }],
+                        }}
+                    />
+                )
+            }
+        }
     };
 
     render() {
@@ -102,6 +128,8 @@ export class MapContainer extends React.Component {
             width: '100%',
             height: '100%',
         };
+
+
         return (
             <Div>
                 <Autocomplete
@@ -128,8 +156,10 @@ export class MapContainer extends React.Component {
                     draggable={true}
                     onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
                 >
-                    {this.renderSelectedMarker()}
-
+                    {this.renderStartMarker()}
+                    {this.renderDestinationMarker()}
+                    {this.renderPolyLine()}
+                    <Test data={this.state}/>
                     <MarkerIcon/>
                 </Map>
                 <Button bottom center onClick={this.handleSelection.bind(this)}>
