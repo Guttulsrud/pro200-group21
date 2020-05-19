@@ -14,8 +14,8 @@ const FrontPage = () => {
       marginBottom='82px'
     >
       <MapContainer />
-      <Div marginLeft='20px' marginRight='20px' paddingTop='30px'>
-        <Button inactive bottom center>
+      <Div mx="20px" paddingTop='30px'>
+        <Button width="70%" inactive bottom center>
           Velg fra
         </Button>
       </Div>

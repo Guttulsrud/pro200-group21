@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowForwardIcon } from '../components/Svg/ArrowForwardIcon';
-import { CloseIcon } from '../components/Svg/CloseIcon';
+import { ArrowForwardIcon } from './Icons/ArrowForwardIcon';
+import { CloseIcon } from './Icons/CloseIcon';
 import { StyledAC } from '../elements/inputs/StyledAutocomplete';
 
 class SearchField extends React.Component {
@@ -32,7 +32,7 @@ class SearchField extends React.Component {
     this.setState({ filled: false });
   };
 
-  search = () => {};
+  search = () => { };
 
   render() {
     let btnIcon;

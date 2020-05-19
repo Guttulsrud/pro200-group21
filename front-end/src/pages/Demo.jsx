@@ -6,7 +6,7 @@ import { Card } from '../elements/divs/StyledCard';
 import { Button } from '../elements/buttons/Button';
 import Ticket from '../components/Ticket';
 import { IconBg } from '../elements/divs/IconContainer';
-import { BusIcon } from '../components/Svg/BusIcon';
+import { BusIcon } from '../components/Icons/BusIcon';
 import SearchField from '../components/SearchField';
 
 class DemoPage extends React.Component {

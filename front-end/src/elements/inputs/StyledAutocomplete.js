@@ -7,6 +7,7 @@ export const StyledAC = styled(Autocomplete)`
   padding-bottom: 20px;
   padding-left: 10px;
   padding-right: 35px;
+  margin-top: 30px;
   width: ${(props) => (props.width ? props.width : '100%')};
   font-size: 1.3rem;
   outline: none;
