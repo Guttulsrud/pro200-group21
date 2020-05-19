@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class BottomMenuItem extends React.Component {
     render() {
         return (
             <React.Fragment>
                 <li className="bottom-menu-item">
-                    <Link to={this.props.link}>
+                    <NavLink exact to={this.props.link} activeClassName="activeRoute" activeStyle={{ color: '#00866E' }}>
                         <div className="bottom-menu-icon">
                             {this.props.icon}
                         </div>
@@ -14,7 +14,7 @@ class BottomMenuItem extends React.Component {
                         <div className="bottom-menu-title">
                             {this.props.title}
                         </div>
-                    </Link>
+                    </NavLink>
                 </li>
             </React.Fragment>
         );

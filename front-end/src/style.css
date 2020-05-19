@@ -55,6 +55,12 @@ body {
   min-height: 100%;
 }
 
+/* BOTTOMMENU */
+.activeRoute .bottom-menu-icon svg {
+  fill: #00866E;
+}
+
+
 /* MAP */
 #map {
   height: 100%;
@@ -62,7 +68,6 @@ body {
 
 #map-marker {
   position: absolute;
-  background: url(http://localhost:3000/images/pin-128.png) no-repeat;
   top: 50%;
   left: 50%;
   z-index: 1;
@@ -110,13 +115,14 @@ body {
 }
 
 .pac-container {
-  background-color: #fff;
+  background-color: #FFFFFF;
   position: absolute !important;
   z-index: 1000;
   border-radius: 2px;
-  border-top: 1px solid #d9d9d9;
+  border-bottom: 0px solid #d9d9d9;
+  border-top: 0px;
   font-family: Arial, sans-serif;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -143,6 +149,7 @@ body {
 .pac-item {
   cursor: default;
   padding: 0 4px;
+  padding-left: 10px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -150,9 +157,10 @@ body {
   text-align: left;
   padding-top: 15px;
   padding-bottom: 15px;
-  border-top: 1px solid #e6e6e6;
-  font-size: 11px;
-  color: #999;
+  border-bottom: 1px solid #e6e6e6;
+  border-top: 0px;
+  font-size: 16px;
+  color: #333333;
 }
 
 .pac-item:hover {
@@ -175,22 +183,25 @@ body {
 .pac-item-query {
   font-size: 22px;
   padding-right: 3px;
-  color: #00866e;
+  color: #333333;
 }
 
 .pac-icon {
-  width: 15px;
-  height: 20px;
-  margin-right: 7px;
-  margin-top: 6px;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  margin-top: 4px;
   display: inline-block;
   vertical-align: top;
-  background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/autocomplete-icons.png);
-  background-size: 34px;
+  background-image: url(http://localhost:3000/images/pin-128.png);
+  background-position: left top;
+  background-size: cover;
 }
 
 .hdpi .pac-icon {
-  background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/autocomplete-icons_hdpi.png);
+  background-image: url(http://localhost:3000/images/pin-128.png);
+  background-position: left top;
+
 }
 
 .pac-icon-search {

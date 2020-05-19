@@ -8,17 +8,17 @@ export const items = [
     {
         title: 'Ny reise',
         icon: <SearchIcon />,
-        link: '/frontpage'
+        link: '/'
     },
     {
         title: 'Sanntidskart',
         icon: <MapIcon />,
-        link: '#'
+        link: '/livemap'
     },
     {
         title: 'Bilett',
         icon: <TicketIcon />,
-        link: '#'
+        link: '/ticket'
     },
     {
         title: 'Demo',
