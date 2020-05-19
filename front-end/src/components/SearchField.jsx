@@ -7,7 +7,7 @@ class SearchField extends React.Component {
     super(props);
     this.state = {
       filled: false,
-      inputText: props.location,
+      inputText: '',
     };
   }
 

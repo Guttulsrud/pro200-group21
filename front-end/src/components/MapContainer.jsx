@@ -173,7 +173,9 @@ export class MapContainer extends React.Component {
             outlineBlue={!this.state.fromLoc || this.state.selected}
             bottom
             center
-            onClick={this.handleSelection.bind(this)}
+            onClick={
+              !this.state.selected ? this.handleSelection.bind(this) : null
+            }
           >
             {this.state.selectedFromAddress ? 'Velg til' : 'Velg fra'}
           </Button>
