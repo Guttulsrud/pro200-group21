@@ -1,5 +1,4 @@
 import React from 'react';
-import { ArrowForwardIcon } from './Icons/ArrowForwardIcon';
 import { CloseIcon } from './Icons/CloseIcon';
 import { StyledAC } from '../elements/inputs/StyledAutocomplete';
 
@@ -8,18 +7,25 @@ class SearchField extends React.Component {
     super(props);
     this.state = {
       filled: false,
-      inputText: this.props.location || '',
+      inputText: props.location,
     };
   }
 
-  //   static getDerivedStateFromProps(nextProp) {
-  //     return {
-  //       inputText: nextProp.location,
-  //     };
-  //   }
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.location != null &&
+      prevProps.location !== this.props.location
+    ) {
+      this.setState({
+        inputText: this.props.location,
+        filled: true,
+      });
+    }
+  }
 
   handleChange = (value) => {
     this.setState({ inputText: value });
+
     if (value !== '') {
       this.setState({ filled: true });
     } else {
@@ -32,19 +38,7 @@ class SearchField extends React.Component {
     this.setState({ filled: false });
   };
 
-  search = () => { };
-
   render() {
-    let btnIcon;
-
-    if (this.state.filled) {
-      btnIcon = <CloseIcon />;
-    } else {
-      btnIcon = <ArrowForwardIcon />;
-    }
-
-    const { ...inputProps } = this.props;
-
     return (
       <React.Fragment>
         <div className='search-form'>
@@ -55,16 +49,14 @@ class SearchField extends React.Component {
             }}
             types={[]}
             componentRestrictions={{ country: 'no' }}
-            value={this.state.inputText || this.props.location}
+            value={this.state.inputText}
             onChange={(e) => this.handleChange(e.target.value)}
-            {...inputProps}
           />
-          <button
-            onClick={this.state.filled ? this.clearInput : this.search}
-            className='search-btn'
-          >
-            {btnIcon}
-          </button>
+          {this.state.filled && (
+            <button onClick={this.clearInput} className='search-btn'>
+              <CloseIcon />
+            </button>
+          )}
         </div>
       </React.Fragment>
     );

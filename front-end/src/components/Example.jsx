@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '../elements/StyledExample'; // Her hentes Button (styled component) fra StyledExample
 import Autosuggest from 'react-autosuggest';
 
 const languages = [

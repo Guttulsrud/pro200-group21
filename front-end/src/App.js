@@ -6,10 +6,7 @@ import FrontPage from './pages/FrontPage';
 import LiveMapPage from './pages/LiveMapPage';
 import TicketPage from './pages/TicketPage';
 import ProfilePage from './pages/ProfilePage';
-import ExamplePage from './pages/ExamplePage';
-import Another from './pages/AnotherPage';
 import NotFound from './pages/NotFoundPage';
-import NavBar from './components/NavBar';
 import BottomMenu from './components/BottomMenu/BottomMenu';
 import Demo from './pages/Demo';
 
@@ -18,11 +15,10 @@ function App() {
     <Router>
       <div className='App'>
         <ThemeProvider theme={theme}>
-          <div id="wrapper">
+          <div id='wrapper'>
             <div className='container'>
               <Switch>
                 <Route exact path='/' component={FrontPage} />
-                <Route exact path='/another' component={Another} />
                 <Route exact path='/demopage' component={Demo} />
                 <Route exact path='/livemap' component={LiveMapPage} />
                 <Route exact path='/ticket' component={TicketPage} />
