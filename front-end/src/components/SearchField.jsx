@@ -55,6 +55,7 @@ class SearchField extends React.Component {
             componentRestrictions={{ country: 'no' }}
             value={this.state.inputText}
             onChange={(e) => this.handleChange(e.target.value)}
+            filled={this.state.filled}
           />
           {this.state.filled && (
             <button onClick={this.clearInput} className='search-btn'>
