@@ -43,7 +43,11 @@ class SearchField extends React.Component {
       <React.Fragment>
         <div className='search-form'>
           <StyledAC
-            placeholder='Hvor vil du reise fra?'
+            placeholder={
+              this.props.fromSelected
+                ? 'Hvor vil du reise til?'
+                : 'Hvor vil du reise fra?'
+            }
             onPlaceSelected={(place) => {
               console.log(place);
             }}
