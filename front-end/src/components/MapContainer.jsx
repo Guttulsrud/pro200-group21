@@ -7,6 +7,7 @@ import { Div } from '../elements/divs/Div';
 import SearchField from './SearchField';
 import { Input } from '../elements/inputs/StyledInput';
 import Autocomplete from 'react-google-autocomplete';
+import { MyLocationIcon } from '../components/Icons/MyLocationIcon'
 
 export class MapContainer extends React.Component {
     _mapLoaded(mapProps, map) {
@@ -58,8 +59,10 @@ export class MapContainer extends React.Component {
                     onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
                 >
                     <SearchField location={this.state.fromLoc} />
+                    <MyLocationIcon />
                     <MarkerIcon />
                 </Map>
+
             </React.Fragment>
         );
     }

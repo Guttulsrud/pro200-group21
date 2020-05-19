@@ -78,6 +78,28 @@ body {
   cursor: pointer;
 }
 
+#my-location {
+  position: absolute;
+  background-color: #FFFFFF;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+#my-location svg {
+  fill: #00866E;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 32px;
+  width: 32px;
+  margin-left: -16px;
+  margin-top: -16px;
+}
+
 /* FONT STYLING */
 .text--black {
   color: #333333;
