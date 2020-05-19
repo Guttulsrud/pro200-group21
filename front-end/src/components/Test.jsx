@@ -1,16 +1,14 @@
 import React from 'react';
 import {Polyline} from "google-maps-react";
+import {Header} from "../elements/StyledHeader";
+import {Link} from "react-router-dom";
 
 
 class Test extends React.Component {
 
-    constructor(data) {
-        super();
-        console.log(data)
-    }
+
+
     render() {
-
-
 
         return (
             <Polyline

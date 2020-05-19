@@ -6,6 +6,8 @@ import Autocomplete from 'react-google-autocomplete';
 import {Button} from '../elements/buttons/Button';
 import {MarkerIcon} from "./Svg/MarkerIcon";
 import Test from "./Test";
+import BottomMenu from "./BottomMenu/BottomMenu";
+import NavBar from "./NavBar";
 
 export class MapContainer extends React.Component {
     _mapLoaded(mapProps, map) {
@@ -20,7 +22,8 @@ export class MapContainer extends React.Component {
         this.state = {
             fromAddress: [],
             toAddress: [],
-            selectedFromAddress: false
+            selectedFromAddress: false,
+            test: []
         };
     }
 
@@ -32,7 +35,6 @@ export class MapContainer extends React.Component {
             latitude: lat,
             longitude: lng,
         });
-        console.log(this.state)
 
         const url = `http://localhost:5000/geocoder/coordinates/${lat}/${lng}`;
 
@@ -83,35 +85,34 @@ export class MapContainer extends React.Component {
         const state = this.state
 
         if (state.toAddress.length > 0) {
-            let pathCoordinates = [
-                {lat: 59.924117, lng: 10.766715},
-                {lat: 59.88809, lng: 10.5231},
-            ]
-            let pathCoordinates2 = [];
+
+            if (this.state.test.length < 1) {
+                const fromLatLng = `${this.state.fromAddress[0]},${this.state.fromAddress[1]}`
+                const toLatLng = `${this.state.toAddress[0]},${this.state.toAddress[1]}`
+
+                const url = `http://localhost:5000/geocoder/geo-json/${fromLatLng}/${toLatLng}`;
+                fetch(url)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        this.setState({
+                            test: data,
+                            cheating: true
+                        })
+
+                    });
+            }
 
 
-            const fromLatLng = `${this.state.fromAddress[0]},${this.state.fromAddress[1]}`
-            const toLatLng = `${this.state.toAddress[0]},${this.state.toAddress[1]}`
 
-            const url = `http://localhost:5000/geocoder/geo-json/${fromLatLng}/${toLatLng}`;
-            let kek = fetch(url)
-                .then((response) => response.json())
-                .then((data) => {
-                    return data
+            if (this.state.cheating) {
 
-                });
-            console.log(kek)
-
-            console.log(pathCoordinates)
-            console.log(pathCoordinates2)
-            if (pathCoordinates.length > 1) {
                 return (
                     <Polyline
-                        path={pathCoordinates}
+                        path={this.state.test}
                         options={{
                             strokeColor: '#00ffff',
                             strokeOpacity: 1,
-                            strokeWeight: 2,
+                            strokeWeight: 5,
                             icons: [{
                                 offset: '0',
                                 repeat: '10px'
@@ -156,10 +157,11 @@ export class MapContainer extends React.Component {
                     draggable={true}
                     onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
                 >
+
                     {this.renderStartMarker()}
                     {this.renderDestinationMarker()}
+
                     {this.renderPolyLine()}
-                    <Test data={this.state}/>
                     <MarkerIcon/>
                 </Map>
                 <Button bottom center onClick={this.handleSelection.bind(this)}>

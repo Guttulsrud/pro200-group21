@@ -58,8 +58,8 @@ exports.getGeoJson = function (req, res) {
                     let temp = val.toString().split(',')
 
                     arr.push({
-                        'lat': temp[0],
-                        'lng': temp[1]
+                        'lat': parseFloat(temp[0]),
+                        'lng': parseFloat(temp[1])
 
                     })
 
