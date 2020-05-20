@@ -8,12 +8,6 @@ import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 
 export class MapContainer extends React.Component {
-    _mapLoaded(mapProps, map) {
-        map.setOptions({
-            styles: mapStyle,
-        });
-    }
-
     constructor(props) {
         super(props);
 
@@ -21,24 +15,14 @@ export class MapContainer extends React.Component {
             fromAddress: [],
             toAddress: [],
             selectedFromAddress: false,
-            test: [],
+            polylineArray: [],
             fromLoc: '',
             address: [],
             selected: false,
         };
     }
 
-    changedCenter(prevProps, map) {
-
-
-        let lat = map.center.lat();
-        let lng = map.center.lng();
-
-        this.setState({
-            latitude: lat,
-            longitude: lng,
-        });
-
+    setAddressFromCoordinates(lat, lng) {
         const url = `http://localhost:5000/geocoder/coordinates/${lat}/${lng}`;
 
         fetch(url)
@@ -46,13 +30,30 @@ export class MapContainer extends React.Component {
             .then((data) => {
                 this.setState({
                     fromLoc: data.address.split(',')[0],
+                    latitude: lat,
+                    longitude: lng,
                 });
             });
     }
 
+
+    onMapLoaded(mapProps, map) {
+        map.setOptions({
+            styles: mapStyle,
+        });
+
+        this.changedCenter(mapProps, map)
+    }
+
+
+    changedCenter(prevProps, map) {
+        let lat = map.center.lat();
+        let lng = map.center.lng();
+
+        this.setAddressFromCoordinates(lat,lng);
+    }
+
     handleSelection() {
-
-
         const state = this.state;
         if (state.selectedFromAddress) {
             this.setState({
@@ -72,11 +73,14 @@ export class MapContainer extends React.Component {
     renderStartMarker = () => {
         const state = this.state;
 
-        return (
-            <Marker
-                position={{lat: state.fromAddress[0], lng: state.fromAddress[1]}}
-            />
-        );
+        if(state.fromAddress) {
+            return (
+                <Marker
+                    position={{lat: state.fromAddress[0], lng: state.fromAddress[1]}}
+                />
+            );
+        }
+
     };
 
     renderDestinationMarker = () => {
@@ -95,7 +99,7 @@ export class MapContainer extends React.Component {
         const state = this.state;
 
         if (state.toAddress.length > 0) {
-            if (this.state.test.length < 1) {
+            if (this.state.polylineArray.length < 1) {
                 const fromLatLng = `${this.state.fromAddress[0]},${this.state.fromAddress[1]}`;
                 const toLatLng = `${this.state.toAddress[0]},${this.state.toAddress[1]}`;
 
@@ -104,16 +108,16 @@ export class MapContainer extends React.Component {
                     .then((response) => response.json())
                     .then((data) => {
                         this.setState({
-                            test: data,
-                            cheating: true,
+                            polylineArray: data,
+                            receivedPolyLine: true,
                         });
                     });
             }
 
-            if (this.state.cheating) {
+            if (this.state.receivedPolyLine) {
                 return (
                     <Polyline
-                        path={this.state.test}
+                        path={this.state.polylineArray}
                         options={{
                             strokeColor: '#003A70',
                             strokeOpacity: 1,
@@ -158,7 +162,7 @@ export class MapContainer extends React.Component {
                     fullscreenControl={false}
                     mapTypeControl={false}
                     draggable={true}
-                    onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
+                    onReady={this.onMapLoaded.bind(this)}
                 >
                     <SearchField
                         location={this.state.fromLoc}
