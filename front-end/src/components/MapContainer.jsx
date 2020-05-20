@@ -66,10 +66,11 @@ export class MapContainer extends React.Component {
         let lat = map.center.lat();
         let lng = map.center.lng();
 
-        this.setAddressFromCoordinates(lat, lng);
+        this.setAddressFromCoordinates(lat,lng);
     }
 
     handleSelection() {
+        console.log("Clicked")
         const state = this.state;
         if (state.selectedFromAddress) {
             this.setState({
@@ -89,9 +90,14 @@ export class MapContainer extends React.Component {
     renderStartMarker = () => {
         const state = this.state;
 
-        if (state.fromAddress) {
+        if(state.fromAddress) {
             return (
                 <Marker
+                    icon={{
+                        url: "/images/pin-48-from.png",
+                        anchor: new this.props.google.maps.Point(25, 52),
+                        scaledSize: new this.props.google.maps.Size(48, 48)
+                    }}
                     position={{lat: state.fromAddress[0], lng: state.fromAddress[1]}}
                 />
             );
@@ -105,6 +111,11 @@ export class MapContainer extends React.Component {
         if (state.toAddress) {
             return (
                 <Marker
+                    icon={{
+                        url: "/images/pin-48-to.png",
+                        anchor: new this.props.google.maps.Point(25, 52),
+                        scaledSize: new this.props.google.maps.Size(48, 48)
+                    }}
                     position={{lat: state.toAddress[0], lng: state.toAddress[1]}}
                 />
             );
@@ -151,6 +162,10 @@ export class MapContainer extends React.Component {
         }
     };
 
+    handleOrder = () => {
+        console.log("Ordered")
+    }
+
     render() {
         const style = {
             width: '100%',
@@ -191,20 +206,18 @@ export class MapContainer extends React.Component {
                     {this.renderStartMarker()}
                     {this.renderDestinationMarker()}
                     {this.renderPolyLine()}
-                    {!this.state.selected && <MarkerIcon/>}
+                    {!this.state.selected && <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
 
                 </Map>
                 <Div paddingTop='30px'>
                     <Button
                         width='70%'
-                        inactive={!this.state.fromLoc || this.state.selected}
-                        outlineBlue={!this.state.fromLoc || this.state.selected}
                         bottom
                         center
-                        onClick={!this.state.selected && this.state.fromLoc ? this.handleSelection.bind(this) : null}
+                        onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
                     >
-                        {this.state.selectedFromAddress ? 'Velg til' : 'Velg fra'}
+                        {!this.state.selectedFromAddress ? 'Hent meg her' : (this.state.selected ? 'Bestill' : 'Jeg skal hit' )}
                     </Button>
                 </Div>
             </Div>

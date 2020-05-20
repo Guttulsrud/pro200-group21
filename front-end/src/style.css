@@ -70,10 +70,10 @@ body {
   top: 50%;
   left: 50%;
   z-index: 1;
-  height: 128px;
-  width: 128px;
-  margin-top: -130px;
-  margin-left: -64px;
+  height: 64px;
+  width: 64px;
+  margin-top: -67px;
+  margin-left: -32px;
   cursor: pointer;
 }
 
