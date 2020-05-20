@@ -88,9 +88,9 @@ exports.getLocationNameByCoordinates = function (req, res) {
         result.on('end', function () {
             const bodyAsJSON = JSON.parse(body);
 
-            const address = bodyAsJSON.results[0].formatted_address;
-
             if (bodyAsJSON.status === "OK") {
+                const address = bodyAsJSON.results[0].formatted_address;
+
                 res.send({
                     "address": address
                 });

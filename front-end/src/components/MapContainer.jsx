@@ -166,6 +166,7 @@ export class MapContainer extends React.Component {
             <Div>
                 <Map
                     google={this.props.google}
+                    initialCenter={{lat: 59.924117, lng: 10.766715,}}
                     centerAroundCurrentLocation
                     center={{
                         lat: this.state.latitude,
@@ -185,7 +186,7 @@ export class MapContainer extends React.Component {
                         location={this.state.fromLoc}
                         fromSelected={this.state.selectedFromAddress}
                     />
-                    <MyLocationIcon showCurrentLocation={this.showCurrentLocation} />
+                    <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>
 
                     {this.renderStartMarker()}
                     {this.renderDestinationMarker()}
