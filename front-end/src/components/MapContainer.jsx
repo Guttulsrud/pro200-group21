@@ -8,12 +8,16 @@ import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 
 export class MapContainer extends React.Component {
+    busIndex = 0;
+
     constructor(props) {
         super(props);
 
         this.state = {
-            fromAddress: [],
-            toAddress: [],
+            fromCoordinate: [],
+            toCoordinate: [],
+            stopCoordinate: [],
+            busCoordinate: [],
             selectedFromAddress: false,
             polylineArray: [],
             fromLoc: '',
@@ -50,21 +54,21 @@ export class MapContainer extends React.Component {
         let lat = map.center.lat();
         let lng = map.center.lng();
 
-        this.setAddressFromCoordinates(lat,lng);
+        this.setAddressFromCoordinates(lat, lng);
     }
 
     handleSelection() {
         const state = this.state;
         if (state.selectedFromAddress) {
             this.setState({
-                toAddress: [state.latitude, state.longitude],
+                toCoordinate: [state.latitude, state.longitude],
                 selected: true,
                 fromLoc: '',
             });
         } else {
             this.setState({
                 selectedFromAddress: true,
-                fromAddress: [state.latitude, state.longitude],
+                fromCoordinate: [state.latitude, state.longitude],
                 fromLoc: '',
             });
         }
@@ -72,49 +76,110 @@ export class MapContainer extends React.Component {
 
     renderStartMarker = () => {
         const state = this.state;
-
-        if(state.fromAddress) {
+        if (state.fromCoordinate) {
             return (
                 <Marker
-                    position={{lat: state.fromAddress[0], lng: state.fromAddress[1]}}
+                    position={{lat: state.fromCoordinate[0], lng: state.fromCoordinate[1]}}
                 />
             );
         }
-
     };
 
     renderDestinationMarker = () => {
         const state = this.state;
-
-        if (state.toAddress) {
+        if (state.toCoordinate) {
             return (
                 <Marker
-                    position={{lat: state.toAddress[0], lng: state.toAddress[1]}}
+                    position={{lat: state.toCoordinate[0], lng: state.toCoordinate[1]}}
                 />
             );
         }
     };
 
-    renderPolyLine = () => {
+    renderMiddleMarker = () => {
+        const state = this.state;
+        if (state.middleAddress) {
+            return (
+                <Marker
+                    position={{lat: state.middleAddress[0], lng: state.middleAddress[1]}}
+                />
+            );
+        }
+    };
+    renderBusMarker = () => {
+        const state = this.state;
+        if (state.busCoordinate) {
+            console.log("render bus")
+            return (
+                <Marker
+                    position={{lat: state.busCoordinate.lat, lng: state.busCoordinate.lng}}
+                />
+            );
+        }
+    };
+
+    animateBus = () => {
+        setInterval(this.intervalFunc, 1000);
+    };
+    intervalFunc = () => {
+        if (this.state.polylineArray[this.busIndex]) {
+            console.log(this.state.polylineArray[this.busIndex])
+            this.setState({
+                    busCoordinate: this.state.polylineArray[this.busIndex]
+                }
+            )
+            this.busIndex++;
+        }
+    }
+
+    handlePolyline = () => {
         const state = this.state;
 
-        if (state.toAddress.length > 0) {
+        if (state.toCoordinate.length > 0) {
             if (this.state.polylineArray.length < 1) {
-                const fromLatLng = `${this.state.fromAddress[0]},${this.state.fromAddress[1]}`;
-                const toLatLng = `${this.state.toAddress[0]},${this.state.toAddress[1]}`;
+                const fromLatLng = `${this.state.fromCoordinate[0]},${this.state.fromCoordinate[1]}`;
+                const toLatLng = `${this.state.toCoordinate[0]},${this.state.toCoordinate[1]}`;
 
-                const url = `http://localhost:5000/geocoder/geo-json/${fromLatLng}/${toLatLng}`;
-                fetch(url)
+
+                //IGNORE FROM HERE
+
+                let startLat = parseFloat(fromLatLng.split(",")[0]) + 0.01 * Math.random();
+                let startLng = parseFloat(fromLatLng.split(",")[1]) + 0.01 * Math.random();
+                let start = startLat + "," + startLng;
+
+                let middleLat = parseFloat(toLatLng.split(",")[0]) + 0.01 * Math.random();
+                let middleLng = parseFloat(toLatLng.split(",")[1]) + 0.01 * Math.random();
+                let middle = middleLat + "," + middleLng;
+
+                const url0 = `http://localhost:5000/geocoder/geo-json/${start}/${fromLatLng}`;
+                const url1 = `http://localhost:5000/geocoder/geo-json/${fromLatLng}/${middle}`;
+                const url2 = `http://localhost:5000/geocoder/geo-json/${middle}/${toLatLng}`;
+                fetch(url0)
                     .then((response) => response.json())
-                    .then((data) => {
-                        this.setState({
-                            polylineArray: data,
-                            receivedPolyLine: true,
-                        });
+                    .then((data0) => {
+                        fetch(url1)
+                            .then((response) => response.json())
+                            .then((data1) => {
+                                fetch(url2)
+                                    .then((response) => response.json())
+                                    .then((data2) => {
+                                        this.setState({
+                                            polylineArray: this.state.polylineArray
+                                                .concat(data0)
+                                                .concat(data1)
+                                                .concat(data2),
+                                            receivedPolyLine: true,
+                                            middleAddress: [middleLat, middleLng]
+                                        });
+                                    });
+                            });
                     });
+
+                // STOP IGNORE HERE
             }
 
             if (this.state.receivedPolyLine) {
+                this.animateBus();
                 return (
                     <Polyline
                         path={this.state.polylineArray}
@@ -131,6 +196,7 @@ export class MapContainer extends React.Component {
                         }}
                     />
                 );
+
             }
         }
     };
@@ -142,9 +208,6 @@ export class MapContainer extends React.Component {
         };
 
         let mapCanBeDragged = this.state.selected;
-
-        console.log('MCBD ' + mapCanBeDragged);
-        console.log('SELECTED: ' + this.state.selected);
 
         return (
             <Div>
@@ -171,8 +234,10 @@ export class MapContainer extends React.Component {
                     <MyLocationIcon/>
 
                     {this.renderStartMarker()}
+                    {this.renderMiddleMarker()}
                     {this.renderDestinationMarker()}
-                    {this.renderPolyLine()}
+                    {this.renderBusMarker()}
+                    {this.handlePolyline()}
                     {!this.state.selected && <MarkerIcon/>}
 
 
