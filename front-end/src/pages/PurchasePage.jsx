@@ -3,6 +3,8 @@ import { Div } from '../elements/divs/Div';
 import { RoundBtn } from '../elements/buttons/RoundBtn';
 import { Button } from '../elements/buttons/Button';
 import { ClockIcon } from '../components/Icons/ClockIcon'
+import tickets from "../utils/tickets";
+import PurchaseSection from "../components/PurchaseSection";
 
 
 class PurchasePage extends React.Component {
@@ -12,34 +14,37 @@ class PurchasePage extends React.Component {
         arrivalTime: 3,
         count: 0,
         sum: 0,
-        ticketType: [
-            { name: 'Barn', qty: 0 },
-            { name: 'Voksen', qty: 0 },
-            { name: 'Honnør', qty: 0 },
-            { name: 'Student', qty: 0 },
-        ],
     }
 
-    renderTicketTypes() {
-        // Make me a lovable component instead!
-        return (
-            <ul className="ticket-types">
-                {this.state.ticketType.map((ticketType, i) => (
-                    <li key={i}>
-                        <h2 className="title">{ticketType.name}</h2>
-                        <Div display="flex" flexDirection="center" alignItems="center">
-                            {ticketType.qty === 0 ? <RoundBtn inactive>-</RoundBtn> : <RoundBtn> - </RoundBtn>}
-                            <Div mx="20px"><h3>{ticketType.qty}</h3></Div>
-                            <RoundBtn onClick={this.handleQty()}>+</RoundBtn>
-                        </Div>
-                    </li>
-                ))}
-            </ul>
-        );
-    }
 
-    handleQty = (index) => {
+    handleAdd = (value) => {
+        for(let i = 0; i < tickets.length; i++) {
+            if(value === tickets[i].type) {
+                tickets[i].qty ++
+                this.setState(prevState => {
+                    return {
+                        sum: prevState.sum + tickets[i].price
+                    }
 
+                })
+            }
+        }
+        console.log(tickets)
+    };
+
+    handleSub = (value) => {
+        for(let i = 0; i < tickets.length; i++) {
+            if(value === tickets[i].type) {
+                tickets[i].qty --
+                this.setState(prevState => {
+                    return {
+                        sum: prevState.sum - tickets[i].price
+                    }
+
+                })
+            }
+        }
+        console.log(tickets)
     };
 
     render() {
@@ -54,8 +59,10 @@ class PurchasePage extends React.Component {
                     </Div>
 
                 </Div>
+                {tickets.map((t) => (
+                    <PurchaseSection type={t.type} price={t.price} qty={t.qty} handleAdd={() => this.handleAdd(t.type)} inactive={!t.qty} handleSub={() => this.handleSub(t.type)} />
+                ))}
 
-                {this.renderTicketTypes()}
                 <Div display="flex" justifyContent="space-between">
                     <h2 className="title">Totalsum</h2>
                     <h2 className="title">{this.state.sum} kr</h2>

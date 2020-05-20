@@ -66,7 +66,7 @@ export class MapContainer extends React.Component {
         let lat = map.center.lat();
         let lng = map.center.lng();
 
-        this.setAddressFromCoordinates(lat,lng);
+        this.setAddressFromCoordinates(lat, lng);
     }
 
     handleSelection() {
@@ -90,7 +90,7 @@ export class MapContainer extends React.Component {
     renderStartMarker = () => {
         const state = this.state;
 
-        if(state.fromAddress) {
+        if (state.fromAddress) {
             return (
                 <Marker
                     icon={{
@@ -172,11 +172,6 @@ export class MapContainer extends React.Component {
             height: '100%',
         };
 
-        let mapCanBeDragged = this.state.selected;
-
-        console.log('MCBD ' + mapCanBeDragged);
-        console.log('SELECTED: ' + this.state.selected);
-
         return (
             <Div>
                 <Map
@@ -217,7 +212,7 @@ export class MapContainer extends React.Component {
                         center
                         onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
                     >
-                        {!this.state.selectedFromAddress ? 'Hent meg her' : (this.state.selected ? 'Bestill' : 'Jeg skal hit' )}
+                        {!this.state.selectedFromAddress ? 'Hent meg her' : (this.state.selected ? 'Bestill' : 'Jeg skal hit')}
                     </Button>
                 </Div>
             </Div>
