@@ -189,7 +189,7 @@ export class MapContainer extends React.Component {
                     zoomControl={false}
                     fullscreenControl={false}
                     mapTypeControl={false}
-                    draggable={true}
+                    draggable={!this.state.selected}
                     onReady={this.onMapLoaded.bind(this)}
                 >
                     <SearchField
@@ -212,7 +212,7 @@ export class MapContainer extends React.Component {
                         center
                         onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
                     >
-                        {!this.state.selectedFromAddress ? 'Hent meg her' : (this.state.selected ? 'Bestill' : 'Jeg skal hit')}
+                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
                     </Button>
                 </Div>
             </Div>

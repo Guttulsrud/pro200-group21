@@ -63,7 +63,7 @@ class PurchasePage extends React.Component {
                     <PurchaseSection type={t.type} price={t.price} qty={t.qty} handleAdd={() => this.handleAdd(t.type)} inactive={!t.qty} handleSub={() => this.handleSub(t.type)} />
                 ))}
 
-                <Div display="flex" justifyContent="space-between">
+                <Div display="flex" justifyContent="space-between" width={0.95}>
                     <h2 className="title">Totalsum</h2>
                     <h2 className="title">{this.state.sum} kr</h2>
                 </Div>
