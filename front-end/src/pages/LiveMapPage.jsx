@@ -1,9 +1,11 @@
 import React from 'react';
+import LiveMapContainer from "../components/LiveMapContainer";
 
 const LiveMapPage = () => {
   return (
     <div>
-      <h1>Livemap</h1>
+        <LiveMapContainer/>
+
     </div>
   );
 };
