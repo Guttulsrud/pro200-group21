@@ -109,6 +109,19 @@ body {
   color: #333333;
 }
 
+/* TICKET TYPE / PURCHASE */
+.ticket-types {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ticket-types li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #D7D8D9;
+}
+
 /*TEST FOR INPUT*/
 .search-form {
   position: relative;
@@ -188,7 +201,7 @@ body {
   background-color: #00866e;
 }
 
-.pac-item:hover > .pac-item-query {
+.pac-item:hover>.pac-item-query {
   color: #fff;
 }
 
