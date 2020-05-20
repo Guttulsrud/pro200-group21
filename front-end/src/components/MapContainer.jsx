@@ -25,26 +25,23 @@ export class MapContainer extends React.Component {
             fromLoc: '',
             address: [],
             selected: false,
-            myLat: 59.924117,
-            myLng: 10.766715
+            latitude: 0,
+            longitude: 0
         };
     }
 
     showCurrentLocation = () => {
-        console.log(this.state.myLat)
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 this.setState({
-                    myLat: position.coords.latitude,
-                    myLng: position.coords.longitude
-                })
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                });
             })
 
         } else {
             console.log("GEOLOCATION NOT ACTIVE")
         }
-
-        console.log(this.state.myLat)
     }
 
     changedCenter(prevProps, map) {
@@ -159,13 +156,10 @@ export class MapContainer extends React.Component {
             <Div>
                 <Map
                     google={this.props.google}
-                    initialCenter={{
-                        lat: 59.924117,
-                        lng: 10.766715,
-                    }}
+                    centerAroundCurrentLocation
                     center={{
-                        lat: this.state.myLat,
-                        lng: this.state.myLng
+                        lat: this.state.latitude,
+                        lng: this.state.longitude
                     }}
                     onDragend={this.changedCenter.bind(this)}
                     zoom={16}
