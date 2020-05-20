@@ -19,7 +19,23 @@ export class MapContainer extends React.Component {
             fromLoc: '',
             address: [],
             selected: false,
+            latitude: 0,
+            longitude: 0
         };
+    }
+
+    showCurrentLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                });
+            })
+
+        } else {
+            console.log("GEOLOCATION NOT ACTIVE")
+        }
     }
 
     setAddressFromCoordinates(lat, lng) {
@@ -50,7 +66,7 @@ export class MapContainer extends React.Component {
         let lat = map.center.lat();
         let lng = map.center.lng();
 
-        this.setAddressFromCoordinates(lat,lng);
+        this.setAddressFromCoordinates(lat, lng);
     }
 
     handleSelection() {
@@ -73,7 +89,7 @@ export class MapContainer extends React.Component {
     renderStartMarker = () => {
         const state = this.state;
 
-        if(state.fromAddress) {
+        if (state.fromAddress) {
             return (
                 <Marker
                     position={{lat: state.fromAddress[0], lng: state.fromAddress[1]}}
@@ -150,9 +166,10 @@ export class MapContainer extends React.Component {
             <Div>
                 <Map
                     google={this.props.google}
-                    initialCenter={{
-                        lat: 59.924117,
-                        lng: 10.766715,
+                    centerAroundCurrentLocation
+                    center={{
+                        lat: this.state.latitude,
+                        lng: this.state.longitude
                     }}
                     onDragend={this.changedCenter.bind(this)}
                     zoom={this.state.selected ? 15.3 : 17}
@@ -168,7 +185,7 @@ export class MapContainer extends React.Component {
                         location={this.state.fromLoc}
                         fromSelected={this.state.selectedFromAddress}
                     />
-                    <MyLocationIcon/>
+                    <MyLocationIcon showCurrentLocation={this.showCurrentLocation} />
 
                     {this.renderStartMarker()}
                     {this.renderDestinationMarker()}
