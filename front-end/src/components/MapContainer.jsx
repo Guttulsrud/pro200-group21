@@ -134,7 +134,10 @@ export class MapContainer extends React.Component {
       height: '100%',
     };
 
-    console.log(this.state.selected);
+    let mapCanBeDragged = this.state.selected;
+
+    console.log('MCBD ' + mapCanBeDragged);
+    console.log('SELECTED: ' + this.state.selected);
 
     return (
       <Div>
@@ -145,13 +148,13 @@ export class MapContainer extends React.Component {
             lng: 10.766715,
           }}
           onDragend={this.changedCenter.bind(this)}
-          zoom={16}
+          zoom={this.state.selected ? 15.3 : 17}
           style={style}
           streetViewControl={false}
           zoomControl={false}
           fullscreenControl={false}
           mapTypeControl={false}
-          draggable={this.state.selected ? false : true}
+          draggable={!this.state.selected ? true : false}
           onReady={(mapProps, map) => this._mapLoaded(mapProps, map)}
         >
           <SearchField
@@ -174,7 +177,9 @@ export class MapContainer extends React.Component {
             bottom
             center
             onClick={
-              !this.state.selected ? this.handleSelection.bind(this) : null
+              !this.state.selected && this.state.fromLoc
+                ? this.handleSelection.bind(this)
+                : null
             }
           >
             {this.state.selectedFromAddress ? 'Velg til' : 'Velg fra'}
