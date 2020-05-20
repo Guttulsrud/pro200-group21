@@ -36,22 +36,8 @@ class PurchasePage extends React.Component {
         );
     }
 
-    handleQty = (obj) => {
-        /*
-        let myArr = []
-    
-        for (let i of this.state.ticketType) {
-            if (i.name === obj.name) {
-                obj.qty++
-            }
-    
-        }
-        this.setState({
-            ticketType: myArr
-    
-        });
+    handleQty = (index) => {
 
-         */
     };
 
     render() {

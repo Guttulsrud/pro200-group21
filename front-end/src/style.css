@@ -118,6 +118,9 @@ body {
 
 .ticket-types li {
   display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #D7D8D9;
 }
