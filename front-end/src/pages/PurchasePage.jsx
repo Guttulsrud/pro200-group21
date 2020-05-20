@@ -5,6 +5,8 @@ import { Button } from '../elements/buttons/Button';
 import { ClockIcon } from '../components/Icons/ClockIcon'
 import tickets from "../utils/tickets";
 import PurchaseSection from "../components/PurchaseSection";
+import Text from "../elements/text/StyledText";
+import Heading from "../elements/text/StyledHeading";
 
 
 class PurchasePage extends React.Component {
@@ -35,7 +37,7 @@ class PurchasePage extends React.Component {
     handleSub = (value) => {
         for(let i = 0; i < tickets.length; i++) {
             if(value === tickets[i].type && tickets[i].qty !== 0) {
-                tickets[i].qty --
+                tickets[i].qty --;
                 this.setState(prevState => {
                     return {
                         sum: prevState.sum - tickets[i].price
@@ -52,10 +54,10 @@ class PurchasePage extends React.Component {
         return (
             <Div display="flex" flexDirection="column" mx="20px">
                 <Div display="flex" flexDirection="row" justifyContent="space-between" alignItems="center">
-                    <h1 className="display-1">{this.state.busName}</h1>
+                    <Heading.h1 fontSize={35}>{this.state.busName}</Heading.h1>
                     <Div display="flex" alignItems="center">
                         <ClockIcon fill="#D7D8D9" />
-                        <p className="subtitle" style={{ paddingLeft: 10 }}>Ankommer om {this.state.arrivalTime} minutter</p>
+                        <Text.p pl={10}>Ankommer om {this.state.arrivalTime} minutter</Text.p>
                     </Div>
 
                 </Div>
@@ -64,8 +66,8 @@ class PurchasePage extends React.Component {
                 ))}
 
                 <Div display="flex" justifyContent="space-between" width={0.95}>
-                    <h2 className="title">Totalsum</h2>
-                    <h2 className="title">{this.state.sum} kr</h2>
+                    <Heading.h2>Totalsum</Heading.h2>
+                    <Heading.h2>{this.state.sum} kr</Heading.h2>
                 </Div>
 
                 <Button>Kjøp Billett</Button>
