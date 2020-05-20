@@ -34,7 +34,7 @@ class PurchasePage extends React.Component {
 
     handleSub = (value) => {
         for(let i = 0; i < tickets.length; i++) {
-            if(value === tickets[i].type) {
+            if(value === tickets[i].type && tickets[i].qty !== 0) {
                 tickets[i].qty --
                 this.setState(prevState => {
                     return {
