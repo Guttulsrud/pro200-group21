@@ -1,9 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Div } from '../elements/divs/Div';
-import { ChevronRightBig } from '../components/Icons/ChevronRightBig'
-import { DateIcon } from '../components/Icons/DateIcon'
-import { Receipt } from '../components/Receipt'
+import { ChevronRightBig } from '../components/Icons/ChevronRightBig';
+import { DateIcon } from '../components/Icons/DateIcon';
+import { Receipt } from '../components/Receipt';
+import { Link } from 'react-router-dom';
 
 
 export const DateField = styled.div`
@@ -100,7 +101,7 @@ const Ticket = (props) => {
             </Div>
 
             <Div mx={15} my={10} >
-              {!props.ticketdata.active ? <Status inactive onClick={toggleReceipt}>Utgått</Status> : <Status active>Aktiv</Status> } 
+              {!props.ticketdata.active ? <Status inactive onClick={toggleReceipt}>Utgått</Status> : <Link to='/activeticket' style={{ textDecoration: 'none' }}><Status active>Aktiv</Status></Link> } 
             </Div>
             <Receipt visible={receiptVisible} ticketdata={props.ticketdata} toggleReceipt={toggleReceipt}></Receipt>
 

@@ -21,6 +21,7 @@ export const Timeline = (props) => {
         
         <Div width={"100%"} position="relative" height="3px" bg={"#003A70"}></Div>
 
+        {props.journeyHasStarted && 
         <Div borderRadius="100px" 
              bg={"#003A70"} 
              height="2.5em" 
@@ -32,9 +33,9 @@ export const Timeline = (props) => {
              alignItems="center"
              
         >
-          <BusIcon></BusIcon>
+           <BusIcon></BusIcon>
         
-        </Div>
+        </Div>}
 
         <Div display="flex" 
              alignItems="center" 
