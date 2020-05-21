@@ -26,6 +26,20 @@ export class MapContainer extends React.Component {
         };
     }
 
+    showCurrentLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                });
+            })
+
+        } else {
+            console.log("GEOLOCATION NOT ACTIVE")
+        }
+    }
+
     setAddressFromCoordinates(lat, lng) {
         const url = `http://localhost:5000/geocoder/coordinates/${lat}/${lng}`;
 
@@ -132,16 +146,13 @@ export class MapContainer extends React.Component {
         }
     }
 
-    handlePolyline = () => {
+    handlePolyline() {
         const state = this.state;
 
         if (state.toCoordinate.length > 0) {
             if (this.state.polylineArray.length < 1) {
                 const fromLatLng = `${this.state.fromCoordinate[0]},${this.state.fromCoordinate[1]}`;
                 const toLatLng = `${this.state.toCoordinate[0]},${this.state.toCoordinate[1]}`;
-
-
-                //IGNORE FROM HERE
 
                 let startLat = parseFloat(fromLatLng.split(",")[0]) + 0.01 * Math.random();
                 let startLng = parseFloat(fromLatLng.split(",")[1]) + 0.01 * Math.random();
@@ -174,8 +185,6 @@ export class MapContainer extends React.Component {
                                     });
                             });
                     });
-
-                // STOP IGNORE HERE
             }
 
             if (this.state.receivedPolyLine) {
@@ -196,7 +205,6 @@ export class MapContainer extends React.Component {
                         }}
                     />
                 );
-
             }
         }
     };
@@ -213,9 +221,11 @@ export class MapContainer extends React.Component {
             <Div>
                 <Map
                     google={this.props.google}
-                    initialCenter={{
-                        lat: 59.924117,
-                        lng: 10.766715,
+                    initialCenter={{lat: 59.924117, lng: 10.766715,}}
+                    centerAroundCurrentLocation
+                    center={{
+                        lat: this.state.latitude,
+                        lng: this.state.longitude
                     }}
                     onDragend={this.changedCenter.bind(this)}
                     zoom={this.state.selected ? 15.3 : 17}
@@ -231,7 +241,7 @@ export class MapContainer extends React.Component {
                         location={this.state.fromLoc}
                         fromSelected={this.state.selectedFromAddress}
                     />
-                    <MyLocationIcon/>
+                    <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>
 
                     {this.renderStartMarker()}
                     {this.renderMiddleMarker()}
