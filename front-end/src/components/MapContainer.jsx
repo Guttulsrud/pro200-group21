@@ -6,6 +6,7 @@ import {MyLocationIcon} from './Icons/MyLocationIcon';
 import SearchField from './SearchField';
 import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
+import PurchasePage from "../pages/PurchasePage";
 
 export class MapContainer extends React.Component {
     busIndex = 0;
@@ -23,6 +24,7 @@ export class MapContainer extends React.Component {
             fromLoc: '',
             address: [],
             selected: false,
+            orderReady: false
         };
     }
 
@@ -221,19 +223,18 @@ export class MapContainer extends React.Component {
     };
 
     handleOrder = () => {
-        console.log("Ordered")
+        this.setState({
+            orderReady: true
+        })
     }
 
     render() {
-        const style = {
-            width: '100%',
-            height: '100%',
-        };
 
-        let mapCanBeDragged = this.state.selected;
+        let content;
 
-        return (
-            <Div>
+        if(!this.state.orderReady) {
+            content = (
+                <React.Fragment>
                 <Map
                     google={this.props.google}
                     initialCenter={{lat: 59.924117, lng: 10.766715,}}
@@ -244,7 +245,6 @@ export class MapContainer extends React.Component {
                     }}
                     onDragend={this.changedCenter.bind(this)}
                     zoom={this.state.selected ? 15.3 : 17}
-                    style={style}
                     streetViewControl={false}
                     zoomControl={false}
                     fullscreenControl={false}
@@ -268,15 +268,30 @@ export class MapContainer extends React.Component {
 
                 </Map>
                 <Div paddingTop='30px'>
-                    <Button
-                        width='70%'
-                        bottom
-                        center
-                        onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
-                    >
-                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
-                    </Button>
-                </Div>
+                <Button
+            width='70%'
+            bottom
+            center
+            onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
+        >
+            {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
+        </Button>
+        </Div>
+                </React.Fragment>
+
+            )
+        } else {
+            content = <PurchasePage/>
+        }
+
+        const style = {
+            width: '100%',
+            height: '100%',
+        };
+
+        return (
+            <Div>
+                {content}
             </Div>
         );
     }
