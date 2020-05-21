@@ -23,8 +23,6 @@ export class MapContainer extends React.Component {
             fromLoc: '',
             address: [],
             selected: false,
-            latitude: 0,
-            longitude: 0
         };
     }
 
@@ -101,7 +99,6 @@ export class MapContainer extends React.Component {
                         anchor: new this.props.google.maps.Point(25, 52),
                         scaledSize: new this.props.google.maps.Size(48, 48)
                     }}
-                    position={{lat: state.fromAddress[0], lng: state.fromAddress[1]}}
                 />
             );
         }
@@ -113,6 +110,11 @@ export class MapContainer extends React.Component {
         if (state.toCoordinate) {
             return (
                 <Marker
+                    icon={{
+                        url: "/images/pin-48-to.png",
+                        anchor: new this.props.google.maps.Point(25, 52),
+                        scaledSize: new this.props.google.maps.Size(48, 48)
+                    }}
                     position={{lat: state.toCoordinate[0], lng: state.toCoordinate[1]}}
                 />
             );
@@ -124,12 +126,7 @@ export class MapContainer extends React.Component {
         if (state.middleAddress) {
             return (
                 <Marker
-                    icon={{
-                        url: "/images/pin-48-to.png",
-                        anchor: new this.props.google.maps.Point(25, 52),
-                        scaledSize: new this.props.google.maps.Size(48, 48)
-                    }}
-                    position={{lat: state.toAddress[0], lng: state.toAddress[1]}}
+                    position={{lat: state.middleAddress[0], lng: state.middleAddress[1]}}
                 />
             );
         }
@@ -266,7 +263,7 @@ export class MapContainer extends React.Component {
                     {this.renderDestinationMarker()}
                     {this.renderBusMarker()}
                     {this.handlePolyline()}
-                    {!this.state.selected && <MarkerIcon/>}
+                    {!this.state.selected && <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
 
                 </Map>
