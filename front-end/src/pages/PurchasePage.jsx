@@ -53,7 +53,7 @@ class PurchasePage extends React.Component {
 
         return (
             <Div display="flex" flexDirection="column" mx="20px">
-                <Div display="flex" flexDirection="row" justifyContent="space-between" alignItems="center">
+                <Div display="flex" justifyContent="space-between" alignItems="center">
                     <Heading.h1 fontSize={35}>{this.state.busName}</Heading.h1>
                     <Div display="flex" alignItems="center">
                         <ClockIcon fill="#D7D8D9" />
