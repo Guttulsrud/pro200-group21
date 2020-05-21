@@ -11,7 +11,8 @@ const TicketPage = () => {
     
     {
       date: "Tir, 12 Mai ", 
-      dest: "Wessels Gate 12", 
+      from: "Oscars Gate 14",
+      dest: "Sloraveien 12", 
       active: true, 
       travelers: ["1 voksen"], 
       type: "Enkel Reise", 
@@ -23,18 +24,20 @@ const TicketPage = () => {
 
     {
       date: "Ons, 6 Mai ", 
-      dest: "Stanseveien 31", 
-      active: false,
+      from: "Oscars Gate 14", // disse to vil nok naturlig komme fra bestilling gjort fra kartet
+      dest: "Stanseveien 31", // Samme med denne
+      active: false,    // Om billetten er aktiv eller ikke
       travelers: ["1 voksen", "1 barn"], 
-      type: "Enkel Reise", 
-      purchased: "Ons, 6 Mai, 07:34:52", 
-      price: "NOK 37,- incl. VAT", 
-      orderID: "AFG 73 89 435 34", 
+      type: "Enkel Reise", // Typene kan hete hva som helst, bare et eksempel
+      purchased: "Ons, 6 Mai, 07:34:52", // samme som date, men greit med klokkeslett (gidder ikke splitte)
+      price: "NOK 37,- incl. VAT",  // Pris med eksempel på format
+      orderID: "AFG 73 89 435 34", // (simulert) Kan være hva som helst av ID
       expired: "Ons, 6 Mai, 08:10:13"
     },
 
     {
       date: "Fre, 24 Apr ", 
+      from: "Wesselsgate 2",
       dest: "Oscars Gate 14", 
       active: false,
       travelers: ["1 voksen"],
