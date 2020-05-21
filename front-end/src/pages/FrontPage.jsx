@@ -1,6 +1,5 @@
 import React from 'react';
 import { Div } from '../elements/divs/Div';
-import { Button } from '../elements/buttons/Button';
 import MapContainer from '../components/MapContainer';
 
 const FrontPage = () => {
