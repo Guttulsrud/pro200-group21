@@ -1,12 +1,11 @@
 import React from 'react';
-import { Div } from '../elements/divs/Div';
-import { RoundBtn } from '../elements/buttons/RoundBtn';
-import { Button } from '../elements/buttons/Button';
-import { ClockIcon } from '../components/Icons/ClockIcon'
-import tickets from "../utils/tickets";
-import PurchaseSection from "../components/PurchaseSection";
-import Text from "../elements/text/StyledText";
-import Heading from "../elements/text/StyledHeading";
+import {Div} from '../elements/divs/Div';
+import {Button} from '../elements/buttons/Button';
+import {ClockIcon} from '../components/Icons/ClockIcon';
+import tickets from '../utils/tickets';
+import PurchaseSection from '../components/PurchaseSection';
+import Text from '../elements/text/StyledText';
+import Heading from '../elements/text/StyledHeading';
 
 
 class PurchasePage extends React.Component {
@@ -16,65 +15,67 @@ class PurchasePage extends React.Component {
         arrivalTime: 3,
         count: 0,
         sum: 0,
-    }
+    };
 
 
     handleAdd = (value) => {
-        for(let i = 0; i < tickets.length; i++) {
-            if(value === tickets[i].type) {
-                tickets[i].qty ++
+        for (let i = 0; i < tickets.length; i++) {
+            if (value === tickets[i].type) {
+                tickets[i].qty++;
                 this.setState(prevState => {
                     return {
                         sum: prevState.sum + tickets[i].price
-                    }
+                    };
 
-                })
+                });
             }
         }
-        console.log(tickets)
+        console.log(tickets);
     };
 
     handleSub = (value) => {
-        for(let i = 0; i < tickets.length; i++) {
-            if(value === tickets[i].type && tickets[i].qty !== 0) {
-                tickets[i].qty --;
+        for (let i = 0; i < tickets.length; i++) {
+            if (value === tickets[i].type) {
+                tickets[i].qty--;
                 this.setState(prevState => {
                     return {
                         sum: prevState.sum - tickets[i].price
-                    }
+                    };
 
-                })
+                });
             }
         }
-        console.log(tickets)
+        console.log(tickets);
     };
 
     render() {
 
         return (
-            <Div display="flex" flexDirection="column" mx="20px" color={"vyBlack"}>
+            <Div display="flex" flexDirection="column" mx="20px">
                 <Div display="flex" justifyContent="space-between" alignItems="center">
                     <Heading.h1 fontSize={35}>{this.state.busName}</Heading.h1>
                     <Div display="flex" alignItems="center">
-                        <ClockIcon fill="#D7D8D9" />
+                        <ClockIcon fill="#D7D8D9"/>
                         <Text.p pl={10}>Ankommer om {this.state.arrivalTime} minutter</Text.p>
                     </Div>
-
                 </Div>
                 {tickets.map((t) => (
-                    <PurchaseSection type={t.type} price={t.price} qty={t.qty} handleAdd={() => this.handleAdd(t.type)} inactive={!t.qty} handleSub={() => this.handleSub(t.type)} />
+                    <PurchaseSection key={t.type} type={t.type} price={t.price} qty={t.qty}
+                                     handleAdd={() => this.handleAdd(t.type)}
+                                     inactive={!t.qty} handleSub={() => this.handleSub(t.type)}/>
                 ))}
-
                 <Div display="flex" justifyContent="space-between" width={0.95}>
-                    <Heading.h2>Totalsum</Heading.h2>
-                    <Heading.h2>{this.state.sum} kr</Heading.h2>
+                    {this.state.sum > 0 &&
+                    <React.Fragment>
+                        <Heading.h2>Totalsum</Heading.h2>
+                        <Heading.h2>{this.state.sum} kr</Heading.h2>
+                    </React.Fragment>
+                    }
                 </Div>
-
-                <Button>Kjøp Billett</Button>
-
-            </Div >
+                <Button mt={this.state.sum ? 0 : 67}>Kjøp Billett</Button>
+            </Div>
         );
     }
-};
+}
 
 export default PurchasePage;

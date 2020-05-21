@@ -49,7 +49,8 @@ class SearchField extends React.Component {
                 : 'Hvor vil du reise fra?'
             }
             onPlaceSelected={(place) => {
-              console.log(place);
+              console.log(place)
+              this.props.handleInputSelect(59.924117, 10.766715 )
             }}
             types={[]}
             componentRestrictions={{ country: 'no' }}

@@ -1,11 +1,9 @@
 import React from 'react';
-import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
+import {Map, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
-import {Button} from '../elements/buttons/Button';
-import {MyLocationIcon} from './Icons/MyLocationIcon';
-import SearchField from './SearchField';
+
 import {Div} from '../elements/divs/Div';
-import {MarkerIcon} from './Icons/MarkerIcon';
+
 
 export class LiveMapContainer extends React.Component {
     constructor(props) {
@@ -32,11 +30,11 @@ export class LiveMapContainer extends React.Component {
 
 
 
-    changedCenter(prevProps, map) {
-        let lat = map.center.lat();
-        let lng = map.center.lng();
-
-    }
+    // changedCenter(prevProps, map) {
+    //     let lat = map.center.lat();
+    //     let lng = map.center.lng();
+    //
+    // }
 
 
     render() {

@@ -8,6 +8,7 @@ import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from "../pages/PurchasePage";
 
+
 export class MapContainer extends React.Component {
     busIndex = 0;
 
@@ -28,12 +29,18 @@ export class MapContainer extends React.Component {
         };
     }
 
+    componentDidMount() {
+        this.showCurrentLocation()
+    }
+
     showCurrentLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 this.setState({
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
+                    myLat: position.coords.latitude,
+                    myLng: position.coords.longitude
                 });
             })
 
@@ -136,7 +143,7 @@ export class MapContainer extends React.Component {
     renderBusMarker = () => {
         const state = this.state;
         if (state.busCoordinate) {
-            console.log("render bus")
+            console.log("render bus");
             return (
                 <Marker
                     position={{lat: state.busCoordinate.lat, lng: state.busCoordinate.lng}}
@@ -228,55 +235,71 @@ export class MapContainer extends React.Component {
         })
     }
 
+    handleInputSelect = (inputLat, inputLong) => {
+        this.setState({
+            latitude: inputLat,
+            longitude: inputLong
+        })
+    }
+
     render() {
 
         let content;
 
-        if(!this.state.orderReady) {
+        if (!this.state.orderReady) {
             content = (
                 <React.Fragment>
-                <Map
-                    google={this.props.google}
-                    initialCenter={{lat: 59.924117, lng: 10.766715,}}
-                    centerAroundCurrentLocation
-                    center={{
-                        lat: this.state.latitude,
-                        lng: this.state.longitude
-                    }}
-                    onDragend={this.changedCenter.bind(this)}
-                    zoom={this.state.selected ? 15.3 : 17}
-                    streetViewControl={false}
-                    zoomControl={false}
-                    fullscreenControl={false}
-                    mapTypeControl={false}
-                    draggable={true}
-                    onReady={this.onMapLoaded.bind(this)}
-                >
-                    <SearchField
-                        location={this.state.fromLoc}
-                        fromSelected={this.state.selectedFromAddress}
-                    />
-                    <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>
+                    <Map
+                        google={this.props.google}
+                        initialCenter={{lat: 59.924117, lng: 10.766715,}}
+                        centerAroundCurrentLocation
+                        center={{
+                            lat: this.state.latitude,
+                            lng: this.state.longitude
+                        }}
+                        onDragend={this.changedCenter.bind(this)}
+                        zoom={this.state.selected ? 15.3 : 17}
+                        streetViewControl={false}
+                        zoomControl={false}
+                        fullscreenControl={false}
+                        mapTypeControl={false}
+                        draggable={true}
+                        onReady={this.onMapLoaded.bind(this)}
+                    >
+                        { this.props.orderMap && <SearchField
+                            location={this.state.fromLoc}
+                            fromSelected={this.state.selectedFromAddress}
+                            handleInputSelect={this.handleInputSelect}
+                        />}
+                        <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>
 
-                    {this.renderStartMarker()}
-                    {this.renderMiddleMarker()}
-                    {this.renderDestinationMarker()}
-                    {this.renderBusMarker()}
-                    {this.handlePolyline()}
-                    {!this.state.selected && <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
+                        <Marker
+                            icon={{
+                                url: "/images/Emoji.png",
+                                anchor: new this.props.google.maps.Point(25, 52),
+                                scaledSize: new this.props.google.maps.Size(48, 48)
+                            }}
+                            position={{lat: this.state.myLat, lng: this.state.myLng}}
+                        />
 
+                        {this.renderStartMarker()}
+                        {this.renderMiddleMarker()}
+                        {this.renderDestinationMarker()}
+                        {this.renderBusMarker()}
+                        {this.handlePolyline()}
+                        {(!this.state.selected && this.props.orderMap) && <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
-                </Map>
-                <Div paddingTop='30px'>
-                <Button
-            width='70%'
-            bottom
-            center
-            onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
-        >
-            {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
-        </Button>
-        </Div>
+                    </Map>
+                    <Div paddingTop='30px'>
+                       { this.props.orderMap && <Button
+                            width='70%'
+                            bottom
+                            center
+                            onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
+                        >
+                            {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
+                        </Button>}
+                    </Div>
                 </React.Fragment>
 
             )
@@ -284,10 +307,10 @@ export class MapContainer extends React.Component {
             content = <PurchasePage/>
         }
 
-        const style = {
-            width: '100%',
-            height: '100%',
-        };
+        // const style = {
+        //     width: '100%',
+        //     height: '100%',
+        // };
 
         return (
             <Div>
