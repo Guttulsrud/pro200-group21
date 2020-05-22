@@ -318,6 +318,7 @@ export class MapContainer extends React.Component {
                     {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>}
 
                     <Marker
+                        id='position-marker'
                         icon={{
 
                             path: this.props.google.maps.SymbolPath.CIRCLE,
@@ -327,7 +328,6 @@ export class MapContainer extends React.Component {
                             strokeColor: '#003A70',
                             strokeWeight: 8,
                         }}
-                        tracksViewChanges={false}
                         position={{lat: this.state.myLat, lng: this.state.myLng}}
                     />
 
