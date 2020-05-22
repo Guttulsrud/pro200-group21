@@ -30,7 +30,6 @@ class PurchasePage extends React.Component {
                 });
             }
         }
-        console.log(tickets);
     };
 
     handleSub = (value) => {
@@ -45,7 +44,10 @@ class PurchasePage extends React.Component {
                 });
             }
         }
-        console.log(tickets);
+    };
+
+    postTickets = () => {
+
     };
 
     render() {
@@ -73,7 +75,7 @@ class PurchasePage extends React.Component {
                     </React.Fragment>
                     }
                 </Div>
-                <Button mt={this.state.sum ? 0 : 67}>Kjøp Billett</Button>
+                <Button mt={this.state.sum ? 0 : 67} onClick={this.postTickets}>Vis avganger</Button>
             </Div>
         );
     }
