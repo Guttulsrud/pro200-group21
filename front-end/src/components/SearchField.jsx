@@ -50,7 +50,7 @@ class SearchField extends React.Component {
             }
             onPlaceSelected={(place) => {
               console.log(place)
-              this.props.handleInputSelect(59.924117, 10.766715 )
+              this.props.handleInputSelect(place.geometry.location.lat(), place.geometry.location.lng() )
             }}
             types={[]}
             componentRestrictions={{ country: 'no' }}
