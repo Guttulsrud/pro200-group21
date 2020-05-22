@@ -3,10 +3,11 @@ import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
 import {Button} from '../elements/buttons/Button';
 import {MyLocationIcon} from './Icons/MyLocationIcon';
-import SearchField from './SearchField';
+import FromSearchField from './FromSearchField';
 import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
+import ToSearchField from './ToSearchField';
 
 
 export class MapContainer extends React.Component {
@@ -23,8 +24,9 @@ export class MapContainer extends React.Component {
             selectedFromAddress: false,
             polylineArray: [],
             fromLoc: '',
+            toLoc: '',
             address: [],
-            selected: false,
+            selectedToAddress: false,
             orderReady: false,
         };
     }
@@ -55,11 +57,20 @@ export class MapContainer extends React.Component {
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                this.setState({
-                    fromLoc: data.address.split(',')[0],
-                    latitude: lat,
-                    longitude: lng,
-                });
+                if (!this.state.selectedFromAddress) {
+                    this.setState({
+                        fromLoc: data.address.split(',')[0],
+                        latitude: lat,
+                        longitude: lng,
+                    });
+                } else {
+                    this.setState({
+                        toLoc: data.address.split(',')[0],
+                        latitude: lat,
+                        longitude: lng,
+                    });
+                }
+
             });
     }
 
@@ -85,14 +96,13 @@ export class MapContainer extends React.Component {
         if (state.selectedFromAddress) {
             this.setState({
                 toCoordinate: [state.latitude, state.longitude],
-                selected: true,
-                fromLoc: '',
+                selectedToAddress: true,
+
             });
         } else {
             this.setState({
                 selectedFromAddress: true,
                 fromCoordinate: [state.latitude, state.longitude],
-                fromLoc: '',
             });
         }
     }
@@ -253,11 +263,19 @@ export class MapContainer extends React.Component {
 
     handleRemoveFrom = () => {
         this.setState({
-            fromLoc: "",
+            fromLoc: '',
             selectedFromAddress: false,
             fromCoordinate: null
-        })
-    }
+        });
+    };
+
+    handleRemoveTo = () => {
+        this.setState({
+            toLoc: '',
+            selectedToAddress: false,
+            toCoordinate: null
+        });
+    };
 
     render() {
 
@@ -277,7 +295,7 @@ export class MapContainer extends React.Component {
                         lng: this.state.longitude
                     }}
                     onDragend={this.changedCenter.bind(this)}
-                    zoom={this.state.selected ? 15.3 : 17}
+                    zoom={this.state.selectedToAddress ? 15.3 : 17}
                     streetViewControl={false}
                     zoomControl={false}
                     fullscreenControl={false}
@@ -285,17 +303,17 @@ export class MapContainer extends React.Component {
                     draggable={true}
                     onReady={this.onMapLoaded.bind(this)}
                 >
-                    {!this.state.orderReady && <SearchField
-                        location={this.state.fromLoc}
+                    {!this.state.orderReady && <FromSearchField
+                        fromLoc={this.state.fromLoc}
                         fromSelected={this.state.selectedFromAddress}
                         handleInputSelect={this.handleInputSelect}
                         handleRemoveFrom={this.handleRemoveFrom}
                     />}
 
-                    {(!this.state.orderReady && this.state.selectedFromAddress) && <SearchField
-                        location={this.state.fromLoc}
+                    {(!this.state.orderReady && this.state.selectedFromAddress) && <ToSearchField
+                        toLoc={this.state.toLoc}
                         handleInputSelect={this.handleInputSelect}
-                        fromInput
+                        handleRemoveTo={this.handleRemoveTo}
                     />}
                     {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>}
 
@@ -319,7 +337,7 @@ export class MapContainer extends React.Component {
                     {this.renderDestinationMarker()}
                     {this.renderBusMarker()}
                     {this.handlePolyline()}
-                    {(!this.state.selected && this.props.orderMap) &&
+                    {(!this.state.selectedToAddress && this.props.orderMap) &&
                     <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
                 </Map>
@@ -331,9 +349,9 @@ export class MapContainer extends React.Component {
                         width='70%'
                         bottom
                         center
-                        onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
+                        onClick={!this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
                     >
-                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
+                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Bestill' : 'Jeg skal hit'}
                     </Button>
                 </Div>
                 }
