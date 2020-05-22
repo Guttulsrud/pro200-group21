@@ -37,11 +37,11 @@ const ActiveTicketPage = (props) => {
   return (
     <React.Fragment>
       <Link to='/ticket' style={{ textDecoration: 'none' }}>
-        <RoundBtn secondary mt={'2em'} mx={'1em'} position="absolute" top="0">
+        <RoundBtn secondary mt={'2em'} mx={'1em'} position="absolute" top="0" zIndex={9999} >
           <ChevronLeftIcon />
         </RoundBtn>
       </Link>
-      <Div display="flex" 
+      <Div display="relative" 
            color={"#AAAAAA"} 
            justifyContent="center" 
            alignItems="center" 
@@ -50,7 +50,7 @@ const ActiveTicketPage = (props) => {
            bg={"#DDDDDD"}
       >  
         
-        <h1>Kart</h1>
+      <DummyMap></DummyMap>
         
 
       </Div>
