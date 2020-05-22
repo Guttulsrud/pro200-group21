@@ -15,16 +15,28 @@ class PurchasePage extends React.Component {
         arrivalTime: 3,
         count: 0,
         sum: 0,
+        travelers: {
+            "Voksen": 0,
+            "Barn": 0,
+            "Honnør": 0,
+            "Student": 0,
+        }
     };
 
 
     handleAdd = (value) => {
-        for (let i = 0; i < tickets.length; i++) {
-            if (value === tickets[i].type) {
-                tickets[i].qty++;
+        for (let ticket of tickets) {
+            if (value === ticket.type) {
+                ticket.qty++;
+                console.log(ticket.type);
+                console.log(this.state.travelers['Voksen'])
                 this.setState(prevState => {
                     return {
-                        sum: prevState.sum + tickets[i].price
+                        sum: prevState.sum + ticket.price,
+                        travelers: {
+                            ...prevState.travelers[ticket.type],
+                            "Voksen": 20
+                        }
                     };
 
                 });
