@@ -6,8 +6,7 @@ import {MyLocationIcon} from './Icons/MyLocationIcon';
 import SearchField from './SearchField';
 import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
-import PurchasePage from "../pages/PurchasePage";
-import {height} from 'styled-system';
+import PurchasePage from '../pages/PurchasePage';
 
 
 export class MapContainer extends React.Component {
@@ -31,7 +30,7 @@ export class MapContainer extends React.Component {
     }
 
     componentDidMount() {
-        this.showCurrentLocation()
+        this.showCurrentLocation();
     }
 
     showCurrentLocation = () => {
@@ -43,12 +42,12 @@ export class MapContainer extends React.Component {
                     myLat: position.coords.latitude,
                     myLng: position.coords.longitude
                 });
-            })
+            });
 
         } else {
-            console.log("GEOLOCATION NOT ACTIVE")
+            console.log('GEOLOCATION NOT ACTIVE');
         }
-    }
+    };
 
     setAddressFromCoordinates(lat, lng) {
         const url = `http://localhost:5000/geocoder/coordinates/${lat}/${lng}`;
@@ -70,7 +69,7 @@ export class MapContainer extends React.Component {
             styles: mapStyle,
         });
 
-        this.changedCenter(mapProps, map)
+        this.changedCenter(mapProps, map);
     }
 
 
@@ -105,7 +104,7 @@ export class MapContainer extends React.Component {
                 <Marker
                     position={{lat: state.fromCoordinate[0], lng: state.fromCoordinate[1]}}
                     icon={{
-                        url: "/images/pin-48-from.png",
+                        url: '/images/pin-48-from.png',
                         anchor: new this.props.google.maps.Point(25, 52),
                         scaledSize: new this.props.google.maps.Size(48, 48)
                     }}
@@ -121,7 +120,7 @@ export class MapContainer extends React.Component {
             return (
                 <Marker
                     icon={{
-                        url: "/images/pin-48-to.png",
+                        url: '/images/pin-48-to.png',
                         anchor: new this.props.google.maps.Point(25, 52),
                         scaledSize: new this.props.google.maps.Size(48, 48)
                     }}
@@ -144,7 +143,6 @@ export class MapContainer extends React.Component {
     renderBusMarker = () => {
         const state = this.state;
         if (state.busCoordinate) {
-            console.log("render bus");
             return (
                 <Marker
                     position={{lat: state.busCoordinate.lat, lng: state.busCoordinate.lng}}
@@ -158,14 +156,13 @@ export class MapContainer extends React.Component {
     };
     intervalFunc = () => {
         if (this.state.polylineArray[this.busIndex]) {
-            console.log(this.state.polylineArray[this.busIndex])
             this.setState({
                     busCoordinate: this.state.polylineArray[this.busIndex]
                 }
-            )
+            );
             this.busIndex++;
         }
-    }
+    };
 
     handlePolyline() {
         const state = this.state;
@@ -175,13 +172,13 @@ export class MapContainer extends React.Component {
                 const fromLatLng = `${this.state.fromCoordinate[0]},${this.state.fromCoordinate[1]}`;
                 const toLatLng = `${this.state.toCoordinate[0]},${this.state.toCoordinate[1]}`;
 
-                let startLat = parseFloat(fromLatLng.split(",")[0]) + 0.01 * Math.random();
-                let startLng = parseFloat(fromLatLng.split(",")[1]) + 0.01 * Math.random();
-                let start = startLat + "," + startLng;
+                let startLat = parseFloat(fromLatLng.split(',')[0]) + 0.01 * Math.random();
+                let startLng = parseFloat(fromLatLng.split(',')[1]) + 0.01 * Math.random();
+                let start = startLat + ',' + startLng;
 
-                let middleLat = parseFloat(toLatLng.split(",")[0]) + 0.01 * Math.random();
-                let middleLng = parseFloat(toLatLng.split(",")[1]) + 0.01 * Math.random();
-                let middle = middleLat + "," + middleLng;
+                let middleLat = parseFloat(toLatLng.split(',')[0]) + 0.01 * Math.random();
+                let middleLng = parseFloat(toLatLng.split(',')[1]) + 0.01 * Math.random();
+                let middle = middleLat + ',' + middleLng;
 
                 const url0 = `http://localhost:5000/geocoder/geo-json/${start}/${fromLatLng}`;
                 const url1 = `http://localhost:5000/geocoder/geo-json/${fromLatLng}/${middle}`;
@@ -233,40 +230,26 @@ export class MapContainer extends React.Component {
     handleOrder = () => {
         this.setState({
             orderReady: true
-        })
-    }
+        });
+    };
 
     handleInputSelect = (inputLat, inputLong) => {
         this.setState({
             latitude: inputLat,
             longitude: inputLong
-        })
-    }
+        });
+    };
 
     render() {
 
-        // let content;
-        //
-        // if (!this.state.orderReady) {
-        //     content = (
-        //         <React.Fragment>
-        //
-        //         </React.Fragment>
-        //
-        //     )
-        // } else {
-        //     content =
-        // }
-
         const style = {
-            height: "300px",
+            height: '300px',
         };
 
         return (
             <Div>
                 <Map
-                    style={!this.state.orderReady ? "" : style}
-
+                    style={!this.state.orderReady ? null : style}
                     google={this.props.google}
                     initialCenter={{lat: 59.924117, lng: 10.766715,}}
                     centerAroundCurrentLocation
@@ -283,7 +266,7 @@ export class MapContainer extends React.Component {
                     draggable={true}
                     onReady={this.onMapLoaded.bind(this)}
                 >
-                    { !this.state.orderReady && <SearchField
+                    {!this.state.orderReady && <SearchField
                         location={this.state.fromLoc}
                         fromSelected={this.state.selectedFromAddress}
                         handleInputSelect={this.handleInputSelect}
@@ -292,7 +275,7 @@ export class MapContainer extends React.Component {
 
                     <Marker
                         icon={{
-                            url: "/images/Emoji.png",
+                            url: '/images/Emoji.png',
                             anchor: new this.props.google.maps.Point(25, 52),
                             scaledSize: new this.props.google.maps.Size(48, 48)
                         }}
@@ -300,13 +283,13 @@ export class MapContainer extends React.Component {
                     />
 
 
-
                     {this.renderStartMarker()}
                     {this.renderMiddleMarker()}
                     {this.renderDestinationMarker()}
                     {this.renderBusMarker()}
                     {this.handlePolyline()}
-                    {(!this.state.selected && this.props.orderMap) && <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
+                    {(!this.state.selected && this.props.orderMap) &&
+                    <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
                 </Map>
                 {this.state.orderReady && <PurchasePage/>}
