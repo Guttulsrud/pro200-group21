@@ -136,7 +136,6 @@ export class MapContainer extends React.Component {
     renderBusMarker = () => {
         const state = this.state;
         if (state.busCoordinate) {
-            console.log("render bus")
             return (
                 <Marker
                     position={{lat: state.busCoordinate.lat, lng: state.busCoordinate.lng}}
@@ -150,7 +149,6 @@ export class MapContainer extends React.Component {
     };
     intervalFunc = () => {
         if (this.state.polylineArray[this.busIndex]) {
-            console.log(this.state.polylineArray[this.busIndex])
             this.setState({
                     busCoordinate: this.state.polylineArray[this.busIndex]
                 }
@@ -281,7 +279,7 @@ export class MapContainer extends React.Component {
 
             )
         } else {
-            content = <PurchasePage/>
+            content = <PurchasePage ticketData={this.state}/>
         }
 
         const style = {
