@@ -25,7 +25,7 @@ export class MapContainer extends React.Component {
             fromLoc: '',
             address: [],
             selected: false,
-            orderReady: false
+            orderReady: false,
         };
     }
 
@@ -135,6 +135,11 @@ export class MapContainer extends React.Component {
         if (state.middleAddress) {
             return (
                 <Marker
+                    icon={{
+                        url: '/images/bus-stop-48.png',
+                        anchor: new this.props.google.maps.Point(25, 52),
+                        scaledSize: new this.props.google.maps.Size(48, 48)
+                    }}
                     position={{lat: state.middleAddress[0], lng: state.middleAddress[1]}}
                 />
             );
@@ -145,6 +150,11 @@ export class MapContainer extends React.Component {
         if (state.busCoordinate) {
             return (
                 <Marker
+                    icon={{
+                        url: '/images/bus-48.png',
+                        anchor: new this.props.google.maps.Point(25, 52),
+                        scaledSize: new this.props.google.maps.Size(48, 48)
+                    }}
                     position={{lat: state.busCoordinate.lat, lng: state.busCoordinate.lng}}
                 />
             );
@@ -203,10 +213,11 @@ export class MapContainer extends React.Component {
                                     });
                             });
                     });
+                this.animateBus();
+
             }
 
             if (this.state.receivedPolyLine) {
-                this.animateBus();
                 return (
                     <Polyline
                         path={this.state.polylineArray}
@@ -240,6 +251,14 @@ export class MapContainer extends React.Component {
         });
     };
 
+    handleRemoveFrom = () => {
+        this.setState({
+            fromLoc: "",
+            selectedFromAddress: false,
+            fromCoordinate: null
+        })
+    }
+
     render() {
 
         const style = {
@@ -270,15 +289,27 @@ export class MapContainer extends React.Component {
                         location={this.state.fromLoc}
                         fromSelected={this.state.selectedFromAddress}
                         handleInputSelect={this.handleInputSelect}
+                        handleRemoveFrom={this.handleRemoveFrom}
+                    />}
+
+                    {(!this.state.orderReady && this.state.selectedFromAddress) && <SearchField
+                        location={this.state.fromLoc}
+                        handleInputSelect={this.handleInputSelect}
+                        fromInput
                     />}
                     {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>}
 
                     <Marker
                         icon={{
-                            url: '/images/Emoji.png',
-                            anchor: new this.props.google.maps.Point(25, 52),
-                            scaledSize: new this.props.google.maps.Size(48, 48)
+
+                            path: this.props.google.maps.SymbolPath.CIRCLE,
+                            fillColor: '#CCEAE4',
+                            fillOpacity: 1,
+                            scale: 10,
+                            strokeColor: '#003A70',
+                            strokeWeight: 8,
                         }}
+                        tracksViewChanges={false}
                         position={{lat: this.state.myLat, lng: this.state.myLng}}
                     />
 

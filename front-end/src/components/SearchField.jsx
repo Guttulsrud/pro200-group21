@@ -34,8 +34,8 @@ class SearchField extends React.Component {
   };
 
   clearInput = () => {
-    this.setState({ inputText: '' });
-    this.setState({ filled: false });
+    this.setState({ inputText: '',filled: false  });
+    this.props.handleRemoveFrom()
   };
 
   render() {
@@ -49,7 +49,6 @@ class SearchField extends React.Component {
                 : 'Hvor vil du reise fra?'
             }
             onPlaceSelected={(place) => {
-              console.log(place)
               this.props.handleInputSelect(place.geometry.location.lat(), place.geometry.location.lng() );
               this.setState({
                 inputText: place.formatted_address
