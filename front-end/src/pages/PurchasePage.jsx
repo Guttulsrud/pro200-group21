@@ -51,8 +51,8 @@ class PurchasePage extends React.Component {
     render() {
 
         return (
-            <Div display="flex" flexDirection="column" mx="20px">
-                <Div display="flex" justifyContent="space-between" alignItems="center">
+            <Div display="flex" flexDirection="column" alignItems={"center"} height="fit-content" pb={82} bg={"#fff"} bottom={0} width={1} position={"fixed"} >
+                <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95}>
                     <Heading.h1 fontSize={35}>{this.state.busName}</Heading.h1>
                     <Div display="flex" alignItems="center">
                         <ClockIcon fill="#D7D8D9"/>
@@ -62,7 +62,8 @@ class PurchasePage extends React.Component {
                 {tickets.map((t) => (
                     <PurchaseSection key={t.type} type={t.type} price={t.price} qty={t.qty}
                                      handleAdd={() => this.handleAdd(t.type)}
-                                     inactive={!t.qty} handleSub={() => this.handleSub(t.type)}/>
+                                     inactive={!t.qty}
+                                     handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
                 ))}
                 <Div display="flex" justifyContent="space-between" width={0.95}>
                     {this.state.sum > 0 &&

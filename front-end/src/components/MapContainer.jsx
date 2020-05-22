@@ -7,6 +7,7 @@ import SearchField from './SearchField';
 import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from "../pages/PurchasePage";
+import {height} from 'styled-system';
 
 
 export class MapContainer extends React.Component {
@@ -244,77 +245,85 @@ export class MapContainer extends React.Component {
 
     render() {
 
-        let content;
+        // let content;
+        //
+        // if (!this.state.orderReady) {
+        //     content = (
+        //         <React.Fragment>
+        //
+        //         </React.Fragment>
+        //
+        //     )
+        // } else {
+        //     content =
+        // }
 
-        if (!this.state.orderReady) {
-            content = (
-                <React.Fragment>
-                    <Map
-                        google={this.props.google}
-                        initialCenter={{lat: 59.924117, lng: 10.766715,}}
-                        centerAroundCurrentLocation
-                        center={{
-                            lat: this.state.latitude,
-                            lng: this.state.longitude
-                        }}
-                        onDragend={this.changedCenter.bind(this)}
-                        zoom={this.state.selected ? 15.3 : 17}
-                        streetViewControl={false}
-                        zoomControl={false}
-                        fullscreenControl={false}
-                        mapTypeControl={false}
-                        draggable={true}
-                        onReady={this.onMapLoaded.bind(this)}
-                    >
-                        { this.props.orderMap && <SearchField
-                            location={this.state.fromLoc}
-                            fromSelected={this.state.selectedFromAddress}
-                            handleInputSelect={this.handleInputSelect}
-                        />}
-                        <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>
-
-                        <Marker
-                            icon={{
-                                url: "/images/Emoji.png",
-                                anchor: new this.props.google.maps.Point(25, 52),
-                                scaledSize: new this.props.google.maps.Size(48, 48)
-                            }}
-                            position={{lat: this.state.myLat, lng: this.state.myLng}}
-                        />
-
-                        {this.renderStartMarker()}
-                        {this.renderMiddleMarker()}
-                        {this.renderDestinationMarker()}
-                        {this.renderBusMarker()}
-                        {this.handlePolyline()}
-                        {(!this.state.selected && this.props.orderMap) && <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
-
-                    </Map>
-                    <Div paddingTop='30px'>
-                       { this.props.orderMap && <Button
-                            width='70%'
-                            bottom
-                            center
-                            onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
-                        >
-                            {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
-                        </Button>}
-                    </Div>
-                </React.Fragment>
-
-            )
-        } else {
-            content = <PurchasePage/>
-        }
-
-        // const style = {
-        //     width: '100%',
-        //     height: '100%',
-        // };
+        const style = {
+            height: "300px",
+        };
 
         return (
             <Div>
-                {content}
+                <Map
+                    style={!this.state.orderReady ? "" : style}
+
+                    google={this.props.google}
+                    initialCenter={{lat: 59.924117, lng: 10.766715,}}
+                    centerAroundCurrentLocation
+                    center={{
+                        lat: this.state.latitude,
+                        lng: this.state.longitude
+                    }}
+                    onDragend={this.changedCenter.bind(this)}
+                    zoom={this.state.selected ? 15.3 : 17}
+                    streetViewControl={false}
+                    zoomControl={false}
+                    fullscreenControl={false}
+                    mapTypeControl={false}
+                    draggable={true}
+                    onReady={this.onMapLoaded.bind(this)}
+                >
+                    { !this.state.orderReady && <SearchField
+                        location={this.state.fromLoc}
+                        fromSelected={this.state.selectedFromAddress}
+                        handleInputSelect={this.handleInputSelect}
+                    />}
+                    {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>}
+
+                    <Marker
+                        icon={{
+                            url: "/images/Emoji.png",
+                            anchor: new this.props.google.maps.Point(25, 52),
+                            scaledSize: new this.props.google.maps.Size(48, 48)
+                        }}
+                        position={{lat: this.state.myLat, lng: this.state.myLng}}
+                    />
+
+
+
+                    {this.renderStartMarker()}
+                    {this.renderMiddleMarker()}
+                    {this.renderDestinationMarker()}
+                    {this.renderBusMarker()}
+                    {this.handlePolyline()}
+                    {(!this.state.selected && this.props.orderMap) && <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
+
+                </Map>
+                {this.state.orderReady && <PurchasePage/>}
+
+                {!this.state.orderReady &&
+                <Div paddingTop='30px'>
+                    <Button
+                        width='70%'
+                        bottom
+                        center
+                        onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
+                    >
+                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
+                    </Button>
+                </Div>
+                }
+
             </Div>
         );
     }
