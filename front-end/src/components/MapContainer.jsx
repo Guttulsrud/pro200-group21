@@ -1,11 +1,11 @@
 import React from 'react';
-import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
-import {mapStyle} from '../utils/MapStyle.js';
-import {Button} from '../elements/buttons/Button';
-import {MyLocationIcon} from './Icons/MyLocationIcon';
+import { Map, Marker, Polyline, GoogleApiWrapper } from 'google-maps-react';
+import { mapStyle } from '../utils/MapStyle.js';
+import { Button } from '../elements/buttons/Button';
+import { MyLocationIcon } from './Icons/MyLocationIcon';
 import SearchField from './SearchField';
-import {Div} from '../elements/divs/Div';
-import {MarkerIcon} from './Icons/MarkerIcon';
+import { Div } from '../elements/divs/Div';
+import { MarkerIcon } from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
 
 
@@ -102,7 +102,7 @@ export class MapContainer extends React.Component {
         if (state.fromCoordinate) {
             return (
                 <Marker
-                    position={{lat: state.fromCoordinate[0], lng: state.fromCoordinate[1]}}
+                    position={{ lat: state.fromCoordinate[0], lng: state.fromCoordinate[1] }}
                     icon={{
                         url: '/images/pin-48-from.png',
                         anchor: new this.props.google.maps.Point(25, 52),
@@ -124,7 +124,7 @@ export class MapContainer extends React.Component {
                         anchor: new this.props.google.maps.Point(25, 52),
                         scaledSize: new this.props.google.maps.Size(48, 48)
                     }}
-                    position={{lat: state.toCoordinate[0], lng: state.toCoordinate[1]}}
+                    position={{ lat: state.toCoordinate[0], lng: state.toCoordinate[1] }}
                 />
             );
         }
@@ -135,7 +135,7 @@ export class MapContainer extends React.Component {
         if (state.middleAddress) {
             return (
                 <Marker
-                    position={{lat: state.middleAddress[0], lng: state.middleAddress[1]}}
+                    position={{ lat: state.middleAddress[0], lng: state.middleAddress[1] }}
                 />
             );
         }
@@ -145,7 +145,7 @@ export class MapContainer extends React.Component {
         if (state.busCoordinate) {
             return (
                 <Marker
-                    position={{lat: state.busCoordinate.lat, lng: state.busCoordinate.lng}}
+                    position={{ lat: state.busCoordinate.lat, lng: state.busCoordinate.lng }}
                 />
             );
         }
@@ -157,8 +157,8 @@ export class MapContainer extends React.Component {
     intervalFunc = () => {
         if (this.state.polylineArray[this.busIndex]) {
             this.setState({
-                    busCoordinate: this.state.polylineArray[this.busIndex]
-                }
+                busCoordinate: this.state.polylineArray[this.busIndex]
+            }
             );
             this.busIndex++;
         }
@@ -251,7 +251,7 @@ export class MapContainer extends React.Component {
                 <Map
                     style={!this.state.orderReady ? null : style}
                     google={this.props.google}
-                    initialCenter={{lat: 59.924117, lng: 10.766715,}}
+                    initialCenter={{ lat: 59.924117, lng: 10.766715, }}
                     centerAroundCurrentLocation
                     center={{
                         lat: this.state.latitude,
@@ -271,15 +271,20 @@ export class MapContainer extends React.Component {
                         fromSelected={this.state.selectedFromAddress}
                         handleInputSelect={this.handleInputSelect}
                     />}
-                    {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>}
+                    {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation} />}
 
                     <Marker
+                        id='position-marker'
                         icon={{
-                            url: '/images/Emoji.png',
-                            anchor: new this.props.google.maps.Point(25, 52),
-                            scaledSize: new this.props.google.maps.Size(48, 48)
+
+                            path: this.props.google.maps.SymbolPath.CIRCLE,
+                            fillColor: '#CCEAE4',
+                            fillOpacity: 1,
+                            scale: 10,
+                            strokeColor: '#003A70',
+                            strokeWeight: 8
                         }}
-                        position={{lat: this.state.myLat, lng: this.state.myLng}}
+                        position={{ lat: this.state.myLat, lng: this.state.myLng }}
                     />
 
 
@@ -289,22 +294,22 @@ export class MapContainer extends React.Component {
                     {this.renderBusMarker()}
                     {this.handlePolyline()}
                     {(!this.state.selected && this.props.orderMap) &&
-                    <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
+                        <MarkerIcon toLoc={this.state.selectedFromAddress} />}
 
                 </Map>
-                {this.state.orderReady && <PurchasePage/>}
+                {this.state.orderReady && <PurchasePage />}
 
                 {!this.state.orderReady &&
-                <Div paddingTop='30px'>
-                    <Button
-                        width='70%'
-                        bottom
-                        center
-                        onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
-                    >
-                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
-                    </Button>
-                </Div>
+                    <Div paddingTop='30px'>
+                        <Button
+                            width='70%'
+                            bottom
+                            center
+                            onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
+                        >
+                            {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
+                        </Button>
+                    </Div>
                 }
 
             </Div>

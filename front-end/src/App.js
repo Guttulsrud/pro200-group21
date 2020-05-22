@@ -6,6 +6,7 @@ import FrontPage from './pages/FrontPage';
 import LiveMapPage from './pages/LiveMapPage';
 import TicketPage from './pages/TicketPage';
 import ProfilePage from './pages/ProfilePage';
+import PurchasePage from './pages/PurchasePage';
 import NotFound from './pages/NotFoundPage';
 import BottomMenu from './components/BottomMenu/BottomMenu';
 import Demo from './pages/Demo';
@@ -23,6 +24,7 @@ function App() {
                 <Route exact path='/livemap' component={LiveMapPage} />
                 <Route exact path='/ticket' component={TicketPage} />
                 <Route exact path='/profile' component={ProfilePage} />
+                <Route exact path='/purchase' component={PurchasePage} />
                 <Route component={NotFound} />
               </Switch>
             </div>
