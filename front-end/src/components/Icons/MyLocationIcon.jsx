@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const MyLocationIcon = () => {
+export const MyLocationIcon = (props) => {
   return (
     <React.Fragment>
-      <div id='my-location'>
+      <div onClick={props.showCurrentLocation} id='my-location'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           height='24'

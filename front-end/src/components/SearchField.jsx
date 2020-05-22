@@ -7,7 +7,7 @@ class SearchField extends React.Component {
     super(props);
     this.state = {
       filled: false,
-      inputText: props.location,
+      inputText: '',
     };
   }
 
@@ -43,14 +43,23 @@ class SearchField extends React.Component {
       <React.Fragment>
         <div className='search-form'>
           <StyledAC
-            placeholder='Hvor vil du reise fra?'
+            placeholder={
+              this.props.fromSelected
+                ? 'Hvor vil du reise til?'
+                : 'Hvor vil du reise fra?'
+            }
             onPlaceSelected={(place) => {
-              console.log(place);
+              console.log(place)
+              this.props.handleInputSelect(place.geometry.location.lat(), place.geometry.location.lng() );
+              this.setState({
+                inputText: place.formatted_address
+              })
             }}
             types={[]}
             componentRestrictions={{ country: 'no' }}
             value={this.state.inputText}
             onChange={(e) => this.handleChange(e.target.value)}
+            filled={this.state.filled}
           />
           {this.state.filled && (
             <button onClick={this.clearInput} className='search-btn'>

@@ -2,14 +2,22 @@ const Bus = require('../models/bus');
 
 // GET all bus
 exports.getBusAll = function (req, res, next) {
-
+    Bus.find({}, '')
+        .exec(function (err, tickets) {
+            if (err) {
+                return next(err);
+            }
+            res.send({tickets: tickets});
+        })
 };
 
 // POST create bus
 exports.createBus = function (req, res) {
-    const coordinates = req.body.coordinates
+    const title = req.body.title
+    const route = req.body.route
+    const capacity = Math.random()
 
-    Bus.create({location: {type: "Point", coordinates: [59.909712, 10.763605]}})
+    Bus.create({title: title, route: route, capacity: capacity})
         .then(bus => res.send(bus))
         .catch(error => res.send(error))
 };

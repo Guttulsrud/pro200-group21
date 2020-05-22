@@ -58,9 +58,8 @@ body {
 
 /* BOTTOMMENU */
 .activeRoute .bottom-menu-icon svg {
-  fill: #00866E;
+  fill: #00866e;
 }
-
 
 /* MAP */
 #map {
@@ -72,16 +71,16 @@ body {
   top: 50%;
   left: 50%;
   z-index: 1;
-  height: 128px;
-  width: 128px;
-  margin-top: -64px;
-  margin-left: -64px;
+  height: 64px;
+  width: 64px;
+  margin-top: -67px;
+  margin-left: -32px;
   cursor: pointer;
 }
 
 #my-location {
   position: absolute;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
   margin-left: 20px;
   margin-top: 20px;
@@ -91,7 +90,7 @@ body {
 }
 
 #my-location svg {
-  fill: #00866E;
+  fill: #00866e;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -107,8 +106,61 @@ body {
 }
 
 .display-1 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: #333333;
+}
+
+.display-2 {
+  font-size: 2.6rem;
+  color: #333333;
+}
+
+.display-3 {
+  font-size: 3rem;
+  color: #333333;
+}
+
+.display-4 {
+  font-size: 4rem;
+  color: #333333;
+}
+
+.headline {
+  font-size: 1.8rem;
+  color: #333333;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #333333;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #333333;
+}
+
+.body-1 {}
+
+.body-2 {}
+
+.caption {}
+
+
+/* TICKET TYPE / PURCHASE */
+.ticket-types {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ticket-types li {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #D7D8D9;
 }
 
 /*TEST FOR INPUT*/
@@ -138,7 +190,7 @@ body {
 }
 
 .pac-container {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   position: absolute !important;
   z-index: 1000;
   border-radius: 2px;
@@ -224,7 +276,6 @@ body {
 .hdpi .pac-icon {
   background-image: url(http://localhost:3000/images/pin-128.png);
   background-position: left top;
-
 }
 
 .pac-icon-search {
