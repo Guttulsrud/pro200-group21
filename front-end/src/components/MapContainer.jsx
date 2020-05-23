@@ -263,7 +263,7 @@ export class MapContainer extends React.Component {
 
     handleRemoveFrom = () => {
         this.setState({
-            fromLoc: '',
+            fromLoc: null,
             selectedFromAddress: false,
             fromCoordinate: null
         });
@@ -271,7 +271,7 @@ export class MapContainer extends React.Component {
 
     handleRemoveTo = () => {
         this.setState({
-            toLoc: '',
+            toLoc: null,
             selectedToAddress: false,
             toCoordinate: null
         });

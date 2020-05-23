@@ -32,10 +32,10 @@ class ToSearchField extends React.Component {
             this.setState({ filled: false });
         }
     };
-     //@Todo Finne ut hvorfor handleRemoveTo() gjør at clearInput må kjøres to ganger for å sette filled til false
+
     clearInput = () => {
-        this.setState({ inputText: '', filled: false });
-        this.props.handleRemoveTo()
+        this.setState({ inputText: '', filled: false },() => this.props.handleRemoveTo());
+
     };
 
     render() {
