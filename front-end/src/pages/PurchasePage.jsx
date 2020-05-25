@@ -1,12 +1,13 @@
 import React from 'react';
-import {Div} from '../elements/divs/Div';
-import {Button} from '../elements/buttons/Button';
-import {ClockIcon} from '../components/Icons/ClockIcon';
+import { Div } from '../elements/divs/Div';
+import { Button } from '../elements/buttons/Button';
+import { ClockIcon } from '../components/Icons/ClockIcon';
 import tickets from '../utils/tickets';
 import PurchaseSection from '../components/PurchaseSection';
 import Text from '../elements/text/StyledText';
 import Heading from '../elements/text/StyledHeading';
 import axios from 'axios';
+import Stepper from '../components/Stepper'
 
 
 class PurchasePage extends React.Component {
@@ -16,6 +17,14 @@ class PurchasePage extends React.Component {
         arrivalTime: 3,
         count: 0,
         sum: 0,
+        travelers: {
+            "Voksen": 0,
+            "Barn": 0,
+            "Honnør": 0,
+            "Student": 0,
+        },
+        //STEPPER
+        currentStep: 1
     };
 
 
@@ -71,33 +80,66 @@ class PurchasePage extends React.Component {
         console.log(response.data)
     }
 
+    handleClick = (clickType) => {
+        const { currentStep } = this.state;
+
+        //Not mutate existing state
+        let newStep = currentStep;
+        clickType === "next" ? newStep++ : newStep--;
+
+
+        this.setState({
+            currentStep: newStep
+        });
+
+        console.log(currentStep);
+
+    }
+
+
+
     render() {
 
+        // STEPPER DESCRIPTION
+        const stepsArray = ["Antall reisende", "Velg buss", "Kjøp billett"];
+
+
+
+        const { currentStep } = this.state;
+
+
+
         return (
-            <Div display="flex" flexDirection="column" alignItems={"center"} height="fit-content" pb={82} bg={"#fff"}
-                 bottom={0} width={1} position={"fixed"}>
+            <Div display="flex" flexDirection="column" alignItems={"center"} height="fit-content" pb={82} bg={"#fff"} bottom={0} width={1} position={"fixed"} >
                 <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95}>
-                    <Heading.h1 fontSize={35}>{this.state.busName}</Heading.h1>
-                    <Div display="flex" alignItems="center">
-                        <ClockIcon fill="#D7D8D9"/>
-                        <Text.p pl={10}>Ankommer om {this.state.arrivalTime} minutter</Text.p>
+
+                    <Div display="flex" flexDirection="column" width="100%" justifyContent="space-between">
+
+                        <Stepper steps={stepsArray} currentStepNumber={currentStep} />
+
+                        <Div width="100%" justifyContent="space-between">
+                            <Button width="100px" onClick={() => this.handleClick()}>Previous</Button>
+                            <Button width="100px" onClick={() => this.handleClick("next")}>Next</Button>
+                        </Div>
                     </Div>
                 </Div>
-                {tickets.map((t) => (
-                    <PurchaseSection key={t.type} type={t.type} price={t.price} qty={t.qty}
-                                     handleAdd={() => this.handleAdd(t.type)}
-                                     inactive={!t.qty}
-                                     handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
-                ))}
+                {
+                    tickets.map((t) => (
+                        <PurchaseSection key={t.type} type={t.type} price={t.price} qty={t.qty}
+                            handleAdd={() => this.handleAdd(t.type)}
+                            inactive={!t.qty}
+                            handleSub={t.qty ? () => this.handleSub(t.type) : null} />
+                    ))
+                }
                 <Div display="flex" justifyContent="space-between" width={0.95}>
                     {this.state.sum > 0 &&
-                    <React.Fragment>
-                        <Heading.h2>Totalsum</Heading.h2>
-                        <Heading.h2>{this.state.sum} kr</Heading.h2>
-                    </React.Fragment>
+                        <React.Fragment>
+                            <Heading.h2>Totalsum</Heading.h2>
+                            <Heading.h2>{this.state.sum} kr</Heading.h2>
+                        </React.Fragment>
                     }
                 </Div>
-                <Button onClick={this.handlePurchase.bind(this)} mt={this.state.sum ? 0 : 67}>Kjøp Billett</Button>
+                <Button mt={this.state.sum ? 0 : 67}>Vis avganger</Button>
             </Div>
         );
     }
