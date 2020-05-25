@@ -25,11 +25,8 @@ function App() {
                 <Route exact path='/livemap' component={LiveMapPage} />
                 <Route exact path='/ticket' component={TicketPage} />
                 <Route exact path='/profile' component={ProfilePage} />
-<<<<<<< HEAD
                 <Route exact path='/activeticket' component={ActiveTicketPage} />
-=======
                 <Route exact path='/purchase' component={PurchasePage} />
->>>>>>> 44f7eedd5d533d7f876c0c059160713cd19508e3
                 <Route component={NotFound} />
               </Switch>
             </div>
