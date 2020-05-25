@@ -4,18 +4,24 @@ const router = express.Router();
 // Require controller module.
 const ticketController = require('../controllers/ticketController');
 
-/// TICKET ROUTES ///
+/// TICKET INSTANCE ROUTES ///
 
-// POST request for creating ticket-type
+// POST request for creating a ticket.
 router.post('/create', ticketController.createTicket);
 
-// POST request to delete ticket-type
-router.delete('/delete/:id', ticketController.ticket_delete);
+// POST request to delete ticket.
+router.put('/archive/:id', ticketController.archiveTicket);
 
-// GET request for one ticket-type
+// POST request to update ticket.
+router.put('/update/:id', ticketController.updateTicket);
+
+// GET request for one ticket.
 router.get('/details/:id', ticketController.getTicketById);
 
-// GET request for list of all ticket-types
+// GET request for one ticket.
+router.get('/user/:id', ticketController.getTicketByUserID);
+
+// GET request for list of all ticket.
 router.get('/all', ticketController.getTicketAll);
 
 module.exports = router;

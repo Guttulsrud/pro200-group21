@@ -412,7 +412,7 @@ export class MapContainer extends React.Component {
                     <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
                 </Map>
-                {this.state.orderReady && <PurchasePage/>}
+                {this.state.orderReady && <PurchasePage sendState={this.state}/>}
 
                 {!this.state.orderReady &&
                 <Div paddingTop='30px'>

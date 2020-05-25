@@ -1,6 +1,16 @@
 import styled, { css } from 'styled-components';
+import { space, color, layout, flex, border, typography, position, margin, padding } from 'styled-system';
 
 export const RoundBtn = styled.button`
+  ${space}
+  ${color}
+  ${border}
+  ${layout}
+  ${flex}
+  ${typography}
+  ${position}
+  ${margin}
+  ${padding}
   background-color: #003A70;
   height: 38px;
   width: 38px;
