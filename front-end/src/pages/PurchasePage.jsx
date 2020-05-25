@@ -60,7 +60,6 @@ class PurchasePage extends React.Component {
 
     async handlePurchase() {
 
-
         const data = {
             user_id: '5debe43e033f2330fc179981',
             ticket_id: '5ebbef6d2b27952388f474f9',
@@ -71,12 +70,12 @@ class PurchasePage extends React.Component {
         }
 
 
-
         const response = await axios.post(
             'http://localhost:5000/ticket-instance/create',
             data,
             {headers: {'Content-Type': 'application/json'}}
         )
+
         console.log(response.data)
     }
 
