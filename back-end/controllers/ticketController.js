@@ -33,7 +33,7 @@ exports.createTicket = function (req, res) {
     const userId = req.body.user_id;
     const numberOfTickets = req.body.number_of_tickets;
     const price = req.body.price;
-    const route = JSON.parse(req.body.route);
+    const route = req.body.route;
 
 
     Ticket.create({
