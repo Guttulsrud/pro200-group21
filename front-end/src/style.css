@@ -78,6 +78,13 @@ body {
   cursor: pointer;
 }
 
+#position-marker {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background-color: #ff00cc;
+}
+
 #my-location {
   position: absolute;
   background-color: #ffffff;
@@ -99,6 +106,17 @@ body {
   margin-left: -16px;
   margin-top: -16px;
 }
+
+/* STEPPER */
+.divider-line {
+  position: absolute;
+  top: 15%;
+  left: 100%;
+  width: 70%;
+  height: 3px;
+  background-color: #D7D8D9;
+}
+
 
 /* FONT STYLING */
 .text--black {

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import Autocomplete from 'react-google-autocomplete';
 
 export const StyledAC = styled(Autocomplete)`
@@ -19,5 +19,33 @@ export const StyledAC = styled(Autocomplete)`
   &:focus {
     border-bottom: 1px solid #00866e;
     outline: none;
+  }
+`;
+
+export const Label = styled.label`
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 48px;
+  font-size: 24px;
+  transition: 0.3s ease all;
+  color: #b9b9b9;
+
+  ${props => props.filled && css`
+    top: 30px;
+    padding-top: 4px;
+    left: 0;
+    padding-left: 10px;
+    font-size: 13px;
+    color: #333333;
+`}
+
+  ${StyledAC}:focus ~ & {
+    top: 30px;
+    padding-top: 4px;
+    left: 0;
+    padding-left: 10px;
+    font-size: 13px;
+    color: #333333;
   }
 `;

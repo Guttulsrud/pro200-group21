@@ -3,10 +3,11 @@ import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
 import {Button} from '../elements/buttons/Button';
 import {MyLocationIcon} from './Icons/MyLocationIcon';
-import SearchField from './SearchField';
+import FromSearchField from './FromSearchField';
 import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
+import ToSearchField from './ToSearchField';
 
 
 export class MapContainer extends React.Component {
@@ -23,9 +24,10 @@ export class MapContainer extends React.Component {
             selectedFromAddress: false,
             polylineArray: [],
             fromLoc: '',
+            toLoc: '',
             address: [],
-            selected: false,
-            orderReady: false
+            selectedToAddress: false,
+            orderReady: false,
         };
     }
 
@@ -55,11 +57,20 @@ export class MapContainer extends React.Component {
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                this.setState({
-                    fromLoc: data.address.split(',')[0],
-                    latitude: lat,
-                    longitude: lng,
-                });
+                if (!this.state.selectedFromAddress) {
+                    this.setState({
+                        fromLoc: data.address.split(',')[0],
+                        latitude: lat,
+                        longitude: lng,
+                    });
+                } else {
+                    this.setState({
+                        toLoc: data.address.split(',')[0],
+                        latitude: lat,
+                        longitude: lng,
+                    });
+                }
+
             });
     }
 
@@ -85,14 +96,13 @@ export class MapContainer extends React.Component {
         if (state.selectedFromAddress) {
             this.setState({
                 toCoordinate: [state.latitude, state.longitude],
-                selected: true,
-                fromLoc: '',
+                selectedToAddress: true,
+
             });
         } else {
             this.setState({
                 selectedFromAddress: true,
                 fromCoordinate: [state.latitude, state.longitude],
-                fromLoc: '',
             });
         }
     }
@@ -135,6 +145,11 @@ export class MapContainer extends React.Component {
         if (state.middleAddress) {
             return (
                 <Marker
+                    icon={{
+                        url: '/images/bus-stop-48.png',
+                        anchor: new this.props.google.maps.Point(25, 52),
+                        scaledSize: new this.props.google.maps.Size(48, 48)
+                    }}
                     position={{lat: state.middleAddress[0], lng: state.middleAddress[1]}}
                 />
             );
@@ -145,6 +160,11 @@ export class MapContainer extends React.Component {
         if (state.busCoordinate) {
             return (
                 <Marker
+                    icon={{
+                        url: '/images/bus-48.png',
+                        anchor: new this.props.google.maps.Point(25, 52),
+                        scaledSize: new this.props.google.maps.Size(48, 48)
+                    }}
                     position={{lat: state.busCoordinate.lat, lng: state.busCoordinate.lng}}
                 />
             );
@@ -170,10 +190,10 @@ export class MapContainer extends React.Component {
         if (state.toCoordinate.length > 0) {
             if (this.state.polylineArray.length < 1) {
                 this.generateRandomTripPolyline();
+                this.animateBus();
             }
 
             if (this.state.receivedPolyLine) {
-                this.animateBus();
                 return (
                     <Polyline
                         path={this.state.polylineArray}
@@ -210,7 +230,6 @@ export class MapContainer extends React.Component {
         const url1 = `http://localhost:5000/geocoder/geo-json/${fromLatLng}/${middle}`;
         const url2 = `http://localhost:5000/geocoder/geo-json/${middle}/${toLatLng}`;
 
-        //DU KAN SLETTE DENNE LINJEN HÅKON, MEN LA DEN UNDER STÅ
         //Has to be nested to make sure all responses are received before concatenation of poly lines
         fetch(url0)
             .then((response) => response.json())
@@ -250,6 +269,22 @@ export class MapContainer extends React.Component {
         });
     };
 
+    handleRemoveFrom = () => {
+        this.setState({
+            fromLoc: null,
+            selectedFromAddress: false,
+            fromCoordinate: []
+        });
+    };
+
+    handleRemoveTo = () => {
+        this.setState({
+            toLoc: null,
+            selectedToAddress: false,
+            toCoordinate: []
+        });
+    };
+
     render() {
 
         const style = {
@@ -268,7 +303,7 @@ export class MapContainer extends React.Component {
                         lng: this.state.longitude
                     }}
                     onDragend={this.changedCenter.bind(this)}
-                    zoom={this.state.selected ? 15.3 : 17}
+                    zoom={this.state.selectedToAddress ? 15.3 : 17}
                     streetViewControl={false}
                     zoomControl={false}
                     fullscreenControl={false}
@@ -276,18 +311,30 @@ export class MapContainer extends React.Component {
                     draggable={true}
                     onReady={this.onMapLoaded.bind(this)}
                 >
-                    {!this.state.orderReady && <SearchField
-                        location={this.state.fromLoc}
+                    {!this.state.orderReady && <FromSearchField
+                        fromLoc={this.state.fromLoc}
                         fromSelected={this.state.selectedFromAddress}
                         handleInputSelect={this.handleInputSelect}
+                        handleRemoveFrom={this.handleRemoveFrom}
+                    />}
+
+                    {(!this.state.orderReady && this.state.selectedFromAddress) && <ToSearchField
+                        toLoc={this.state.toLoc}
+                        handleInputSelect={this.handleInputSelect}
+                        handleRemoveTo={this.handleRemoveTo}
                     />}
                     {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>}
 
                     <Marker
+                        id='position-marker'
                         icon={{
-                            url: '/images/Emoji.png',
-                            anchor: new this.props.google.maps.Point(25, 52),
-                            scaledSize: new this.props.google.maps.Size(48, 48)
+
+                            path: this.props.google.maps.SymbolPath.CIRCLE,
+                            fillColor: '#CCEAE4',
+                            fillOpacity: 1,
+                            scale: 10,
+                            strokeColor: '#003A70',
+                            strokeWeight: 8,
                         }}
                         position={{lat: this.state.myLat, lng: this.state.myLng}}
                     />
@@ -298,7 +345,7 @@ export class MapContainer extends React.Component {
                     {this.renderDestinationMarker()}
                     {this.renderBusMarker()}
                     {this.handlePolyline()}
-                    {(!this.state.selected && this.props.orderMap) &&
+                    {(!this.state.selectedToAddress && this.props.orderMap) &&
                     <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
                 </Map>
@@ -310,13 +357,12 @@ export class MapContainer extends React.Component {
                         width='70%'
                         bottom
                         center
-                        onClick={!this.state.selected ? this.handleSelection.bind(this) : this.handleOrder}
+                        onClick={!this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
                     >
-                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selected ? 'Bestill' : 'Jeg skal hit'}
+                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Bestill' : 'Jeg skal hit'}
                     </Button>
                 </Div>
                 }
-
             </Div>
         );
     }
