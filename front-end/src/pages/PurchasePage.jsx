@@ -8,6 +8,7 @@ import Text from '../elements/text/StyledText';
 import Heading from '../elements/text/StyledHeading';
 import axios from 'axios';
 import Stepper from '../components/Stepper'
+import BusSelection from '../components/BusSelection';
 
 
 class PurchasePage extends React.Component {
@@ -18,7 +19,8 @@ class PurchasePage extends React.Component {
         count: 0,
         sum: 0,
         //STEPPER
-        currentStep: 1
+        currentStep: 1,
+        selectedAmount: false
     };
 
 
@@ -93,39 +95,30 @@ class PurchasePage extends React.Component {
 
         console.log(currentStep);
 
-    }
+    };
+
+    handleShowBus = () => {
+        this.setState({
+            selectedAmount: true
+        }, () => this.handleClick("next"))
+    };
 
 
     render() {
+        let content;
 
-        // STEPPER DESCRIPTION
-        const stepsArray = ["Antall reisende", "Velg buss", "Kjøp billett"];
-
-
-        const {currentStep} = this.state;
-
-
-        return (
-            <Div display="flex" flexDirection="column" alignItems={"center"} height="fit-content" pb={82} bg={"#fff"}
-                 bottom={0} width={1} position={"fixed"}>
-                <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95}>
-
-                    <Div display="flex" flexDirection="column" width="100%" justifyContent="space-between">
-
-                        <Stepper steps={stepsArray} currentStepNumber={currentStep}/>
-
-                        <Div width="100%" justifyContent="space-between">
-                            <Button width="100px" onClick={() => this.handleClick()}>Previous</Button>
-                            <Button width="100px" onClick={() => this.handleClick("next")}>Next</Button>
-                        </Div>
-                    </Div>
-                </Div>
+        if(this.state.selectedAmount) {
+            content = <React.Fragment>
+                    <BusSelection/>
+            </React.Fragment>
+        } else {
+            content = <React.Fragment>
                 {
                     tickets.map((t) => (
                         <PurchaseSection key={t.type} type={t.type} price={t.price} qty={t.qty}
                                          handleAdd={() => this.handleAdd(t.type)}
                                          inactive={!t.qty}
-                                         handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
+                                         handleSub={t.qty ? () => this.handleSub(t.type) : null} />
                     ))
                 }
                 <Div display="flex" justifyContent="space-between" width={0.95}>
@@ -136,7 +129,27 @@ class PurchasePage extends React.Component {
                     </React.Fragment>
                     }
                 </Div>
-                <Button onClick={this.handlePurchase.bind(this)} mt={this.state.sum ? 0 : 67}>Vis avganger</Button>
+                <Button mt={this.state.sum ? 0 : 67} onClick={this.state.sum > 0 ? this.handleShowBus : null}>Vis avganger</Button>
+            </React.Fragment>
+        }
+
+        // STEPPER DESCRIPTION
+        const stepsArray = ["Antall reisende", "Velg buss", "Kjøp billett"];
+
+
+
+        const { currentStep } = this.state;
+
+
+
+        return (
+            <Div display="flex" flexDirection="column" alignItems={"center"} height={560} pb={82} bg={this.state.selectedAmount ? "#F5F5F5" : "#fff"} bottom={0} width={1} position={"fixed"} >
+                <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95}>
+                    <Div display="flex" flexDirection="column" width="100%" justifyContent="space-between">
+                        <Stepper steps={stepsArray} currentStepNumber={currentStep} />
+                    </Div>
+                </Div>
+                {content}
             </Div>
         );
     }
