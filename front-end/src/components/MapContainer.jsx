@@ -190,10 +190,10 @@ export class MapContainer extends React.Component {
         if (state.toCoordinate.length > 0) {
             if (this.state.polylineArray.length < 1) {
                 this.generateRandomTripPolyline();
+                this.animateBus();
             }
 
             if (this.state.receivedPolyLine) {
-                this.animateBus();
                 return (
                     <Polyline
                         path={this.state.polylineArray}
