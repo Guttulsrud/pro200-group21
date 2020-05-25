@@ -265,7 +265,7 @@ export class MapContainer extends React.Component {
         this.setState({
             fromLoc: null,
             selectedFromAddress: false,
-            fromCoordinate: null
+            fromCoordinate: []
         });
     };
 
@@ -273,7 +273,7 @@ export class MapContainer extends React.Component {
         this.setState({
             toLoc: null,
             selectedToAddress: false,
-            toCoordinate: null
+            toCoordinate: []
         });
     };
 
@@ -355,7 +355,6 @@ export class MapContainer extends React.Component {
                     </Button>
                 </Div>
                 }
-
             </Div>
         );
     }
