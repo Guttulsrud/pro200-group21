@@ -7,7 +7,7 @@ const TicketSchema = new Schema({
         id: Schema.Types.ObjectID,
         user_id: {type: Schema.Types.ObjectID, required: true},
         number_of_tickets: {type: Number, default: 1},
-        expiration: {type: Date, default: Date.now()},
+        expiration: {type: Date, default: Date.now() + 6000000},
         price: {type: Number},
         route: {
             origin: {
