@@ -7,7 +7,7 @@ import { Button } from '../elements/buttons/Button';
 import Ticket from '../components/Ticket';
 import { IconBg } from '../elements/divs/IconContainer';
 import { BusIcon } from '../components/Icons/BusIcon';
-import SearchField from '../components/SearchField';
+import FromSearchField from '../components/FromSearchField';
 
 class DemoPage extends React.Component {
   state = {
@@ -115,7 +115,7 @@ class DemoPage extends React.Component {
           <MainContainer>
             <SubContainer>
               <div className='test-div'>
-                <SearchField />
+                <FromSearchField />
               </div>
               <ul>
                 <li>Primary Input (StyledInput.js)</li>
