@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const TicketInstance = require('../models/ticketInstance');
+const TicketInstance = require('../models/ticket');
 
 // GET all users
 exports.getUsersAll = function (req, res, next) {

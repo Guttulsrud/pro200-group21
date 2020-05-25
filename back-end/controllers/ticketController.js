@@ -1,47 +1,72 @@
 const Ticket = require('../models/ticket');
 
-// GET all tickets
-exports.getTicketAll = function (req, res, next) {
+// GET all ticket
+exports.getTicketAll = function (req, res) {
 
     Ticket.find({}, '')
-        .exec(function (err, tickets) {
-            if (err) {
-                return next(err);
-            }
-            res.send({tickets: tickets});
-        })
-};
-
-// POST create Ticket-type
-exports.createTicket = function (req, res) {
-    const title = req.body.title;
-    const price = req.body.price;
-    const duration = req.body.duration;
-
-    Ticket.create({title: title, price: price, duration: duration})
-        .then(result => res.send(result))
+        .where('archived').equals('false')
+        .then(tickets => res.send(tickets))
         .catch(error => res.send(error));
-
 };
 
-// GET details of one ticket-type
+// GET one ticket by ID
 exports.getTicketById = function (req, res) {
+    const ticketInstanceId = req.params.id;
 
-    const ticketId = req.params.id;
+    Ticket.findById({_id: ticketInstanceId})
+        .then(result => res.send(result))
+        .catch(err => res.send(err));
+}
 
-    Ticket.findById({_id: ticketId})
+// GET all tickets by user ID
+exports.getTicketByUserID = function (req, res) {
+    const userId = req.params.id;
+
+    Ticket.find({user_id: userId}, '')
+        .then(result => res.send(result))
+        .catch(err => res.send(err))
+}
+
+
+// Handle Ticket create on POST.
+exports.createTicket = function (req, res) {
+    const userId = req.body.user_id;
+    const numberOfTickets = req.body.number_of_tickets;
+    const price = req.body.price;
+    const route = JSON.parse(req.body.route);
+
+
+    Ticket.create({
+        user_id: userId,
+        number_of_tickets: numberOfTickets,
+        price: price,
+        route: {
+            origin: {
+                title: route.origin.title,
+                coordinates: route.origin.coordinates
+            },
+            destination: {
+                title: route.destination.title,
+                coordinates: route.destination.coordinates
+            },
+        }
+    })
         .then(ticket => res.send(ticket))
         .catch(error => res.send(error));
 
 };
 
-// POST update Ticket-type
-exports.ticket_delete = function (req, res) {
-    const ticketId = req.params.id;
+// Handle Ticket delete on POST.
+exports.archiveTicket = function (req, res) {
+    const ticketInstanceId = req.params.id;
 
-    Ticket.deleteOne({_id: ticketId})
-        .then(result => res.send(result))
+    Ticket.findById({_id: ticketInstanceId})
+        .then(ticketInstance => ticketInstance.archived = true)
         .catch(error => res.send(error));
 
+};
 
+// Handle Ticket update on POST.
+exports.updateTicket = function (req, res) {
+    res.send('NOT IMPLEMENTED: Ticket update POST');
 };

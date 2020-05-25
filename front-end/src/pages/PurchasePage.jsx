@@ -6,6 +6,7 @@ import tickets from '../utils/tickets';
 import PurchaseSection from '../components/PurchaseSection';
 import Text from '../elements/text/StyledText';
 import Heading from '../elements/text/StyledHeading';
+import axios from 'axios';
 import Stepper from '../components/Stepper'
 
 
@@ -31,15 +32,10 @@ class PurchasePage extends React.Component {
         for (let ticket of tickets) {
             if (value === ticket.type) {
                 ticket.qty++;
-                console.log(ticket.type);
-                console.log(this.state.travelers['Voksen'])
                 this.setState(prevState => {
                     return {
                         sum: prevState.sum + ticket.price,
-                        travelers: {
-                            ...prevState.travelers[ticket.type],
-                            "Voksen": 20
-                        }
+                        count: prevState.count + 1
                     };
 
                 });
@@ -48,19 +44,40 @@ class PurchasePage extends React.Component {
     };
 
     handleSub = (value) => {
-        for (let i = 0; i < tickets.length; i++) {
-            if (value === tickets[i].type) {
-                tickets[i].qty--;
+        for (let ticket of tickets) {
+            if (value === ticket.type) {
+                ticket.qty--;
                 this.setState(prevState => {
                     return {
-                        sum: prevState.sum - tickets[i].price
+                        sum: prevState.sum - ticket.price,
+                        count: prevState.count - 1
                     };
 
                 });
             }
         }
-        console.log(tickets);
     };
+
+    async handlePurchase() {
+
+        const data = {
+            user_id: '5debe43e033f2330fc179981',
+            ticket_id: '5ebbef6d2b27952388f474f9',
+            number_of_tickets: this.state.count,
+            origin: 'coords',
+            destination: 'coords',
+            price: this.state.sum,
+        }
+
+
+        const response = await axios.post(
+            'http://localhost:5000/ticket-instance/create',
+            data,
+            {headers: {'Content-Type': 'application/json'}}
+        )
+
+        console.log(response.data)
+    }
 
     handleClick = (clickType) => {
         const { currentStep } = this.state;
