@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { space, color, layout, flexbox, border, typography, position, margin, padding } from 'styled-system';
-import { mediaQueries } from '../../layout/theme';
+import { space, color, layout, flexbox, border, typography, position, margin, padding, shadow } from 'styled-system';
+
 
 export const Div = styled.div`
  ${space}
@@ -12,17 +12,6 @@ export const Div = styled.div`
  ${position}
  ${margin}
  ${padding}
+ ${shadow}
 
-
- /* @media ${mediaQueries.small} {
-     width: 300px;
-     
- }
-
- @media ${mediaQueries.large} {
-     width: 600px;
- }
- @media ${mediaQueries.xLarge} {
-     width: 1000px;
- } */
 `;
