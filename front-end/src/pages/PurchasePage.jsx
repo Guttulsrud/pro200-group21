@@ -54,7 +54,33 @@ class PurchasePage extends React.Component {
         }
     };
 
-    async handlePurchase() {
+
+    handleClick = (clickType) => {
+        const {currentStep} = this.state;
+
+        //Not mutate existing state
+        let newStep = currentStep;
+        clickType === "next" ? newStep++ : newStep--;
+
+
+        this.setState({
+            currentStep: newStep
+        });
+
+        console.log(currentStep);
+
+    };
+
+    postData = async () => {
+        await axios.post(
+            'http://localhost:5000/ticket/create',
+            this.state.data,
+            {headers: {'Content-Type': 'application/json'}}
+        )
+
+    }
+
+    handleShowBus = async () => {
 
         const props = this.props.sendState
         const data = {
@@ -73,33 +99,9 @@ class PurchasePage extends React.Component {
             }
         }
 
-
-        await axios.post(
-            'http://localhost:5000/ticket/create',
-            data,
-            {headers: {'Content-Type': 'application/json'}}
-        )
-    }
-
-    handleClick = (clickType) => {
-        const {currentStep} = this.state;
-
-        //Not mutate existing state
-        let newStep = currentStep;
-        clickType === "next" ? newStep++ : newStep--;
-
-
         this.setState({
-            currentStep: newStep
-        });
-
-        console.log(currentStep);
-
-    };
-
-    handleShowBus = () => {
-        this.setState({
-            selectedAmount: true
+            selectedAmount: true,
+            data
         }, () => this.handleClick("next"))
     };
 
@@ -109,7 +111,7 @@ class PurchasePage extends React.Component {
 
         if(this.state.selectedAmount) {
             content = <React.Fragment>
-                    <BusSelection/>
+                    <BusSelection handleShowBus={this.postData}/>
             </React.Fragment>
         } else {
             content = <React.Fragment>
