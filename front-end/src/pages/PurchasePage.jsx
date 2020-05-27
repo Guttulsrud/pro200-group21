@@ -21,7 +21,7 @@ class PurchasePage extends React.Component {
         //STEPPER
         currentStep: 1,
         selectedAmount: false,
-        showCheckout: true
+        showCheckout: false
     };
 
 
@@ -115,7 +115,7 @@ class PurchasePage extends React.Component {
 
 
     render() {
-        // onClick={this.handleCheckout}
+
         let content;
 
         if (this.state.selectedAmount) {
@@ -123,7 +123,7 @@ class PurchasePage extends React.Component {
                 {buses.map(b => {
                         return b.cap > this.state.count ?
                             <BusSelection
-                                handleShowBus={this.postData}
+                                handleShowCheckout={this.handleCheckout}
                                 name={b.name}
                                 cap={b.cap}
                                 eta={b.eta}
@@ -141,7 +141,7 @@ class PurchasePage extends React.Component {
                     sum={70}
                     qty={2}
                 />
-                <Button mt={this.state.sum ? 0 : 67} onClick={this.state.sum > 0 ? this.handleShowBus : null}>Bestill buss</Button>
+                <Button mt={this.state.sum ? 0 : 10} onClick={this.postData}>Bestill buss</Button>
 
             </Div>;
         } else {
