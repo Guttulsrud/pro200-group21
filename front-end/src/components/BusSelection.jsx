@@ -7,7 +7,7 @@ import {ChevronRightIcon} from './Icons/ChevronRightIcon';
 
 const BusSelection = props => {
     return (
-        <Div onClick={props.handleShowBus} bg={'#fff'} height={135} width={1} display={'flex'} flexDirection={'column'} color={'#616567'} >
+        <Div onClick={props.handleShowBus} bg={'#fff'} mb={20} height={135} width={1} display={'flex'} flexDirection={'column'} color={'#616567'} >
             <Div display={'flex'} justifyContent={"space-between"} pt={20} pb={30} width={1} borderBottom={"1px solid #D7D8D9"} >
                 <Div display={"flex"} pl={20}>
                     <Div height={48} width={48}>
