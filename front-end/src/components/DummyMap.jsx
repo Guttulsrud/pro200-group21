@@ -1,8 +1,6 @@
 import React from 'react';
 import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
-import {Button} from '../elements/buttons/Button';
-import {MyLocationIcon} from './Icons/MyLocationIcon';
 import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
@@ -64,7 +62,7 @@ export class DummyMap extends React.Component {
     }
 
     getTicketFromId() {
-        let id = "5ece3361203e6401908ce649";
+        let id = '5ece3361203e6401908ce649';
         const url = `http://localhost:5000/ticket/details/${id}`;
 
         fetch(url)
@@ -167,6 +165,7 @@ export class DummyMap extends React.Component {
             this.busIndex++;
         }
     };
+
     handlePolyline() {
         const state = this.state;
 
@@ -174,12 +173,11 @@ export class DummyMap extends React.Component {
             if (this.state.polylineArray.length < 1) {
                 this.generateRandomTripPolyline();
             }
-            if(this.state.animateBus){
+            if (this.state.animateBus) {
                 setTimeout(this.animateBus, 1000);
-console.log("HELLO")
                 this.setState({
                     animateBus: false
-                })
+                });
             }
 
             if (this.state.receivedPolyLine) {
@@ -202,6 +200,7 @@ console.log("HELLO")
             }
         }
     };
+
     generateRandomTripPolyline() {
 
         // TODO : Finn raskeste rute imellom punktene
@@ -231,7 +230,7 @@ console.log("HELLO")
         let middleLng;
 
         let points = [];
-        points.push(start)
+        points.push(start);
         points.push(fromLatLng);
         for (let i = 1; i < numberOfStops; i++) {
 
@@ -284,8 +283,9 @@ console.log("HELLO")
             });
 
     }
+
     getDeviation(x, len) {
-        return -(Math.pow(x, 2) / len) + x
+        return -(Math.pow(x, 2) / len) + x;
     }
 
     render() {
