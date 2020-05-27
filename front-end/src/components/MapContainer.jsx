@@ -1,5 +1,5 @@
 import React from 'react';
-import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
 import {Button} from '../elements/buttons/Button';
 import {MyLocationIcon} from './Icons/MyLocationIcon';
@@ -8,8 +8,6 @@ import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
 import ToSearchField from './ToSearchField';
-import tickets from "../utils/tickets";
-import PurchaseSection from "./PurchaseSection";
 
 
 export class MapContainer extends React.Component {
@@ -66,7 +64,7 @@ export class MapContainer extends React.Component {
                         latitude: lat,
                         longitude: lng,
                     });
-                } else {
+                } else if (this.state.selectedFromAddress && !this.state.selectedToAddress) {
                     this.setState({
                         toLoc: data.address.split(',')[0],
                         latitude: lat,
@@ -100,7 +98,6 @@ export class MapContainer extends React.Component {
             this.setState({
                 toCoordinate: [state.latitude, state.longitude],
                 selectedToAddress: true,
-
             });
         } else {
             this.setState({
@@ -190,7 +187,7 @@ export class MapContainer extends React.Component {
                         lng: this.state.longitude
                     }}
                     onDragend={this.changedCenter.bind(this)}
-                    zoom={this.state.selectedToAddress ? 15.3 : 17}
+                    zoom={this.state.selectedToAddress ? 14 : 17}
                     streetViewControl={false}
                     zoomControl={false}
                     fullscreenControl={false}
@@ -228,7 +225,7 @@ export class MapContainer extends React.Component {
 
                     {this.renderStartMarker()}
                     {this.renderDestinationMarker()}
-                    {(!this.state.selectedToAddress && this.props.orderMap) &&
+                    {(!this.state.selectedFromAddress || !this.state.selectedToAddress) &&
                     <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
                 </Map>
@@ -240,7 +237,7 @@ export class MapContainer extends React.Component {
                         width='70%'
                         bottom
                         center
-                        onClick={!this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
+                        onClick={!this.state.selectedFromAddress || !this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
                     >
                         {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Bestill' : 'Jeg skal hit'}
                     </Button>

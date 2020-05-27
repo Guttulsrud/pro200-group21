@@ -11,6 +11,15 @@ class ToSearchField extends React.Component {
         };
     }
 
+    componentDidMount() {
+        if(this.props.toLoc) {
+            this.setState({
+                inputText: this.props.toLoc,
+                filled: true
+            })
+        }
+    }
+
     componentDidUpdate(prevProps) {
         if (
             this.props.toLoc != null &&

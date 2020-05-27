@@ -4,7 +4,7 @@ import MapContainer from '../components/MapContainer';
 const FrontPage = () => {
   return (
 
-      <MapContainer orderMap />
+      <MapContainer />
 
 
   );
