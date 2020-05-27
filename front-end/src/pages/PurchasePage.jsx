@@ -114,8 +114,8 @@ class PurchasePage extends React.Component {
                             <BusSelection
                                 name={b.name}
                                 cap={b.cap}
-                                eta={b.eta}/> :
-                            null;
+                                eta={b.eta}/>
+                            : null;
                     }
                 )}
             </Div>;
