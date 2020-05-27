@@ -8,6 +8,8 @@ import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
 import ToSearchField from './ToSearchField';
+import tickets from "../utils/tickets";
+import PurchaseSection from "./PurchaseSection";
 
 
 export class MapContainer extends React.Component {
@@ -28,6 +30,7 @@ export class MapContainer extends React.Component {
             address: [],
             selectedToAddress: false,
             orderReady: false,
+            points: [],
         };
     }
 
@@ -174,7 +177,8 @@ export class MapContainer extends React.Component {
     animateBus = () => {
         setInterval(this.intervalFunc, 1000);
     };
-    intervalFunc = () => {
+
+    intervalFunc() {
         if (this.state.polylineArray[this.busIndex]) {
             this.setState({
                     busCoordinate: this.state.polylineArray[this.busIndex]
@@ -190,7 +194,7 @@ export class MapContainer extends React.Component {
         if (state.toCoordinate.length > 0) {
             if (this.state.polylineArray.length < 1) {
                 this.generateRandomTripPolyline();
-                this.animateBus();
+                // this.animateBus();
             }
 
             if (this.state.receivedPolyLine) {
@@ -214,30 +218,68 @@ export class MapContainer extends React.Component {
         }
     };
 
-    generateRandomTripPolyline(randomDistanceMultiplier = 0.01) {
+    generateRandomTripPolyline() {
+
+        // TODO : Finn raskeste rute imellom punktene
+        // TODO : Spør backend om veibeskrivelese i riktig rekkefølge
         const fromLatLng = `${this.state.fromCoordinate[0]},${this.state.fromCoordinate[1]}`;
-        const toLatLng = `${this.state.toCoordinate[0]},${this.state.toCoordinate[1]}`;
+        const destinationLatLng = `${this.state.toCoordinate[0]},${this.state.toCoordinate[1]}`;
 
-        let startLat = parseFloat(fromLatLng.split(',')[0]) + randomDistanceMultiplier * Math.random();
-        let startLng = parseFloat(fromLatLng.split(',')[1]) + randomDistanceMultiplier * Math.random();
-        let start = startLat + ',' + startLng;
+        const fromLatitude = parseFloat(fromLatLng.split(',')[0]);
+        const fromLongitude = parseFloat(fromLatLng.split(',')[1]);
+        const destinationLatitude = parseFloat(destinationLatLng.split(',')[0]);
+        const destinationLongitude = parseFloat(destinationLatLng.split(',')[1]);
 
-        let middleLat = parseFloat(toLatLng.split(',')[0]) + randomDistanceMultiplier * Math.random();
-        let middleLng = parseFloat(toLatLng.split(',')[1]) + randomDistanceMultiplier * Math.random();
-        let middle = middleLat + ',' + middleLng;
+        const xLength = fromLatitude - destinationLatitude;
+        const yLength = fromLongitude - destinationLongitude;
 
-        const url0 = `http://localhost:5000/geocoder/geo-json/${start}/${fromLatLng}`;
-        const url1 = `http://localhost:5000/geocoder/geo-json/${fromLatLng}/${middle}`;
-        const url2 = `http://localhost:5000/geocoder/geo-json/${middle}/${toLatLng}`;
+        const distanceToTravel = Math.sqrt(Math.pow(xLength, 2) + Math.pow(yLength, 2));
+        const randomDistanceMultiplier = distanceToTravel * 0.05;
+        // let numberOfStops = (distanceToTravel * 50 | 0) + 1
+        // numberOfStops = numberOfStops > 10 ? 10 : numberOfStops;
+        const numberOfStops = 2;
+
+        const startLat = fromLatitude + randomDistanceMultiplier * Math.random();
+        const startLng = fromLongitude + randomDistanceMultiplier * Math.random();
+        const start = startLat + ',' + startLng;
+
+        let middleLat;
+        let middleLng;
+
+        let points = [];
+        points.push(start)
+        points.push(fromLatLng);
+        for (let i = 1; i < numberOfStops; i++) {
+
+            const pointLat = (fromLatitude - xLength * i / numberOfStops)
+                + randomDistanceMultiplier * this.getDeviation(i, numberOfStops)
+                * Math.random()
+                * (Math.random() < 0.5 ? -1 : 1);
+            const pointLng = (fromLongitude - yLength * i / numberOfStops)
+                + randomDistanceMultiplier * this.getDeviation(i, numberOfStops)
+                * Math.random()
+                * (Math.random() < 0.5 ? -1 : 1);
+
+            middleLat = pointLat;
+            middleLng = pointLng;
+
+            points.push(`${pointLat},${pointLng}`);
+        }
+        points.push(destinationLatLng);
+
+        let url = [];
+        for (let i = 0; i < points.length - 1; i++) {
+            url.push(`http://localhost:5000/geocoder/geo-json/${points[i]}/${points[i+1]}`);
+        }
 
         //Has to be nested to make sure all responses are received before concatenation of poly lines
-        fetch(url0)
+        fetch(url[0])
             .then((response) => response.json())
             .then((data0) => {
-                fetch(url1)
+                fetch(url[1])
                     .then((response) => response.json())
                     .then((data1) => {
-                        fetch(url2)
+                        fetch(url[2])
                             .then((response) => response.json())
                             .then((data2) => {
                                 this.setState({
@@ -249,11 +291,17 @@ export class MapContainer extends React.Component {
                                     polyline0: data0,
                                     polyline1: data1,
                                     polyline2: data2,
-                                    middleAddress: [middleLat, middleLng]
+                                    middleAddress: [middleLat, middleLng],
+                                    points: points
                                 });
                             });
                     });
             });
+
+    }
+
+    getDeviation(x, len) {
+        return -(Math.pow(x, 2) / len) + x
     }
 
     handleOrder = () => {
@@ -345,6 +393,21 @@ export class MapContainer extends React.Component {
                     {this.renderDestinationMarker()}
                     {this.renderBusMarker()}
                     {this.handlePolyline()}
+                    {this.state.points.map((p) =>
+                        <Marker
+                            id='position-marker'
+                            icon={{
+                                fillColor: '#CCEAE4',
+                                fillOpacity: 1,
+                                scale: 10,
+                                strokeColor: '#003A70',
+                                strokeWeight: 8,
+                            }}
+                            position={{lat: p.lat, lng: p.lng}}
+                        />
+                    )}
+
+
                     {(!this.state.selectedToAddress && this.props.orderMap) &&
                     <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
