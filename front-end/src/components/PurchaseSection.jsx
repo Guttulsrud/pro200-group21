@@ -7,7 +7,7 @@ import {SubIcon} from "./Icons/SubIcon";
 
 const PurchaseSection = (props) => {
     return (
-        <Div display={"flex"} width={0.95} justifyContent={"space-between"} color={props.inactive ? "#888" : "vyBlack"}>
+        <Div display={"flex"} width={0.95} justifyContent={"space-between"} color={props.inactive ? "#616567" : "vyBlack"} >
             <Heading.h2>{props.type}</Heading.h2>
             <Div display="flex"  alignItems="center">
                 <RoundBtn inactive={props.inactive} onClick={props.handleSub}><SubIcon inactive={props.inactive}/></RoundBtn>

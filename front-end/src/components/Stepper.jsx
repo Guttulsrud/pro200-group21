@@ -110,7 +110,7 @@ class Stepper extends React.Component {
         return (
             <React.Fragment>
 
-                <Div display="flex" flexDirection="row" alignContent="center" justifyContent="space-between" position="relative" marginBottom="20px">
+                <Div display="flex" flexDirection="row" alignContent="center" justifyContent="space-between" position="relative" my={10}>
                     {stepsDisplay}
                 </Div>
 
