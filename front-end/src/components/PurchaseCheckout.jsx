@@ -1,8 +1,6 @@
 import React from 'react';
 import { Div } from '../elements/divs/Div';
 import Heading from '../elements/text/StyledHeading';
-import Text from '../elements/text/StyledText';
-import { ChevronRightIcon } from './Icons/ChevronRightIcon';
 
 
 const BusSelection = props => {
@@ -14,12 +12,12 @@ const BusSelection = props => {
                     <Div height={48} width={48}>
                         <img src={'/images/bus-48.png'} />
                     </Div>
-                    <Heading.h1 color={"vyBlack"} pl={10}>{props.name}</Heading.h1>
+                    <Heading.h1 color={"vyBlack"} pl={10}>{props.bus.name}</Heading.h1>
 
                 </Div>
                 <Div display="flex" alignItems="center">
 
-                    <Heading.h3 pr={20}>Kommer 2 min</Heading.h3>
+                    <Heading.h3 pr={20}>Kommer om {props.bus.eta} min</Heading.h3>
                 </Div>
 
             </Div>

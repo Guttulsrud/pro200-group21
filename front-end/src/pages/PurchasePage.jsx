@@ -14,14 +14,18 @@ import PurchaseCheckout from '../components/PurchaseCheckout';
 class PurchasePage extends React.Component {
 
     state = {
-        busName: 'Vyvian',
+        bus: {
+            name: "",
+            eta: 0
+        },
         arrivalTime: 3,
         count: 0,
         sum: 0,
         //STEPPER
         currentStep: 1,
         selectedAmount: false,
-        showCheckout: false
+        showCheckout: false,
+
     };
 
 
@@ -106,10 +110,14 @@ class PurchasePage extends React.Component {
         }, () => this.handleClick("next"))
     };
 
-    handleCheckout = () => {
+    handleCheckout = (name, eta) => {
         this.setState({
             selectedAmount: false,
-            showCheckout: true
+            showCheckout: true,
+            bus: {
+                name,
+                eta
+            }
         }, () => this.handleClick('next'));
     };
 
@@ -123,7 +131,7 @@ class PurchasePage extends React.Component {
                 {buses.map(b => {
                         return b.cap > this.state.count ?
                             <BusSelection
-                                handleShowCheckout={this.handleCheckout}
+                                handleShowCheckout={() => this.handleCheckout(b.name, b.eta)}
                                 name={b.name}
                                 cap={b.cap}
                                 eta={b.eta}
@@ -135,7 +143,7 @@ class PurchasePage extends React.Component {
         } else if (this.state.showCheckout) {
             content = <Div overflow={'auto'} width={1}>
                 <PurchaseCheckout
-                    name="Vyvian"
+                    bus= {this.state.bus}
                     desFrom="tef"
                     desTo="asdf"
                     sum={70}
