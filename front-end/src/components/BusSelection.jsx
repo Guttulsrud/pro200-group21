@@ -11,7 +11,7 @@ const BusSelection = props => {
             <Div display={'flex'} justifyContent={"space-between"} pt={20} pb={30} width={1} borderBottom={"1px solid #D7D8D9"} >
                 <Div display={"flex"} pl={20}>
                     <Div height={48} width={48}>
-                        <img src={'/images/bus-48.png'}/>
+                        <img src={'/images/bus-48.png'} alt={"bus icon"}/>
                     </Div>
                     <Heading.h1 color={"vyBlack"} pl={10} my={0} pt={5}>{props.name}</Heading.h1>
                 </Div>
