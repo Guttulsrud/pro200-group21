@@ -1,6 +1,6 @@
 import React from 'react';
-import {Div} from '../elements/divs/Div';
-import {Button} from '../elements/buttons/Button';
+import { Div } from '../elements/divs/Div';
+import { Button } from '../elements/buttons/Button';
 import tickets from '../utils/tickets';
 import PurchaseSection from '../components/PurchaseSection';
 import Heading from '../elements/text/StyledHeading';
@@ -61,7 +61,7 @@ class PurchasePage extends React.Component {
 
 
     handleClick = (clickType) => {
-        const {currentStep} = this.state;
+        const { currentStep } = this.state;
 
         //Not mutate existing state
         let newStep = currentStep;
@@ -80,7 +80,7 @@ class PurchasePage extends React.Component {
         await axios.post(
             'http://localhost:5000/ticket/create',
             this.state.data,
-            {headers: {'Content-Type': 'application/json'}}
+            { headers: { 'Content-Type': 'application/json' } }
         )
 
     }
@@ -110,7 +110,7 @@ class PurchasePage extends React.Component {
         }, () => this.handleClick("next"))
     };
 
-    handleCheckout = (name, eta) => {
+    handleCheckout = (name, eta, to, from) => {
         this.setState({
             selectedAmount: false,
             showCheckout: true,
@@ -129,25 +129,25 @@ class PurchasePage extends React.Component {
         if (this.state.selectedAmount) {
             content = <Div overflow={'auto'} width={1} bg={'#F5F5F5'}>
                 {buses.map(b => {
-                        return b.cap > this.state.count ?
-                            <BusSelection
-                                handleShowCheckout={() => this.handleCheckout(b.name, b.eta)}
-                                name={b.name}
-                                cap={b.cap}
-                                eta={b.eta}
-                                curLoc={b.currentLoc}/>
-                            : null;
-                    }
+                    return b.cap > this.state.count ?
+                        <BusSelection
+                            handleShowCheckout={() => this.handleCheckout(b.name, b.eta)}
+                            name={b.name}
+                            cap={b.cap}
+                            eta={b.eta}
+                            curLoc={b.currentLoc} />
+                        : null;
+                }
                 )}
             </Div>;
         } else if (this.state.showCheckout) {
+            const props = this.props.sendState
             content = <Div overflow={'auto'} width={1}>
                 <PurchaseCheckout
-                    bus= {this.state.bus}
-                    desFrom="tef"
-                    desTo="asdf"
-                    sum={70}
-                    qty={2}
+                    bus={this.state.bus}
+                    desFrom={props.fromLoc}
+                    desTo={props.toLoc}
+                    sum={this.state.sum}
                 />
                 <Button mt={this.state.sum ? 0 : 10} onClick={this.postData}>Bestill buss</Button>
 
@@ -157,17 +157,17 @@ class PurchasePage extends React.Component {
                 {
                     tickets.map((t) => (
                         <PurchaseSection key={t.type} type={t.type} price={t.price} qty={t.qty}
-                                         handleAdd={() => this.handleAdd(t.type)}
-                                         inactive={!t.qty}
-                                         handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
+                            handleAdd={() => this.handleAdd(t.type)}
+                            inactive={!t.qty}
+                            handleSub={t.qty ? () => this.handleSub(t.type) : null} />
                     ))
                 }
                 <Div display="flex" justifyContent="space-between" width={0.95}>
                     {this.state.sum > 0 &&
-                    <React.Fragment>
-                        <Heading.h2>Totalsum</Heading.h2>
-                        <Heading.h2>{this.state.sum} kr</Heading.h2>
-                    </React.Fragment>
+                        <React.Fragment>
+                            <Heading.h2>Totalsum</Heading.h2>
+                            <Heading.h2>{this.state.sum} kr</Heading.h2>
+                        </React.Fragment>
                     }
                 </Div>
                 <Button mt={this.state.sum ? 0 : 67} onClick={this.state.sum > 0 ? this.handleShowBus : null}>Vis avganger</Button>
@@ -178,16 +178,16 @@ class PurchasePage extends React.Component {
         const stepsArray = ['Antall reisende', 'Velg buss', 'Kjøp billett'];
 
 
-        const {currentStep} = this.state;
+        const { currentStep } = this.state;
 
 
         return (
             <Div display="flex" flexDirection="column" alignItems={'center'} height={560} pb={82}
-                 bg={'#fff'} bottom={0} width={1} position={'fixed'}
+                bg={'#fff'} bottom={0} width={1} position={'fixed'}
             >
                 <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95}>
                     <Div display="flex" flexDirection="column" width="100%" justifyContent="space-between">
-                        <Stepper steps={stepsArray} currentStepNumber={currentStep}/>
+                        <Stepper steps={stepsArray} currentStepNumber={currentStep} />
                     </Div>
                 </Div>
                 {content}

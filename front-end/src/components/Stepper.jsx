@@ -101,8 +101,8 @@ class Stepper extends React.Component {
         const stepsDisplay = steps.map((step, index) => {
             return (
                 <Div key={index} display="flex" flexDirection="column" alignItems="center" width="23%" position="relative">
-                    <Div display="flex" borderRadius={80} height="24px" width="24px" border="3px solid" borderColor={step.selected ? "vyGreen" : "#D7D8D9"} backgroundColor={step.selected ? "vyGreen" : "none"}><text.p margin="auto" textAlign="center" color={step.selected ? "#FFFFFF" : "#D7D8D9"}>{step.completed ? <span>&#10003;</span> : index + 1}</text.p></Div>
-                    <Div><text.p textAlign="center" fontWeight={step.highlighted ? "bold" : "normal"} color={step.highlighted ? "vyBlack" : "#D7D8D9"}>{step.description}</text.p></Div>
+                    <Div display="flex" borderRadius={80} height="15px" width="15px" border="3px solid" borderColor={step.selected ? "vyGreen" : "#D7D8D9"} backgroundColor={step.selected ? "none" : "none"}>{step.completed ? <text.p margin="auto" fontSize="0.8rem" textAlign="center"><span>&#10003;</span></text.p> : <Div borderRadius={100} width="100%" backgroundColor={step.selected ? "vyGreen" : "none"} margin="2px"></Div>}</Div>
+                    <Div><text.p fontSize="0.8rem" textAlign="center" fontWeight={step.highlighted ? "bold" : "normal"} color={step.highlighted ? "vyBlack" : "#D7D8D9"}>{step.description}</text.p></Div>
                     <Div className={index !== steps.length - 1 && "divider-line"}></Div>
                 </Div >
             );

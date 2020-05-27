@@ -27,24 +27,23 @@ const BusSelection = props => {
 
 
             </Div>
-            <Div pr={20} pl={20} display="flex" alignItems="center">
-                <Div height={32} width={32} mr={10}>
+            <Div pr={20} pl={20} pb={20} display="flex" justifyContent="space-between" alignContent="center" alignItems="center">
+                <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                     <img height={32} width={32} src={'/images/pin-48-from.png'} />
+                    <Heading.h2 fontSize="1rem">{props.desFrom}</Heading.h2>
                 </Div>
-                <Heading.h2>
 
-                    Fra Someaddress 2
-                    </Heading.h2>
+                <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+                    <img height={32} width={32} src={'/images/pin-48-to.png'} />
+                    <Heading.h2 fontSize="1rem" display={"flex"}>{props.desTo}</Heading.h2>
+                </Div>
+
             </Div>
 
             <Div pr={20} pl={20} display="flex" alignItems="center">
-                <Div height={32} width={32} mr={10}>
-                    <img height={32} width={32} src={'/images/pin-48-to.png'} />
-                </Div>
-                <Heading.h2 display={"flex"}>
 
-                    Til Someaddress 3
-                    </Heading.h2>
+
+
 
             </Div>
             <Div className="checkout-list" pl={20} pr={20} pb={20} borderBottom={"1px solid #D7D8D9"}>
@@ -75,7 +74,7 @@ const BusSelection = props => {
                 </Div>
             </Div>
 
-        </Div>
+        </Div >
     );
 };
 
