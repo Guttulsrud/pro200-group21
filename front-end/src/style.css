@@ -181,6 +181,47 @@ body {
   border-bottom: 1px solid #D7D8D9;
 }
 
+.checkout-list ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+.checkout-list li {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.checkout-select {
+  position: relative;
+
+}
+
+.checkout-select select {
+  width: 100%;
+  border: 1px solid #003A70;
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+.checkout-select .select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #000 transparent transparent transparent;
+}
+
+.checkout-select .select#payment option[value="vipps"] {
+  background-image: url(http://localhost:3000/vipps.png);
+}
+
+
 /*TEST FOR INPUT*/
 .search-form {
   position: relative;
