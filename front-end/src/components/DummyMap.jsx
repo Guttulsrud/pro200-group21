@@ -15,8 +15,8 @@ export class DummyMap extends React.Component {
         super(props);
 
         this.state = {
-            fromCoordinate: [59.922978, 10.732631        ],
-            toCoordinate: [59.910860, 10.745639],
+            fromCoordinate: [0, 0],
+            toCoordinate: [0, 0],
             stopCoordinate: [],
             busCoordinate: [],
             selectedFromAddress: false,
@@ -24,11 +24,13 @@ export class DummyMap extends React.Component {
             fromLoc: '',
             address: [],
             selected: true,
-            orderReady: false
+            orderReady: false,
+            animateBus: false
         };
     }
 
     componentDidMount() {
+        this.getTicketFromId();
         this.showCurrentLocation();
     }
 
@@ -42,7 +44,6 @@ export class DummyMap extends React.Component {
                     myLng: position.coords.longitude
                 });
             });
-
         } else {
             console.log('GEOLOCATION NOT ACTIVE');
         }
@@ -62,6 +63,19 @@ export class DummyMap extends React.Component {
             });
     }
 
+    getTicketFromId() {
+        let id = "5ece3361203e6401908ce649";
+        const url = `http://localhost:5000/ticket/details/${id}`;
+
+        fetch(url)
+            .then((response) => response.json())
+            .then((ticket) => {
+                this.setState({
+                    fromCoordinate: ticket.route.origin.coordinates,
+                    toCoordinate: ticket.route.destination.coordinates
+                });
+            });
+    }
 
     onMapLoaded(mapProps, map) {
         map.setOptions({
@@ -71,29 +85,11 @@ export class DummyMap extends React.Component {
         this.changedCenter(mapProps, map);
     }
 
-
     changedCenter(prevProps, map) {
         let lat = map.center.lat();
         let lng = map.center.lng();
 
         this.setAddressFromCoordinates(lat, lng);
-    }
-
-    handleSelection() {
-        const state = this.state;
-        if (state.selectedFromAddress) {
-            this.setState({
-                toCoordinate: [state.latitude, state.longitude],
-                selected: true,
-                fromLoc: '',
-            });
-        } else {
-            this.setState({
-                selectedFromAddress: true,
-                fromCoordinate: [state.latitude, state.longitude],
-                fromLoc: '',
-            });
-        }
     }
 
     renderStartMarker = () => {
@@ -128,12 +124,16 @@ export class DummyMap extends React.Component {
             );
         }
     };
-
     renderMiddleMarker = () => {
         const state = this.state;
         if (state.middleAddress) {
             return (
                 <Marker
+                    icon={{
+                        url: '/images/bus-stop-48.png',
+                        anchor: new this.props.google.maps.Point(25, 52),
+                        scaledSize: new this.props.google.maps.Size(48, 48)
+                    }}
                     position={{lat: state.middleAddress[0], lng: state.middleAddress[1]}}
                 />
             );
@@ -144,6 +144,11 @@ export class DummyMap extends React.Component {
         if (state.busCoordinate) {
             return (
                 <Marker
+                    icon={{
+                        url: '/images/bus-48.png',
+                        anchor: new this.props.google.maps.Point(25, 52),
+                        scaledSize: new this.props.google.maps.Size(48, 48)
+                    }}
                     position={{lat: state.busCoordinate.lat, lng: state.busCoordinate.lng}}
                 />
             );
@@ -151,7 +156,7 @@ export class DummyMap extends React.Component {
     };
 
     animateBus = () => {
-        setInterval(this.intervalFunc, 1000);
+        setInterval(this.intervalFunc, 5000);
     };
     intervalFunc = () => {
         if (this.state.polylineArray[this.busIndex]) {
@@ -162,50 +167,22 @@ export class DummyMap extends React.Component {
             this.busIndex++;
         }
     };
-
     handlePolyline() {
         const state = this.state;
 
         if (state.toCoordinate.length > 0) {
             if (this.state.polylineArray.length < 1) {
-                const fromLatLng = `${this.state.fromCoordinate[0]},${this.state.fromCoordinate[1]}`;
-                const toLatLng = `${this.state.toCoordinate[0]},${this.state.toCoordinate[1]}`;
-
-                let startLat = parseFloat(fromLatLng.split(',')[0]) + 0.01 * Math.random();
-                let startLng = parseFloat(fromLatLng.split(',')[1]) + 0.01 * Math.random();
-                let start = startLat + ',' + startLng;
-
-                let middleLat = parseFloat(toLatLng.split(',')[0]) + 0.01 * Math.random();
-                let middleLng = parseFloat(toLatLng.split(',')[1]) + 0.01 * Math.random();
-                let middle = middleLat + ',' + middleLng;
-
-                const url0 = `http://localhost:5000/geocoder/geo-json/${start}/${fromLatLng}`;
-                const url1 = `http://localhost:5000/geocoder/geo-json/${fromLatLng}/${middle}`;
-                const url2 = `http://localhost:5000/geocoder/geo-json/${middle}/${toLatLng}`;
-                fetch(url0)
-                    .then((response) => response.json())
-                    .then((data0) => {
-                        fetch(url1)
-                            .then((response) => response.json())
-                            .then((data1) => {
-                                fetch(url2)
-                                    .then((response) => response.json())
-                                    .then((data2) => {
-                                        this.setState({
-                                            polylineArray: this.state.polylineArray
-                                                .concat(data0)
-                                                .concat(data1)
-                                                .concat(data2),
-                                            receivedPolyLine: true,
-                                            middleAddress: [middleLat, middleLng]
-                                        });
-                                    });
-                            });
-                    });
+                this.generateRandomTripPolyline();
+            }
+            if(this.state.animateBus){
+                setTimeout(this.animateBus, 1000);
+console.log("HELLO")
+                this.setState({
+                    animateBus: false
+                })
             }
 
             if (this.state.receivedPolyLine) {
-                this.animateBus();
                 return (
                     <Polyline
                         path={this.state.polylineArray}
@@ -225,26 +202,98 @@ export class DummyMap extends React.Component {
             }
         }
     };
+    generateRandomTripPolyline() {
 
-    handleOrder = () => {
-        this.setState({
-            orderReady: true
-        });
-    };
+        // TODO : Finn raskeste rute imellom punktene
+        // TODO : Spør backend om veibeskrivelese i riktig rekkefølge
+        const fromLatLng = `${this.state.fromCoordinate[0]},${this.state.fromCoordinate[1]}`;
+        const destinationLatLng = `${this.state.toCoordinate[0]},${this.state.toCoordinate[1]}`;
 
-    handleInputSelect = (inputLat, inputLong) => {
-        this.setState({
-            latitude: inputLat,
-            longitude: inputLong
-        });
-    };
+        const fromLatitude = parseFloat(fromLatLng.split(',')[0]);
+        const fromLongitude = parseFloat(fromLatLng.split(',')[1]);
+        const destinationLatitude = parseFloat(destinationLatLng.split(',')[0]);
+        const destinationLongitude = parseFloat(destinationLatLng.split(',')[1]);
+
+        const xLength = fromLatitude - destinationLatitude;
+        const yLength = fromLongitude - destinationLongitude;
+
+        const distanceToTravel = Math.sqrt(Math.pow(xLength, 2) + Math.pow(yLength, 2));
+        const randomDistanceMultiplier = distanceToTravel * 0.05;
+        // let numberOfStops = (distanceToTravel * 50 | 0) + 1
+        // numberOfStops = numberOfStops > 10 ? 10 : numberOfStops;
+        const numberOfStops = 2;
+
+        const startLat = fromLatitude + randomDistanceMultiplier * Math.random();
+        const startLng = fromLongitude + randomDistanceMultiplier * Math.random();
+        const start = startLat + ',' + startLng;
+
+        let middleLat;
+        let middleLng;
+
+        let points = [];
+        points.push(start)
+        points.push(fromLatLng);
+        for (let i = 1; i < numberOfStops; i++) {
+
+            const pointLat = (fromLatitude - xLength * i / numberOfStops)
+                + randomDistanceMultiplier * this.getDeviation(i, numberOfStops)
+                * Math.random()
+                * (Math.random() < 0.5 ? -1 : 1);
+            const pointLng = (fromLongitude - yLength * i / numberOfStops)
+                + randomDistanceMultiplier * this.getDeviation(i, numberOfStops)
+                * Math.random()
+                * (Math.random() < 0.5 ? -1 : 1);
+
+            middleLat = pointLat;
+            middleLng = pointLng;
+
+            points.push(`${pointLat},${pointLng}`);
+        }
+        points.push(destinationLatLng);
+
+        let url = [];
+        for (let i = 0; i < points.length - 1; i++) {
+            url.push(`http://localhost:5000/geocoder/geo-json/${points[i]}/${points[i + 1]}`);
+        }
+
+        //Has to be nested to make sure all responses are received before concatenation of poly lines
+        fetch(url[0])
+            .then((response) => response.json())
+            .then((data0) => {
+                fetch(url[1])
+                    .then((response) => response.json())
+                    .then((data1) => {
+                        fetch(url[2])
+                            .then((response) => response.json())
+                            .then((data2) => {
+                                this.setState({
+                                    polylineArray: this.state.polylineArray
+                                        .concat(data0)
+                                        .concat(data1)
+                                        .concat(data2),
+                                    receivedPolyLine: true,
+                                    polyline0: data0,
+                                    polyline1: data1,
+                                    polyline2: data2,
+                                    middleAddress: [middleLat, middleLng],
+                                    points: points,
+                                    animateBus: true
+                                });
+                            });
+                    });
+            });
+
+    }
+    getDeviation(x, len) {
+        return -(Math.pow(x, 2) / len) + x
+    }
 
     render() {
 
         const style = {
             height: '23em',
-            
-            
+
+
         };
 
         return (
@@ -254,10 +303,10 @@ export class DummyMap extends React.Component {
                     google={this.props.google}
                     initialCenter={{lat: 59.924117, lng: 10.766715,}}
                     centerAroundCurrentLocation
-                    center={{
-                        lat: this.state.latitude,
-                        lng: this.state.longitude
-                    }}
+                    // center={{
+                    //     lat: this.state.fromCoordinate[0],
+                    //     lng: this.state.fromCoordinate[1]
+                    // }}
                     onDragend={this.changedCenter.bind(this)}
                     zoom={14}
                     streetViewControl={false}
@@ -267,13 +316,14 @@ export class DummyMap extends React.Component {
                     draggable={true}
                     onReady={this.onMapLoaded.bind(this)}
                 >
-                    
+
 
                     {this.renderStartMarker()}
                     {this.renderMiddleMarker()}
                     {this.renderDestinationMarker()}
                     {this.renderBusMarker()}
                     {this.handlePolyline()}
+
                     {(!this.state.selected && this.props.orderMap) &&
                     <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 

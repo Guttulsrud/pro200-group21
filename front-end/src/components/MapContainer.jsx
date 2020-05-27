@@ -8,6 +8,8 @@ import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
 import ToSearchField from './ToSearchField';
+import tickets from "../utils/tickets";
+import PurchaseSection from "./PurchaseSection";
 
 
 export class MapContainer extends React.Component {
@@ -28,6 +30,7 @@ export class MapContainer extends React.Component {
             address: [],
             selectedToAddress: false,
             orderReady: false,
+            points: [],
         };
     }
 
@@ -140,122 +143,6 @@ export class MapContainer extends React.Component {
         }
     };
 
-    renderMiddleMarker = () => {
-        const state = this.state;
-        if (state.middleAddress) {
-            return (
-                <Marker
-                    icon={{
-                        url: '/images/bus-stop-48.png',
-                        anchor: new this.props.google.maps.Point(25, 52),
-                        scaledSize: new this.props.google.maps.Size(48, 48)
-                    }}
-                    position={{lat: state.middleAddress[0], lng: state.middleAddress[1]}}
-                />
-            );
-        }
-    };
-    renderBusMarker = () => {
-        const state = this.state;
-        if (state.busCoordinate) {
-            return (
-                <Marker
-                    icon={{
-                        url: '/images/bus-48.png',
-                        anchor: new this.props.google.maps.Point(25, 52),
-                        scaledSize: new this.props.google.maps.Size(48, 48)
-                    }}
-                    position={{lat: state.busCoordinate.lat, lng: state.busCoordinate.lng}}
-                />
-            );
-        }
-    };
-
-    animateBus = () => {
-        setInterval(this.intervalFunc, 1000);
-    };
-    intervalFunc = () => {
-        if (this.state.polylineArray[this.busIndex]) {
-            this.setState({
-                    busCoordinate: this.state.polylineArray[this.busIndex]
-                }
-            );
-            this.busIndex++;
-        }
-    };
-
-    handlePolyline() {
-        const state = this.state;
-
-        if (state.toCoordinate.length > 0) {
-            if (this.state.polylineArray.length < 1) {
-                this.generateRandomTripPolyline();
-                this.animateBus();
-            }
-
-            if (this.state.receivedPolyLine) {
-                return (
-                    <Polyline
-                        path={this.state.polylineArray}
-                        options={{
-                            strokeColor: '#003A70',
-                            strokeOpacity: 1,
-                            strokeWeight: 5,
-                            icons: [
-                                {
-                                    offset: '0',
-                                    repeat: '10px',
-                                },
-                            ],
-                        }}
-                    />
-                );
-            }
-        }
-    };
-
-    generateRandomTripPolyline(randomDistanceMultiplier = 0.01) {
-        const fromLatLng = `${this.state.fromCoordinate[0]},${this.state.fromCoordinate[1]}`;
-        const toLatLng = `${this.state.toCoordinate[0]},${this.state.toCoordinate[1]}`;
-
-        let startLat = parseFloat(fromLatLng.split(',')[0]) + randomDistanceMultiplier * Math.random();
-        let startLng = parseFloat(fromLatLng.split(',')[1]) + randomDistanceMultiplier * Math.random();
-        let start = startLat + ',' + startLng;
-
-        let middleLat = parseFloat(toLatLng.split(',')[0]) + randomDistanceMultiplier * Math.random();
-        let middleLng = parseFloat(toLatLng.split(',')[1]) + randomDistanceMultiplier * Math.random();
-        let middle = middleLat + ',' + middleLng;
-
-        const url0 = `http://localhost:5000/geocoder/geo-json/${start}/${fromLatLng}`;
-        const url1 = `http://localhost:5000/geocoder/geo-json/${fromLatLng}/${middle}`;
-        const url2 = `http://localhost:5000/geocoder/geo-json/${middle}/${toLatLng}`;
-
-        //Has to be nested to make sure all responses are received before concatenation of poly lines
-        fetch(url0)
-            .then((response) => response.json())
-            .then((data0) => {
-                fetch(url1)
-                    .then((response) => response.json())
-                    .then((data1) => {
-                        fetch(url2)
-                            .then((response) => response.json())
-                            .then((data2) => {
-                                this.setState({
-                                    polylineArray: this.state.polylineArray
-                                        .concat(data0)
-                                        .concat(data1)
-                                        .concat(data2),
-                                    receivedPolyLine: true,
-                                    polyline0: data0,
-                                    polyline1: data1,
-                                    polyline2: data2,
-                                    middleAddress: [middleLat, middleLng]
-                                });
-                            });
-                    });
-            });
-    }
-
     handleOrder = () => {
         this.setState({
             orderReady: true
@@ -339,12 +226,8 @@ export class MapContainer extends React.Component {
                         position={{lat: this.state.myLat, lng: this.state.myLng}}
                     />
 
-
                     {this.renderStartMarker()}
-                    {this.renderMiddleMarker()}
                     {this.renderDestinationMarker()}
-                    {this.renderBusMarker()}
-                    {this.handlePolyline()}
                     {(!this.state.selectedToAddress && this.props.orderMap) &&
                     <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
