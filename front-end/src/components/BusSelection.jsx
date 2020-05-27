@@ -20,7 +20,7 @@ const BusSelection = props => {
             <Div display={"flex"} m={"auto"} width={1} justifyContent={"space-between"}>
                 <Div pl={18} display={"flex"}>
                     <ChevronRightIcon/>
-                    <Text.p m={0} pt={3}>Biermannsgate</Text.p>
+                    <Text.p m={0} pt={3}>{props.curLoc}</Text.p>
                 </Div>
                 <Div pr={18} display={"flex"}>
                 <Text.p m={0} pt={3}>{props.cap} {props.cap > 1 ? "ledige seter" : "ledig sete"}</Text.p>

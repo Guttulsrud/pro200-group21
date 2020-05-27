@@ -1,7 +1,6 @@
 import React from 'react';
 import {Div} from '../elements/divs/Div';
 import {Button} from '../elements/buttons/Button';
-import {ClockIcon} from '../components/Icons/ClockIcon';
 import tickets from '../utils/tickets';
 import PurchaseSection from '../components/PurchaseSection';
 import Heading from '../elements/text/StyledHeading';
@@ -114,7 +113,8 @@ class PurchasePage extends React.Component {
                             <BusSelection
                                 name={b.name}
                                 cap={b.cap}
-                                eta={b.eta}/>
+                                eta={b.eta}
+                                curLoc={b.currentLoc}/>
                             : null;
                     }
                 )}
