@@ -29,9 +29,25 @@ const BusSelection = props => {
 
 
             </Div>
-            <Div pl={20} pr={20}>
-                <Heading.h2>Fra Someaddress 2</Heading.h2>
-                <Heading.h2>Til Someaddress 3</Heading.h2>
+            <Div pr={20} pl={20} display="flex" alignItems="center">
+                <Div height={32} width={32} mr={10}>
+                    <img height={32} width={32} src={'/images/pin-48-from.png'} />
+                </Div>
+                <Heading.h2>
+
+                    Fra Someaddress 2
+                    </Heading.h2>
+            </Div>
+
+            <Div pr={20} pl={20} display="flex" alignItems="center">
+                <Div height={32} width={32} mr={10}>
+                    <img height={32} width={32} src={'/images/pin-48-to.png'} />
+                </Div>
+                <Heading.h2 display={"flex"}>
+
+                    Til Someaddress 3
+                    </Heading.h2>
+
             </Div>
             <Div className="checkout-list" pl={20} pr={20} pb={20} borderBottom={"1px solid #D7D8D9"}>
                 <ul>
