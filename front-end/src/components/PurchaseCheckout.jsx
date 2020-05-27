@@ -1,24 +1,38 @@
 import React from 'react';
 import { Div } from '../elements/divs/Div';
 import Heading from '../elements/text/StyledHeading';
+import VippsLogo from '../images/vipps.png';
+import Select from 'react-select';
 
 
 const BusSelection = props => {
+    const options = [
+        { value: 'vipps', label: <div><img src={VippsLogo} height="40px" width="100px" /></div> },
+    ];
+
+    const customStyles = {
+        container: () => ({
+
+            width: 200,
+        }),
+    };
+
     return (
         <Div bg={'#fff'} width={1} display={'flex'} flexDirection={'column'} >
             <Div display={'flex'} justifyContent={"space-between"} width={1} >
 
-                <Div display={"flex"} alignItems="center" pl={20} pr={20} justifyContent={"space-between"}>
-                    <Div height={48} width={48}>
-                        <img src={'/images/bus-48.png'} />
+                <Div display={"flex"} justifyContent="center" width="100%" alignItems="center" pl={20} pr={20} pb={10} mb={10} borderBottom={"1px solid #D7D8D9"}>
+                    <Div display={"flex"} justifyContent="center" alignItems="center">
+                        <Div height={32} width={32}>
+                            <img height="32px" width="32px" src={'/images/bus-48.png'} />
+                        </Div>
+                        <Heading.h1 padding="0" margin="0" lineHeight="0" fontSize="1.6rem" color={"vyBlack"} pl={10}>{props.bus.name}</Heading.h1>
+
                     </Div>
-                    <Heading.h1 color={"vyBlack"} pl={10}>{props.bus.name}</Heading.h1>
+
 
                 </Div>
-                <Div display="flex" alignItems="center">
 
-                    <Heading.h3 pr={20}>Kommer om {props.bus.eta} min</Heading.h3>
-                </Div>
 
             </Div>
 
@@ -59,11 +73,8 @@ const BusSelection = props => {
                 </ul>
             </Div>
 
-            <Div display={"flex"} justifyContent="center" pl={20} pr={20} pt={20} className="checkout-select">
-                <select id="payment">
-                    <option value="0">Velg betalingsmetode</option>
-                    <option value="1">Vipps</option>
-                </select>
+            <Div display={"flex"} justifyContent="center" pl={20} pr={20} pt={20}>
+                <Select options={options} styles={customStyles} />
             </Div>
             <Div display={"flex"} justifyContent="space-between">
                 <Div>

@@ -149,7 +149,7 @@ class PurchasePage extends React.Component {
                     desTo={props.toLoc}
                     sum={this.state.sum}
                 />
-                <Button mt={this.state.sum ? 0 : 10} onClick={this.postData}>Bestill buss</Button>
+                <Button width="70%" mt={this.state.sum ? 0 : 10} onClick={this.postData}>Bestill buss</Button>
 
             </Div>;
         } else {
@@ -170,13 +170,12 @@ class PurchasePage extends React.Component {
                         </React.Fragment>
                     }
                 </Div>
-                <Button mt={this.state.sum ? 0 : 67} onClick={this.state.sum > 0 ? this.handleShowBus : null}>Vis avganger</Button>
+                <Button width="70%" mt={this.state.sum ? 0 : 67} onClick={this.state.sum > 0 ? this.handleShowBus : null}>Vis avganger</Button>
             </React.Fragment>
         }
 
         // STEPPER DESCRIPTION
         const stepsArray = ['Antall reisende', 'Velg buss', 'Kjøp billett'];
-
 
         const { currentStep } = this.state;
 
