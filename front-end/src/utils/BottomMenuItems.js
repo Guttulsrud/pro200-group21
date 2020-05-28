@@ -10,12 +10,12 @@ export const items = [
         link: '/'
     },
     {
-        title: 'Bilett',
+        title: 'Billett',
         icon: <TicketIcon />,
         link: '/ticket'
     },
     {
-        title: 'Demo',
+        title: 'Profil',
         icon: <ProfileIcon />,
         link: '/demopage'
     }

@@ -87,23 +87,23 @@ const Ticket = (props) => {
             
               <DateField>
                 <Div mr={"1em"} display="flex" alignItems="center" justifyContent="center">
-                  <DateIcon></DateIcon>
+                  <DateIcon/>
                 </Div>
-                <p>{props.ticketdata.date}</p>
+                <p>{props.ticketdata.expiration}</p>
               </DateField>
               <DestField>
                 <Div mr={"1em"} display="flex" alignItems="center" justifyContent="center">
-                  <ChevronRightBig></ChevronRightBig>
+                  <ChevronRightBig/>
                 </Div>
                 
-                <h3>{props.ticketdata.dest}</h3>
+                <h3>{props.ticketdata.route.destination.title}</h3>
               </DestField>
             </Div>
 
             <Div mx={15} my={10} >
-              {!props.ticketdata.active ? <Status inactive onClick={toggleReceipt}>Utgått</Status> : <Link to='/activeticket' style={{ textDecoration: 'none' }}><Status active>Aktiv</Status></Link> } 
+              {props.ticketdata.archived ? <Status inactive onClick={toggleReceipt}>Utgått</Status> : <Link to={`/activeticket?${props.ticketdata._id}`} style={{ textDecoration: 'none' }}><Status active>Aktiv</Status></Link> }
             </Div>
-            <Receipt visible={receiptVisible} ticketdata={props.ticketdata} toggleReceipt={toggleReceipt}></Receipt>
+            {/*<Receipt visible={receiptVisible} ticketdata={props.ticketdata} toggleReceipt={toggleReceipt}></Receipt>*/}
 
           </Div>
       </React.Fragment>
