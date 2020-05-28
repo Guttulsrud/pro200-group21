@@ -1,21 +1,23 @@
 import React from 'react';
-import {Div} from '../elements/divs/Div';
+import { Div } from '../elements/divs/Div';
 import Heading from '../elements/text/StyledHeading';
 import VippsLogo from '../images/vipps.png';
 import Select from 'react-select';
 import tickets from '../utils/tickets';
+import { ArrowForwardIcon } from '../components/Icons/ArrowForwardIcon';
 
 
 const BusSelection = props => {
     const options = [
-        {value: 'vipps', label: <div><img src={VippsLogo} height="40px" width="100px" alt={"vipps"}/></div>},
+        { value: 'Velg betalingsmåte', label: 'Velg betalingsmåte' },
+        { value: 'vipps', label: <div><img src={VippsLogo} height="40px" width="100px" alt={"vipps"} /></div> },
     ];
 
-    const customStyles = {
-        container: () => ({
 
-            width: 200,
-        }),
+    const colourStyles = {
+        control: styles => ({ ...styles, backgroundColor: 'white' }),
+
+
     };
 
     return (
@@ -23,13 +25,13 @@ const BusSelection = props => {
             <Div display={'flex'} justifyContent={'space-between'} width={1}>
 
                 <Div display={'flex'} justifyContent="center" width="100%" alignItems="center" pl={20} pr={20} pb={10}
-                     mb={10} borderBottom={'1px solid #D7D8D9'}>
+                    mb={10} borderBottom={'1px solid #D7D8D9'}>
                     <Div display={'flex'} justifyContent="center" alignItems="center">
                         <Div height={32} width={32}>
-                            <img height="32px" width="32px" src={'/images/bus-48.png'} alt={"bus icon"}/>
+                            <img height="32px" width="32px" src={'/images/bus-48.png'} alt={"bus icon"} />
                         </Div>
                         <Heading.h1 padding="0" margin="0" lineHeight="0" fontSize="1.6rem" color={'vyBlack'}
-                                    pl={10}>{props.bus.name}</Heading.h1>
+                            pl={10}>{props.bus.name}</Heading.h1>
 
                     </Div>
 
@@ -44,14 +46,17 @@ const BusSelection = props => {
 
             </Div>
             <Div pr={20} pl={20} pb={20} display="flex" justifyContent="space-between" alignContent="center"
-                 alignItems="center">
+                alignItems="center">
                 <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                    <img height={32} width={32} src={'/images/pin-48-from.png'} alt={"pin icon"}/>
+                    <img height={32} width={32} src={'/images/pin-48-from.png'} alt={"pin icon"} />
                     <Heading.h2 fontSize="1rem">{props.desFrom}</Heading.h2>
+                </Div>
+                <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+                    <ArrowForwardIcon />
                 </Div>
 
                 <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                    <img height={32} width={32} src={'/images/pin-48-to.png'} alt={"pin icon"}/>
+                    <img height={32} width={32} src={'/images/pin-48-to.png'} alt={"pin icon"} />
                     <Heading.h2 fontSize="1rem" display={'flex'}>{props.desTo}</Heading.h2>
                 </Div>
 
@@ -77,8 +82,12 @@ const BusSelection = props => {
                 </ul>
             </Div>
 
-            <Div display={'flex'} justifyContent="center" pl={20} pr={20} pt={20}>
-                <Select options={options} styles={customStyles}/>
+            <Div display={'flex'} alignItems="center" alignContent="center" justifyContent="center" pl={20} pr={20} pt={20}>
+                <Select
+                    className="checkout-select"
+                    defaultValue={options[0]}
+                    options={options}
+                    styles={colourStyles} />
             </Div>
             <Div display={'flex'} justifyContent="space-between">
                 <Div>
@@ -89,7 +98,7 @@ const BusSelection = props => {
                 </Div>
             </Div>
 
-        </Div>
+        </Div >
     );
 };
 
