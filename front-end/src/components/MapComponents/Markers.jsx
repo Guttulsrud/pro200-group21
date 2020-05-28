@@ -10,9 +10,6 @@ export class Markers extends React.Component {
             stopCoordinate: props.parentState.stopCoordinate,
             busCoordinate: props.parentState.busCoordinate,
         }
-
-        console.log(this.state)
-        console.log(props)
     }
 
     renderStartMarker() {
@@ -66,7 +63,6 @@ export class Markers extends React.Component {
     renderBusMarker() {
         const state = this.state;
         if (state.busCoordinate) {
-            console.log("render bus")
             return (
                 <div>
                     <Item/>
