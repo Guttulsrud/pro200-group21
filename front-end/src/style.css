@@ -62,8 +62,9 @@ body {
 }
 
 /* MAP */
-#map {
-  height: 100%;
+.map {
+  height: 30% !important;
+
 }
 
 #map-marker {
@@ -358,3 +359,4 @@ body {
 .pac-placeholder {
   color: gray;
 }
+

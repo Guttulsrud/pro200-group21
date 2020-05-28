@@ -173,6 +173,7 @@ class PurchasePage extends React.Component {
                                          type={t.type}
                                          price={t.price}
                                          qty={t.qty}
+                                         inactive={!t.qty}
                                          handleAdd={() => this.handleAdd(t.type)}
                                          handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
                     ))
@@ -186,7 +187,7 @@ class PurchasePage extends React.Component {
                     }
                 </Div>
                 <Button
-                    inactive={!this.state.count} width="70%" mt={this.state.count ? 0 : 67}
+                    inactive={!this.state.count} width="70%"
                         onClick={this.state.count > 0 ? this.handleShowBus : null}>Vis avganger</Button>
             </React.Fragment>;
         }
@@ -198,10 +199,10 @@ class PurchasePage extends React.Component {
 
 
         return (
-            <Div display="flex" flexDirection="column" alignItems={'center'} height={560} pb={82}
-                 bg={'#fff'} bottom={0} width={1} position={'fixed'}
+            <Div display="flex" flexDirection="column" alignItems={'center'} height={"70%"}
+                 bg={'#fff'} width={1}  bottom={0} position={"absolute"}
             >
-                <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95}>
+                <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95} >
                     <Div display="flex" flexDirection="column" width="100%" justifyContent="space-between">
                         <Stepper steps={stepsArray} currentStepNumber={currentStep}/>
                     </Div>

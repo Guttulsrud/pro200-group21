@@ -6,11 +6,11 @@ export const Button = styled.button`
   ${position};
   background-color: #003a70;
   height: 56px;
+  min-height: 56px;
   width:  ${(props) =>
     props.width ? props.width : '100%'};
   font-size: 18px;
   color: #fff;
-  margin-bottom: 20px;
   border-radius: 5px;
   border: none;
   cursor: pointer;

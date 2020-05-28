@@ -171,12 +171,14 @@ export class MapContainer extends React.Component {
     render() {
 
         const style = {
-            height: '300px',
+            height: '100%',
         };
 
         return (
-            <Div>
+            <Div display={"flex"} flexDirection={"column"}>
+                <Div>
                 <Map
+                    className={this.state.orderReady ? "map" : ""}
                     style={!this.state.orderReady ? null : style}
                     google={this.props.google}
                     initialCenter={{lat: 59.924117, lng: 10.766715,}}
@@ -228,6 +230,7 @@ export class MapContainer extends React.Component {
                     <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
                 </Map>
+                </Div>
                 {this.state.orderReady && <PurchasePage sendState={this.state}/>}
 
                 {!this.state.orderReady &&
