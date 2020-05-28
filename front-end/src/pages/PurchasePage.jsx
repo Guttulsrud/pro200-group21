@@ -79,7 +79,7 @@ class PurchasePage extends React.Component {
 
     postData = async () => {
         await axios.post(
-            'http://localhost:5000/ticket/create',
+            'http://192.168.10.109:5000/ticket/create',
             this.state.data,
             {headers: {'Content-Type': 'application/json'}}
         )
@@ -156,17 +156,17 @@ class PurchasePage extends React.Component {
                             desTo={props.toLoc}
                             sum={this.state.sum}
                         />
-
+                        <Div width={.7} margin={"0 auto"}>
+                        <StyledLink width={1}   to={`/activeticket?${this.state.ticketId}`}>
+                            <Button width={"100%"}>Bestill buss</Button>
+                        </StyledLink>
+                        </Div>
                     </Div>
 
-                    <StyledLink width={.7}  to={`/activeticket?${this.state.ticketId}`}>
-                        <Button width={"100%"}
-                                mt={this.state.count ? 0 : 10}>Bestill buss
-                        </Button>
-                    </StyledLink>
+
                 </React.Fragment>;
         } else {
-            content = <React.Fragment>
+            content = <Div display={"flex"} width={1} alignItems={"center"} flexDirection={"column"} overflow={"auto"}>
                 {
                     tickets.map((t) => (
                         <PurchaseSection key={t.type}
@@ -178,18 +178,18 @@ class PurchasePage extends React.Component {
                                          handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
                     ))
                 }
-                <Div display="flex" justifyContent="space-between" width={0.95}>
-                    {this.state.sum > 0 &&
+                <Div display="flex" justifyContent="space-between" height={"53px"}  width={0.95}>
+
                     <React.Fragment>
-                        <Heading.h2>Totalsum</Heading.h2>
-                        <Heading.h2>{this.state.sum} kr</Heading.h2>
+                        <Heading.h2 fontSize={22} my={13}>Totalsum</Heading.h2>
+                        <Heading.h2 fontSize={22} my={13}>{this.state.sum} kr</Heading.h2>
                     </React.Fragment>
-                    }
+
                 </Div>
                 <Button
                     inactive={!this.state.count} width="70%"
-                        onClick={this.state.count > 0 ? this.handleShowBus : null}>Vis avganger</Button>
-            </React.Fragment>;
+                        onClick={this.state.count > 0 ? this.handleShowBus : null} >Vis avganger</Button>
+            </Div>;
         }
 
         // STEPPER DESCRIPTION

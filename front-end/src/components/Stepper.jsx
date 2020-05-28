@@ -1,5 +1,5 @@
 import React from 'react';
-import { Div } from '../elements/divs/Div';
+import {Div} from '../elements/divs/Div';
 import text from '../elements/text/StyledText';
 
 class Stepper extends React.Component {
@@ -10,7 +10,7 @@ class Stepper extends React.Component {
     };
 
     componentDidMount() {
-        const { steps, currentStepNumber } = this.props;
+        const {steps, currentStepNumber} = this.props;
         const stepsState = steps.map((step, index) => {
             const stepObj = {};
             stepObj.description = step;
@@ -29,7 +29,7 @@ class Stepper extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.currentStepNumber !== this.props.currentStepNumber) {
-            const { steps } = this.state;
+            const {steps} = this.state;
             const currentSteps = this.updateStep(this.props.currentStepNumber - 1, steps);
 
             this.setState({
@@ -92,28 +92,39 @@ class Stepper extends React.Component {
 
 
     }
+
     render() {
 
         // const { direction } = this.props;
-        const { steps } = this.state;
+        const {steps} = this.state;
         const stepsDisplay = steps.map((step, index) => {
             return (
-                <Div key={index} display="flex" flexDirection="column" alignItems="center" width="23%" position="relative">
-                    <Div display="flex" borderRadius={80} height="15px" width="15px" border="3px solid" borderColor={step.selected ? "vyGreen" : "#D7D8D9"} backgroundColor={step.selected ? "none" : "none"}>{step.completed ? <text.p margin="auto" fontSize="0.8rem" textAlign="center"><span>&#10003;</span></text.p> : <Div borderRadius={100} width="100%" backgroundColor={step.selected ? 'vyGreen' : 'none'} margin="2px"/>}</Div>
-                    <Div><text.p fontSize="0.8rem" textAlign="center" fontWeight={step.highlighted ? "bold" : "normal"} color={step.highlighted ? "vyBlack" : "#D7D8D9"}>{step.description}</text.p></Div>
+                <Div key={index} display="flex" flexDirection="column" alignItems="center" width="23%"
+                     position="relative">
+                    <Div display="flex" borderRadius={80} height="15px" width="15px" border="3px solid"
+                         borderColor={step.selected ? 'vyGreen' : '#D7D8D9'}
+                         backgroundColor={step.selected ? 'none' : 'none'}>{step.completed ?
+                        <text.p margin="auto" fontSize="0.8rem" textAlign="center"><span>&#10003;</span></text.p> :
+                        <Div borderRadius={100} width="100%" backgroundColor={step.selected ? 'vyGreen' : 'none'}
+                             margin="2px"/>}</Div>
+                    <Div>
+                        <text.p fontSize="0.8rem" textAlign="center" fontWeight={step.highlighted ? 'bold' : 'normal'}
+                                color={step.highlighted ? 'vyBlack' : '#D7D8D9'}>{step.description}</text.p>
+                    </Div>
                     <Div className={index !== steps.length - 1 && 'divider-line'}/>
-                </Div >
+                </Div>
             );
         });
         return (
             <React.Fragment>
 
-                <Div display="flex" flexDirection="row" alignContent="center" justifyContent="space-between" position="relative" my={10}>
+                <Div display="flex" flexDirection="row" alignContent="center" justifyContent="space-between"
+                     position="relative" mt={10}>
                     {stepsDisplay}
                 </Div>
 
 
-            </React.Fragment >
+            </React.Fragment>
         );
     }
 }

@@ -1,23 +1,24 @@
 import styled, { css } from 'styled-components';
-import { space, color, layout, flex, border, typography, position, margin, padding } from 'styled-system';
+import { space, color, layout, flexbox, border, typography, position, margin, padding } from 'styled-system';
 
 export const RoundBtn = styled.button`
   ${space}
   ${color}
   ${border}
   ${layout}
-  ${flex}
+  ${flexbox}
   ${typography}
   ${position}
   ${margin}
   ${padding}
   background-color: #003A70;
-  height: 38px;
-  width: 38px;
+  height: 30px;
+  width: 30px;
   color: white;
   border: none;
   border-radius: 50px;
   cursor: pointer;
+  padding: 0;
 
   ${(props) =>
     props.secondary &&

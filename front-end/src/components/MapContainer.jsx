@@ -52,7 +52,7 @@ export class MapContainer extends React.Component {
     };
 
     setAddressFromCoordinates(lat, lng) {
-        const url = `http://localhost:5000/geocoder/coordinates/${lat}/${lng}`;
+        const url = `http://192.168.10.109:5000/geocoder/coordinates/${lat}/${lng}`;
 
         fetch(url)
             .then((response) => response.json())

@@ -51,7 +51,7 @@ export class DummyMap extends React.Component {
     };
 
     setAddressFromCoordinates(lat, lng) {
-        const url = `http://localhost:5000/geocoder/coordinates/${lat}/${lng}`;
+        const url = `http://192.168.10.109:5000/geocoder/coordinates/${lat}/${lng}`;
 
         fetch(url)
             .then((response) => response.json())
@@ -66,7 +66,7 @@ export class DummyMap extends React.Component {
 
     getTicketFromId() {
         let id = this.state.ticketId;
-        const url = `http://localhost:5000/ticket/details/${id}`;
+        const url = `http://192.168.10.109:5000/ticket/details/${id}`;
 
         fetch(url)
             .then((response) => response.json())
@@ -260,7 +260,7 @@ export class DummyMap extends React.Component {
 
         let url = [];
         for (let i = 0; i < points.length - 1; i++) {
-            url.push(`http://localhost:5000/geocoder/geo-json/${points[i]}/${points[i + 1]}`);
+            url.push(`http://192.168.10.109:5000/geocoder/geo-json/${points[i]}/${points[i + 1]}`);
         }
 
         //Has to be nested to make sure all responses are received before concatenation of poly lines
