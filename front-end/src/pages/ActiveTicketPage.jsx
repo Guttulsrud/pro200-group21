@@ -7,6 +7,7 @@ import {Timeline} from '../components/TimeLine'
 import DummyMap from '../components/DummyMap'
 import {QRcode} from '../components/Icons/qrcode';
 import {Link} from 'react-router-dom';
+import BetterTimeLine from "../components/BetterTimeLine";
 
 
 const ActiveTicketPage = (props) => {
@@ -54,7 +55,8 @@ const ActiveTicketPage = (props) => {
             </Div>
 
             <Div display={busHasArrived ? "none" : "flex"} alignItems="center" mx={30}>
-                <Timeline journeyHasStarted={journeyHasStarted}></Timeline>
+                {/*<Timeline ticketId={props.location.search.split("?")[1]} journeyHasStarted={journeyHasStarted}></Timeline>*/}
+                <BetterTimeLine ticketId={props.location.search.split("?")[1]}/>
             </Div>
 
             <Div display={journeyHasStarted ? "none" : "flex"} justifyContent="center" alignItems="center"

@@ -72,9 +72,6 @@ class PurchasePage extends React.Component {
         this.setState({
             currentStep: newStep
         });
-
-        console.log(currentStep);
-
     };
 
     postData = async () => {
