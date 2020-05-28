@@ -7,6 +7,7 @@ import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
 import {BusIcon} from "./Icons/BusIcon";
+import tickets from "../utils/tickets";
 
 
 export class BetterTimeLine extends React.Component {
@@ -16,16 +17,17 @@ export class BetterTimeLine extends React.Component {
 
         this.state = {
             journeyHasStarted: true,
-            ticket: {}
+            from: '',
+            to: ''
         };
     }
 
-    getTicketFromId = async () => {
-        const url = `http://localhost:5000/ticket/details/${this.props.ticketId}`;
+    getTicketFromId = async (id) => {
+        const url = `http://localhost:5000/ticket/details/${id}`;
 
         return await fetch(url)
             .then(response => response.json()).then(res => {
-                test = res
+                return res;
             })
 
     }
@@ -33,8 +35,10 @@ export class BetterTimeLine extends React.Component {
 
     componentDidMount() {
 
-        console.log(this.props)
-
+        this.getTicketFromId(this.props.ticketId).then(ticket => this.setState({
+            from: ticket.route.origin.title,
+            to: ticket.route.destination.title
+        }));
     }
 
 
@@ -42,11 +46,12 @@ export class BetterTimeLine extends React.Component {
 
 
         return (
-            <Div display="flex" justifyContent="space-around" alignItems="center" flexDirection="column" width={"100%"}>
+            <Div display="flex" justifyContent="space-around" alignItems="center" flexDirection="column"
+                 width={"100%"}>
 
                 <Div display="flex" justifyContent="space-between" alignItems="center" width={"100%"}>
-                    <h5 style={{marginLeft: -9}}>from</h5>
-                    <h5 style={{marginRight: -9}}>to</h5>
+                    <h5 style={{marginLeft: -9}}>{ this.state.from }</h5>
+                    <h5 style={{marginRight: -9}}>{ this.state.to }</h5>
                 </Div>
 
                 <Div display="flex" justifyContent="space-around" alignItems="center" width={"100%"}
@@ -80,11 +85,13 @@ export class BetterTimeLine extends React.Component {
                          width="1em"
                          position="absolute"
                     >
-                        <Div bg={"#003A70"} borderRadius="100px" height=".6em" width=".6em" position="absolute"></Div>
+                        <Div bg={"#003A70"} borderRadius="100px" height=".6em" width=".6em"
+                             position="absolute"></Div>
 
                     </Div>
 
-                    <Div bg={"white"} left="0" border="4px solid #003A70" borderRadius="100px" height="1em" width="1em"
+                    <Div bg={"white"} left="0" border="4px solid #003A70" borderRadius="100px" height="1em"
+                         width="1em"
                          position="absolute"></Div>
 
                 </Div>
@@ -98,6 +105,7 @@ export class BetterTimeLine extends React.Component {
 
         );
     }
+
 }
 
 export default BetterTimeLine

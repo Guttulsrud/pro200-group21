@@ -30,9 +30,16 @@ export class DummyMap extends React.Component {
         };
     }
 
+
     componentDidMount() {
-        this.getTicketFromId();
+        this.getTicketFromId(this.props.ticketId).then(ticket => this.setState({
+            fromCoordinate: ticket.route.origin.coordinates,
+            toCoordinate: ticket.route.destination.coordinates
+        }));
+
+
         this.showCurrentLocation();
+
     }
 
     showCurrentLocation = () => {
@@ -64,18 +71,14 @@ export class DummyMap extends React.Component {
             });
     }
 
-    getTicketFromId() {
-        let id = this.state.ticketId;
+    getTicketFromId = async (id) => {
         const url = `http://localhost:5000/ticket/details/${id}`;
 
-        fetch(url)
-            .then((response) => response.json())
-            .then((ticket) => {
-                this.setState({
-                    fromCoordinate: ticket.route.origin.coordinates,
-                    toCoordinate: ticket.route.destination.coordinates
-                });
-            });
+        return await fetch(url)
+            .then(response => response.json()).then(res => {
+                return res;
+            })
+
     }
 
     onMapLoaded(mapProps, map) {

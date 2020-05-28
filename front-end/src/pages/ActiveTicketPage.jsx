@@ -56,7 +56,7 @@ const ActiveTicketPage = (props) => {
 
             <Div display={busHasArrived ? "none" : "flex"} alignItems="center" mx={30}>
                 {/*<Timeline ticketId={props.location.search.split("?")[1]} journeyHasStarted={journeyHasStarted}></Timeline>*/}
-                <BetterTimeLine ticketId={props.location.search.split("?")[1]}></BetterTimeLine>
+                <BetterTimeLine ticketId={props.location.search.split("?")[1]}/>
             </Div>
 
             <Div display={journeyHasStarted ? "none" : "flex"} justifyContent="center" alignItems="center"
