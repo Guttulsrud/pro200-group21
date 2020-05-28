@@ -63,7 +63,6 @@ class Stepper extends React.Component {
                     completed: false,
                 };
                 stepCounter++;
-                console.log(newSteps)
             }
 
             //Past step

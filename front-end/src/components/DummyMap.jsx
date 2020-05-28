@@ -169,14 +169,18 @@ export class DummyMap extends React.Component {
         }
     };
 
+    hasFetchedData = false;
+
     handlePolyline() {
         const state = this.state;
 
         if (state.toCoordinate.length > 0) {
             if (this.state.polylineArray.length < 1) {
-                // this.generateRandomTripPolyline()
-                setTimeout(this.generateRandomTripPolyline.bind(this), 1000);
 
+                if (!this.hasFetchedData) {
+                    this.hasFetchedData = true;
+                    setTimeout(this.generateRandomTripPolyline.bind(this), 1000);
+                }
             }
             if (this.state.animateBus) {
                 setTimeout(this.animateBus, 1000);
