@@ -170,6 +170,7 @@ class PurchasePage extends React.Component {
                                          type={t.type}
                                          price={t.price}
                                          qty={t.qty}
+                                         inactive={!t.qty}
                                          handleAdd={() => this.handleAdd(t.type)}
                                          handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
                     ))

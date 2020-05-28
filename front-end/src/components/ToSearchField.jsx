@@ -58,6 +58,7 @@ class ToSearchField extends React.Component {
                             this.setState({
                                 inputText: place.formatted_address
                             })
+                            this.props.insertTo(this.state.inputText)
                         }}
                         types={[]}
                         componentRestrictions={{ country: 'no' }}
