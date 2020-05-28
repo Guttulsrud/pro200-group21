@@ -11,11 +11,6 @@ export const items = [
         link: '/'
     },
     {
-        title: 'Sanntidskart',
-        icon: <MapIcon />,
-        link: '/livemap'
-    },
-    {
         title: 'Bilett',
         icon: <TicketIcon />,
         link: '/ticket'
