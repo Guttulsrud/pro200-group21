@@ -29,6 +29,15 @@ class PurchasePage extends React.Component {
         ticketId: '',
     };
 
+    componentDidMount() {
+        for(let ticket of tickets) {
+            ticket.qty = 0
+        }
+        this.setState({
+            sum: 0
+        })
+    }
+
 
     handleAdd = (value) => {
         for (let ticket of tickets) {
