@@ -8,7 +8,7 @@ import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
 
 
-export class DummyMap extends React.Component {
+export class TravelMap extends React.Component {
     busIndex = 0;
 
     constructor(props) {
@@ -347,4 +347,4 @@ export class DummyMap extends React.Component {
 
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyBIowGjwaajWBpRnebeFK_K0ut_RUCGYxs',
-})(DummyMap);
+})(TravelMap);

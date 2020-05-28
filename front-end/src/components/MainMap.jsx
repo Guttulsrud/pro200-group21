@@ -10,7 +10,7 @@ import PurchasePage from '../pages/PurchasePage';
 import ToSearchField from './ToSearchField';
 
 
-export class MapContainer extends React.Component {
+export class MainMap extends React.Component {
 
     constructor(props) {
         super(props);
@@ -264,4 +264,4 @@ export class MapContainer extends React.Component {
 
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyBIowGjwaajWBpRnebeFK_K0ut_RUCGYxs',
-})(MapContainer);
+})(MainMap);
