@@ -16,7 +16,7 @@ export const Timeline = (props) => {
         <Div display="flex" justifyContent="space-around" alignItems="center" flexDirection="column" width={"100%"}>
 
             <Div display="flex" justifyContent="space-between" alignItems="center" width={"100%"}>
-                <h5 style={{marginLeft: -9}}>{depLocation}</h5>
+                <h5 style={{marginLeft: -9}}>{console.log(test)}</h5>
                 <h5 style={{marginRight: -9}}>{arrLocation}</h5>
             </Div>
 

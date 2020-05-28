@@ -7,6 +7,7 @@ import {Timeline} from '../components/TimeLine'
 import DummyMap from '../components/DummyMap'
 import {QRcode} from '../components/Icons/qrcode';
 import {Link} from 'react-router-dom';
+import BetterTimeLine from "../components/BetterTimeLine";
 
 
 const ActiveTicketPage = (props) => {
@@ -32,24 +33,6 @@ const ActiveTicketPage = (props) => {
 
     }
 
-
-    async function getTicketFromId(id) {
-        const url = `http://localhost:5000/ticket/details/${id}`;
-
-        return await fetch(url)
-            .then(response => response.json()).then(res => {
-                return res
-            })
-
-    }
-
-    async function kek() {
-        return await getTicketFromId(props.location.search.split("?")[1]);
-    }
-
-
-    console.log(kek())
-
     return (
         <React.Fragment>
             <Link to='/ticket' style={{textDecoration: 'none'}}>
@@ -72,8 +55,8 @@ const ActiveTicketPage = (props) => {
             </Div>
 
             <Div display={busHasArrived ? "none" : "flex"} alignItems="center" mx={30}>
-                <Timeline ticketId={kek()}
-                          journeyHasStarted={journeyHasStarted}></Timeline>
+                {/*<Timeline ticketId={props.location.search.split("?")[1]} journeyHasStarted={journeyHasStarted}></Timeline>*/}
+                <BetterTimeLine ticketId={props.location.search.split("?")[1]}></BetterTimeLine>
             </Div>
 
             <Div display={journeyHasStarted ? "none" : "flex"} justifyContent="center" alignItems="center"
