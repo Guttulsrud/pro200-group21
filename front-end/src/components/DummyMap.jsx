@@ -175,7 +175,7 @@ export class DummyMap extends React.Component {
         if (state.toCoordinate.length > 0) {
             if (this.state.polylineArray.length < 1) {
                 // this.generateRandomTripPolyline()
-                setTimeout(this.generateRandomTripPolyline, 1000);
+                setTimeout(this.generateRandomTripPolyline.bind(this), 1000);
 
             }
             if (this.state.animateBus) {
@@ -207,7 +207,6 @@ export class DummyMap extends React.Component {
     };
 
     generateRandomTripPolyline() {
-
         // TODO : Finn raskeste rute imellom punktene
         // TODO : Spør backend om veibeskrivelese i riktig rekkefølge
         const fromLatLng = `${this.state.fromCoordinate[0]},${this.state.fromCoordinate[1]}`;
