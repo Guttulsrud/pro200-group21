@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {RoundBtn} from "../elements/buttons/RoundBtn";
 import {ChevronLeftIcon} from "../components/Icons/ChevronLeftIcon";
 import {Div} from "../elements/divs/Div";
-import DummyMap from "../components/DummyMap";
+import DummyMap from "../components/TravelMap";
 import TimeLine from "../components/TimeLine";
 import {Button} from "../elements/buttons/Button";
 import {QRcode} from "../components/Icons/qrcode";

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import theme from './layout/theme';
 import FrontPage from './pages/FrontPage';
-import LiveMapPage from './pages/LiveMapPage';
 import ProfilePage from './pages/ProfilePage';
 import PurchasePage from './pages/PurchasePage';
 import NotFound from './pages/NotFoundPage';
@@ -22,7 +21,6 @@ function App() {
               <Switch>
                 <Route exact path='/' component={FrontPage} />
                 <Route exact path='/demopage' component={Demo} />
-                <Route exact path='/livemap' component={LiveMapPage} />
                 <Route exact path='/ticket' component={TicketPage} />
                 <Route exact path='/profile' component={ProfilePage} />
                 <Route exact path='/activeticket' component={ActiveTicketPage} />
