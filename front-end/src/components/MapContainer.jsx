@@ -11,7 +11,6 @@ import ToSearchField from './ToSearchField';
 
 
 export class MapContainer extends React.Component {
-    busIndex = 0;
 
     constructor(props) {
         super(props);
@@ -94,7 +93,7 @@ export class MapContainer extends React.Component {
 
     handleSelection() {
         const state = this.state;
-        if (state.selectedFromAddress) {
+        if (state.selectedFromAddress && this.state.toLoc) {
             this.setState({
                 toCoordinate: [state.latitude, state.longitude],
                 selectedToAddress: true,
@@ -237,6 +236,7 @@ export class MapContainer extends React.Component {
                         width='70%'
                         bottom
                         center
+                        inactive={this.state.selectedFromAddress && !this.state.toLoc}
                         onClick={!this.state.selectedFromAddress || !this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
                     >
                         {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Bestill' : 'Jeg skal hit'}

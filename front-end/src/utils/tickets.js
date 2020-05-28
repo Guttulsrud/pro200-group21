@@ -1,12 +1,12 @@
 let tickets = [
     {
-        type: "Barn",
-        price: 25,
+        type: "Voksen",
+        price: 36,
         qty: 0
     },
     {
-        type: "Voksen",
-        price: 36,
+        type: "Barn",
+        price: 25,
         qty: 0
     },
     {

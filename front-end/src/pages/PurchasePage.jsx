@@ -9,7 +9,7 @@ import Stepper from '../components/Stepper';
 import BusSelection from '../components/BusSelection';
 import buses from '../utils/buses';
 import PurchaseCheckout from '../components/PurchaseCheckout';
-import {Link} from 'react-router-dom';
+import {StyledLink} from '../elements/links/StyledLink';
 
 
 class PurchasePage extends React.Component {
@@ -26,7 +26,7 @@ class PurchasePage extends React.Component {
         currentStep: 1,
         selectedAmount: false,
         showCheckout: false,
-        ticketId: "",
+        ticketId: '',
     };
 
 
@@ -85,7 +85,7 @@ class PurchasePage extends React.Component {
         )
             .then((res) => this.setState({
                 ticketId: res.data._id
-            }))
+            }));
     };
 
     handleShowBus = async () => {
@@ -147,25 +147,33 @@ class PurchasePage extends React.Component {
         } else if (this.state.showCheckout) {
             this.postData();
             const props = this.props.sendState;
-            content = <Div overflow={'auto'} width={1}>
-                <PurchaseCheckout
-                    bus={this.state.bus}
-                    desFrom={props.fromLoc}
-                    desTo={props.toLoc}
-                    sum={this.state.sum}
-                />
-                <Link to={`/activeticket?${this.state.ticketId}`}><Button width="70%" mt={this.state.sum ? 0 : 10}>Bestill
-                    buss</Button></Link>
+            content =
+                <React.Fragment>
+                    <Div overflow={'auto'} width={1}>
+                        <PurchaseCheckout
+                            bus={this.state.bus}
+                            desFrom={props.fromLoc}
+                            desTo={props.toLoc}
+                            sum={this.state.sum}
+                        />
 
+                    </Div>
 
-            </Div>;
+                    <StyledLink width={.7}  to={`/activeticket?${this.state.ticketId}`}>
+                        <Button width={"100%"}
+                                mt={this.state.count ? 0 : 10}>Bestill buss
+                        </Button>
+                    </StyledLink>
+                </React.Fragment>;
         } else {
             content = <React.Fragment>
                 {
                     tickets.map((t) => (
-                        <PurchaseSection key={t.type} type={t.type} price={t.price} qty={t.qty}
+                        <PurchaseSection key={t.type}
+                                         type={t.type}
+                                         price={t.price}
+                                         qty={t.qty}
                                          handleAdd={() => this.handleAdd(t.type)}
-                                         inactive={!t.qty}
                                          handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
                     ))
                 }
@@ -177,8 +185,9 @@ class PurchasePage extends React.Component {
                     </React.Fragment>
                     }
                 </Div>
-                <Button width="70%" mt={this.state.sum ? 0 : 67}
-                        onClick={this.state.sum > 0 ? this.handleShowBus : null}>Vis avganger</Button>
+                <Button
+                    inactive={!this.state.count} width="70%" mt={this.state.count ? 0 : 67}
+                        onClick={this.state.count > 0 ? this.handleShowBus : null}>Vis avganger</Button>
             </React.Fragment>;
         }
 

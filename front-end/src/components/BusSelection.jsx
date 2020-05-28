@@ -2,7 +2,7 @@ import React from 'react';
 import {Div} from '../elements/divs/Div';
 import Heading from '../elements/text/StyledHeading';
 import Text from '../elements/text/StyledText';
-import {ChevronRightIcon} from './Icons/ChevronRightIcon';
+import TargetIcon from './Icons/TargetIcon';
 
 
 const BusSelection = props => {
@@ -19,7 +19,7 @@ const BusSelection = props => {
             </Div>
             <Div display={"flex"} m={"auto"} width={1} justifyContent={"space-between"}>
                 <Div pl={18} display={"flex"}>
-                    <ChevronRightIcon/>
+                    <TargetIcon/>
                     <Text.p m={0} pt={3}>{props.curLoc}</Text.p>
                 </Div>
                 <Div pr={18} display={"flex"}>

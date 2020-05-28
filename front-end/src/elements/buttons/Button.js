@@ -1,8 +1,9 @@
 import styled, {css} from 'styled-components';
-import {space} from 'styled-system';
+import {space, position} from 'styled-system';
 
 export const Button = styled.button`
   ${space};
+  ${position};
   background-color: #003a70;
   height: 56px;
   width:  ${(props) =>
