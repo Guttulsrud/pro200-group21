@@ -1,6 +1,8 @@
 import React from 'react';
 import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
+import {Button} from '../elements/buttons/Button';
+import {MyLocationIcon} from './Icons/MyLocationIcon';
 import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
@@ -23,7 +25,8 @@ export class DummyMap extends React.Component {
             address: [],
             selected: true,
             orderReady: false,
-            animateBus: false
+            animateBus: false,
+            ticketId: props.ticketId
         };
     }
 
@@ -62,7 +65,7 @@ export class DummyMap extends React.Component {
     }
 
     getTicketFromId() {
-        let id = '5ece3361203e6401908ce649';
+        let id = this.state.ticketId;
         const url = `http://localhost:5000/ticket/details/${id}`;
 
         fetch(url)
@@ -154,7 +157,7 @@ export class DummyMap extends React.Component {
     };
 
     animateBus = () => {
-        setInterval(this.intervalFunc, 5000);
+        setInterval(this.intervalFunc, 2000);
     };
     intervalFunc = () => {
         if (this.state.polylineArray[this.busIndex]) {
@@ -171,7 +174,9 @@ export class DummyMap extends React.Component {
 
         if (state.toCoordinate.length > 0) {
             if (this.state.polylineArray.length < 1) {
-                this.generateRandomTripPolyline();
+                // this.generateRandomTripPolyline()
+                setTimeout(this.generateRandomTripPolyline, 1000);
+
             }
             if (this.state.animateBus) {
                 setTimeout(this.animateBus, 1000);

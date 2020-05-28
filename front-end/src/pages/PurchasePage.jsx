@@ -26,7 +26,7 @@ class PurchasePage extends React.Component {
         currentStep: 1,
         selectedAmount: false,
         showCheckout: false,
-
+        ticketId: "",
     };
 
 
@@ -72,9 +72,6 @@ class PurchasePage extends React.Component {
         this.setState({
             currentStep: newStep
         });
-
-        console.log(currentStep);
-
     };
 
     postData = async () => {
@@ -82,9 +79,10 @@ class PurchasePage extends React.Component {
             'http://localhost:5000/ticket/create',
             this.state.data,
             {headers: {'Content-Type': 'application/json'}}
-        );
-        console.log('Got here');
-
+        )
+            .then((res) => this.setState({
+                ticketId: res.data._id
+            }))
     };
 
     handleShowBus = async () => {
@@ -144,6 +142,7 @@ class PurchasePage extends React.Component {
                 )}
             </Div>;
         } else if (this.state.showCheckout) {
+            this.postData();
             const props = this.props.sendState;
             content = <Div overflow={'auto'} width={1}>
                 <PurchaseCheckout
@@ -152,7 +151,7 @@ class PurchasePage extends React.Component {
                     desTo={props.toLoc}
                     sum={this.state.sum}
                 />
-                <Link to={'/activeticket'}><Button width="70%" mt={this.state.sum ? 0 : 10} onClick={this.postData}>Bestill
+                <Link to={`/activeticket?${this.state.ticketId}`}><Button width="70%" mt={this.state.sum ? 0 : 10}>Bestill
                     buss</Button></Link>
 
 
