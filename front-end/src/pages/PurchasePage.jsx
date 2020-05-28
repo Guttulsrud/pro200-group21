@@ -79,7 +79,7 @@ class PurchasePage extends React.Component {
 
     postData = async () => {
         await axios.post(
-            'http://192.168.10.109:5000/ticket/create',
+            'http://localhost:5000/ticket/create',
             this.state.data,
             {headers: {'Content-Type': 'application/json'}}
         )

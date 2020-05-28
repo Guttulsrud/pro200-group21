@@ -221,7 +221,7 @@ body {
 }
 
 .checkout-select .select#payment option[value="vipps"] {
-  background-image: url(http://192.168.10.109:3000/vipps.png);
+  background-image: url(http://localhost:3000/vipps.png);
 }
 
 
@@ -330,13 +330,13 @@ body {
   margin-top: 4px;
   display: inline-block;
   vertical-align: top;
-  background-image: url(http://192.168.10.109:3000/images/pin-128.png);
+  background-image: url(http://localhost:3000/images/pin-128.png);
   background-position: left top;
   background-size: cover;
 }
 
 .hdpi .pac-icon {
-  background-image: url(http://192.168.10.109:3000/images/pin-128.png);
+  background-image: url(http://localhost:3000/images/pin-128.png);
   background-position: left top;
 }
 

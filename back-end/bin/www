@@ -55,5 +55,5 @@ function onListening() {
   const bind = typeof addr === 'string'
       ? 'pipe ' + addr
       : 'port ' + addr.port;
-  debug('Listening on http://192.168.10.109:5000');
+  debug('Listening on http://localhost:5000');
 }

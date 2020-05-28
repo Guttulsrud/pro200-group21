@@ -30,7 +30,7 @@ class DemoPage extends React.Component {
 
   async fetchTickets() {
     const url =
-      'http://192.168.10.109:5000/ticket-instance/user/5debe43e033f2330fc179981';
+      'http://localhost:5000/ticket-instance/user/5debe43e033f2330fc179981';
 
     let response;
     let payload;
