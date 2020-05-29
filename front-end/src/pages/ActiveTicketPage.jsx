@@ -41,11 +41,11 @@ export class ActiveTicketPage extends React.Component {
                     <DummyMap ticketId={this.props.location.search.split("?")[1]}/>
 
 
-            </Div>
-        <Div height={"50%"} bottom={0} position={"absolute"} width={"100%"}>
-            <Div display={busHasArrived ? "none" : "flex"} alignItems="center" mx={30}>
-                <Timeline journeyHasStarted={journeyHasStarted}></Timeline>
-            </Div>
+                </Div>
+                <Div height={"50%"} width={"100%"} bottom={0} position={"absolute"}>
+                <Div display={this.state.busHasArrived ? "none" : "flex"} alignItems="center" mx={30}>
+                    <TimeLine ticketId={this.props.location.search.split("?")[1]}/>
+                </Div>
 
                 <Div display={this.state.journeyHasStarted ? "none" : "flex"} justifyContent="center"
                      alignItems="center"
@@ -55,17 +55,22 @@ export class ActiveTicketPage extends React.Component {
 
                 </Div>
 
-            <Div mx={40} mt={30} display={journeyHasStarted ? "none" : "flex"} justifyContent="center"
-                 alignItems="center">
-                {!busHasArrived ? <Button outlineRed inactive={busTime < 5}>Avbestill Reise</Button> : <Button>ÅPNE DØR</Button>}
-            </Div>
+                <Div mx={40} mt={30} display={this.state.journeyHasStarted ? "none" : "flex"} justifyContent="center"
+                     alignItems="center">
+                    {!this.state.busHasArrived ? <Button inactive={this.state.busTime < 5}>Avbestill Reise</Button> :
+                        <Button>ÅPNE DØR</Button>}
+                </Div>
 
-            <Div mx={40} display={journeyHasStarted ? "flex" : "none"} justifyContent="center" alignItems="center">
-                <QRcode></QRcode>
-            </Div>
-        </Div>
-        </React.Fragment>
-    );
-};
+                <Div mx={40} display={this.state.journeyHasStarted ? "flex" : "none"} justifyContent="center"
+                     alignItems="center">
+                    <QRcode></QRcode>
+                </Div>
+                </Div>
+
+            </React.Fragment>
+
+        );
+    }
+}
 
 export default ActiveTicketPage

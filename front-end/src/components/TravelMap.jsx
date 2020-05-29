@@ -1,11 +1,8 @@
 import React from 'react';
 import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
-import {Button} from '../elements/buttons/Button';
-import {MyLocationIcon} from './Icons/MyLocationIcon';
-import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
-import PurchasePage from '../pages/PurchasePage';
+
 
 
 export class TravelMap extends React.Component {
@@ -301,12 +298,7 @@ export class TravelMap extends React.Component {
 
     render() {
 
-        const style = {
-            height: '100%',
-        };
-
         return (
-            <Div>
                 <Map
                     className={"map"}
                     google={this.props.google}
@@ -337,8 +329,7 @@ export class TravelMap extends React.Component {
                     <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
                 </Map>
-                {this.state.orderReady && <PurchasePage/>}
-            </Div>
+
         );
     }
 }

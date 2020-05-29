@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 import { Div } from '../elements/divs/Div';
 import { ChevronRightBig } from '../components/Icons/ChevronRightBig';
 import { DateIcon } from '../components/Icons/DateIcon';
-import { Receipt } from '../components/Receipt';
 import { Link } from 'react-router-dom';
 
 
