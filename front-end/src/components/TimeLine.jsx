@@ -22,24 +22,12 @@ export class TimeLine extends React.Component {
 
     }
 
-    getDuration = async (to, from) => {
-        const url = `http://localhost:5000/geo-json/duration/${to}/${from}`;
-
-        return await fetch(url)
-            .then(response => response.json()).then(res => {
-                console.log(res);
-            })
-
-    }
-
-
     componentDidMount() {
 
         this.getTicketFromId(this.props.ticketId).then(ticket => this.setState({
             from: ticket.route.origin.title,
             to: ticket.route.destination.title
         }))
-            .then(() => this.getDuration(this.state.from, this.state.to));
     }
 
 
