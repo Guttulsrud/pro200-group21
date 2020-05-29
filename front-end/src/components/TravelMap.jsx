@@ -36,7 +36,7 @@ export class TravelMap extends React.Component {
                 toCoordinate: ticket.route.destination.coordinates
             }))
         } else {
-            console.log("ID is not defined! Fix me")
+            console.log("ID is not defined!")
         }
 
     }
