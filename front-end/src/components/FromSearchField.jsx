@@ -27,7 +27,7 @@ class FromSearchField extends React.Component {
         this.setState({inputText: value});
 
         if (value !== '') {
-            this.setState({filled: true});
+            this.setState({filled: true} );
         } else {
             this.setState({filled: false});
         }
@@ -35,7 +35,6 @@ class FromSearchField extends React.Component {
 
     clearInput = () => {
         this.setState({inputText: '', filled: false}, () => this.props.handleRemoveFrom());
-
     };
 
     render() {
@@ -49,6 +48,7 @@ class FromSearchField extends React.Component {
                             this.setState({
                                 inputText: place.formatted_address
                             });
+                            this.props.insertFrom(this.state.inputText)
                         }}
                         types={[]}
                         componentRestrictions={{country: 'no'}}

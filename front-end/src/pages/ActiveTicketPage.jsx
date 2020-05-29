@@ -1,53 +1,44 @@
 import React from 'react';
-import {Div} from '../elements/divs/Div';
-import {Button} from '../elements/buttons/Button';
-import {RoundBtn} from '../elements/buttons/RoundBtn';
-import {ChevronLeftIcon} from '../components/Icons/ChevronLeftIcon'
-import {Timeline} from '../components/TimeLine'
-import DummyMap from '../components/DummyMap'
-import {QRcode} from '../components/Icons/qrcode';
-import {Link} from 'react-router-dom';
+import {Link} from "react-router-dom";
+import {RoundBtn} from "../elements/buttons/RoundBtn";
+import {ChevronLeftIcon} from "../components/Icons/ChevronLeftIcon";
+import {Div} from "../elements/divs/Div";
+import DummyMap from "../components/TravelMap";
+import TimeLine from "../components/TimeLine";
+import {Button} from "../elements/buttons/Button";
+import {QRcode} from "../components/Icons/qrcode";
 
 
-const ActiveTicketPage = (props) => {
+export class ActiveTicketPage extends React.Component {
 
-    const [busName, setBusName] = React.useState("TestYan 123")
-    const [busTime, setBusTime] = React.useState(5)
-    const [journey, setJourney] = React.useState([])
-    const [busHasArrived, setBusHasArrived] = React.useState(false)
-    const [journeyHasStarted, setJourneyHasStarted] = React.useState(false)
+    state = {
+        journeyHasStarted: true,
+        busHasArrived: false,
+        busTime: 100,
+    };
 
 
-    const handleBusName = () => {
-        setBusName()
-    }
+    render() {
 
-    const handleBusTime = () => {
-        setBusTime()
 
-    }
+        return (
+            <React.Fragment>
 
-    const handleBusJourney = () => {
-        setJourney()
+                <Link to='/ticket' style={{textDecoration: 'none'}}>
+                    <RoundBtn secondary mt={'2em'} mx={'1em'} position="absolute" top="0" zIndex={9999}>
+                        <ChevronLeftIcon/>
+                    </RoundBtn>
+                </Link>
 
-    }
+                <Div display="relative"
+                     color={"#AAAAAA"}
+                     justifyContent="center"
+                     alignItems="center"
+                     width={"100%"}
+                     bg={"#DDDDDD"}
+                >
 
-    return (
-        <React.Fragment>
-            <Link to='/ticket' style={{textDecoration: 'none'}}>
-                <RoundBtn secondary mt={'2em'} mx={'1em'} position="absolute" top="0" zIndex={9999}>
-                    <ChevronLeftIcon/>
-                </RoundBtn>
-            </Link>
-            <Div display="relative"
-                 color={"#AAAAAA"}
-                 justifyContent="center"
-                 alignItems="center"
-                 width={"100%"}
-                 bg={"#DDDDDD"}
-            >
-
-                <DummyMap ticketId={props.location.search.split("?")[1]}></DummyMap>
+                    <DummyMap ticketId={this.props.location.search.split("?")[1]}/>
 
 
             </Div>
@@ -56,12 +47,13 @@ const ActiveTicketPage = (props) => {
                 <Timeline journeyHasStarted={journeyHasStarted}></Timeline>
             </Div>
 
-            <Div display={journeyHasStarted ? "none" : "flex"} justifyContent="center" alignItems="center"
-                 color="#666666" mx={"4em"} my={busHasArrived ? 20 : 10} textAlign="center">
-                {!busHasArrived && <h3>{busName} ankommer om {busTime} minutter </h3>}
-                {busHasArrived && <h3>{busName} har ankommet</h3>}
+                <Div display={this.state.journeyHasStarted ? "none" : "flex"} justifyContent="center"
+                     alignItems="center"
+                     color="#666666" mx={"4em"} my={this.state.busHasArrived ? 20 : 10} textAlign="center">
+                    {!this.state.busHasArrived && <h3>IAmBUS! ankommer om 69 minutter </h3>}
+                    {this.state.busHasArrived && <h3>iAmBus har ankommet</h3>}
 
-            </Div>
+                </Div>
 
             <Div mx={40} mt={30} display={journeyHasStarted ? "none" : "flex"} justifyContent="center"
                  alignItems="center">
@@ -76,4 +68,4 @@ const ActiveTicketPage = (props) => {
     );
 };
 
-export default ActiveTicketPage;
+export default ActiveTicketPage

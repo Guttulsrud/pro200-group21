@@ -10,7 +10,7 @@ import PurchasePage from '../pages/PurchasePage';
 import ToSearchField from './ToSearchField';
 
 
-export class MapContainer extends React.Component {
+export class MainMap extends React.Component {
 
     constructor(props) {
         super(props);
@@ -178,6 +178,18 @@ export class MapContainer extends React.Component {
         });
     };
 
+    insertFrom = (value) => {
+        this.setState({
+            fromLoc: value
+        })
+    }
+
+    insertTo = (value) => {
+        this.setState({
+            toLoc: value
+        })
+    }
+
     render() {
 
         let content;
@@ -210,12 +222,14 @@ export class MapContainer extends React.Component {
                         fromSelected={this.state.selectedFromAddress}
                         handleInputSelect={this.handleInputSelect}
                         handleRemoveFrom={this.handleRemoveFrom}
+                        insertFrom={this.insertFrom}
                     />}
 
                     {(!this.state.orderReady && this.state.selectedFromAddress) && <ToSearchField
                         toLoc={this.state.toLoc}
                         handleInputSelect={this.handleInputSelect}
                         handleRemoveTo={this.handleRemoveTo}
+                        insertTo={this.insertTo}
                     />}
                     {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>}
 
@@ -272,4 +286,4 @@ export class MapContainer extends React.Component {
 
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyBIowGjwaajWBpRnebeFK_K0ut_RUCGYxs',
-})(MapContainer);
+})(MainMap);
