@@ -35,7 +35,7 @@ export const Button = styled.button`
         border: 2px solid #00866e;
       `}
     ${(props) =>
-    props.outlineRed &&
+    props.outlineOrange &&
     css`
         background-color: transparent;
         color: #FF3800;
@@ -46,6 +46,13 @@ export const Button = styled.button`
     css`
         background-color: #a7bcd6;
         color: #003a70;
+        cursor: not-allowed;
+      `}
+    ${(props) =>
+    props.inactiveOutline &&
+    css`
+        color: #b9b9b9;
+        border-color: #b9b9b9;
         cursor: not-allowed;
       `}
     ${(props) =>

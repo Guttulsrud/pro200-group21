@@ -57,7 +57,7 @@ export class ActiveTicketPage extends React.Component {
 
                 <Div mx={40} mt={30} display={this.state.journeyHasStarted ? "none" : "flex"} justifyContent="center"
                      alignItems="center">
-                    {!this.state.busHasArrived ? <Button inactive={this.state.busTime < 5}>Avbestill Reise</Button> :
+                    {!this.state.busHasArrived ? <Button outlineOrange inactiveOutline={this.state.busTime < 5}>Avbestill Reise</Button> :
                         <Button>ÅPNE DØR</Button>}
                 </Div>
 
