@@ -178,11 +178,11 @@ class PurchasePage extends React.Component {
                                          handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
                     ))
                 }
-                <Div display="flex" justifyContent="space-between" height={"53px"}  width={0.95}>
+                <Div display="flex" justifyContent="space-between" width={0.95} >
 
                     <React.Fragment>
-                        <Heading.h2 fontSize={22} my={13}>Totalsum</Heading.h2>
-                        <Heading.h2 fontSize={22} my={13}>{this.state.sum} kr</Heading.h2>
+                        <Heading.h2 >Totalsum</Heading.h2>
+                        <Heading.h2 >{this.state.sum} kr</Heading.h2>
                     </React.Fragment>
 
                 </Div>
@@ -199,8 +199,8 @@ class PurchasePage extends React.Component {
 
 
         return (
-            <Div display="flex" flexDirection="column" alignItems={'center'} height={"70%"}
-                 bg={'#fff'} width={1}  bottom={0} position={"absolute"}
+            <Div display="flex" flexDirection="column" alignItems={'center'} height={"100%"}
+                 bg={'#fff'} width={1} position={"absolute"}
             >
                 <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95} >
                     <Div display="flex" flexDirection="column" width="100%" justifyContent="space-between">

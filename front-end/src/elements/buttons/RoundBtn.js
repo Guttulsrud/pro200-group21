@@ -12,8 +12,8 @@ export const RoundBtn = styled.button`
   ${margin}
   ${padding}
   background-color: #003A70;
-  height: 30px;
-  width: 30px;
+  height: 38px;
+  width: 38px;
   color: white;
   border: none;
   border-radius: 50px;

@@ -43,7 +43,6 @@ const ActiveTicketPage = (props) => {
                  color={"#AAAAAA"}
                  justifyContent="center"
                  alignItems="center"
-                 height={busHasArrived ? "32em" : "23em"}
                  width={"100%"}
                  bg={"#DDDDDD"}
             >
@@ -52,7 +51,7 @@ const ActiveTicketPage = (props) => {
 
 
             </Div>
-
+        <Div height={"50%"} bottom={0} position={"absolute"} width={"100%"}>
             <Div display={busHasArrived ? "none" : "flex"} alignItems="center" mx={30}>
                 <Timeline journeyHasStarted={journeyHasStarted}></Timeline>
             </Div>
@@ -66,12 +65,13 @@ const ActiveTicketPage = (props) => {
 
             <Div mx={40} mt={30} display={journeyHasStarted ? "none" : "flex"} justifyContent="center"
                  alignItems="center">
-                {!busHasArrived ? <Button inactive={busTime < 5}>Avbestill Reise</Button> : <Button>ÅPNE DØR</Button>}
+                {!busHasArrived ? <Button outlineRed inactive={busTime < 5}>Avbestill Reise</Button> : <Button>ÅPNE DØR</Button>}
             </Div>
 
             <Div mx={40} display={journeyHasStarted ? "flex" : "none"} justifyContent="center" alignItems="center">
                 <QRcode></QRcode>
             </Div>
+        </Div>
         </React.Fragment>
     );
 };

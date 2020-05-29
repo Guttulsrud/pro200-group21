@@ -44,6 +44,16 @@ export class MapContainer extends React.Component {
                     myLat: position.coords.latitude,
                     myLng: position.coords.longitude
                 });
+                if(!this.state.selectedFromAddress) {
+                    this.setState({
+                        fromLoc: "Min posisjon"
+                    })
+
+                } else {
+                    this.setState({
+                        toLoc: "Min posisjon"
+                    })
+                }
             });
 
         } else {
@@ -170,16 +180,15 @@ export class MapContainer extends React.Component {
 
     render() {
 
-        const style = {
-            height: '100%',
-        };
+        let content;
 
-        return (
-            <Div display={"flex"} flexDirection={"column"}>
-                <Div>
+        // const style = {
+        //     height: '100%',
+        // };
+
+        if(!this.state.orderReady) {
+            content = (
                 <Map
-                    className={this.state.orderReady ? "map" : ""}
-                    style={!this.state.orderReady ? null : style}
                     google={this.props.google}
                     initialCenter={{lat: 59.924117, lng: 10.766715,}}
                     centerAroundCurrentLocation
@@ -230,19 +239,29 @@ export class MapContainer extends React.Component {
                     <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
                 </Map>
-                </Div>
-                {this.state.orderReady && <PurchasePage sendState={this.state}/>}
+            )
+        } else {
+            content = (
+                <PurchasePage sendState={this.state}/>
+            )
+        }
 
+
+
+        return (
+            <Div display={"flex"} flexDirection={"column"}>
+                {content}
                 {!this.state.orderReady &&
                 <Div paddingTop='30px'>
                     <Button
+                        mb={20}
                         width='70%'
                         bottom
                         center
                         inactive={this.state.selectedFromAddress && !this.state.toLoc}
                         onClick={!this.state.selectedFromAddress || !this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
                     >
-                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Bestill' : 'Jeg skal hit'}
+                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Velg antall' : 'Jeg skal hit'}
                     </Button>
                 </Div>
                 }

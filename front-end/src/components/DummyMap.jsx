@@ -299,15 +299,13 @@ export class DummyMap extends React.Component {
     render() {
 
         const style = {
-            height: '23em',
-
-
+            height: '100%',
         };
 
         return (
             <Div>
                 <Map
-                    style={style}
+                    className={"map"}
                     google={this.props.google}
                     initialCenter={{lat: 59.924117, lng: 10.766715,}}
                     centerAroundCurrentLocation

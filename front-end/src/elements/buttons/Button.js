@@ -35,6 +35,13 @@ export const Button = styled.button`
         border: 2px solid #00866e;
       `}
     ${(props) =>
+    props.outlineRed &&
+    css`
+        background-color: transparent;
+        color: #FF3800;
+        border: 2px solid #FF3800;
+      `}
+    ${(props) =>
     props.inactive &&
     css`
         background-color: #a7bcd6;
