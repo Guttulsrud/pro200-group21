@@ -32,10 +32,13 @@ export class TimeLine extends React.Component {
 
     componentDidMount() {
 
-        this.getTicketFromId(this.props.ticketId).then(ticket => this.setState({
-            from: ticket.route.origin.title,
-            to: ticket.route.destination.title
-        }));
+        this.getTicketFromId(this.props.ticketId).then(ticket => {
+
+            this.setState({
+                from: ticket.route.origin.title,
+                to: ticket.route.destination.title
+            })
+        });
     }
 
 

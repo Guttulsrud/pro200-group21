@@ -64,7 +64,8 @@ class ToSearchField extends React.Component {
                         componentRestrictions={{ country: 'no' }}
                         value={this.state.inputText}
                         onChange={(e) => this.handleChange(e.target.value)}
-                        filled={this.state.filled}
+                        filled={this.state.filled ? this.state.inputText : undefined}
+
                     />
                     <Label filled={this.state.filled}>Hvor vil du reise til?</Label>
                     {this.state.filled && (
