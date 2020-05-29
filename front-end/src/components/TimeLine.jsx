@@ -3,7 +3,6 @@ import {Div} from '../elements/divs/Div';
 import {BusIcon} from "./Icons/BusIcon";
 
 
-
 export class TimeLine extends React.Component {
 
     state = {
@@ -23,13 +22,24 @@ export class TimeLine extends React.Component {
 
     }
 
+    getDuration = async (to, from) => {
+        const url = `http://localhost:5000/geo-json/duration/${to}/${from}`;
+
+        return await fetch(url)
+            .then(response => response.json()).then(res => {
+                console.log(res);
+            })
+
+    }
+
 
     componentDidMount() {
 
         this.getTicketFromId(this.props.ticketId).then(ticket => this.setState({
             from: ticket.route.origin.title,
             to: ticket.route.destination.title
-        }));
+        }))
+            .then(() => this.getDuration(this.state.from, this.state.to));
     }
 
 
@@ -48,7 +58,7 @@ export class TimeLine extends React.Component {
                 <Div display="flex" justifyContent="space-around" alignItems="center" width={"100%"}
                      position="relative">
 
-                    <Div width={"100%"} position="relative" height="3px" bg={"#003A70"}></Div>
+                    <Div width={"100%"} position="relative" height="3px" bg={"#003A70"}/>
 
                     {this.state.journeyHasStarted &&
                     <Div borderRadius="100px"

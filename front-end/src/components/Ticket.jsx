@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Div } from '../elements/divs/Div';
-import { ChevronRightBig } from '../components/Icons/ChevronRightBig';
-import { DateIcon } from '../components/Icons/DateIcon';
+import { ChevronRightBig } from './Icons/ChevronRightBig';
+import { DateIcon } from './Icons/DateIcon';
 import { Link } from 'react-router-dom';
 
 
