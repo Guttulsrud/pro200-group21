@@ -16,8 +16,12 @@ exports.getTicketById = function (req, res) {
     const ticketInstanceId = req.params.id;
 
     Ticket.findById({_id: ticketInstanceId})
-        .then(result => res.send(result))
-        .catch(err => res.send(err));
+        .then(result => {
+            res.send(result)
+        })
+        .catch(err => {
+            res.send(err)
+        });
 }
 
 // GET all tickets by user ID
@@ -53,7 +57,9 @@ exports.createTicket = function (req, res) {
             },
         }
     })
-        .then(ticket => res.send(ticket))
+        .then(ticket => {
+            res.send(ticket)
+        })
         .catch(error => res.send(error));
 
 };

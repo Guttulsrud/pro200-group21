@@ -13,8 +13,8 @@ export class TravelMap extends React.Component {
         super(props);
 
         this.state = {
-            fromCoordinate: [0, 0],
-            toCoordinate: [0, 0],
+            fromCoordinate: [],
+            toCoordinate: [],
             busCoordinate: [],
             polylineArray: [],
             selected: true,
@@ -27,37 +27,26 @@ export class TravelMap extends React.Component {
 
     componentDidMount() {
 
-        this.getTicketFromId(this.props.ticketId).then(ticket => this.setState({
-            fromCoordinate: ticket.route.origin.coordinates,
-            toCoordinate: ticket.route.destination.coordinates
-        }));
+        if(typeof this.props.ticketId !== 'undefined') {
+            this.getTicketFromId(this.props.ticketId).then(ticket =>
 
-
-        this.showCurrentLocation();
+                this.setState({
+                fromCoordinate: ticket.route.origin.coordinates,
+                toCoordinate: ticket.route.destination.coordinates
+            }))
+        } else {
+            console.log("ID is not defined!")
+        }
 
     }
-
-    showCurrentLocation = () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                this.setState({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    myLat: position.coords.latitude,
-                    myLng: position.coords.longitude
-                });
-            });
-        } else {
-            console.log('GEOLOCATION NOT ACTIVE');
-        }
-    };
 
 
     getTicketFromId = async (id) => {
         const url = `http://localhost:5000/ticket/details/${id}`;
 
         return await fetch(url)
-            .then(response => response.json()).then(res => {
+            .then(response => response.json()
+            ).then(res => {
                 return res;
             })
 

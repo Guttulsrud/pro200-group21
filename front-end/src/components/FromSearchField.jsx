@@ -3,13 +3,12 @@ import {CloseIcon} from './Icons/CloseIcon';
 import {Label, StyledAC} from '../elements/inputs/StyledAutocomplete';
 
 class FromSearchField extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            filled: false,
-            inputText: '',
-        };
-    }
+
+    state = {
+        filled: false,
+        inputText: '',
+    };
+
 
     componentDidUpdate(prevProps) {
         if (
@@ -27,7 +26,7 @@ class FromSearchField extends React.Component {
         this.setState({inputText: value});
 
         if (value !== '') {
-            this.setState({filled: true} );
+            this.setState({filled: true});
         } else {
             this.setState({filled: false});
         }
@@ -44,9 +43,10 @@ class FromSearchField extends React.Component {
                     <StyledAC
                         placeholder={''}
                         onPlaceSelected={(place) => {
-                            this.props.handleInputSelect(place.geometry.location.lat(), place.geometry.location.lng());
+                            const {geometry, formatted_address} = place;
+                            this.props.handleInputSelect(geometry.location.lat(), geometry.location.lng());
                             this.setState({
-                                inputText: place.formatted_address
+                                inputText: formatted_address
                             });
                             this.props.insertFrom(this.state.inputText)
                         }}
@@ -54,7 +54,8 @@ class FromSearchField extends React.Component {
                         componentRestrictions={{country: 'no'}}
                         value={this.state.inputText}
                         onChange={(e) => this.handleChange(e.target.value)}
-                        filled={this.state.filled}
+
+                        filled={this.state.filled ? this.state.inputText : undefined}
                     />
                     <Label filled={this.state.filled}>Hvor vil du reise fra?</Label>
                     {this.state.filled && (

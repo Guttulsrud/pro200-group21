@@ -22,6 +22,7 @@ export class TimeLine extends React.Component {
 
     }
 
+
     componentDidMount() {
 
         this.getTicketFromId(this.props.ticketId).then(ticket => this.setState({
