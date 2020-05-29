@@ -33,10 +33,4 @@ exports.createUser = function (req, res) {
 
 };
 
-exports.deleteUserById = function (req, res) {
 
-    TicketInstance.deleteMany({user_id: userId})
-        .then(result => User.deleteOne({_id: userId}))
-        .then(result => res.send(`user : ${userId} deleted\n ${result}`))
-        .catch(error => res.send(error));
-}

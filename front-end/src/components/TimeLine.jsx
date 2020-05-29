@@ -54,7 +54,7 @@ export class TimeLine extends React.Component {
                 <Div display="flex" justifyContent="space-around" alignItems="center" width={"100%"}
                      position="relative">
 
-                    <Div width={"100%"} position="relative" height="3px" bg={"#003A70"}></Div>
+                    <Div width={"100%"} position="relative" height="3px" bg={"#003A70"}/>
 
                     {this.state.journeyHasStarted &&
                     <Div borderRadius="100px"

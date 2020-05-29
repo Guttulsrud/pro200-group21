@@ -4,7 +4,9 @@ const Ticket = require('../models/ticket');
 exports.getTicketAll = function (req, res) {
 
     Ticket.find({}, '')
+        .limit(10)
         .where('archived').equals('false')
+        .sort({expiration: -1})
         .then(tickets => res.send(tickets))
         .catch(error => res.send(error));
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import {Map, Marker, Polyline, GoogleApiWrapper} from 'google-maps-react';
 import {mapStyle} from '../utils/MapStyle.js';
 import {Button} from '../elements/buttons/Button';
-import {MyLocationIcon} from './Icons/MyLocationIcon';
 import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 import PurchasePage from '../pages/PurchasePage';
@@ -17,12 +16,8 @@ export class TravelMap extends React.Component {
         this.state = {
             fromCoordinate: [0, 0],
             toCoordinate: [0, 0],
-            stopCoordinate: [],
             busCoordinate: [],
-            selectedFromAddress: false,
             polylineArray: [],
-            fromLoc: '',
-            address: [],
             selected: true,
             orderReady: false,
             animateBus: false,
@@ -32,6 +27,7 @@ export class TravelMap extends React.Component {
 
 
     componentDidMount() {
+
         this.getTicketFromId(this.props.ticketId).then(ticket => this.setState({
             fromCoordinate: ticket.route.origin.coordinates,
             toCoordinate: ticket.route.destination.coordinates
@@ -57,19 +53,6 @@ export class TravelMap extends React.Component {
         }
     };
 
-    setAddressFromCoordinates(lat, lng) {
-        const url = `http://localhost:5000/geocoder/coordinates/${lat}/${lng}`;
-
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({
-                    fromLoc: data.address.split(',')[0],
-                    latitude: lat,
-                    longitude: lng,
-                });
-            });
-    }
 
     getTicketFromId = async (id) => {
         const url = `http://localhost:5000/ticket/details/${id}`;
@@ -85,15 +68,6 @@ export class TravelMap extends React.Component {
         map.setOptions({
             styles: mapStyle,
         });
-
-        this.changedCenter(mapProps, map);
-    }
-
-    changedCenter(prevProps, map) {
-        let lat = map.center.lat();
-        let lng = map.center.lng();
-
-        this.setAddressFromCoordinates(lat, lng);
     }
 
     renderStartMarker = () => {
@@ -314,11 +288,10 @@ export class TravelMap extends React.Component {
                     google={this.props.google}
                     initialCenter={{lat: 59.924117, lng: 10.766715,}}
                     centerAroundCurrentLocation
-                    // center={{
-                    //     lat: this.state.fromCoordinate[0],
-                    //     lng: this.state.fromCoordinate[1]
-                    // }}
-                    onDragend={this.changedCenter.bind(this)}
+                    center={{
+                        lat: this.state.fromCoordinate[0],
+                        lng: this.state.fromCoordinate[1]
+                    }}
                     zoom={14}
                     streetViewControl={false}
                     zoomControl={false}
