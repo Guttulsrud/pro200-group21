@@ -17,6 +17,6 @@ export const items = [
     {
         title: 'Profil',
         icon: <ProfileIcon />,
-        link: '/demopage'
+        link: '/profile'
     }
 ];

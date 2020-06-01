@@ -5,15 +5,21 @@ import {Label, StyledAC} from '../elements/inputs/StyledAutocomplete';
 class FromSearchField extends React.Component {
 
     state = {
-        filled: false,
-        inputText: '',
+        inputText: "" || this.props.fromLoc,
+        filled: false
     };
+
+    componentDidMount() {
+        this.setState({
+            filled:this.state.inputText
+        })
+    }
 
 
     componentDidUpdate(prevProps) {
         if (
-            this.props.fromLoc != null &&
-            prevProps.fromLoc !== this.props.fromLoc
+            (this.props.fromLoc != null &&
+            prevProps.fromLoc !== this.props.fromLoc)
         ) {
             this.setState({
                 inputText: this.props.fromLoc,
@@ -54,7 +60,6 @@ class FromSearchField extends React.Component {
                         componentRestrictions={{country: 'no'}}
                         value={this.state.inputText}
                         onChange={(e) => this.handleChange(e.target.value)}
-
                         filled={this.state.filled ? this.state.inputText : undefined}
                     />
                     <Label filled={this.state.filled}>Hvor vil du reise fra?</Label>

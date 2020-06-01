@@ -2,14 +2,15 @@ import React from 'react';
 import {Div} from '../elements/divs/Div';
 import {Button} from '../elements/buttons/Button';
 import tickets from '../utils/tickets';
-import PurchaseSection from '../components/PurchaseSection';
+import PurchaseSection from './PurchaseSection';
 import Heading from '../elements/text/StyledHeading';
 import axios from 'axios';
-import Stepper from '../components/Stepper';
-import BusSelection from '../components/BusSelection';
+import Stepper from './Stepper';
+import BusSelection from './BusSelection';
 import buses from '../utils/buses';
-import PurchaseCheckout from '../components/PurchaseCheckout';
+import PurchaseCheckout from './PurchaseCheckout';
 import {StyledLink} from '../elements/links/StyledLink';
+import BackArrow from './Icons/BackArrow';
 
 
 class PurchasePage extends React.Component {
@@ -130,13 +131,28 @@ class PurchasePage extends React.Component {
         }, () => this.handleClick('next'));
     };
 
+    handleGoBack = () => {
+        if(this.state.selectedAmount) {
+            this.setState({
+                selectedAmount: false
+            })
+        } else if(this.state.showCheckout) {
+            this.setState({
+                showCheckout: false,
+                selectedAmount: true
+            })
+        } else {
+            this.props.handleGoBack()
+        }
+
+    }
 
     render() {
 
         let content;
 
         if (this.state.selectedAmount) {
-            content = <Div overflow={'auto'} width={1} bg={'#F5F5F5'}>
+            content = <Div overflow={'auto'} width={1} bg={'#F5F5F5'} display={"flex"} flexDirection={"column"} alignItems={"center"}>
                 {buses.map(b => {
                         return b.cap > this.state.count ?
                             <BusSelection
@@ -192,7 +208,7 @@ class PurchasePage extends React.Component {
                     </React.Fragment>
 
                 </Div>
-                <Button
+                <Button mb={20}
                     inactive={!this.state.count} width="70%"
                         onClick={this.state.count > 0 ? this.handleShowBus : null} >Vis avganger</Button>
             </Div>;
@@ -208,6 +224,8 @@ class PurchasePage extends React.Component {
             <Div display="flex" flexDirection="column" alignItems={'center'} height={"100%"}
                  bg={'#fff'} width={1} position={"absolute"}
             >
+                <Div display={"flex"} width={.95} ><Div onClick={this.handleGoBack} p={10} pl={0} ><BackArrow/></Div></Div>
+
                 <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95} >
                     <Div display="flex" flexDirection="column" width="100%" justifyContent="space-between">
                         <Stepper steps={stepsArray} currentStepNumber={currentStep}/>

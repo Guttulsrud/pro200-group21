@@ -6,7 +6,7 @@ import {MyLocationIcon} from './Icons/MyLocationIcon';
 import FromSearchField from './FromSearchField';
 import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
-import PurchasePage from '../pages/PurchasePage';
+import PurchasePage from './PurchasePage';
 import ToSearchField from './ToSearchField';
 
 
@@ -28,6 +28,8 @@ export class MainMap extends React.Component {
             selectedToAddress: false,
             orderReady: false,
             points: [],
+            latitude: 0,
+            longitude: 0
         };
     }
 
@@ -49,7 +51,7 @@ export class MainMap extends React.Component {
                         fromLoc: "Min posisjon"
                     })
 
-                } else {
+                } else if(!this.state.selectedToAddress) {
                     this.setState({
                         toLoc: "Min posisjon"
                     })
@@ -112,10 +114,15 @@ export class MainMap extends React.Component {
             this.setState({
                 selectedFromAddress: true,
                 fromCoordinate: [state.latitude, state.longitude],
-            });
+            }, () => this.moveCursor(this.state.longitude) );
         }
     }
 
+    moveCursor = prevState => {
+        this.setState({
+            longitude: prevState + 0.000600
+        })
+    }
     renderStartMarker = () => {
         const state = this.state;
         if (state.fromCoordinate) {
@@ -190,6 +197,12 @@ export class MainMap extends React.Component {
         })
     }
 
+    handleGoBack = () => {
+        this.setState({
+            orderReady: false
+        })
+    }
+
     render() {
 
         let content;
@@ -256,7 +269,7 @@ export class MainMap extends React.Component {
             )
         } else {
             content = (
-                <PurchasePage sendState={this.state}/>
+                <PurchasePage sendState={this.state} handleGoBack={this.handleGoBack}/>
             )
         }
 

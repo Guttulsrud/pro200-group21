@@ -10,11 +10,6 @@ let tickets = [
         qty: 0
     },
     {
-        type: "Barn under 6 år",
-        price: 0,
-        qty: 0
-    },
-    {
         type: "Honnør",
         price: 25 ,
         qty: 0
