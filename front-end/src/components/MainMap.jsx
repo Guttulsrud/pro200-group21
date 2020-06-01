@@ -6,7 +6,7 @@ import {MyLocationIcon} from './Icons/MyLocationIcon';
 import FromSearchField from './FromSearchField';
 import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
-import PurchasePage from './PurchasePage';
+import PurchaseSection from './PurchaseSection';
 import ToSearchField from './ToSearchField';
 
 
@@ -269,7 +269,7 @@ export class MainMap extends React.Component {
             )
         } else {
             content = (
-                <PurchasePage sendState={this.state} handleGoBack={this.handleGoBack}/>
+                <PurchaseSection sendState={this.state} handleGoBack={this.handleGoBack}/>
             )
         }
 

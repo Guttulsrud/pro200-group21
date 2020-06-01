@@ -12,7 +12,7 @@ export const items = [
     {
         title: 'Billett',
         icon: <TicketIcon />,
-        link: '/ticket'
+        link: '/activeticket'
     },
     {
         title: 'Profil',

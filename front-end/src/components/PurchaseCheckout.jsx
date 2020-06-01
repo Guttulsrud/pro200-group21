@@ -49,7 +49,7 @@ const BusSelection = props => {
                 alignItems="center">
                 <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                     <img height={32} width={32} src={'/images/pin-48-from.png'} alt={"pin icon"} />
-                    <Heading.h2 fontSize="1rem">{props.desFrom}</Heading.h2>
+                    <Heading.h2 fontSize="1rem">{props.origin}</Heading.h2>
                 </Div>
                 <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                     <ArrowForwardIcon />
@@ -57,7 +57,7 @@ const BusSelection = props => {
 
                 <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                     <img height={32} width={32} src={'/images/pin-48-to.png'} alt={"pin icon"} />
-                    <Heading.h2 fontSize="1rem" display={'flex'}>{props.desTo}</Heading.h2>
+                    <Heading.h2 fontSize="1rem" display={'flex'}>{props.destination}</Heading.h2>
                 </Div>
 
             </Div>
