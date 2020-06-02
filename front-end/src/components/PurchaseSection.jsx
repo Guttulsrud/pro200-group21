@@ -28,6 +28,7 @@ class PurchaseSection extends React.Component {
         selectedAmount: false,
         showCheckout: false,
         ticketId: '',
+        purchased: false
     };
 
     componentDidMount() {
@@ -91,6 +92,7 @@ class PurchaseSection extends React.Component {
             {headers: {'Content-Type': 'application/json'}}
         )
             .then((res) => this.setState({
+                purchased:true,
                 ticketId: res.data._id
             }));
     };
@@ -167,7 +169,9 @@ class PurchaseSection extends React.Component {
                 )}
             </Div>;
         } else if (this.state.showCheckout) {
-            this.postData();
+            if(!this.state.purchased) {
+                this.postData().then(r => console.log(r));
+            }
             const props = this.props.sendState;
             content =
                 <React.Fragment>
