@@ -30,6 +30,7 @@ class TutorialDialog extends React.Component {
 
     handleCloseDialog = () => {
         console.log('SET DIALOG TO FALSE');
+        localStorage.setItem('showTutorial', false);
 
         //For development purposes
         this.setState({
@@ -46,7 +47,7 @@ class TutorialDialog extends React.Component {
         const { textColor } = this.state;
 
         return (
-            <Div position="absolute" backgroundColor="rgba(0,0,0,0.6)" height="100%" width="100%" display="flex" alignItems="center" justifyContent="center">
+            <Div position="absolute" backgroundColor="rgba(0,0,0,0.6)" mt="-30px" height="100%" width="100%" display="flex" alignItems="center" justifyContent="center" zIndex={999}>
 
                 <Div display="flex" flexDirection="column" justifyContent="space-between" position="relative" className="shadow" width="300px" height="570px" padding="20px" marginTop="20px" backgroundColor="#CCEAE4" borderRadius={10}>
 

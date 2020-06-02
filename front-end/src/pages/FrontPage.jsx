@@ -1,9 +1,23 @@
 import React from 'react';
 import MapContainer from '../components/MainMap';
+import TutorialDialog from '../components/TutorialDialog';
 
 const FrontPage = () => {
+  const getLsData = () => {
+    let getData = JSON.parse(localStorage['showTutorial'])
+    return getData;
+  };
+
+
   return (
+
+    <div>
+
+
       <MapContainer />
+
+      {(getLsData() === true) ? <TutorialDialog /> : null}
+    </div>
   );
 };
 
