@@ -8,10 +8,19 @@ import NotFound from './pages/NotFoundPage';
 import BottomMenu from './components/BottomMenu/BottomMenu';
 import Demo from './pages/Demo';
 import ActiveTicketPage from "./pages/ActiveTicketPage";
+import TestDialog from './pages/TestDialog';
 // import TicketPage from "./pages/TicketPage";
 
 function App() {
+  const setLocalStorage = () => {
+    let showTutorial = localStorage.getItem('showTutorial');
+    if (showTutorial === null) {
+      localStorage.setItem('showTutorial', true).JSON.stringify();
+    }
+  };
+
   return (
+
     <Router>
       <div className='App'>
         <ThemeProvider theme={theme}>
@@ -23,6 +32,7 @@ function App() {
                 {/*<Route exact path='/ticket' component={TicketPage} />*/}
                 <Route exact path='/profile' component={ProfilePage} />
                 <Route exact path='/activeticket' component={ActiveTicketPage} />
+                <Route exact path='/test' component={TestDialog} />
                 <Route component={NotFound} />
               </Switch>
             </div>
