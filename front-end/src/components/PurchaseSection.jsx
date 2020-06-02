@@ -226,7 +226,7 @@ class PurchaseSection extends React.Component {
 
         return (
             <Div display="flex" flexDirection="column" alignItems={'center'} height={"100%"}
-                 bg={'#fff'} width={1} position={"absolute"}
+                 bg={'#fff'} width={1} position={"absolute"} bottom={0}
             >
                 <Div display={"flex"} width={.95} ><Div onClick={this.handleGoBack} p={10} pl={0} ><BackArrow/></Div></Div>
 
