@@ -63,12 +63,10 @@ body {
 
 /* MAP */
 .map {
-  position: relative !important;
+  height: 50% !important;
 
 }
-.anim-div {
-  height: 100%;
-}
+
 #map-marker {
   position: absolute;
   top: 50%;
