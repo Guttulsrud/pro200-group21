@@ -18,7 +18,7 @@ function App() {
       localStorage.setItem('showTutorial', true).JSON.stringify();
     }
   };
-
+  setLocalStorage();
   return (
 
     <Router>
