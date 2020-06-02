@@ -87,8 +87,8 @@ export class TimeLine extends React.Component {
                 </Div>
 
                 <Div display="flex" justifyContent="space-between" alignItems="center" width={"100%"}>
-                    <h4 style={{marginLeft: -9}}>10:00</h4>
-                    <h4 style={{marginRight: -9}}>10:00</h4>
+                    <h4 style={{marginLeft: -9}}>10:05</h4>
+                    <h4 style={{marginRight: -9}}>11:14</h4>
                 </Div>
 
             </Div>

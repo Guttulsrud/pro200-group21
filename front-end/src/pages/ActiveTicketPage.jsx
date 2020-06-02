@@ -14,13 +14,13 @@ export class ActiveTicketPage extends React.Component {
 
     state = {
         hasActiveTicket: this.props.location.search.split("?")[1],
-        journeyHasStarted: true,
+        journeyHasStarted: false,
         busHasArrived: false,
         busTime: 100,
     };
 
     componentWillMount() {
-        if(!this.state.hasActiveTicket) {
+        if (!this.state.hasActiveTicket) {
             const fromLS = JSON.parse(localStorage.getItem('ActiveTicketState'));
             this.setState(fromLS)
         }
@@ -29,6 +29,13 @@ export class ActiveTicketPage extends React.Component {
 
     componentWillUnmount() {
         localStorage.setItem('ActiveTicketState', JSON.stringify(this.state));
+    }
+
+    openDoor() {
+        this.setState({
+            journeyHasStarted: true,
+            busHasArrived: false,
+        })
     }
 
 
@@ -53,7 +60,7 @@ export class ActiveTicketPage extends React.Component {
                          bg={"#DDDDDD"}
                     >
 
-                        <TravelMap ticketId={this.state.hasActiveTicket}/>
+                        <TravelMap stateData={this.state} ticketId={this.state.hasActiveTicket}/>
 
 
                     </Div>
@@ -70,10 +77,11 @@ export class ActiveTicketPage extends React.Component {
 
                         </Div>
 
-                        <Div mx={40} mt={30} display={this.state.journeyHasStarted ? "none" : "flex"} justifyContent="center"
+                        <Div mx={40} mt={30} display={this.state.journeyHasStarted ? "none" : "flex"}
+                             justifyContent="center"
                              alignItems="center">
-                            {!this.state.busHasArrived ? <Button outlineOrange inactiveOutline={this.state.busTime < 5}>Avbestill Reise</Button> :
-                                <Button>ÅPNE DØR</Button>}
+                            {this.state.busHasArrived ? <Button onClick={this.openDoor.bind(this)}>ÅPNE DØR</Button> :
+                                <Button outlineOrange inactiveOutline={this.state.busTime < 5}>Avbestill Reise</Button>}
                         </Div>
 
                         <Div mx={40} display={this.state.journeyHasStarted ? "flex" : "none"} justifyContent="center"
@@ -85,7 +93,8 @@ export class ActiveTicketPage extends React.Component {
                 </React.Fragment>
             )
         } else (
-            content = <Text.p mt={0} p={20}>Du har ingen aktive billetter, bestill en reise ved å trykke på "Ny reise" i menyen</Text.p>
+            content = <Text.p mt={0} p={20}>Du har ingen aktive billetter, bestill en reise ved å trykke på "Ny reise" i
+                menyen</Text.p>
         )
         return (
             <React.Fragment>
