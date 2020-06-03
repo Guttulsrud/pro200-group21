@@ -1,11 +1,11 @@
 import React from 'react';
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
-import {mapStyle} from '../utils/MapStyle.js';
-import {Button} from '../elements/buttons/Button';
-import {MyLocationIcon} from './Icons/MyLocationIcon';
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { mapStyle } from '../utils/MapStyle.js';
+import { Button } from '../elements/buttons/Button';
+import { MyLocationIcon } from './Icons/MyLocationIcon';
 import FromSearchField from './FromSearchField';
-import {Div} from '../elements/divs/Div';
-import {MarkerIcon} from './Icons/MarkerIcon';
+import { Div } from '../elements/divs/Div';
+import { MarkerIcon } from './Icons/MarkerIcon';
 import PurchaseSection from './PurchaseSection';
 import ToSearchField from './ToSearchField';
 
@@ -46,12 +46,12 @@ export class MainMap extends React.Component {
                     myLat: position.coords.latitude,
                     myLng: position.coords.longitude
                 });
-                if(!this.state.selectedFromAddress) {
+                if (!this.state.selectedFromAddress) {
                     this.setState({
                         fromLoc: "Min posisjon"
                     })
 
-                } else if(!this.state.selectedToAddress) {
+                } else if (!this.state.selectedToAddress) {
                     this.setState({
                         toLoc: "Min posisjon"
                     })
@@ -114,7 +114,7 @@ export class MainMap extends React.Component {
             this.setState({
                 selectedFromAddress: true,
                 fromCoordinate: [state.latitude, state.longitude],
-            }, () => this.moveCursor(this.state.longitude) );
+            }, () => this.moveCursor(this.state.longitude));
         }
     }
 
@@ -128,7 +128,7 @@ export class MainMap extends React.Component {
         if (state.fromCoordinate) {
             return (
                 <Marker
-                    position={{lat: state.fromCoordinate[0], lng: state.fromCoordinate[1]}}
+                    position={{ lat: state.fromCoordinate[0], lng: state.fromCoordinate[1] }}
                     icon={{
                         url: '/images/pin-48-from.png',
                         anchor: new this.props.google.maps.Point(25, 52),
@@ -150,7 +150,7 @@ export class MainMap extends React.Component {
                         anchor: new this.props.google.maps.Point(25, 52),
                         scaledSize: new this.props.google.maps.Size(48, 48)
                     }}
-                    position={{lat: state.toCoordinate[0], lng: state.toCoordinate[1]}}
+                    position={{ lat: state.toCoordinate[0], lng: state.toCoordinate[1] }}
                 />
             );
         }
@@ -211,11 +211,11 @@ export class MainMap extends React.Component {
         //     height: '100%',
         // };
 
-        if(!this.state.orderReady) {
+        if (!this.state.orderReady) {
             content = (
                 <Map
                     google={this.props.google}
-                    initialCenter={{lat: 59.924117, lng: 10.766715,}}
+                    initialCenter={{ lat: 59.924117, lng: 10.766715, }}
                     centerAroundCurrentLocation
                     center={{
                         lat: this.state.latitude,
@@ -244,7 +244,7 @@ export class MainMap extends React.Component {
                         handleRemoveTo={this.handleRemoveTo}
                         insertTo={this.insertTo}
                     />}
-                    {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>}
+                    {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation} />}
 
                     <Marker
                         id='position-marker'
@@ -257,19 +257,19 @@ export class MainMap extends React.Component {
                             strokeColor: '#003A70',
                             strokeWeight: 8,
                         }}
-                        position={{lat: this.state.myLat, lng: this.state.myLng}}
+                        position={{ lat: this.state.myLat, lng: this.state.myLng }}
                     />
 
                     {this.renderStartMarker()}
                     {this.renderDestinationMarker()}
                     {(!this.state.selectedFromAddress || !this.state.selectedToAddress) &&
-                    <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
+                        <MarkerIcon toLoc={this.state.selectedFromAddress} />}
 
                 </Map>
             )
         } else {
             content = (
-                <PurchaseSection sendState={this.state} handleGoBack={this.handleGoBack}/>
+                <PurchaseSection sendState={this.state} handleGoBack={this.handleGoBack} />
             )
         }
 
@@ -279,18 +279,18 @@ export class MainMap extends React.Component {
             <Div display={"flex"} flexDirection={"column"}>
                 {content}
                 {!this.state.orderReady &&
-                <Div paddingTop='30px'>
-                    <Button
-                        mb={20}
-                        width='70%'
-                        bottom
-                        center
-                        inactive={this.state.selectedFromAddress && !this.state.toLoc}
-                        onClick={!this.state.selectedFromAddress || !this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
-                    >
-                        {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Velg antall' : 'Jeg skal hit'}
-                    </Button>
-                </Div>
+                    <Div paddingTop='30px'>
+                        <Button
+                            mb={20}
+                            width='70%'
+                            bottom
+                            center
+                            inactive={this.state.selectedFromAddress && !this.state.toLoc}
+                            onClick={!this.state.selectedFromAddress || !this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
+                        >
+                            {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Velg antall' : 'Jeg skal hit'}
+                        </Button>
+                    </Div>
                 }
             </Div>
         );

@@ -22,18 +22,23 @@ const BusSelection = props => {
 
     return (
         <Div bg={'#fff'} width={1} display={'flex'} flexDirection={'column'}>
-            <Div display={'flex'} justifyContent={'space-between'} width={1}>
+            <Div display={'flex'} width={1}>
 
-                <Div display={'flex'} justifyContent="center" width="100%" alignItems="center" pl={20} pr={20} pb={10}
-                    mb={10} borderBottom={'1px solid #D7D8D9'}>
-                    <Div display={'flex'} justifyContent="center" alignItems="center">
-                        <Div height={32} width={32}>
-                            <img height="32px" width="32px" src={'/images/bus-48.png'} alt={"bus icon"} />
-                        </Div>
-                        <Heading.h1 padding="0" margin="0" lineHeight="0" fontSize="1.6rem" color={'vyBlack'}
+                <Div display={'flex'} width="100%" alignItems="center" pl={20} pr={20} >
+
+                    <Div height={48} width={48}>
+                        <img height="48px" width="48px" src={'/images/bus-48.png'} alt={"bus icon"} />
+                    </Div>
+                    <Div>
+
+                        <Heading.h1 fontSize="2rem" color={'vyBlack'}
                             pl={10}>{props.bus.name}</Heading.h1>
 
                     </Div>
+                    <Div>
+                        <Heading.h3 fontSize="1.4rem" fontWeight={300} ml={20}>3 min</Heading.h3>
+                    </Div>
+
 
 
                 </Div>
@@ -41,23 +46,36 @@ const BusSelection = props => {
 
             </Div>
 
-            <Div display="flex" alignItems="center">
+            <Div display="flex">
 
 
             </Div>
-            <Div pr={20} pl={20} pb={20} display="flex" justifyContent="space-between" alignContent="center"
-                alignItems="center">
-                <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                    <img height={32} width={32} src={'/images/pin-48-from.png'} alt={"pin icon"} />
-                    <Heading.h2 fontSize="1rem">{props.origin}</Heading.h2>
-                </Div>
-                <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                    <ArrowForwardIcon />
+            <Div pr={20} pl={20} pb={20}>
+                <Div mr={10}>
+
+                    <Heading.h2 mb="-12px">Fra</Heading.h2>
+                    <Div display="flex" alignItems="center">
+                        <img height={18} width={18} src={'/images/pin-48-from.png'} alt={"pin icon"} />
+                        <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
+
+                            {props.origin}
+                        </Heading.h2>
+                    </Div>
+
                 </Div>
 
-                <Div mr={10} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                    <img height={32} width={32} src={'/images/pin-48-to.png'} alt={"pin icon"} />
-                    <Heading.h2 fontSize="1rem" display={'flex'}>{props.destination}</Heading.h2>
+
+                <Div mr={10}>
+
+                    <Heading.h2 mb="-12px">Til</Heading.h2>
+                    <Div display="flex" alignItems="center">
+                        <img height={18} width={18} src={'/images/pin-48-to.png'} alt={"pin icon"} />
+                        <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
+
+                            {props.destination}
+                        </Heading.h2>
+                    </Div>
+
                 </Div>
 
             </Div>
@@ -72,22 +90,14 @@ const BusSelection = props => {
                         return (
                             t.qty > 0 ?
                                 <li key={t.type}>
-                                    <Div>{t.type}</Div>
-                                    <Div>x{t.qty}</Div>
+                                    <Div color="#616567">{t.type}</Div>
+                                    <Div color="#616567">x{t.qty}</Div>
                                 </li>
                                 : null
 
                         );
                     })}
                 </ul>
-            </Div>
-
-            <Div display={'flex'} alignItems="center" alignContent="center" justifyContent="center" pl={20} pr={20} pt={20}>
-                <Select
-                    className="checkout-select"
-                    defaultValue={options[0]}
-                    options={options}
-                    styles={colourStyles} />
             </Div>
             <Div display={'flex'} justifyContent="space-between">
                 <Div>
@@ -97,6 +107,7 @@ const BusSelection = props => {
                     <Heading.h2 pr={20}>{props.sum} kr</Heading.h2>
                 </Div>
             </Div>
+
 
         </Div >
     );
