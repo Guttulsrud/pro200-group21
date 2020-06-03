@@ -1,11 +1,11 @@
 import React from 'react';
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
-import {mapStyle} from '../utils/MapStyle.js';
-import {Button} from '../elements/buttons/Button';
-import {MyLocationIcon} from './Icons/MyLocationIcon';
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { mapStyle } from '../utils/MapStyle.js';
+import { Button } from '../elements/buttons/Button';
+import { MyLocationIcon } from './Icons/MyLocationIcon';
 import FromSearchField from './FromSearchField';
-import {Div} from '../elements/divs/Div';
-import {MarkerIcon} from './Icons/MarkerIcon';
+import { Div } from '../elements/divs/Div';
+import { MarkerIcon } from './Icons/MarkerIcon';
 import PurchaseSection from './PurchaseSection';
 import ToSearchField from './ToSearchField';
 import {Transition, animated} from 'react-spring/renderprops';
@@ -48,12 +48,12 @@ export class MainMap extends React.Component {
                     myLat: position.coords.latitude,
                     myLng: position.coords.longitude
                 });
-                if(!this.state.selectedFromAddress) {
+                if (!this.state.selectedFromAddress) {
                     this.setState({
                         fromLoc: "Min posisjon"
                     })
 
-                } else if(!this.state.selectedToAddress) {
+                } else if (!this.state.selectedToAddress) {
                     this.setState({
                         toLoc: "Min posisjon"
                     })
@@ -116,7 +116,7 @@ export class MainMap extends React.Component {
             this.setState({
                 selectedFromAddress: true,
                 fromCoordinate: [state.latitude, state.longitude],
-            }, () => this.moveCursor(this.state.longitude) );
+            }, () => this.moveCursor(this.state.longitude));
         }
     }
 
@@ -130,7 +130,7 @@ export class MainMap extends React.Component {
         if (state.fromCoordinate) {
             return (
                 <Marker
-                    position={{lat: state.fromCoordinate[0], lng: state.fromCoordinate[1]}}
+                    position={{ lat: state.fromCoordinate[0], lng: state.fromCoordinate[1] }}
                     icon={{
                         url: '/images/pin-48-from.png',
                         anchor: new this.props.google.maps.Point(25, 52),
@@ -152,7 +152,7 @@ export class MainMap extends React.Component {
                         anchor: new this.props.google.maps.Point(25, 52),
                         scaledSize: new this.props.google.maps.Size(48, 48)
                     }}
-                    position={{lat: state.toCoordinate[0], lng: state.toCoordinate[1]}}
+                    position={{ lat: state.toCoordinate[0], lng: state.toCoordinate[1] }}
                 />
             );
         }

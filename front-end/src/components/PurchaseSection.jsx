@@ -1,6 +1,6 @@
 import React from 'react';
-import {Div} from '../elements/divs/Div';
-import {Button} from '../elements/buttons/Button';
+import { Div } from '../elements/divs/Div';
+import { Button } from '../elements/buttons/Button';
 import tickets from '../utils/tickets';
 import AmountSelection from './AmountSelection';
 import Heading from '../elements/text/StyledHeading';
@@ -9,7 +9,7 @@ import Stepper from './Stepper';
 import BusSelection from './BusSelection';
 import buses from '../utils/buses';
 import PurchaseCheckout from './PurchaseCheckout';
-import {StyledLink} from '../elements/links/StyledLink';
+import { StyledLink } from '../elements/links/StyledLink';
 import BackArrow from './Icons/BackArrow';
 
 
@@ -32,7 +32,7 @@ class PurchaseSection extends React.Component {
     };
 
     componentDidMount() {
-        for(let ticket of tickets) {
+        for (let ticket of tickets) {
             ticket.qty = 0
         }
         this.setState({
@@ -73,7 +73,7 @@ class PurchaseSection extends React.Component {
 
 
     handleClick = (clickType) => {
-        const {currentStep} = this.state;
+        const { currentStep } = this.state;
 
         //Not mutate existing state
         let newStep = currentStep;
@@ -89,7 +89,7 @@ class PurchaseSection extends React.Component {
         await axios.post(
             'http://localhost:5000/ticket/create',
             this.state.data,
-            {headers: {'Content-Type': 'application/json'}}
+            { headers: { 'Content-Type': 'application/json' } }
         )
             .then((res) => this.setState({
                 purchased:true,
@@ -134,11 +134,11 @@ class PurchaseSection extends React.Component {
     };
 
     handleGoBack = () => {
-        if(this.state.selectedAmount) {
+        if (this.state.selectedAmount) {
             this.setState({
                 selectedAmount: false
             })
-        } else if(this.state.showCheckout) {
+        } else if (this.state.showCheckout) {
             this.setState({
                 showCheckout: false,
                 selectedAmount: true
@@ -156,16 +156,16 @@ class PurchaseSection extends React.Component {
         if (this.state.selectedAmount) {
             content = <Div overflow={'auto'} width={1} bg={'#F5F5F5'} display={"flex"} flexDirection={"column"} alignItems={"center"}>
                 {buses.map(b => {
-                        return b.cap > this.state.count ?
-                            <BusSelection
-                                key={b.name}
-                                handleShowCheckout={() => this.handleShowCheckout(b.name, b.eta)}
-                                name={b.name}
-                                cap={b.cap}
-                                eta={b.eta}
-                                curLoc={b.currentLoc}/>
-                            : null;
-                    }
+                    return b.cap > this.state.count ?
+                        <BusSelection
+                            key={b.name}
+                            handleShowCheckout={() => this.handleShowCheckout(b.name, b.eta)}
+                            name={b.name}
+                            cap={b.cap}
+                            eta={b.eta}
+                            curLoc={b.currentLoc} />
+                        : null;
+                }
                 )}
             </Div>;
         } else if (this.state.showCheckout) {
@@ -175,64 +175,67 @@ class PurchaseSection extends React.Component {
             const props = this.props.sendState;
             content =
                 <React.Fragment>
-                    <Div overflow={'auto'} width={1}>
+                    <Div overflow={'auto'} height="100%" width={1} display="flex" flexDirection="column" justifyContent="space-between">
                         <PurchaseCheckout
                             bus={this.state.bus}
                             origin={props.fromLoc}
                             destination={props.toLoc}
                             sum={this.state.sum}
                         />
-                        <Div width={.7} margin={"0 auto"}>
-                        <StyledLink width={1}   to={`/activeticket?${this.state.ticketId}`}>
-                            <Button width={"100%"}>Bestill buss</Button>
-                        </StyledLink>
+                        <Div width={.7} margin={"0 auto"} mb={20}>
+                            <StyledLink width={1} to={`/activeticket?${this.state.ticketId}`}>
+                                <Button width={"100%"}>Bestill buss</Button>
+                            </StyledLink>
                         </Div>
                     </Div>
 
 
                 </React.Fragment>;
         } else {
-            content = <Div display={"flex"} width={1} alignItems={"center"} flexDirection={"column"} overflow={"auto"}>
-                {
-                    tickets.map((t) => (
-                        <AmountSelection key={t.type}
-                                         type={t.type}
-                                         price={t.price}
-                                         qty={t.qty}
-                                         inactive={!t.qty}
-                                         handleAdd={() => this.handleAdd(t.type)}
-                                         handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
-                    ))
-                }
-                <Div display="flex" justifyContent="space-between" width={0.95} >
+            content = <Div display={"flex"} width={1} alignItems={"center"} justifyContent="space-between" flexDirection={"column"} overflow={"auto"} height="100%">
+                <Div width="100%">
+                    {
+                        tickets.map((t) => (
+                            <AmountSelection key={t.type}
+                                type={t.type}
+                                price={t.price}
+                                qty={t.qty}
+                                inactive={!t.qty}
+                                handleAdd={() => this.handleAdd(t.type)}
+                                handleSub={t.qty ? () => this.handleSub(t.type) : null} />
+                        ))
+                    }
 
-                    <React.Fragment>
-                        <Heading.h2 >Totalsum</Heading.h2>
-                        <Heading.h2 >{this.state.sum} kr</Heading.h2>
-                    </React.Fragment>
+                    <Div display="flex" alignItems={"center"} justifyContent="space-between" width={0.95} borderTop={'1px solid #D7D8D9'}>
 
+                        <React.Fragment>
+                            <Heading.h2 >Totalsum</Heading.h2>
+                            <Heading.h2 >{this.state.sum} kr</Heading.h2>
+                        </React.Fragment>
+
+                    </Div>
                 </Div>
                 <Button mb={20}
                     inactive={!this.state.count} width="70%"
-                        onClick={this.state.count > 0 ? this.handleShowBus : null} >Vis avganger</Button>
+                    onClick={this.state.count > 0 ? this.handleShowBus : null} >Vis avganger</Button>
             </Div>;
         }
 
         // STEPPER DESCRIPTION
         const stepsArray = ['Antall reisende', 'Velg buss', 'Kjøp billett'];
 
-        const {currentStep} = this.state;
+        const { currentStep } = this.state;
 
 
         return (
             <Div display="flex" flexDirection="column" alignItems={'center'} height={"100%"}
                  bg={'#fff'} width={1} position={"absolute"} bottom={0}
             >
-                <Div display={"flex"} width={.95} ><Div onClick={this.handleGoBack} p={10} pl={0} ><BackArrow/></Div></Div>
+                <Div display={"flex"} width={.95} ><Div onClick={this.handleGoBack} p={10} pl={0} ><BackArrow /></Div></Div>
 
-                <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95} >
+                <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95} borderBottom={'1px solid #D7D8D9'}>
                     <Div display="flex" flexDirection="column" width="100%" justifyContent="space-between">
-                        <Stepper steps={stepsArray} currentStepNumber={currentStep}/>
+                        <Stepper steps={stepsArray} currentStepNumber={currentStep} />
                     </Div>
                 </Div>
                 {content}

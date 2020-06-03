@@ -19,7 +19,6 @@ export class TimeLine extends React.Component {
             .then(response => response.json()).then(res => {
                 return res;
             })
-
     }
 
 
