@@ -9,7 +9,7 @@ import { MarkerIcon } from './Icons/MarkerIcon';
 import PurchaseSection from './PurchaseSection';
 import ToSearchField from './ToSearchField';
 import {Transition, animated} from 'react-spring/renderprops';
-import {opacity} from 'styled-system';
+
 
 
 export class MainMap extends React.Component {

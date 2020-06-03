@@ -10,8 +10,10 @@ import {
  margin,
  padding,
  shadow,
- overflow
+ overflow,
+ background
 } from 'styled-system';
+
 
 
 export const Div = styled.div`
@@ -26,5 +28,6 @@ export const Div = styled.div`
  ${padding}
  ${shadow}
  ${overflow}
+ ${background}
 
 `;

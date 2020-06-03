@@ -92,7 +92,7 @@ class PurchaseSection extends React.Component {
             { headers: { 'Content-Type': 'application/json' } }
         )
             .then((res) => this.setState({
-                purchased:true,
+                purchased: true,
                 ticketId: res.data._id
             }));
     };
@@ -169,7 +169,7 @@ class PurchaseSection extends React.Component {
                 )}
             </Div>;
         } else if (this.state.showCheckout) {
-            if(!this.state.purchased) {
+            if (!this.state.purchased) {
                 this.postData().then(r => console.log(r));
             }
             const props = this.props.sendState;
@@ -206,12 +206,12 @@ class PurchaseSection extends React.Component {
                         ))
                     }
 
-                    <Div display="flex" alignItems={"center"} justifyContent="space-between" width={0.95} borderTop={'1px solid #D7D8D9'}>
+                    <Div display="flex" alignItems={"center"} justifyContent="space-between" width="100%" borderTop={'1px solid #D7D8D9'}>
 
-                        <React.Fragment>
+                        <Div display={"flex"} justifyContent="space-between" width={0.90} mx={"auto"}>
                             <Heading.h2 >Totalsum</Heading.h2>
                             <Heading.h2 >{this.state.sum} kr</Heading.h2>
-                        </React.Fragment>
+                        </Div>
 
                     </Div>
                 </Div>

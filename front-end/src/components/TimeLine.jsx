@@ -8,7 +8,9 @@ export class TimeLine extends React.Component {
     state = {
         journeyHasStarted: true,
         from: '',
-        to: ''
+        to: '',
+        
+        
     };
 
 
@@ -35,35 +37,54 @@ export class TimeLine extends React.Component {
 
 
         return (
-            <Div display="flex" justifyContent="space-around" alignItems="center" flexDirection="column"
-                 width={"100%"}>
+            <Div display="flex" justifyContent="space-around" alignItems="center" flexDirection="column" width={"100%"}>
 
                 <Div display="flex" justifyContent="space-between" alignItems="center" width={"100%"}>
                     <h5 style={{marginLeft: -9}}>{this.state.from}</h5>
                     <h5 style={{marginRight: -9}}>{this.state.to}</h5>
                 </Div>
 
-                <Div display="flex" justifyContent="space-around" alignItems="center" width={"100%"}
-                     position="relative">
-
-                    <Div width={"100%"} position="relative" height="3px" bg={"#003A70"}/>
-
-                    {this.state.journeyHasStarted &&
-                    <Div borderRadius="100px"
-                         bg={"#003A70"}
-                         height="2.5em"
-                         width="2.5em"
-                         position="absolute"
-                         left="30%"
+                <Div display="flex" alignItems="center" justifyContent="center" width={"100%"} position="relative">
+                    
+                    <Div width={"88%"} 
+                         position="relative" 
+                         height="5px" 
                          display="flex"
-                         justifyContent="center"
                          alignItems="center"
+                         borderBottom="4px solid #003A70"
+                         borderTop="4px solid #003A70"
+                         borderLeft="none"
+                         borderRight="none"
+                         zIndex="99999" 
+                         bg="#fff">
 
-                    >
-                        <BusIcon></BusIcon>
+                      {this.state.journeyHasStarted && 
+                        <Div position="relative" display="flex" alignItems="center" justifyContent="flex-end" height="3px" bg={"#003A70"} width={"" + this.props.progress + "%"}>
 
-                    </Div>}
+                          <Div borderRadius="100px"
+                               
+                               bg={"#003A70"}
+                               height="2.5em"
+                               width="2.5em"
+                               display="flex"
+                               position="absolute"
+                               justifyContent="center"
+                               alignItems="center"
+                               ml="1.2em"
+                          >
 
+                            <BusIcon></BusIcon>
+
+                          </Div>
+                      
+                        </Div>
+                      }
+                      
+
+                    </Div>
+
+                    
+                   
                     <Div display="flex"
                          alignItems="center"
                          justifyContent="center"
