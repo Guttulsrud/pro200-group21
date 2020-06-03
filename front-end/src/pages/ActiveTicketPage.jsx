@@ -78,7 +78,7 @@ export class ActiveTicketPage extends React.Component {
                     </Div>
                     <Div height={"50%"} width={"100%"} bottom={0} position={"absolute"}>
                         <Div display={this.state.busHasArrived ? "none" : "flex"} alignItems="center" mx={30}>
-                            <TimeLine progress={this.state.progress} ticketId={this.state.hasActiveTicket}/>
+                            <TimeLine journeyHasStarted={this.state.journeyHasStarted} progress={this.state.progress} ticketId={this.state.hasActiveTicket}/>
                         </Div>
 
                         <Div display={this.state.journeyHasStarted ? "none" : "flex"} justifyContent="center"
