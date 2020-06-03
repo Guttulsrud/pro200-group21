@@ -59,10 +59,28 @@ export class TimeLine extends React.Component {
                          zIndex="99999" 
                          bg="#fff">
 
-                         
-                      <Div height="3px" bg={"#003A70"} width={"" + this.props.progress + "%"}>
+                      {this.state.journeyHasStarted && 
+                        <Div position="relative" display="flex" alignItems="center" justifyContent="flex-end" height="3px" bg={"#003A70"} width={"" + this.props.progress + "%"}>
+
+                          <Div borderRadius="100px"
+                               
+                               bg={"#003A70"}
+                               height="2.5em"
+                               width="2.5em"
+                               display="flex"
+                               position="absolute"
+                               justifyContent="center"
+                               alignItems="center"
+                               ml="1.2em"
+                          >
+
+                            <BusIcon></BusIcon>
+
+                          </Div>
                       
-                      </Div>
+                        </Div>
+                      }
+                      
 
                     </Div>
 
