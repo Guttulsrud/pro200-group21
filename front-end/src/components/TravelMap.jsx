@@ -120,24 +120,28 @@ export class TravelMap extends React.Component {
         }
     };
 
-    busHasArrived = false;
-    busShouldContinue = false;
+
 
     animateBus = () => {
         setInterval(this.intervalFunc, 2000);
     };
+
+    busShouldContinue = false;
+    busHasArrived = false;
+
     intervalFunc = () => {
         if (this.state.polylineArray[this.busIndex]) {
 
-            if (this.state.busCoordinate === this.state.polyline0[this.state.polyline0.length - 1]) {
+            if (this.state.busCoordinate === this.state.polyline0[this.state.polyline0.length - 1] && !this.busHasArrived) {
+                this.props.onBusArrival()
                 this.busHasArrived = true;
             }
+
             if (this.props.stateData.journeyHasStarted) {
                 setInterval(() => {
                     this.busShouldContinue = true;
-                }, 2000);
+                }, 3000);
             }
-
 
             if (!this.busHasArrived || this.busShouldContinue) {
                 this.setState({
