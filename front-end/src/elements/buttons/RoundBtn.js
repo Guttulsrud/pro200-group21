@@ -19,6 +19,7 @@ export const RoundBtn = styled.button`
   border-radius: 50px;
   cursor: pointer;
   padding: 0;
+  transition: .2s linear;
 
   ${(props) =>
     props.secondary &&

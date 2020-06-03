@@ -7,6 +7,7 @@ const p = styled.p`
     ${color}
     ${typography}
     ${position}
+    transition: .2s linear;
 `;
 
 const span = styled.span`

@@ -228,9 +228,9 @@ export class MainMap extends React.Component {
 
         return (
             <Div display={"flex"} flexDirection={"column"} overflow={"hidden"} >
-                <Transition items={!this.state.orderReady} from={{marginLeft: -1000}} enter={{marginLeft: 0}} leave={{marginLeft: -1000}} config={{duration: 400}}>
-                    {show => show && (props => (
-                        <animated.div style={props}>
+                {/*<Transition items={!this.state.orderReady} from={{opacity: 1}} enter={{opacity: 1}} leave={{opacity: 0}} config={{duration: 400}}>*/}
+                {/*    {show => show && (props => (*/}
+                {/*        <animated.div style={props}>*/}
                             <Map
                                 google={this.props.google}
                                 initialCenter={{lat: 59.924117, lng: 10.766715,}}
@@ -248,21 +248,21 @@ export class MainMap extends React.Component {
                                 draggable={true}
                                 onReady={this.onMapLoaded.bind(this)}
                             >
-                                {!this.state.orderReady && <FromSearchField
+                              <FromSearchField
                                     fromLoc={this.state.fromLoc}
                                     fromSelected={this.state.selectedFromAddress}
                                     handleInputSelect={this.handleInputSelect}
                                     handleRemoveFrom={this.handleRemoveFrom}
                                     insertFrom={this.insertFrom}
-                                />}
+                                />
 
-                                {(!this.state.orderReady && this.state.selectedFromAddress) && <ToSearchField
+                                {(this.state.selectedFromAddress) && <ToSearchField
                                     toLoc={this.state.toLoc}
                                     handleInputSelect={this.handleInputSelect}
                                     handleRemoveTo={this.handleRemoveTo}
                                     insertTo={this.insertTo}
                                 />}
-                                {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>}
+                                <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>
 
                                 <Marker
                                     id='position-marker'
@@ -285,7 +285,7 @@ export class MainMap extends React.Component {
 
                             </Map>
 
-                            {!this.state.orderReady &&
+
                             <Div paddingTop='30px'>
                                 <Button
                                     mb={20}
@@ -294,18 +294,19 @@ export class MainMap extends React.Component {
                                     center
                                     inactive={this.state.selectedFromAddress && !this.state.toLoc}
                                     onClick={!this.state.selectedFromAddress || !this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
+                                    animate={(!this.state.selectedFromAddress && this.state.fromLoc) || (!this.state.selectedToAddress && this.state.toLoc)}
                                 >
                                     {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Velg antall' : 'Jeg skal hit'}
                                 </Button>
                             </Div>
-                            }
-                        </animated.div>
-                    ))}
-                </Transition>
+
+                {/*        </animated.div>*/}
+                {/*    ))}*/}
+                {/*</Transition>*/}
 
 
 
-                <Transition native items={this.state.orderReady} from={{marginLeft: 1000}} enter={{ marginLeft: 0}} leave={{marginLeft: 1000}} config={{duration: 400}}>
+                <Transition native items={this.state.orderReady} from={{marginLeft: 1000}} enter={{marginLeft: 0}} leave={{marginLeft: 1000}} config={{duration: 300, ease:"easeIn"}}>
                     {show => show && (props => (
                         <animated.div style={props} >
                             <PurchaseSection sendState={this.state} handleGoBack={this.handleGoBack}/>

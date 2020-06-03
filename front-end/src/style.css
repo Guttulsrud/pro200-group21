@@ -48,12 +48,14 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  overflow: hidden;
 }
 
 .container {
   position: relative;
   min-height: 100%;
   background-color: #F5F5F5;
+  overflow: hidden;
 }
 
 /* BOTTOMMENU */
