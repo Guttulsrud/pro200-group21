@@ -137,12 +137,12 @@ class PurchaseSection extends React.Component {
         if (this.state.selectedAmount) {
             this.setState({
                 selectedAmount: false
-            })
+            }, () => this.handleClick())
         } else if (this.state.showCheckout) {
             this.setState({
                 showCheckout: false,
                 selectedAmount: true
-            })
+            }, () => this.handleClick())
         } else {
             this.props.handleGoBack()
         }

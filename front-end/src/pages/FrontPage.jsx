@@ -1,13 +1,12 @@
 import React from 'react';
 import MapContainer from '../components/MainMap';
-import {Transition} from 'react-spring/renderprops-universal';
 import TutorialDialog from '../components/TutorialDialog';
 
 class FrontPage extends React.Component {
   state = {
     hasLs: null
   }
-  componentWillMount() {
+  componentDidMount() {
     let getData = JSON.parse(localStorage['showTutorial'])
     this.setState({
       hasLs: getData

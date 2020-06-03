@@ -1,4 +1,4 @@
-##TicketPage
+##TicketList
 
 Create ticket 
 ``POST``
@@ -29,7 +29,7 @@ Get all tickets
 
 
 
-##TicketPage instance
+##TicketList instance
 
 Create ticket instance
 ``POST``

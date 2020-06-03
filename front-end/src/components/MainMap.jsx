@@ -207,30 +207,9 @@ export class MainMap extends React.Component {
 
     render() {
 
-        let content;
-
-        // const style = {
-        //     height: '100%',
-        // };
-
-        // if(!this.state.orderReady) {
-        //     content = (
-        //
-        //     )
-        // } else {
-        //     content = (
-        //
-        //
-        //     )
-        // }
-
-
-
         return (
             <Div display={"flex"} flexDirection={"column"} overflow={"hidden"} >
-                {/*<Transition items={!this.state.orderReady} from={{opacity: 1}} enter={{opacity: 1}} leave={{opacity: 0}} config={{duration: 400}}>*/}
-                {/*    {show => show && (props => (*/}
-                {/*        <animated.div style={props}>*/}
+
                             <Map
                                 google={this.props.google}
                                 initialCenter={{lat: 59.924117, lng: 10.766715,}}
@@ -282,7 +261,6 @@ export class MainMap extends React.Component {
                                 {this.renderDestinationMarker()}
                                 {(!this.state.selectedFromAddress || !this.state.selectedToAddress) &&
                                 <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
-
                             </Map>
 
 
@@ -299,12 +277,6 @@ export class MainMap extends React.Component {
                                     {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Velg antall' : 'Jeg skal hit'}
                                 </Button>
                             </Div>
-
-                {/*        </animated.div>*/}
-                {/*    ))}*/}
-                {/*</Transition>*/}
-
-
 
                 <Transition native items={this.state.orderReady} from={{marginLeft: 1000}} enter={{marginLeft: 0}} leave={{marginLeft: 1000}} config={{duration: 300, ease:"easeIn"}}>
                     {show => show && (props => (
