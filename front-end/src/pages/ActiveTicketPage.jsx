@@ -16,6 +16,7 @@ export class ActiveTicketPage extends React.Component {
         hasActiveTicket: this.props.location.search.split("?")[1],
         journeyHasStarted: false,
         busHasArrived: false,
+        progress: 0,
         busTime: 100,
     };
 
@@ -36,6 +37,12 @@ export class ActiveTicketPage extends React.Component {
             journeyHasStarted: true,
             busHasArrived: false,
         })
+    }
+
+    handleTimeData = (polyline, busIndex) => {
+      this.setState({
+        progress: ((busIndex / polyline.length) * 100)
+      })
     }
 
 
@@ -60,13 +67,13 @@ export class ActiveTicketPage extends React.Component {
                          bg={"#DDDDDD"}
                     >
 
-                        <TravelMap stateData={this.state} ticketId={this.state.hasActiveTicket}/>
+                        <TravelMap timeData={this.handleTimeData} stateData={this.state} ticketId={this.state.hasActiveTicket}/>
 
 
                     </Div>
                     <Div height={"50%"} width={"100%"} bottom={0} position={"absolute"}>
                         <Div display={this.state.busHasArrived ? "none" : "flex"} alignItems="center" mx={30}>
-                            <TimeLine ticketId={this.state.hasActiveTicket}/>
+                            <TimeLine progress={this.state.progress} ticketId={this.state.hasActiveTicket}/>
                         </Div>
 
                         <Div display={this.state.journeyHasStarted ? "none" : "flex"} justifyContent="center"
