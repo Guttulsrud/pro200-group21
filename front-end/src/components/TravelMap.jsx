@@ -5,7 +5,6 @@ import {Div} from '../elements/divs/Div';
 import {MarkerIcon} from './Icons/MarkerIcon';
 
 
-
 export class TravelMap extends React.Component {
     busIndex = 0;
 
@@ -27,13 +26,13 @@ export class TravelMap extends React.Component {
 
     componentDidMount() {
 
-        if(typeof this.props.ticketId !== 'undefined') {
+        if (typeof this.props.ticketId !== 'undefined') {
             this.getTicketFromId(this.props.ticketId).then(ticket =>
 
                 this.setState({
-                fromCoordinate: ticket.route.origin.coordinates,
-                toCoordinate: ticket.route.destination.coordinates
-            }))
+                    fromCoordinate: ticket.route.origin.coordinates,
+                    toCoordinate: ticket.route.destination.coordinates
+                }))
         } else {
             console.log("ID is not defined!")
         }
@@ -121,17 +120,37 @@ export class TravelMap extends React.Component {
         }
     };
 
+
+
     animateBus = () => {
         setInterval(this.intervalFunc, 2000);
     };
+
+    busShouldContinue = false;
+    busHasArrived = false;
+
     intervalFunc = () => {
         if (this.state.polylineArray[this.busIndex]) {
-            this.setState({
-                    busCoordinate: this.state.polylineArray[this.busIndex]
-                }
-            );
-            this.busIndex++;
-            this.props.timeData(this.state.polylineArray, this.busIndex )
+
+            if (this.state.busCoordinate === this.state.polyline0[this.state.polyline0.length - 1] && !this.busHasArrived) {
+                this.props.onBusArrival()
+                this.busHasArrived = true;
+            }
+
+            if (this.props.stateData.journeyHasStarted) {
+                setInterval(() => {
+                    this.busShouldContinue = true;
+                }, 3000);
+            }
+
+            if (!this.busHasArrived || this.busShouldContinue) {
+                this.setState({
+                        busCoordinate: this.state.polylineArray[this.busIndex]
+                    }
+                );
+                this.busIndex++;
+                this.props.timeData(this.state.polylineArray, this.busIndex)
+            }
         }
     };
 
@@ -265,35 +284,35 @@ export class TravelMap extends React.Component {
     render() {
 
         return (
-                <Map
-                    className={"map"}
-                    google={this.props.google}
-                    initialCenter={{lat: 59.924117, lng: 10.766715,}}
-                    centerAroundCurrentLocation
-                    center={{
-                        lat: this.state.fromCoordinate[0],
-                        lng: this.state.fromCoordinate[1]
-                    }}
-                    zoom={14}
-                    streetViewControl={false}
-                    zoomControl={false}
-                    fullscreenControl={false}
-                    mapTypeControl={false}
-                    draggable={true}
-                    onReady={this.onMapLoaded.bind(this)}
-                >
+            <Map
+                className={"map"}
+                google={this.props.google}
+                initialCenter={{lat: 59.924117, lng: 10.766715,}}
+                centerAroundCurrentLocation
+                center={{
+                    lat: this.state.fromCoordinate[0],
+                    lng: this.state.fromCoordinate[1]
+                }}
+                zoom={14}
+                streetViewControl={false}
+                zoomControl={false}
+                fullscreenControl={false}
+                mapTypeControl={false}
+                draggable={true}
+                onReady={this.onMapLoaded.bind(this)}
+            >
 
 
-                    {this.renderStartMarker()}
-                    {this.renderMiddleMarker()}
-                    {this.renderDestinationMarker()}
-                    {this.renderBusMarker()}
-                    {this.handlePolyline()}
+                {this.renderStartMarker()}
+                {this.renderMiddleMarker()}
+                {this.renderDestinationMarker()}
+                {this.renderBusMarker()}
+                {this.handlePolyline()}
 
-                    {(!this.state.selected && this.props.orderMap) &&
-                    <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
+                {(!this.state.selected && this.props.orderMap) &&
+                <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
-                </Map>
+            </Map>
 
         );
     }

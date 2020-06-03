@@ -38,6 +38,12 @@ export class ActiveTicketPage extends React.Component {
             busHasArrived: false,
         })
     }
+    onBusArrival(){
+        this.setState({
+            journeyHasStarted: false,
+            busHasArrived: true,
+        })
+    }
 
     handleTimeData = (polyline, busIndex) => {
       this.setState({
@@ -48,7 +54,6 @@ export class ActiveTicketPage extends React.Component {
 
     render() {
         let content;
-
         if (this.state.hasActiveTicket) {
             content = (
                 <React.Fragment>
@@ -67,7 +72,7 @@ export class ActiveTicketPage extends React.Component {
                          bg={"#DDDDDD"}
                     >
 
-                        <TravelMap timeData={this.handleTimeData} stateData={this.state} ticketId={this.state.hasActiveTicket}/>
+                        <TravelMap timeData={this.handleTimeData} stateData={this.state} ticketId={this.state.hasActiveTicket} onBusArrival={this.onBusArrival.bind(this)}/>
 
 
                     </Div>
