@@ -21,7 +21,7 @@ const BusSelection = props => {
     };
 
     return (
-        <Div bg={'#fff'} width={1} display={'flex'} flexDirection={'column'} borderTop={'1px solid #D7D8D9'}>
+        <Div bg={'#fff'} width={1} display={'flex'} flexDirection={'column'}>
             <Div display={'flex'} width={1}>
 
                 <Div display={'flex'} width="100%" alignItems="center" pl={20} pr={20} >
@@ -53,21 +53,29 @@ const BusSelection = props => {
             <Div pr={20} pl={20} pb={20}>
                 <Div mr={10}>
 
-                    <Heading.h2 fontSize="1.4rem" mb="-12px">Fra</Heading.h2>
-                    <Heading.h2 fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
+                    <Heading.h2 mb="-12px">Fra</Heading.h2>
+                    <Div display="flex" alignItems="center">
+                        <img height={18} width={18} src={'/images/pin-48-from.png'} alt={"pin icon"} />
+                        <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
 
-                        {props.origin}
-                    </Heading.h2>
+                            {props.origin}
+                        </Heading.h2>
+                    </Div>
+
                 </Div>
 
 
                 <Div mr={10}>
 
-                    <Heading.h2 fontSize="1.4rem" mb="-12px">Til</Heading.h2>
-                    <Heading.h2 fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
+                    <Heading.h2 mb="-12px">Til</Heading.h2>
+                    <Div display="flex" alignItems="center">
+                        <img height={18} width={18} src={'/images/pin-48-to.png'} alt={"pin icon"} />
+                        <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
 
-                        {props.destination}
-                    </Heading.h2>
+                            {props.destination}
+                        </Heading.h2>
+                    </Div>
+
                 </Div>
 
             </Div>
@@ -82,8 +90,8 @@ const BusSelection = props => {
                         return (
                             t.qty > 0 ?
                                 <li key={t.type}>
-                                    <Div>{t.type}</Div>
-                                    <Div>x{t.qty}</Div>
+                                    <Div color="#616567">{t.type}</Div>
+                                    <Div color="#616567">x{t.qty}</Div>
                                 </li>
                                 : null
 
