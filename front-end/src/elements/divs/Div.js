@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { space, color, layout, flexbox, border, typography, position, margin, padding, shadow } from 'styled-system';
+import { space, color, layout, flexbox, border, typography, position, margin, padding, shadow, background } from 'styled-system';
 
 
 export const Div = styled.div`
@@ -13,5 +13,6 @@ export const Div = styled.div`
  ${margin}
  ${padding}
  ${shadow}
+ ${background}
 
 `;
