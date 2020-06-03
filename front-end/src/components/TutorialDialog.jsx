@@ -14,24 +14,17 @@ class TutorialDialog extends React.Component {
 
     handleClick = (clickType) => {
         const { currentStep } = this.state;
-
+        localStorage.setItem('showTutorial', false);
         //Not mutate existing state
         let newStep = currentStep;
         clickType === "next" ? newStep++ : newStep--;
-
-
         this.setState({
             currentStep: newStep
         });
 
-        console.log(currentStep);
-
     }
 
     handleCloseDialog = () => {
-        console.log('SET DIALOG TO FALSE');
-        localStorage.setItem('showTutorial', false);
-
         //For development purposes
         this.setState({
             currentStep: 1
@@ -54,7 +47,7 @@ class TutorialDialog extends React.Component {
                     <Div width="100%" display="flex" justifyContent="flex-end">
 
                         { /* MAYBE ADD DIV WITH PROPS INSIDE ICON FOR ONCLICK? */}
-                        <div onClick={() => this.handleCloseDialog()}>
+                        <div onClick={this.props.showTutorial}>
                             <CloseIcon />
                         </div>
                     </Div>
@@ -79,7 +72,7 @@ class TutorialDialog extends React.Component {
                             selectedNumberFontColor="#FFFFFF"
                             inactiveNumberFontColor="#00866E" />}
 
-                    <Button secondary onClick={(currentStep === lastStep) ? () => this.handleCloseDialog() : () => this.handleClick("next")}>{(currentStep === 4) ? "Lukk" : "Neste"}</Button>
+                    <Button secondary onClick={(currentStep === lastStep) ? this.props.showTutorial : () => this.handleClick("next")}>{(currentStep === 4) ? "Lukk" : "Neste"}</Button>
 
                 </Div>
 

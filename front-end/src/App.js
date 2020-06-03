@@ -15,7 +15,7 @@ function App() {
   const setLocalStorage = () => {
     let showTutorial = localStorage.getItem('showTutorial');
     if (showTutorial === null) {
-      localStorage.setItem('showTutorial', false).JSON.stringify();
+      localStorage.setItem('showTutorial', true);
     }
   };
   setLocalStorage();
