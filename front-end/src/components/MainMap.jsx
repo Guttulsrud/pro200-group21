@@ -288,7 +288,7 @@ export class MainMap extends React.Component {
                             inactive={this.state.selectedFromAddress && !this.state.toLoc}
                             onClick={!this.state.selectedFromAddress || !this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
                         >
-                            {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Velg antall' : 'Jeg skal hit'}
+                            {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Velg antall reisende' : 'Jeg skal hit'}
                         </Button>
                     </Div>
                 }
