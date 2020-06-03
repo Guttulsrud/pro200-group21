@@ -2,23 +2,39 @@ import React from 'react';
 import MapContainer from '../components/MainMap';
 import TutorialDialog from '../components/TutorialDialog';
 
-const FrontPage = () => {
-  const getLsData = () => {
+class FrontPage extends React.Component {
+  state = {
+    hasLs: null
+  }
+  componentWillMount() {
     let getData = JSON.parse(localStorage['showTutorial'])
-    return getData;
+    this.setState({
+      hasLs: getData
+    });
+
+  };
+
+  showTutorial = () => {
+    this.setState({
+      hasLs: false
+    })
+
   };
 
 
-  return (
 
-    <div>
+  render() {
 
+    return (
 
-      <MapContainer />
+      <div>
+        <MapContainer />
+        {this.state.hasLs && <TutorialDialog showTutorial={this.showTutorial} />}
+      </div>
+    );
 
-      {(getLsData() === true) ? <TutorialDialog /> : null}
-    </div>
-  );
+  }
+
 };
 
 export default FrontPage;
