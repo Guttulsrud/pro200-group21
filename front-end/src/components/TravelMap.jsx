@@ -149,6 +149,7 @@ export class TravelMap extends React.Component {
                     }
                 );
                 this.busIndex++;
+                this.props.timeData(this.state.polylineArray, this.busIndex)
             }
         }
     };
