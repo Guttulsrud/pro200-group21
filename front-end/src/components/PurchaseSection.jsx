@@ -85,7 +85,9 @@ class PurchaseSection extends React.Component {
         });
     };
 
+    purchased = false;
     postData = async () => {
+        this.purchased = true
         await axios.post(
             'http://localhost:5000/ticket/create',
             this.state.data,
@@ -169,8 +171,8 @@ class PurchaseSection extends React.Component {
                 )}
             </Div>;
         } else if (this.state.showCheckout) {
-            if (!this.state.purchased) {
-                this.postData().then(r => console.log(r));
+            if (!this.purchased) {
+                this.postData().then(r => r);
             }
             const props = this.props.sendState;
             content =

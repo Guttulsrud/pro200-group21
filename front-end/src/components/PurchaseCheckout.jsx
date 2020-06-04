@@ -86,7 +86,6 @@ const BusSelection = props => {
                                     <Div color="#616567">x{t.qty}</Div>
                                 </li>
                                 : null
-
                         );
                     })}
                 </ul>
