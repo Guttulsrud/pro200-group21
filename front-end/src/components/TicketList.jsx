@@ -1,5 +1,5 @@
 import React from 'react';
-import {Div} from '../elements/divs/Div';
+import { Div } from '../elements/divs/Div';
 import Ticket from "./Ticket";
 import BackArrow from './Icons/BackArrow';
 import Heading from '../elements/text/StyledHeading';
@@ -31,17 +31,17 @@ export class TicketList extends React.Component {
 
     render() {
         return (
-            <Div mx={'1em'}>
+            <Div>
                 <Div>
                     <Div onClick={this.props.handleShowTickets} p={10} left={0} top={0} position={"absolute"}><BackArrow /></Div>
-                    <Heading.h1 mt={0} pt={92}>Mine reiser</Heading.h1>
+                    <Heading.h1 mt={0} pt={92} pl={15}>Mine reiser</Heading.h1>
                 </Div>
 
                 <Div>
                     {
                         this.state.tickets.map((item, i) => (
                             <Ticket key={"Ticket_ " + i}
-                                    ticketdata={item}
+                                ticketdata={item}
                             />
                         ))}
                 </Div>
