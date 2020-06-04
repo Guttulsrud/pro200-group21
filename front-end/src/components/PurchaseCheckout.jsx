@@ -2,10 +2,15 @@ import React from 'react';
 import { Div } from '../elements/divs/Div';
 import Heading from '../elements/text/StyledHeading';
 import tickets from '../utils/tickets';
+import Select from 'react-select';
 
 
 
 const BusSelection = props => {
+
+    const options = [
+        { value: 'Vipps', label: <div><img src="/images/vipps.png" height="40px" width="100px" /></div> }
+    ];
 
     return (
         <Div bg={'#fff'} width={1} display={'flex'} flexDirection={'column'}>
@@ -92,6 +97,10 @@ const BusSelection = props => {
                 <Div>
                     <Heading.h2 pr={20}>{props.sum} kr</Heading.h2>
                 </Div>
+            </Div>
+
+            <Div pl={20} pr={20} pb={20}>
+                <Select options={options} placeholder="Velg betalingsmåte" />
             </Div>
 
 
