@@ -4,6 +4,7 @@ import {Div} from '../elements/divs/Div';
 import {ChevronRightBig} from './Icons/ChevronRightBig';
 import {DateIcon} from './Icons/DateIcon';
 import {Link} from 'react-router-dom';
+import Heading from "../elements/text/StyledHeading";
 
 
 export const DateField = styled.div`
@@ -102,8 +103,8 @@ const Ticket = (props) => {
                         <Div mr={"1em"} display="flex" alignItems="center" justifyContent="center">
                             <ChevronRightBig/>
                         </Div>
-
-                        <h3>{props.ticketdata.route.destination.title}</h3>
+                
+                        <h3 style={{overflowWrap: "break-word"}} >{props.ticketdata.route.destination.title}</h3>
                     </DestField>
                 </Div>
 

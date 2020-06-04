@@ -9,9 +9,9 @@ const AmountSelection = (props) => {
     return (
         <Div display={"flex"} width={0.90} mx={"auto"} justifyContent={"space-between"} color={props.inactive ? "#616567" : "vyBlack"}>
             <Heading.h2 >{props.type}</Heading.h2>
-            <Div display="flex" alignItems="center">
+            <Div display="flex" alignItems="center" >
                 <RoundBtn inactive={props.inactive} onClick={props.handleSub} ><SubIcon inactive={props.inactive} /></RoundBtn>
-                <Heading.h3 mx={20} fontSize={24} >{props.qty}</Heading.h3>
+                <Heading.h3 mx={15} fontSize={24} textAlign="center" minWidth={"28px"}>{props.qty}</Heading.h3>
                 <RoundBtn onClick={props.handleAdd} ><AddIcon /></RoundBtn>
             </Div>
         </Div>
