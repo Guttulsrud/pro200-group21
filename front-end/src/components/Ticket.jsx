@@ -65,7 +65,12 @@ const Ticket = (props) => {
 
 
     const date = new Date(props.ticketdata.expiration)
-    const dateString = `${date.getHours()}:${date.getMinutes()} ${date.getDay()}/${date.getMonth()+1}/${date.getFullYear()}`
+    const minutes = date.getMinutes()
+    const hours = date.getHours()
+    const minutePrefix = minutes.toString().length === 1 ? "0" : "";
+    const hourPrefix = hours.toString().length === 1 ? "0" : "";
+
+    const dateString = `${hourPrefix +""+ hours}:${minutePrefix +""+ minutes} ${date.getDay()}/${date.getMonth()+1}/${date.getFullYear()}`
     const [receiptVisible, setReceiptVisible] = React.useState(false)
 
     const toggleReceipt = () => {

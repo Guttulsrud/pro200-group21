@@ -50,12 +50,14 @@ exports.createTicket = function (req, res) {
     const numberOfTickets = req.body.number_of_tickets;
     const price = req.body.price;
     const route = req.body.route;
+    const expiration = req.body.expiration
 
 
     Ticket.create({
         user_id: userId,
         number_of_tickets: numberOfTickets,
         price: price,
+        expiration: expiration,
         route: {
             origin: {
                 title: route.origin.title,
