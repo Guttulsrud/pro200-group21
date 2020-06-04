@@ -10,7 +10,7 @@ import BusSelection from './BusSelection';
 import buses from '../utils/buses';
 import PurchaseCheckout from './PurchaseCheckout';
 import { StyledLink } from '../elements/links/StyledLink';
-import BackArrow from './Icons/BackArrow';
+import { ChevronLeftBig } from './Icons/ChevronLeftBig';
 
 
 class PurchaseSection extends React.Component {
@@ -105,7 +105,7 @@ class PurchaseSection extends React.Component {
         const data = {
             user_id: '5debe43e033f2330fc179981',
             number_of_tickets: this.state.count,
-            expiration: Date.now() + 1000*60*60,
+            expiration: Date.now() + 1000 * 60 * 60,
             price: this.state.sum,
             route: {
                 origin: {
@@ -234,7 +234,7 @@ class PurchaseSection extends React.Component {
             <Div display="flex" flexDirection="column" alignItems={'center'} height={"100%"}
                 bg={'#fff'} width={1} position={"absolute"} bottom={0}
             >
-                <Div display={"flex"} width={.95} ><Div onClick={this.handleGoBack} p={10} pl={0} ><BackArrow /></Div></Div>
+                <Div display={"flex"} width={.95} ><Div onClick={this.handleGoBack} ml="10px" mt="10px" p={10} pl={0} ><ChevronLeftBig /></Div></Div>
 
                 <Div display="flex" justifyContent="space-between" alignItems="center" width={0.95} borderBottom={'1px solid #D7D8D9'}>
                     <Div display="flex" flexDirection="column" width="100%" justifyContent="space-between">
