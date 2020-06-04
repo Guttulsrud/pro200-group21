@@ -85,14 +85,16 @@ class PurchaseSection extends React.Component {
         });
     };
 
+    purchased = false;
     postData = async () => {
+        this.purchased = true
         await axios.post(
             'http://localhost:5000/ticket/create',
             this.state.data,
             { headers: { 'Content-Type': 'application/json' } }
         )
             .then((res) => this.setState({
-                purchased:true,
+                purchased: true,
                 ticketId: res.data._id
             }));
     };
@@ -137,12 +139,12 @@ class PurchaseSection extends React.Component {
         if (this.state.selectedAmount) {
             this.setState({
                 selectedAmount: false
-            })
+            }, () => this.handleClick())
         } else if (this.state.showCheckout) {
             this.setState({
                 showCheckout: false,
                 selectedAmount: true
-            })
+            }, () => this.handleClick())
         } else {
             this.props.handleGoBack()
         }
@@ -169,8 +171,8 @@ class PurchaseSection extends React.Component {
                 )}
             </Div>;
         } else if (this.state.showCheckout) {
-            if(!this.state.purchased) {
-                this.postData().then(r => console.log(r));
+            if (!this.purchased) {
+                this.postData().then(r => r);
             }
             const props = this.props.sendState;
             content =
@@ -206,12 +208,12 @@ class PurchaseSection extends React.Component {
                         ))
                     }
 
-                    <Div display="flex" alignItems={"center"} justifyContent="space-between" width={0.95} borderTop={'1px solid #D7D8D9'}>
+                    <Div display="flex" alignItems={"center"} justifyContent="space-between" width="100%" borderTop={'1px solid #D7D8D9'}>
 
-                        <React.Fragment>
+                        <Div display={"flex"} justifyContent="space-between" width={0.90} mx={"auto"}>
                             <Heading.h2 >Totalsum</Heading.h2>
                             <Heading.h2 >{this.state.sum} kr</Heading.h2>
-                        </React.Fragment>
+                        </Div>
 
                     </Div>
                 </Div>
@@ -229,7 +231,7 @@ class PurchaseSection extends React.Component {
 
         return (
             <Div display="flex" flexDirection="column" alignItems={'center'} height={"100%"}
-                bg={'#fff'} width={1} position={"absolute"}
+                 bg={'#fff'} width={1} position={"absolute"} bottom={0}
             >
                 <Div display={"flex"} width={.95} ><Div onClick={this.handleGoBack} p={10} pl={0} ><BackArrow /></Div></Div>
 

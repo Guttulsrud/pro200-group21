@@ -1,11 +1,11 @@
 import React from 'react';
 import {Div} from '../elements/divs/Div';
-import {RoundBtn} from "../elements/buttons/RoundBtn";
-import {ChevronLeftIcon} from "../components/Icons/ChevronLeftIcon";
-import Ticket from "../components/Ticket";
+import Ticket from "./Ticket";
+import BackArrow from './Icons/BackArrow';
+import Heading from '../elements/text/StyledHeading';
 
 
-export class TicketPage extends React.Component {
+export class TicketList extends React.Component {
 
     state = {
         tickets: []
@@ -33,9 +33,10 @@ export class TicketPage extends React.Component {
         return (
             <Div mx={'1em'}>
                 <Div>
-                    <RoundBtn secondary mt={'2em'}><ChevronLeftIcon/></RoundBtn>
-                    <h1>Mine reiser</h1>
+                    <Div onClick={this.props.handleShowTickets} p={10} left={0} top={0} position={"absolute"}><BackArrow /></Div>
+                    <Heading.h1 mt={0} pt={92}>Mine reiser</Heading.h1>
                 </Div>
+
                 <Div>
                     {
                         this.state.tickets.map((item, i) => (
@@ -49,4 +50,4 @@ export class TicketPage extends React.Component {
     }
 }
 
-export default TicketPage;
+export default TicketList;

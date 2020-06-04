@@ -9,6 +9,16 @@ exports.getTicketAll = function (req, res) {
         .sort({expiration: -1})
         .then(tickets => res.send(tickets))
         .catch(error => res.send(error));
+
+    // Ticket.deleteMany({}, function (err) {
+    //     if (err) {
+    //         console.log(err)
+    //     } else {
+    //         res.end('success');
+    //     }
+    // });
+
+
 };
 
 // GET one ticket by ID

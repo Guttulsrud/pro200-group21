@@ -1,13 +1,12 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import {RoundBtn} from "../elements/buttons/RoundBtn";
-import {ChevronLeftIcon} from "../components/Icons/ChevronLeftIcon";
 import {Div} from "../elements/divs/Div";
 import TravelMap from "../components/TravelMap";
 import TimeLine from "../components/TimeLine";
 import {Button} from "../elements/buttons/Button";
 import {QRcode} from "../components/Icons/qrcode";
 import Text from '../elements/text/StyledText';
+import Heading from '../elements/text/StyledHeading';
+import {StyledLink} from '../elements/links/StyledLink';
 
 
 export class ActiveTicketPage extends React.Component {
@@ -20,7 +19,7 @@ export class ActiveTicketPage extends React.Component {
         busTime: 100,
     };
 
-    componentWillMount() {
+    componentDidMount() {
         if (!this.state.hasActiveTicket) {
             const fromLS = JSON.parse(localStorage.getItem('ActiveTicketState'));
             this.setState(fromLS)
@@ -105,8 +104,10 @@ export class ActiveTicketPage extends React.Component {
                 </React.Fragment>
             )
         } else (
-            content = <Text.p mt={0} p={20}>Du har ingen aktive billetter, bestill en reise ved å trykke på "Ny reise" i
-                menyen</Text.p>
+            content = <Div m={"auto"} display={"flex"} flexDirection={"column"} justifyContent={"center"} height={"100%"} width={1} color={"vyBlack"} textAlign={"center"} position={"absolute"}>
+                <Heading.h1 mb={0} p={0}>Ingen aktive billetter!</Heading.h1>
+                <Text.p fontSize={18} fontWeight={"medium"}>Du kan bestille en ny reise <StyledLink to={"/"} color={"vyGreen"}>her</StyledLink></Text.p>
+            </Div>
         )
         return (
             <React.Fragment>

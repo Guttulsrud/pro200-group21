@@ -9,7 +9,7 @@ import BottomMenu from './components/BottomMenu/BottomMenu';
 import Demo from './pages/Demo';
 import ActiveTicketPage from "./pages/ActiveTicketPage";
 import TestDialog from './pages/TestDialog';
-// import TicketPage from "./pages/TicketPage";
+// import TicketList from "./pages/TicketList";
 
 function App() {
   const setLocalStorage = () => {
@@ -29,7 +29,7 @@ function App() {
               <Switch>
                 <Route exact path='/' component={FrontPage} />
                 <Route exact path='/demopage' component={Demo} />
-                {/*<Route exact path='/ticket' component={TicketPage} />*/}
+                {/*<Route exact path='/ticket' component={TicketList} />*/}
                 <Route exact path='/profile' component={ProfilePage} />
                 <Route exact path='/activeticket' component={ActiveTicketPage} />
                 <Route exact path='/test' component={TestDialog} />
