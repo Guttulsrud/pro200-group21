@@ -6,7 +6,7 @@ class FrontPage extends React.Component {
   state = {
     hasLs: null
   }
-  componentWillMount() {
+  componentDidMount() {
     let getData = JSON.parse(localStorage['showTutorial'])
     this.setState({
       hasLs: getData

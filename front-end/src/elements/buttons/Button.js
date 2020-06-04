@@ -1,5 +1,16 @@
-import styled, {css} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 import {space, position} from 'styled-system';
+
+const pulse = keyframes`
+ from{
+     height: 56px;
+     width:  70%;
+      
+  }to {
+      height: 58px;
+      width:  71%;   
+  }
+`
 
 export const Button = styled.button`
   ${space};
@@ -14,6 +25,11 @@ export const Button = styled.button`
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  transition: .2s linear;
+  ${(props) => props.animate && css `
+    animation: ${pulse} 1s linear infinite alternate;
+` }
+  
        
     ${(props) =>
     props.secondary &&

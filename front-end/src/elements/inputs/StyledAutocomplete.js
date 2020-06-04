@@ -13,13 +13,21 @@ export const StyledAC = styled(Autocomplete)`
   font-size: 1.3rem;
   outline: none;
   border: none;
+  transition: .2s linear;
   border-bottom: ${(props) =>
-    props.filled ? '1px solid #00866E' : '1px solid #333'};
+    props.filled && !props.red ? '2px solid #00866E' : (props.red && props.filled ? "2px solid #FF3800" : '2px solid #333') };
 
-  &:focus {
-    border-bottom: 1px solid #00866e;
-    outline: none;
-  }
+ &:focus {
+      border-bottom: 2px solid #00866E;
+      outline: none;
+    } 
+    
+    ${props => props.red && css`
+    &:focus {
+      border-bottom: 2px solid #FF3800;
+      outline: none;
+    } 
+`}
 `;
 
 export const Label = styled.label`

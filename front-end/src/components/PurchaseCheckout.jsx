@@ -1,24 +1,11 @@
 import React from 'react';
 import { Div } from '../elements/divs/Div';
 import Heading from '../elements/text/StyledHeading';
-import VippsLogo from '../images/vipps.png';
-import Select from 'react-select';
 import tickets from '../utils/tickets';
-import { ArrowForwardIcon } from '../components/Icons/ArrowForwardIcon';
+
 
 
 const BusSelection = props => {
-    const options = [
-        { value: 'Velg betalingsmåte', label: 'Velg betalingsmåte' },
-        { value: 'vipps', label: <div><img src={VippsLogo} height="40px" width="100px" alt={"vipps"} /></div> },
-    ];
-
-
-    const colourStyles = {
-        control: styles => ({ ...styles, backgroundColor: 'white' }),
-
-
-    };
 
     return (
         <Div bg={'#fff'} width={1} display={'flex'} flexDirection={'column'}>
@@ -94,7 +81,6 @@ const BusSelection = props => {
                                     <Div color="#616567">x{t.qty}</Div>
                                 </li>
                                 : null
-
                         );
                     })}
                 </ul>

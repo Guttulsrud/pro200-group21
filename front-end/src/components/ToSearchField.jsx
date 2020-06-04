@@ -7,6 +7,7 @@ class ToSearchField extends React.Component {
     state = {
         filled: false,
         inputText: '',
+
     };
 
 
@@ -54,6 +55,7 @@ class ToSearchField extends React.Component {
                 <div className='search-form'>
                     <StyledAC
                         placeholder={''}
+
                         onPlaceSelected={(place) => {
                             const {geometry, formatted_address} = place;
                             this.props.handleInputSelect(geometry.location.lat(), geometry.location.lng());
@@ -67,12 +69,13 @@ class ToSearchField extends React.Component {
                         value={this.state.inputText}
                         onChange={(e) => this.handleChange(e.target.value)}
                         filled={this.state.filled ? this.state.inputText : undefined}
+                        red={"true"}
 
                     />
                     <Label filled={this.state.filled}>Hvor vil du reise til?</Label>
                     {this.state.filled && (
                         <button onClick={this.clearInput} className='search-btn'>
-                            <CloseIcon/>
+                            <CloseIcon red/>
                         </button>
                     )}
                 </div>

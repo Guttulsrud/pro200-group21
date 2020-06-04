@@ -8,6 +8,8 @@ import { Div } from '../elements/divs/Div';
 import { MarkerIcon } from './Icons/MarkerIcon';
 import PurchaseSection from './PurchaseSection';
 import ToSearchField from './ToSearchField';
+import {Transition, animated} from 'react-spring/renderprops';
+
 
 
 export class MainMap extends React.Component {
@@ -110,7 +112,7 @@ export class MainMap extends React.Component {
                 toCoordinate: [state.latitude, state.longitude],
                 selectedToAddress: true,
             });
-        } else {
+        } else if (!this.state.selectedFromAddress){
             this.setState({
                 selectedFromAddress: true,
                 fromCoordinate: [state.latitude, state.longitude],
@@ -205,93 +207,84 @@ export class MainMap extends React.Component {
 
     render() {
 
-        let content;
-
-        // const style = {
-        //     height: '100%',
-        // };
-
-        if (!this.state.orderReady) {
-            content = (
-                <Map
-                    google={this.props.google}
-                    initialCenter={{ lat: 59.924117, lng: 10.766715, }}
-                    centerAroundCurrentLocation
-                    center={{
-                        lat: this.state.latitude,
-                        lng: this.state.longitude
-                    }}
-                    onDragend={this.changedCenter.bind(this)}
-                    zoom={this.state.selectedToAddress ? 14 : 17}
-                    streetViewControl={false}
-                    zoomControl={false}
-                    fullscreenControl={false}
-                    mapTypeControl={false}
-                    draggable={true}
-                    onReady={this.onMapLoaded.bind(this)}
-                >
-                    {!this.state.orderReady && <FromSearchField
-                        fromLoc={this.state.fromLoc}
-                        fromSelected={this.state.selectedFromAddress}
-                        handleInputSelect={this.handleInputSelect}
-                        handleRemoveFrom={this.handleRemoveFrom}
-                        insertFrom={this.insertFrom}
-                    />}
-
-                    {(!this.state.orderReady && this.state.selectedFromAddress) && <ToSearchField
-                        toLoc={this.state.toLoc}
-                        handleInputSelect={this.handleInputSelect}
-                        handleRemoveTo={this.handleRemoveTo}
-                        insertTo={this.insertTo}
-                    />}
-                    {!this.state.orderReady && <MyLocationIcon showCurrentLocation={this.showCurrentLocation} />}
-
-                    <Marker
-                        id='position-marker'
-                        icon={{
-
-                            path: this.props.google.maps.SymbolPath.CIRCLE,
-                            fillColor: '#CCEAE4',
-                            fillOpacity: 1,
-                            scale: 10,
-                            strokeColor: '#003A70',
-                            strokeWeight: 8,
-                        }}
-                        position={{ lat: this.state.myLat, lng: this.state.myLng }}
-                    />
-
-                    {this.renderStartMarker()}
-                    {this.renderDestinationMarker()}
-                    {(!this.state.selectedFromAddress || !this.state.selectedToAddress) &&
-                        <MarkerIcon toLoc={this.state.selectedFromAddress} />}
-
-                </Map>
-            )
-        } else {
-            content = (
-                <PurchaseSection sendState={this.state} handleGoBack={this.handleGoBack} />
-            )
-        }
-
-
-
         return (
-            <Div display={"flex"} flexDirection={"column"}>
-                {content}
-                {!this.state.orderReady &&
-                    <Div paddingTop='30px'>
-                        <Button
-                            mb={20}
-                            width='70%'
-                            bottom
-                            center
-                            inactive={this.state.selectedFromAddress && !this.state.toLoc}
-                            onClick={!this.state.selectedFromAddress || !this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
-                        >
-                            {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Velg antall' : 'Jeg skal hit'}
-                        </Button>
-                    </Div>
-                }
+            <Div display={"flex"} flexDirection={"column"} overflow={"hidden"} >
+
+                            <Map
+                                google={this.props.google}
+                                initialCenter={{lat: 59.924117, lng: 10.766715,}}
+                                centerAroundCurrentLocation
+                                center={{
+                                    lat: this.state.latitude,
+                                    lng: this.state.longitude
+                                }}
+                                onDragend={this.changedCenter.bind(this)}
+                                zoom={this.state.selectedToAddress ? 14 : 17}
+                                streetViewControl={false}
+                                zoomControl={false}
+                                fullscreenControl={false}
+                                mapTypeControl={false}
+                                draggable={true}
+                                onReady={this.onMapLoaded.bind(this)}
+                            >
+                              <FromSearchField
+                                    fromLoc={this.state.fromLoc}
+                                    fromSelected={this.state.selectedFromAddress}
+                                    handleInputSelect={this.handleInputSelect}
+                                    handleRemoveFrom={this.handleRemoveFrom}
+                                    insertFrom={this.insertFrom}
+                                />
+
+                                {(this.state.selectedFromAddress) && <ToSearchField
+                                    toLoc={this.state.toLoc}
+                                    handleInputSelect={this.handleInputSelect}
+                                    handleRemoveTo={this.handleRemoveTo}
+                                    insertTo={this.insertTo}
+                                />}
+                                <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>
+
+                                <Marker
+                                    id='position-marker'
+                                    icon={{
+
+                                        path: this.props.google.maps.SymbolPath.CIRCLE,
+                                        fillColor: '#CCEAE4',
+                                        fillOpacity: 1,
+                                        scale: 10,
+                                        strokeColor: '#003A70',
+                                        strokeWeight: 8,
+                                    }}
+                                    position={{lat: this.state.myLat, lng: this.state.myLng}}
+                                />
+
+                                {this.renderStartMarker()}
+                                {this.renderDestinationMarker()}
+                                {(!this.state.selectedFromAddress || !this.state.selectedToAddress) &&
+                                <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
+                            </Map>
+
+
+                            <Div paddingTop='30px'>
+                                <Button
+                                    mb={20}
+                                    width='70%'
+                                    bottom
+                                    center
+                                    inactive={this.state.selectedFromAddress && !this.state.toLoc}
+                                    onClick={!this.state.selectedFromAddress || !this.state.selectedToAddress ? this.handleSelection.bind(this) : this.handleOrder}
+                                    animate={(!this.state.selectedFromAddress && this.state.fromLoc) || (!this.state.selectedToAddress && this.state.toLoc)}
+                                >
+                                    {!this.state.selectedFromAddress ? 'Hent meg her' : this.state.selectedToAddress ? 'Velg antall' : 'Jeg skal hit'}
+                                </Button>
+                            </Div>
+
+                <Transition native items={this.state.orderReady} from={{marginLeft: 1000}} enter={{marginLeft: 0}} leave={{marginLeft: 1000}} config={{duration: 300, ease:"easeIn"}}>
+                    {show => show && (props => (
+                        <animated.div style={props} >
+                            <PurchaseSection sendState={this.state} handleGoBack={this.handleGoBack}/>
+                        </animated.div>
+                    ))}
+                </Transition>
             </Div>
         );
     }
