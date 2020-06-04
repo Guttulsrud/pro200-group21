@@ -14,7 +14,7 @@ export class ActiveTicketPage extends React.Component {
 
     state = {
         busName: this.props.location.search.split("?")[2].split("%20")[0]+" "
-            .concat(this.props.location.search.split("?")[2].split("%20")[1]),
+            .concat(this.props.location.search.split("?")[2].split("%20")[1] ? this.props.location.search.split("?")[2].split("%20")[1]: ""),
         hasActiveTicket: this.props.location.search.split("?")[1],
         journeyHasStarted: false,
         busHasArrived: false,
