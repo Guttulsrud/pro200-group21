@@ -58,7 +58,7 @@ export class TimeLine extends React.Component {
                          zIndex="99999" 
                          bg="#fff">
 
-                      {this.state.journeyHasStarted && 
+                      {this.props.journeyHasStarted && 
                         <Div position="relative" display="flex" alignItems="center" justifyContent="flex-end" height="3px" bg={"#003A70"} width={"" + this.props.progress + "%"}>
 
                           <Div borderRadius="100px"

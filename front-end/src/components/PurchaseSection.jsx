@@ -105,6 +105,7 @@ class PurchaseSection extends React.Component {
         const data = {
             user_id: '5debe43e033f2330fc179981',
             number_of_tickets: this.state.count,
+            expiration: Date.now() + 1000*60*60,
             price: this.state.sum,
             route: {
                 origin: {
