@@ -1,6 +1,6 @@
 import React from 'react';
-import {Div} from '../elements/divs/Div';
-import {BusIcon} from "./Icons/BusIcon";
+import { Div } from '../elements/divs/Div';
+import { BusIcon } from "./Icons/BusIcon";
 
 
 export class TimeLine extends React.Component {
@@ -9,8 +9,6 @@ export class TimeLine extends React.Component {
         journeyHasStarted: true,
         from: '',
         to: '',
-        
-        
     };
 
 
@@ -40,75 +38,75 @@ export class TimeLine extends React.Component {
             <Div display="flex" justifyContent="space-around" alignItems="center" flexDirection="column" width={"100%"}>
 
                 <Div display="flex" justifyContent="space-between" alignItems="center" width={"100%"}>
-                    <h5 style={{marginLeft: -9}}>{this.state.from}</h5>
-                    <h5 style={{marginRight: -9}}>{this.state.to}</h5>
+                    <h5 style={{ marginLeft: -9 }}>{this.state.from}</h5>
+                    <h5 style={{ marginRight: -9 }}>{this.state.to}</h5>
                 </Div>
 
                 <Div display="flex" alignItems="center" justifyContent="center" width={"100%"} position="relative">
-                    
-                    <Div width={"88%"} 
-                         position="relative" 
-                         height="5px" 
-                         display="flex"
-                         alignItems="center"
-                         borderBottom="4px solid #003A70"
-                         borderTop="4px solid #003A70"
-                         borderLeft="none"
-                         borderRight="none"
-                         zIndex="99999" 
-                         bg="#fff">
 
-                      {this.props.journeyHasStarted && 
-                        <Div position="relative" display="flex" alignItems="center" justifyContent="flex-end" height="3px" bg={"#003A70"} width={"" + this.props.progress + "%"}>
+                    <Div width={"88%"}
+                        position="relative"
+                        height="5px"
+                        display="flex"
+                        alignItems="center"
+                        borderBottom="4px solid #003A70"
+                        borderTop="4px solid #003A70"
+                        borderLeft="none"
+                        borderRight="none"
+                        zIndex="99999"
+                        bg="#fff">
 
-                          <Div borderRadius="100px"
-                               
-                               bg={"#003A70"}
-                               height="2.5em"
-                               width="2.5em"
-                               display="flex"
-                               position="absolute"
-                               justifyContent="center"
-                               alignItems="center"
-                               ml="1.2em"
-                          >
+                        {this.props.journeyHasStarted &&
+                            <Div position="relative" display="flex" alignItems="center" justifyContent="flex-end" height="3px" bg={"#003A70"} width={"" + this.props.progress + "%"}>
 
-                            <BusIcon></BusIcon>
+                                <Div borderRadius="100px"
 
-                          </Div>
-                      
-                        </Div>
-                      }
-                      
+                                    bg={"#003A70"}
+                                    height="2.5em"
+                                    width="2.5em"
+                                    display="flex"
+                                    position="absolute"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    ml="1.2em"
+                                >
+
+                                    <BusIcon></BusIcon>
+
+                                </Div>
+
+                            </Div>
+                        }
+
 
                     </Div>
 
-                    
-                   
+
+
                     <Div display="flex"
-                         alignItems="center"
-                         justifyContent="center"
-                         bg={"white"} right="0"
-                         border="4px solid #003A70"
-                         borderRadius="100px"
-                         height="1em"
-                         width="1em"
-                         position="absolute"
+                        alignItems="center"
+                        justifyContent="center"
+                        bg={"white"} right="0"
+                        border="4px solid #003A70"
+                        borderRadius="100px"
+                        height="1em"
+                        width="1em"
+                        position="absolute"
                     >
                         <Div bg={"#003A70"} borderRadius="100px" height=".6em" width=".6em"
-                             position="absolute"></Div>
+                            position="absolute"></Div>
 
                     </Div>
 
                     <Div bg={"white"} left="0" border="4px solid #003A70" borderRadius="100px" height="1em"
-                         width="1em"
-                         position="absolute"></Div>
+                        width="1em"
+                        position="absolute"></Div>
 
                 </Div>
 
                 <Div display="flex" justifyContent="space-between" alignItems="center" width={"100%"}>
-                    <h4 style={{marginLeft: -9}}>10:05</h4>
-                    <h4 style={{marginRight: -9}}>11:14</h4>
+                    <h4 style={{ marginLeft: -9 }}>10:05</h4>
+                    <h4 style={{ marginRight: -9 }}>11:14</h4>
                 </Div>
 
             </Div>

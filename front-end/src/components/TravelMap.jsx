@@ -178,7 +178,7 @@ export class TravelMap extends React.Component {
                     <Polyline
                         path={this.state.polylineArray}
                         options={{
-                            strokeColor: '#003A70',
+                            strokeColor: '#FF3800',
                             strokeOpacity: 1,
                             strokeWeight: 5,
                             icons: [
