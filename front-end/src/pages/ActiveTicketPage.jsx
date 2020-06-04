@@ -11,8 +11,10 @@ import { StyledLink } from '../elements/links/StyledLink';
 
 export class ActiveTicketPage extends React.Component {
 
+
     state = {
-        busName: this.props.location.search.split("?")[2],
+        busName: this.props.location.search.split("?")[2].split("%20")[0]+" "
+            .concat(this.props.location.search.split("?")[2].split("%20")[1]),
         hasActiveTicket: this.props.location.search.split("?")[1],
         journeyHasStarted: false,
         busHasArrived: false,
@@ -21,6 +23,7 @@ export class ActiveTicketPage extends React.Component {
     };
 
     componentDidMount() {
+
         if (!this.state.hasActiveTicket) {
             const fromLS = JSON.parse(localStorage.getItem('ActiveTicketState'));
             this.setState(fromLS)
