@@ -187,7 +187,7 @@ class PurchaseSection extends React.Component {
                         />
                         <Div width={.7} margin={"0 auto"} mb={20}>
                             <StyledLink width={1} to={`/activeticket?${this.state.ticketId}?${this.state.bus.name}`}>
-                                <Button width={"100%"}>Bestill buss</Button>
+                                <Button width={"100%"}>Bekreft bestilling</Button>
                             </StyledLink>
                         </Div>
                     </Div>
@@ -225,7 +225,7 @@ class PurchaseSection extends React.Component {
         }
 
         // STEPPER DESCRIPTION
-        const stepsArray = ['Antall reisende', 'Velg buss', 'Bestill buss'];
+        const stepsArray = ['Antall reisende', 'Velg buss', 'Bekreft bestilling'];
 
         const { currentStep } = this.state;
 
