@@ -19,7 +19,7 @@ const BusSelection = props => {
                 <Div display={'flex'} width="100%" alignItems="center" pl={20} pr={20} >
 
                     <Div height={48} width={48}>
-                        <img height="48px" width="48px" src={'/images/bus-48.png'} alt={"bus icon"} />
+                        <img height="48px" width="48px" src={'/images/bus-48.png'} alt={"Buss ikon"} />
                     </Div>
                     <Div>
 
@@ -47,7 +47,7 @@ const BusSelection = props => {
 
                     <Heading.h2 mb="-12px">Fra</Heading.h2>
                     <Div display="flex" alignItems="center">
-                        <img height={18} width={18} src={'/images/pin-48-from.png'} alt={"pin icon"} />
+                        <img height={18} width={18} src={'/images/pin-48-from.png'} alt={"Reise fra-ikon."} />
                         <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
 
                             {props.origin}
@@ -61,7 +61,7 @@ const BusSelection = props => {
 
                     <Heading.h2 mb="-12px">Til</Heading.h2>
                     <Div display="flex" alignItems="center">
-                        <img height={18} width={18} src={'/images/pin-48-to.png'} alt={"pin icon"} />
+                        <img height={18} width={18} src={'/images/pin-48-to.png'} alt={"Reise til-ikon."} />
                         <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
 
                             {props.destination}
