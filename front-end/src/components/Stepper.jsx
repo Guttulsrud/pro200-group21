@@ -101,11 +101,11 @@ class Stepper extends React.Component {
             return (
                 <Div key={index} display="flex" flexDirection="column" alignItems="center" width="23%"
                     position="relative">
-                    <Div display="flex" borderRadius={80} height="15px" width="15px" border="3px solid"
+                    <Div display="flex" borderRadius="100%" height="15px" width="15px" border="3px solid"
                         borderColor={step.selected ? 'vyGreen' : 'vyGreen'}
                         backgroundColor={step.selected ? 'none' : 'none'}>{step.completed ?
-                            <text.p margin="auto" fontSize="0.8rem" fontWeight="700" textAlign="center" borderRadius={100} height="16px" width="16px" backgroundColor="vyGreen" color="#ffffff"><span>&#10003;</span></text.p> :
-                            <Div borderRadius={100} width="100%" backgroundColor={step.selected ? 'vyGreen' : 'none'}
+                            <text.p margin="auto" fontSize="0.8rem" fontWeight="700" textAlign="center" borderRadius="100%" height="16px" width="16px" backgroundColor="vyGreen" color="#ffffff"><span>&#10003;</span></text.p> :
+                            <Div borderRadius="100%" width="100%" backgroundColor={step.selected ? 'vyGreen' : 'none'}
                                 margin="2px" />}</Div>
                     <Div>
                         <text.p fontSize="0.8rem" textAlign="center" fontWeight={step.highlighted ? 'bold' : 'normal'}
