@@ -46,12 +46,13 @@ const BusSelection = props => {
                 <Div mr={10}>
 
                     <Heading.h2 mb="-12px">Fra</Heading.h2>
-                    <Div display="flex" alignItems="center">
-                        <img height={18} width={18} src={'/images/pin-48-from.png'} alt={"pin icon"} />
-                        <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
+                    <Div display="flex" alignItems="center" justifyContent="space-between">
+                        
+                        <Heading.h2 mr={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
 
                             {props.origin}
                         </Heading.h2>
+                        <img height={48} width={48} src={'/images/pin-48-from.png'} alt={"pin icon"} />
                     </Div>
 
                 </Div>
@@ -60,12 +61,13 @@ const BusSelection = props => {
                 <Div mr={10}>
 
                     <Heading.h2 mb="-12px">Til</Heading.h2>
-                    <Div display="flex" alignItems="center">
-                        <img height={18} width={18} src={'/images/pin-48-to.png'} alt={"pin icon"} />
-                        <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
+                    <Div display="flex" alignItems="center" justifyContent="space-between">
+                        
+                        <Heading.h2 mr={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
 
                             {props.destination}
                         </Heading.h2>
+                        <img height={48} width={48} src={'/images/pin-48-to.png'} alt={"pin icon"} />
                     </Div>
 
                 </Div>
