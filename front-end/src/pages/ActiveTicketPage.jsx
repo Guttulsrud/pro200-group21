@@ -12,6 +12,7 @@ import { StyledLink } from '../elements/links/StyledLink';
 export class ActiveTicketPage extends React.Component {
 
     state = {
+        busName: this.props.location.search.split("?")[2],
         hasActiveTicket: this.props.location.search.split("?")[1],
         journeyHasStarted: false,
         busHasArrived: false,
@@ -83,8 +84,8 @@ export class ActiveTicketPage extends React.Component {
                         <Div display={this.state.journeyHasStarted ? "none" : "flex"} justifyContent="center"
                             alignItems="center"
                             color="#666666" mx={"4em"} my={this.state.busHasArrived ? 20 : 10} textAlign="center">
-                            {!this.state.busHasArrived && <h3>IAmBUS! ankommer om 69 minutter </h3>}
-                            {this.state.busHasArrived && <h3>iAmBus har ankommet</h3>}
+                            {!this.state.busHasArrived && <h3>{this.state.busName} ankommer om under 1 minutt </h3>}
+                            {this.state.busHasArrived && <h3>{this.state.busName} har ankommet</h3>}
 
                         </Div>
 

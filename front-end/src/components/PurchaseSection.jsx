@@ -186,7 +186,7 @@ class PurchaseSection extends React.Component {
                             sum={this.state.sum}
                         />
                         <Div width={.7} margin={"0 auto"} mb={20}>
-                            <StyledLink width={1} to={`/activeticket?${this.state.ticketId}`}>
+                            <StyledLink width={1} to={`/activeticket?${this.state.ticketId}?${this.state.bus.name}`}>
                                 <Button width={"100%"}>Bestill buss</Button>
                             </StyledLink>
                         </Div>
