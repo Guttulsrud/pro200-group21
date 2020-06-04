@@ -1,7 +1,7 @@
 import React from 'react';
 import { Div } from '../elements/divs/Div';
 import Ticket from "./Ticket";
-import BackArrow from './Icons/BackArrow';
+import { ChevronLeftBig } from './Icons/ChevronLeftBig';
 import Heading from '../elements/text/StyledHeading';
 
 
@@ -33,7 +33,7 @@ export class TicketList extends React.Component {
         return (
             <Div>
                 <Div>
-                    <Div onClick={this.props.handleShowTickets} p={10} left={0} top={0} position={"absolute"}><BackArrow /></Div>
+                    <Div onClick={this.props.handleShowTickets} mt="15px" ml="5px" p={10} left={0} top={0} position={"absolute"}><ChevronLeftBig /></Div>
                     <Heading.h1 mt={0} pt={92} pl={15}>Mine reiser</Heading.h1>
                 </Div>
 
