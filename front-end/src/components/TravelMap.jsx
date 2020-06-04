@@ -64,8 +64,8 @@ export class TravelMap extends React.Component {
                     position={{lat: state.fromCoordinate[0], lng: state.fromCoordinate[1]}}
                     icon={{
                         url: '/images/pin-text-from.png',
-                        anchor: new this.props.google.maps.Point(25, 52),
-                        scaledSize: new this.props.google.maps.Size(48, 48)
+                        anchor: new this.props.google.maps.Point(80, 77),
+                        scaledSize: new this.props.google.maps.Size(160, 77)
                     }}
                 />
             );
@@ -80,8 +80,8 @@ export class TravelMap extends React.Component {
                 <Marker
                     icon={{
                         url: '/images/pin-text-to.png',
-                        anchor: new this.props.google.maps.Point(25, 52),
-                        scaledSize: new this.props.google.maps.Size(48, 48)
+                        anchor: new this.props.google.maps.Point(80, 77),
+                        scaledSize: new this.props.google.maps.Size(160, 77)
                     }}
                     position={{lat: state.toCoordinate[0], lng: state.toCoordinate[1]}}
                 />
