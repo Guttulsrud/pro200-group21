@@ -225,14 +225,14 @@ class PurchaseSection extends React.Component {
         }
 
         // STEPPER DESCRIPTION
-        const stepsArray = ['Antall reisende', 'Velg buss', 'Kjøp billett'];
+        const stepsArray = ['Antall reisende', 'Velg buss', 'Bestill buss'];
 
         const { currentStep } = this.state;
 
 
         return (
             <Div display="flex" flexDirection="column" alignItems={'center'} height={"100%"}
-                 bg={'#fff'} width={1} position={"absolute"} bottom={0}
+                bg={'#fff'} width={1} position={"absolute"} bottom={0}
             >
                 <Div display={"flex"} width={.95} ><Div onClick={this.handleGoBack} p={10} pl={0} ><BackArrow /></Div></Div>
 
