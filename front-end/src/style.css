@@ -227,7 +227,7 @@ body {
 }
 
 
-/*TEST FOR INPUT*/
+/* INPUT*/
 .search-form {
   position: relative;
   display: flex;
@@ -249,8 +249,44 @@ body {
   background-color: transparent;
 }
 
+.search-form input {
+  padding-left: 35px;
+}
+
+.search-form label {
+  padding-left: 30px;
+}
+
 .search-btn svg {
   fill: #00866e;
+}
+
+.fromInputIcon {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin-top: 15px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+
+}
+
+.toInputIcon {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin-top: 15px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+
 }
 
 .pac-container {
@@ -332,13 +368,13 @@ body {
   margin-top: 4px;
   display: inline-block;
   vertical-align: top;
-  background-image: url(http://localhost:3000/images/pin-128.png);
+  background-image: url(http://localhost:3000/images/pin-48-from.png);
   background-position: left top;
   background-size: cover;
 }
 
 .hdpi .pac-icon {
-  background-image: url(http://localhost:3000/images/pin-128.png);
+  background-image: url(http://localhost:3000/images/pin-48-from.png);
   background-position: left top;
 }
 

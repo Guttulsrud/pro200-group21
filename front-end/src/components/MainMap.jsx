@@ -6,6 +6,7 @@ import { MyLocationIcon } from './Icons/MyLocationIcon';
 import FromSearchField from './FromSearchField';
 import { Div } from '../elements/divs/Div';
 import { MarkerIcon } from './Icons/MarkerIcon';
+import { DestinationIcon } from './Icons/DestinationIcon';
 import PurchaseSection from './PurchaseSection';
 import ToSearchField from './ToSearchField';
 import { Transition, animated } from 'react-spring/renderprops';
@@ -260,7 +261,7 @@ export class MainMap extends React.Component {
                     {this.renderStartMarker()}
                     {this.renderDestinationMarker()}
                     {(!this.state.selectedFromAddress || !this.state.selectedToAddress) &&
-                        <MarkerIcon toLoc={this.state.selectedFromAddress} />}
+                        (!this.state.selectedFromAddress ? <MarkerIcon /> : <DestinationIcon />)}
                 </Map>
 
 
