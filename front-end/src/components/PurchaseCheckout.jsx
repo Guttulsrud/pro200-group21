@@ -28,7 +28,7 @@ const BusSelection = props => {
 
                     </Div>
                     <Div>
-                        <Heading.h3 fontSize="1.4rem" fontWeight={300} ml={20}>3 min</Heading.h3>
+                        <Heading.h3 fontSize="1.4rem" fontWeight={300} ml={20}>{props.bus.eta} min</Heading.h3>
                     </Div>
 
 
