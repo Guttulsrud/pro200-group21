@@ -105,7 +105,7 @@ class PurchaseSection extends React.Component {
         const data = {
             user_id: '5debe43e033f2330fc179981',
             number_of_tickets: this.state.count,
-            expiration: Date.now() + 1000 * 60 * 60,
+            expiration: Date.now() + 1000*60*60,
             price: this.state.sum,
             route: {
                 origin: {
@@ -153,24 +153,38 @@ class PurchaseSection extends React.Component {
     }
 
     render() {
+        const busArray = [];
+
+            buses.map(b => {
+                    return b.cap >= this.state.count ?
+                        busArray.push(
+                            <BusSelection
+                                key={b.name}
+                                handleShowCheckout={() => this.handleShowCheckout(b.name, b.eta)}
+                                name={b.name}
+                                cap={b.cap}
+                                eta={b.eta}
+                                curLoc={b.currentLoc}/>
+                        )
+                        : null;
+                }
+            )
 
         let content;
 
         if (this.state.selectedAmount) {
-            content = <Div overflow={'auto'} width={1} bg={'#F5F5F5'} display={"flex"} flexDirection={"column"} alignItems={"center"}>
-                {buses.map(b => {
-                    return b.cap > this.state.count ?
-                        <BusSelection
-                            key={b.name}
-                            handleShowCheckout={() => this.handleShowCheckout(b.name, b.eta)}
-                            name={b.name}
-                            cap={b.cap}
-                            eta={b.eta}
-                            curLoc={b.currentLoc} />
-                        : null;
-                }
-                )}
-            </Div>;
+            console.log(busArray.length);
+
+            content =
+                <React.Fragment>
+                    <Div overflow={'auto'} width={1} height={'100%'} bg={'#F5F5F5'} display={'flex'}
+                         flexDirection={'column'} alignItems={'center'}>
+                        {busArray.length > 0 ? <React.Fragment>{busArray}</React.Fragment> :
+                            <React.Fragment><Heading.h1 m={'auto'} textAlign={'center'}>Ingen busser med ønsket
+                                kapasitet</Heading.h1></React.Fragment>}
+                    </Div>
+
+                </React.Fragment>;
         } else if (this.state.showCheckout) {
             if (!this.purchased) {
                 this.postData().then(r => r);
@@ -195,25 +209,27 @@ class PurchaseSection extends React.Component {
 
                 </React.Fragment>;
         } else {
-            content = <Div display={"flex"} width={1} alignItems={"center"} justifyContent="space-between" flexDirection={"column"} overflow={"auto"} height="100%">
+            content = <Div display={'flex'} width={1} alignItems={'center'} justifyContent="space-between"
+                           flexDirection={'column'} overflow={'auto'} height="100%">
                 <Div width="100%">
                     {
                         tickets.map((t) => (
                             <AmountSelection key={t.type}
-                                type={t.type}
-                                price={t.price}
-                                qty={t.qty}
-                                inactive={!t.qty}
-                                handleAdd={() => this.handleAdd(t.type)}
-                                handleSub={t.qty ? () => this.handleSub(t.type) : null} />
+                                             type={t.type}
+                                             price={t.price}
+                                             qty={t.qty}
+                                             inactive={!t.qty}
+                                             handleAdd={() => this.handleAdd(t.type)}
+                                             handleSub={t.qty ? () => this.handleSub(t.type) : null}/>
                         ))
                     }
 
-                    <Div display="flex" alignItems={"center"} justifyContent="space-between" width="100%" borderTop={'1px solid #D7D8D9'}>
+                    <Div display="flex" alignItems={'center'} justifyContent="space-between" width="100%"
+                         borderTop={'1px solid #D7D8D9'}>
 
-                        <Div display={"flex"} justifyContent="space-between" width={0.90} mx={"auto"}>
-                            <Heading.h2 >Totalsum</Heading.h2>
-                            <Heading.h2 >{this.state.sum} kr</Heading.h2>
+                        <Div display={'flex'} justifyContent="space-between" width={0.90} mx={'auto'}>
+                            <Heading.h2>Totalsum</Heading.h2>
+                            <Heading.h2>{this.state.sum} kr</Heading.h2>
                         </Div>
 
                     </Div>
