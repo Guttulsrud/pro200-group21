@@ -29,7 +29,7 @@ class ProfilePage extends React.Component {
 
                     <Div zIndex={100}>
                         <Heading.h1 mt={0} pt={92} fontSize="2em">Min profil</Heading.h1>
-                        <Text.p fontSize="1.6rem" color='vyGreen' onClick={this.handleShowTickets}>Mine billetter</Text.p>
+                        <Text.p fontSize="1.6rem" color='vyGreen' onClick={this.handleShowTickets}>Mine reiser</Text.p>
                     </Div>
                     <Div position="relative" bottom="-180px" width="auto" height="500px" zIndex={1} backgroundSize="cover" style={{ backgroundImage: `url("images/4-crop-light.png")` }}>
 
