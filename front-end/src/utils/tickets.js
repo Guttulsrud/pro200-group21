@@ -11,7 +11,7 @@ let tickets = [
     },
     {
         type: "Honnør",
-        price: 25 ,
+        price: 25,
         qty: 0
     },
     {

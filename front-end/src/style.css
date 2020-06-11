@@ -1,399 +1,402 @@
 * {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: 'Helvetica Neue', 'benton-sans', -apple-system,
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Helvetica Neue', 'benton-sans', -apple-system,
     BlinkMacSystemFont, 'Segoe UI', 'Roboto', Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 html,
 body {
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 /* PLACEHOLDER */
 ::-webkit-input-placeholder {
-  color: #000;
-  opacity: 0.4;
-  -webkit-transition: opacity 0.35s ease-in-out;
-  transition: opacity 0.35s ease-in-out;
+    color: #000;
+    opacity: 0.4;
+    -webkit-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
 }
 
 /* PLACEHOLDER HOVER */
 :hover::-webkit-input-placeholder {
-  opacity: 0.75;
-  -webkit-transition: opacity 0.35s ease-in-out;
-  transition: opacity 0.35s ease-in-out;
+    opacity: 0.75;
+    -webkit-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
 }
 
 /*PLACEHOLDER FOCUS*/
 :focus::-webkit-input-placeholder {
-  opacity: 0;
-  -webkit-transition: opacity 0.35s ease-in-out;
-  transition: opacity 0.35s ease-in-out;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
 }
 
 .test-div {
-  padding: 60px;
-  background-color: #b9b9b9;
-  margin: auto;
+    padding: 60px;
+    background-color: #b9b9b9;
+    margin: auto;
 }
 
 #wrapper {
-  padding: 0 0 60px 0;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
+    padding: 0 0 60px 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
 }
 
 .container {
-  position: relative;
-  min-height: 100%;
-  background-color: #F5F5F5;
-  overflow: hidden;
+    position: relative;
+    min-height: 100%;
+    background-color: #F5F5F5;
+    overflow: hidden;
 }
 
 /* BOTTOMMENU */
 .activeRoute .bottom-menu-icon svg {
-  fill: #00866e;
+    fill: #00866e;
 }
 
 /* MAP */
 .map {
-  height: 50% !important;
+    height: 50% !important;
 
 }
 
 #map-marker {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  height: 64px;
-  width: 64px;
-  margin-top: -67px;
-  margin-left: -32px;
-  cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    height: 64px;
+    width: 64px;
+    margin-top: -67px;
+    margin-left: -32px;
+    cursor: pointer;
 }
 
 #position-marker {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  background-color: #ff00cc;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background-color: #ff00cc;
 }
 
 #my-location {
-  position: absolute;
-  background-color: #ffffff;
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
 }
 
 #my-location svg {
-  fill: #00866e;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 32px;
-  width: 32px;
-  margin-left: -16px;
-  margin-top: -16px;
+    fill: #00866e;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 32px;
+    width: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
 }
 
 /* STEPPER */
 .divider-line {
-  position: absolute;
-  top: 15%;
-  left: 100%;
-  width: 70%;
-  height: 3px;
-  background-color: #00866e;
+    position: absolute;
+    top: 15%;
+    left: 100%;
+    width: 70%;
+    height: 3px;
+    background-color: #00866e;
 }
 
 
 /* FONT STYLING */
 .text--black {
-  color: #333333;
+    color: #333333;
 }
 
 .display-1 {
-  font-size: 2.2rem;
-  color: #333333;
+    font-size: 2.2rem;
+    color: #333333;
 }
 
 .display-2 {
-  font-size: 2.6rem;
-  color: #333333;
+    font-size: 2.6rem;
+    color: #333333;
 }
 
 .display-3 {
-  font-size: 3rem;
-  color: #333333;
+    font-size: 3rem;
+    color: #333333;
 }
 
 .display-4 {
-  font-size: 4rem;
-  color: #333333;
+    font-size: 4rem;
+    color: #333333;
 }
 
 .headline {
-  font-size: 1.8rem;
-  color: #333333;
+    font-size: 1.8rem;
+    color: #333333;
 }
 
 .title {
-  font-size: 1.5rem;
-  color: #333333;
+    font-size: 1.5rem;
+    color: #333333;
 }
 
 .subtitle {
-  font-size: 1rem;
-  color: #333333;
+    font-size: 1rem;
+    color: #333333;
 }
 
-.body-1 {}
+.body-1 {
+}
 
-.body-2 {}
+.body-2 {
+}
 
-.caption {}
+.caption {
+}
 
 
 /* TICKET TYPE / PURCHASE */
 .ticket-types {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .ticket-types li {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #D7D8D9;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #D7D8D9;
 }
 
 .checkout-list ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 
 }
 
 .checkout-list li {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
 }
 
 .checkout-select {
-  position: relative;
-  width: 300px;
+    position: relative;
+    width: 300px;
 
 }
 
 .checkout-select select {
-  width: 100%;
-  border: 1px solid #003A70;
-  background-color: #ffffff;
-  padding: 10px;
+    width: 100%;
+    border: 1px solid #003A70;
+    background-color: #ffffff;
+    padding: 10px;
 }
 
 .checkout-select .select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  background-color: #ff00cc;
-  border-color: #000 transparent transparent transparent;
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    background-color: #ff00cc;
+    border-color: #000 transparent transparent transparent;
 }
 
 .checkout-select .select#payment option[value="vipps"] {
-  background-image: url(http://localhost:3000/vipps.png);
+    background-image: url(http://localhost:3000/vipps.png);
 }
 
 
 /* INPUT*/
 .search-form {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  margin-left: 20px;
-  margin-right: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .search-btn {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  margin-top: 15px;
-  padding: 0;
-  border: none;
-  border-radius: 10px;
-  background-color: transparent;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin-top: 15px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
 }
 
 .search-form input {
-  padding-left: 35px;
+    padding-left: 35px;
 }
 
 .search-form label {
-  padding-left: 30px;
+    padding-left: 30px;
 }
 
 .search-btn svg {
-  fill: #00866e;
+    fill: #00866e;
 }
 
 .fromInputIcon {
-  position: absolute;
-  top: 50%;
-  left: 8px;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  margin-top: 15px;
-  padding: 0;
-  border: none;
-  border-radius: 10px;
-  background-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin-top: 15px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
 
 }
 
 .toInputIcon {
-  position: absolute;
-  top: 50%;
-  left: 8px;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  margin-top: 15px;
-  padding: 0;
-  border: none;
-  border-radius: 10px;
-  background-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin-top: 15px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
 
 }
 
 .pac-container {
-  background-color: #ffffff;
-  position: absolute !important;
-  z-index: 1000;
-  border-radius: 2px;
-  border-bottom: 0px solid #d9d9d9;
-  border-top: 0px;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  overflow: hidden;
+    background-color: #ffffff;
+    position: absolute !important;
+    z-index: 1000;
+    border-radius: 2px;
+    border-bottom: 0px solid #d9d9d9;
+    border-top: 0px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .pac-logo:after {
-  content: '';
-  padding: 1px 1px 1px 0;
-  height: 16px;
-  text-align: right;
-  display: block;
-  background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3.png);
-  background-position: right;
-  background-repeat: no-repeat;
-  background-size: 120px 14px;
-  display: none;
+    content: '';
+    padding: 1px 1px 1px 0;
+    height: 16px;
+    text-align: right;
+    display: block;
+    background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3.png);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 120px 14px;
+    display: none;
 }
 
 .hdpi.pac-logo:after {
-  background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3_hdpi.png);
+    background-image: url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3_hdpi.png);
 }
 
 .pac-item {
-  cursor: default;
-  padding: 0 4px;
-  padding-left: 10px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  line-height: 30px;
-  text-align: left;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #e6e6e6;
-  border-top: 0px;
-  font-size: 16px;
-  color: #333333;
+    cursor: default;
+    padding: 0 4px;
+    padding-left: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 30px;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    border-top: 0px;
+    font-size: 16px;
+    color: #333333;
 }
 
 .pac-item:hover {
-  background-color: #00866e;
+    background-color: #00866e;
 }
 
-.pac-item:hover>.pac-item-query {
-  color: #fff;
+.pac-item:hover > .pac-item-query {
+    color: #fff;
 }
 
 .pac-item-selected,
 .pac-item-selected:hover {
-  background-color: #ebf2fe;
+    background-color: #ebf2fe;
 }
 
 .pac-matched {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .pac-item-query {
-  font-size: 22px;
-  padding-right: 3px;
-  color: #333333;
+    font-size: 22px;
+    padding-right: 3px;
+    color: #333333;
 }
 
 .pac-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-  margin-top: 4px;
-  display: inline-block;
-  vertical-align: top;
-  background-image: url(http://localhost:3000/images/pin-48-from.png);
-  background-position: left top;
-  background-size: cover;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    margin-top: 4px;
+    display: inline-block;
+    vertical-align: top;
+    background-image: url(http://localhost:3000/images/pin-48-from.png);
+    background-position: left top;
+    background-size: cover;
 }
 
 .hdpi .pac-icon {
-  background-image: url(http://localhost:3000/images/pin-48-from.png);
-  background-position: left top;
+    background-image: url(http://localhost:3000/images/pin-48-from.png);
+    background-position: left top;
 }
 
 .pac-icon-search {
-  background-position: -1px -1px;
+    background-position: -1px -1px;
 }
 
 .pac-item-selected .pac-icon-search {
-  background-position: -18px -1px;
+    background-position: -18px -1px;
 }
 
 .pac-icon-marker {
-  background-position: -1px -161px;
+    background-position: -1px -161px;
 }
 
 .pac-item-selected .pac-icon-marker {
-  background-position: -18px -161px;
+    background-position: -18px -161px;
 }
 
 .pac-placeholder {
-  color: gray;
+    color: gray;
 }

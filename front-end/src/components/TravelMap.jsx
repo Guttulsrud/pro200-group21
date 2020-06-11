@@ -1,11 +1,14 @@
 import React from 'react';
-import { Map, Marker, Polyline, GoogleApiWrapper } from 'google-maps-react';
-import { mapStyle } from '../utils/MapStyle.js';
-import { MarkerIcon } from './Icons/MarkerIcon';
+import {GoogleApiWrapper, Map, Marker, Polyline} from 'google-maps-react';
+import {mapStyle} from '../utils/MapStyle.js';
+import {MarkerIcon} from './Icons/MarkerIcon';
 
 
 export class TravelMap extends React.Component {
     busIndex = 0;
+    busShouldContinue = false;
+    busHasArrived = false;
+    hasFetchedData = false;
 
     constructor(props) {
         super(props);
@@ -22,7 +25,6 @@ export class TravelMap extends React.Component {
         };
     }
 
-
     componentDidMount() {
 
         if (typeof this.props.ticketId !== 'undefined') {
@@ -37,7 +39,6 @@ export class TravelMap extends React.Component {
         }
 
     }
-
 
     getTicketFromId = async (id) => {
         const url = `http://localhost:5000/ticket/details/${id}`;
@@ -61,7 +62,7 @@ export class TravelMap extends React.Component {
         if (state.fromCoordinate) {
             return (
                 <Marker
-                    position={{ lat: state.fromCoordinate[0], lng: state.fromCoordinate[1] }}
+                    position={{lat: state.fromCoordinate[0], lng: state.fromCoordinate[1]}}
                     icon={{
                         url: '/images/pin-text-from.png',
                         anchor: new this.props.google.maps.Point(80, 77),
@@ -83,11 +84,12 @@ export class TravelMap extends React.Component {
                         anchor: new this.props.google.maps.Point(80, 77),
                         scaledSize: new this.props.google.maps.Size(160, 77)
                     }}
-                    position={{ lat: state.toCoordinate[0], lng: state.toCoordinate[1] }}
+                    position={{lat: state.toCoordinate[0], lng: state.toCoordinate[1]}}
                 />
             );
         }
     };
+
     renderMiddleMarker = () => {
         const state = this.state;
         if (state.middleAddress) {
@@ -98,11 +100,12 @@ export class TravelMap extends React.Component {
                         anchor: new this.props.google.maps.Point(25, 52),
                         scaledSize: new this.props.google.maps.Size(48, 48)
                     }}
-                    position={{ lat: state.middleAddress[0], lng: state.middleAddress[1] }}
+                    position={{lat: state.middleAddress[0], lng: state.middleAddress[1]}}
                 />
             );
         }
     };
+
     renderBusMarker = () => {
         const state = this.state;
         if (state.busCoordinate) {
@@ -113,20 +116,15 @@ export class TravelMap extends React.Component {
                         anchor: new this.props.google.maps.Point(25, 52),
                         scaledSize: new this.props.google.maps.Size(48, 48)
                     }}
-                    position={{ lat: state.busCoordinate.lat, lng: state.busCoordinate.lng }}
+                    position={{lat: state.busCoordinate.lat, lng: state.busCoordinate.lng}}
                 />
             );
         }
     };
 
-
-
     animateBus = () => {
         setInterval(this.intervalFunc, 2000);
     };
-
-    busShouldContinue = false;
-    busHasArrived = false;
 
     intervalFunc = () => {
         if (this.state.polylineArray[this.busIndex]) {
@@ -144,16 +142,14 @@ export class TravelMap extends React.Component {
 
             if (!this.busHasArrived || this.busShouldContinue) {
                 this.setState({
-                    busCoordinate: this.state.polylineArray[this.busIndex]
-                }
+                        busCoordinate: this.state.polylineArray[this.busIndex]
+                    }
                 );
                 this.busIndex++;
                 this.props.timeData(this.state.polylineArray, this.busIndex)
             }
         }
     };
-
-    hasFetchedData = false;
 
     handlePolyline() {
         const state = this.state;
@@ -286,7 +282,7 @@ export class TravelMap extends React.Component {
             <Map
                 className={"map"}
                 google={this.props.google}
-                initialCenter={{ lat: 59.924117, lng: 10.766715, }}
+                initialCenter={{lat: 59.924117, lng: 10.766715,}}
                 centerAroundCurrentLocation
                 center={{
                     lat: this.state.fromCoordinate[0],
@@ -309,7 +305,7 @@ export class TravelMap extends React.Component {
                 {this.handlePolyline()}
 
                 {(!this.state.selected && this.props.orderMap) &&
-                    <MarkerIcon toLoc={this.state.selectedFromAddress} />}
+                <MarkerIcon toLoc={this.state.selectedFromAddress}/>}
 
             </Map>
 

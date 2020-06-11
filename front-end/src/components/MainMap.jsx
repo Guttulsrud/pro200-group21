@@ -1,16 +1,15 @@
 import React from 'react';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
-import { mapStyle } from '../utils/MapStyle.js';
-import { Button } from '../elements/buttons/Button';
-import { MyLocationIcon } from './Icons/MyLocationIcon';
+import {GoogleApiWrapper, Map, Marker} from 'google-maps-react';
+import {mapStyle} from '../utils/MapStyle.js';
+import {Button} from '../elements/buttons/Button';
+import {MyLocationIcon} from './Icons/MyLocationIcon';
 import FromSearchField from './FromSearchField';
-import { Div } from '../elements/divs/Div';
-import { MarkerIcon } from './Icons/MarkerIcon';
-import { DestinationIcon } from './Icons/DestinationIcon';
+import {Div} from '../elements/divs/Div';
+import {MarkerIcon} from './Icons/MarkerIcon';
+import {DestinationIcon} from './Icons/DestinationIcon';
 import PurchaseSection from './PurchaseSection';
 import ToSearchField from './ToSearchField';
-import { Transition, animated } from 'react-spring/renderprops';
-
+import {animated, Transition} from 'react-spring/renderprops';
 
 
 export class MainMap extends React.Component {
@@ -131,7 +130,7 @@ export class MainMap extends React.Component {
         if (state.fromCoordinate) {
             return (
                 <Marker
-                    position={{ lat: state.fromCoordinate[0], lng: state.fromCoordinate[1] }}
+                    position={{lat: state.fromCoordinate[0], lng: state.fromCoordinate[1]}}
                     icon={{
                         url: '/images/pin-48-from.png',
                         anchor: new this.props.google.maps.Point(25, 52),
@@ -153,7 +152,7 @@ export class MainMap extends React.Component {
                         anchor: new this.props.google.maps.Point(25, 52),
                         scaledSize: new this.props.google.maps.Size(48, 48)
                     }}
-                    position={{ lat: state.toCoordinate[0], lng: state.toCoordinate[1] }}
+                    position={{lat: state.toCoordinate[0], lng: state.toCoordinate[1]}}
                 />
             );
         }
@@ -209,11 +208,11 @@ export class MainMap extends React.Component {
     render() {
 
         return (
-            <Div display={"flex"} flexDirection={"column"} overflow={"hidden"} >
+            <Div display={"flex"} flexDirection={"column"} overflow={"hidden"}>
 
                 <Map
                     google={this.props.google}
-                    initialCenter={{ lat: 59.924117, lng: 10.766715, }}
+                    initialCenter={{lat: 59.924117, lng: 10.766715,}}
                     centerAroundCurrentLocation
                     center={{
                         lat: this.state.latitude,
@@ -242,7 +241,7 @@ export class MainMap extends React.Component {
                         handleRemoveTo={this.handleRemoveTo}
                         insertTo={this.insertTo}
                     />}
-                    <MyLocationIcon showCurrentLocation={this.showCurrentLocation} />
+                    <MyLocationIcon showCurrentLocation={this.showCurrentLocation}/>
 
                     <Marker
                         id='position-marker'
@@ -255,13 +254,13 @@ export class MainMap extends React.Component {
                             strokeColor: '#003A70',
                             strokeWeight: 8,
                         }}
-                        position={{ lat: this.state.myLat, lng: this.state.myLng }}
+                        position={{lat: this.state.myLat, lng: this.state.myLng}}
                     />
 
                     {this.renderStartMarker()}
                     {this.renderDestinationMarker()}
                     {(!this.state.selectedFromAddress || !this.state.selectedToAddress) &&
-                        (!this.state.selectedFromAddress ? <MarkerIcon /> : <DestinationIcon />)}
+                    (!this.state.selectedFromAddress ? <MarkerIcon/> : <DestinationIcon/>)}
                 </Map>
 
 
@@ -279,10 +278,11 @@ export class MainMap extends React.Component {
                     </Button>
                 </Div>
 
-                <Transition native items={this.state.orderReady} from={{ marginLeft: 1000 }} enter={{ marginLeft: 0 }} leave={{ marginLeft: 1000 }} config={{ duration: 300, ease: "easeIn" }}>
+                <Transition native items={this.state.orderReady} from={{marginLeft: 1000}} enter={{marginLeft: 0}}
+                            leave={{marginLeft: 1000}} config={{duration: 300, ease: "easeIn"}}>
                     {show => show && (props => (
-                        <animated.div style={props} >
-                            <PurchaseSection sendState={this.state} handleGoBack={this.handleGoBack} />
+                        <animated.div style={props}>
+                            <PurchaseSection sendState={this.state} handleGoBack={this.handleGoBack}/>
                         </animated.div>
                     ))}
                 </Transition>

@@ -47,17 +47,17 @@ const buses = [
         eta: randTime(),
         cap: randCap(),
         currentLoc: streets[randLoc()]
-    },{
+    }, {
         name: 'Vyktor 313',
         eta: randTime(),
         cap: randCap(),
         currentLoc: streets[randLoc()]
-    },{
+    }, {
         name: 'Vyktoria 745',
         eta: randTime(),
         cap: randCap(),
         currentLoc: streets[randLoc()]
-    },{
+    }, {
         name: 'Vyljar 618',
         eta: randTime(),
         cap: randCap(),

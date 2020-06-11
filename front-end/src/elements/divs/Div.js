@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 import {
- space,
- color,
- layout,
- flexbox,
- border,
- typography,
- position,
- margin,
- padding,
- shadow,
- overflow,
- background
+    background,
+    border,
+    color,
+    flexbox,
+    layout,
+    margin,
+    overflow,
+    padding,
+    position,
+    shadow,
+    space,
+    typography
 } from 'styled-system';
-
 
 
 export const Div = styled.div`

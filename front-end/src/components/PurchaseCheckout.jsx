@@ -1,36 +1,34 @@
 import React from 'react';
-import { Div } from '../elements/divs/Div';
+import {Div} from '../elements/divs/Div';
 import Heading from '../elements/text/StyledHeading';
 import tickets from '../utils/tickets';
 import Select from 'react-select';
 
 
-
 const BusSelection = props => {
 
     const options = [
-        { value: 'Vipps', label: <div><img src="/images/vipps.png" height="40px" width="100px" /></div> }
+        {value: 'Vipps', label: <div><img src="/images/vipps.png" height="40px" width="100px"/></div>}
     ];
 
     return (
         <Div bg={'#fff'} width={1} display={'flex'} flexDirection={'column'}>
             <Div display={'flex'} width={1}>
 
-                <Div display={'flex'} width="100%" alignItems="center" pl={20} pr={20} >
+                <Div display={'flex'} width="100%" alignItems="center" pl={20} pr={20}>
 
                     <Div height={48} width={48}>
-                        <img height="48px" width="48px" src={'/images/bus-48.png'} alt={"Buss ikon"} />
+                        <img height="48px" width="48px" src={'/images/bus-48.png'} alt={"Buss ikon"}/>
                     </Div>
                     <Div>
 
                         <Heading.h1 fontSize="2rem" color={'vyBlack'}
-                            pl={10}>{props.bus.name}</Heading.h1>
+                                    pl={10}>{props.bus.name}</Heading.h1>
 
                     </Div>
                     <Div>
                         <Heading.h3 fontSize="1.4rem" fontWeight={300} ml={20}>{props.bus.eta} min</Heading.h3>
                     </Div>
-
 
 
                 </Div>
@@ -47,12 +45,13 @@ const BusSelection = props => {
 
                     <Heading.h2 mb="-12px">Fra</Heading.h2>
                     <Div display="flex" alignItems="center" justifyContent="space-between">
-                        
-                        <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
+
+                        <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column"
+                                    alignItems="center">
 
                             {props.origin}
                         </Heading.h2>
-                        <img height={48} width={48} src={'/images/pin-48-from.png'} alt={"Reise fra-ikon."} />
+                        <img height={48} width={48} src={'/images/pin-48-from.png'} alt={"Reise fra-ikon."}/>
                     </Div>
 
                 </Div>
@@ -62,12 +61,13 @@ const BusSelection = props => {
 
                     <Heading.h2 mb="-12px">Til</Heading.h2>
                     <Div display="flex" alignItems="center" justifyContent="space-between">
-                          
-                        <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column" alignItems="center">
+
+                        <Heading.h2 ml={15} fontSize="1.8rem" fontWeight="300" display="flex" flexDirection="column"
+                                    alignItems="center">
 
                             {props.destination}
                         </Heading.h2>
-                        <img height={48} width={48} src={'/images/pin-48-to.png'} alt={"Reise til-ikon."} />
+                        <img height={48} width={48} src={'/images/pin-48-to.png'} alt={"Reise til-ikon."}/>
                     </Div>
 
                 </Div>
@@ -102,11 +102,11 @@ const BusSelection = props => {
             </Div>
 
             <Div pl={20} pr={20} pb={20}>
-                <Select options={options} placeholder="Velg betalingsmåte" />
+                <Select options={options} placeholder="Velg betalingsmåte"/>
             </Div>
 
 
-        </Div >
+        </Div>
     );
 };
 

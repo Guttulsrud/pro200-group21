@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Card = styled.div.attrs(props => ({
-  
-  bcolor: props.bcolor || 'black',
+
+    bcolor: props.bcolor || 'black',
 }))`
   display: flex;
   justify-content: center;

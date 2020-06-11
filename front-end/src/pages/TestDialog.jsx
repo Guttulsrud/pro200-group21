@@ -14,7 +14,7 @@ class TestDialog extends React.Component {
         return (
 
             <div>
-                {(this.getLsData() === true) ? <TutorialDialog /> : null}
+                {(this.getLsData() === true) ? <TutorialDialog/> : null}
             </div>
         );
     }

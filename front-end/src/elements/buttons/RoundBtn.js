@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { space, color, layout, flexbox, border, typography, position, margin, padding } from 'styled-system';
+import styled, {css} from 'styled-components';
+import {border, color, flexbox, layout, margin, padding, position, space, typography} from 'styled-system';
 
 export const RoundBtn = styled.button`
   ${space}
@@ -44,15 +44,15 @@ export const RoundBtn = styled.button`
     `}
 
     ${(props) =>
-      props.large &&
-      css`
+    props.large &&
+    css`
         height: 50px;
         width: 50px;
       `}
 
       ${(props) =>
-        props.inactive &&
-        css`
+    props.inactive &&
+    css`
           background-color: #a7bcd6;
           color: #003a70;
           cursor: not-allowed;

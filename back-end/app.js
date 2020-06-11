@@ -22,7 +22,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 
-
 /// ROUTES ///
 app.use('/user', userRouter);
 app.use('/ticket', ticketRouter);

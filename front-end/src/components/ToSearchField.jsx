@@ -1,6 +1,6 @@
 import React from 'react';
-import { CloseIcon } from './Icons/CloseIcon';
-import { Label, StyledAC } from '../elements/inputs/StyledAutocomplete';
+import {CloseIcon} from './Icons/CloseIcon';
+import {Label, StyledAC} from '../elements/inputs/StyledAutocomplete';
 
 class ToSearchField extends React.Component {
 
@@ -33,20 +33,19 @@ class ToSearchField extends React.Component {
     }
 
     handleChange = (value) => {
-        this.setState({ inputText: value });
+        this.setState({inputText: value});
 
         if (value !== '') {
-            this.setState({ filled: true });
+            this.setState({filled: true});
         } else {
-            this.setState({ filled: false });
+            this.setState({filled: false});
         }
     };
 
     clearInput = () => {
-        this.setState({ inputText: '', filled: false }, () => this.props.handleRemoveTo());
+        this.setState({inputText: '', filled: false}, () => this.props.handleRemoveTo());
 
     };
-
 
 
     render() {
@@ -58,7 +57,7 @@ class ToSearchField extends React.Component {
                         placeholder={''}
 
                         onPlaceSelected={(place) => {
-                            const { geometry, formatted_address } = place;
+                            const {geometry, formatted_address} = place;
                             this.props.handleInputSelect(geometry.location.lat(), geometry.location.lng());
                             this.setState({
                                 inputText: formatted_address
@@ -66,7 +65,7 @@ class ToSearchField extends React.Component {
                             this.props.insertTo(this.state.inputText)
                         }}
                         types={[]}
-                        componentRestrictions={{ country: 'no' }}
+                        componentRestrictions={{country: 'no'}}
                         value={this.state.inputText}
                         onChange={(e) => this.handleChange(e.target.value)}
                         filled={this.state.filled ? this.state.inputText : undefined}
@@ -76,7 +75,7 @@ class ToSearchField extends React.Component {
                     <Label filled={this.state.filled}>Hvor vil du reise til?</Label>
                     {this.state.filled && (
                         <button onClick={this.clearInput} className='search-btn'>
-                            <CloseIcon />
+                            <CloseIcon/>
                         </button>
                     )}
                 </div>

@@ -1,5 +1,5 @@
 import styled, {css, keyframes} from 'styled-components';
-import {space, position} from 'styled-system';
+import {position, space} from 'styled-system';
 
 const pulse = keyframes`
  from{
@@ -26,9 +26,9 @@ export const Button = styled.button`
   border: none;
   cursor: pointer;
   transition: .2s linear;
-  ${(props) => props.animate && css `
+  ${(props) => props.animate && css`
     animation: ${pulse} 1s linear infinite alternate;
-` }
+`}
   
        
     ${(props) =>

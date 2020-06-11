@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { typography, space, layout, position, color } from 'styled-system';
+import {color, layout, position, space, typography} from 'styled-system';
 
 const p = styled.p`
     ${space}

@@ -15,7 +15,7 @@ export const StyledAC = styled(Autocomplete)`
   border: none;
   transition: .2s linear;
   border-bottom: ${(props) =>
-    props.filled && !props.red ? '2px solid #00866E' : (props.red && props.filled ? "2px solid #FF3800" : '2px solid #333') };
+    props.filled && !props.red ? '2px solid #00866E' : (props.red && props.filled ? "2px solid #FF3800" : '2px solid #333')};
 
  &:focus {
       border-bottom: 2px solid #00866E;

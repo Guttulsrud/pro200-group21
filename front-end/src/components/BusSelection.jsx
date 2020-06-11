@@ -1,5 +1,5 @@
 import React from 'react';
-import { Div } from '../elements/divs/Div';
+import {Div} from '../elements/divs/Div';
 import Heading from '../elements/text/StyledHeading';
 import Text from '../elements/text/StyledText';
 import TargetIcon from './Icons/TargetIcon';
@@ -7,11 +7,13 @@ import TargetIcon from './Icons/TargetIcon';
 
 const BusSelection = props => {
     return (
-        <Div onClick={props.handleShowCheckout} bg={'#fff'} mb={20} height={135} width={1} display={'flex'} flexDirection={'column'} color={'#616567'} >
-            <Div display={'flex'} justifyContent={"space-between"} pt={20} pb={30} width={1} borderBottom={"1px solid #D7D8D9"} >
+        <Div onClick={props.handleShowCheckout} bg={'#fff'} mb={20} height={135} width={1} display={'flex'}
+             flexDirection={'column'} color={'#616567'}>
+            <Div display={'flex'} justifyContent={"space-between"} pt={20} pb={30} width={1}
+                 borderBottom={"1px solid #D7D8D9"}>
                 <Div display={"flex"} pl={20}>
                     <Div height={48} width={48}>
-                        <img src={'/images/bus-48.png'} alt={"Buss ikon."} />
+                        <img src={'/images/bus-48.png'} alt={"Buss ikon."}/>
                     </Div>
                     <Heading.h1 color={"vyBlack"} pl={10} my={0} pt={5}>{props.name}</Heading.h1>
                 </Div>
@@ -19,7 +21,7 @@ const BusSelection = props => {
             </Div>
             <Div display={"flex"} m={"auto"} width={1} justifyContent={"space-between"}>
                 <Div pl={18} display={"flex"}>
-                    <TargetIcon />
+                    <TargetIcon/>
                     <Text.p m={0} pt={3}>{props.curLoc}</Text.p>
                 </Div>
                 <Div pr={18} display={"flex"}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Text from '../elements/text/StyledText';
-import { Div } from '../elements/divs/Div';
+import {Div} from '../elements/divs/Div';
 import Heading from '../elements/text/StyledHeading';
 import TicketList from '../components/TicketList';
 
@@ -21,7 +21,7 @@ class ProfilePage extends React.Component {
 
         if (this.state.ticketList) {
             content = (
-              <TicketList handleShowTickets={this.handleShowTickets}/>
+                <TicketList handleShowTickets={this.handleShowTickets}/>
             )
         } else {
             content = (
@@ -31,7 +31,8 @@ class ProfilePage extends React.Component {
                         <Heading.h1 mt={0} pt={92} fontSize="2em">Min profil</Heading.h1>
                         <Text.p fontSize="1.6rem" color='vyGreen' onClick={this.handleShowTickets}>Mine reiser</Text.p>
                     </Div>
-                    <Div position="relative" bottom="-180px" width="auto" height="500px" zIndex={1} backgroundSize="cover" style={{ backgroundImage: `url("images/4-crop-light.png")` }}>
+                    <Div position="relative" bottom="-180px" width="auto" height="500px" zIndex={1}
+                         backgroundSize="cover" style={{backgroundImage: `url("images/4-crop-light.png")`}}>
 
                     </Div>
                 </Div>
@@ -39,7 +40,7 @@ class ProfilePage extends React.Component {
             )
         }
         return (
-            <Div height="100%" width="100%" position="absolute" overflow={this.state.ticketList ? "auto" : "hidden"} >
+            <Div height="100%" width="100%" position="absolute" overflow={this.state.ticketList ? "auto" : "hidden"}>
                 {content}
             </Div>
         );

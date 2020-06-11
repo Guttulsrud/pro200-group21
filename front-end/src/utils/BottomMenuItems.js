@@ -1,22 +1,22 @@
 import React from 'react';
-import { SearchIcon } from '../components/Icons/SearchIcon';
-import { TicketIcon } from '../components/Icons/TicketIcon';
-import { ProfileIcon } from '../components/Icons/ProfileIcon';
+import {SearchIcon} from '../components/Icons/SearchIcon';
+import {TicketIcon} from '../components/Icons/TicketIcon';
+import {ProfileIcon} from '../components/Icons/ProfileIcon';
 
 export const items = [
     {
         title: 'Ny reise',
-        icon: <SearchIcon />,
+        icon: <SearchIcon/>,
         link: '/'
     },
     {
         title: 'Billett',
-        icon: <TicketIcon />,
+        icon: <TicketIcon/>,
         link: '/activeticket'
     },
     {
         title: 'Profil',
-        icon: <ProfileIcon />,
+        icon: <ProfileIcon/>,
         link: '/profile'
     }
 ];
